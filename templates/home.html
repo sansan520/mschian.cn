@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 	<head>
 		<meta charset= "utf-8" />
@@ -7,10 +7,16 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1.0">
 		<title>中国名宿网</title>
-		<link rel="stylesheet" href="/static/css/bootstrap.css">
-		<link rel="stylesheet" href="/static/css/ms.css">
-		<script src="/static/js/jquery-1.12.1.min.js"></script>
-		<script src="/static/js/bootstrap.js"></script>
+		<link rel="stylesheet" href="../style/bootstrap.css">
+		<link rel="stylesheet" href="../style/ms.css">
+		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+		<!--[if lt IE 9]>
+		  <script src="//cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+		  <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+		<![endif]-->
+		<script src="../js/jquery-1.12.1.min.js"></script>
+		<script src="../js/bootstrap.js"></script>
 	</head>
 	
 	<body>
@@ -25,7 +31,7 @@
 			        <span class="icon-bar"></span>
 			        <span class="icon-bar"></span>
 			      </button>
-			      <a class="navbar-brand" href="#"><img src="/static/images/logo.png" /></a>
+			      <a class="navbar-brand" href="#"><img src="../images/logo.png" /></a>
 			       <form class="form-inline pull-left">
 					  <div class="form-group">
 					    <label class="sr-only" for="exampleInputAmount">Amount (in dollars)</label>
@@ -50,12 +56,10 @@
 			        <li class="dropdown">
 			          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">帮助</span></a>
 			          <ul class="dropdown-menu">
-			            <li><a href="#"><span>入门指南</span></a></li>
-			            <li><a href="#"><span>预订的价格是如何计算的？</span></a></li>
-			            <li><a href="#"><span>Airbnb是如何处理付款的？</span></a></li>
-			            <li><a href="#"><span>房东可以更改预订吗？</span></a></li>
+			            <li><a href="#"><span>我是租客</span></a></li>
+						<li><a href="#"><span>我是房东</span></a></li>
 			            <li role="separator" class="divider"></li>
-			            <li class="li-help"><a href="#">帮助中心</a></li>
+			            <li class="li-help"><a href="helpcenter.html">帮助中心</a></li>
 			          </ul>
 			        </li>
 			        <li><a href="#">注册</a></li>
@@ -97,13 +101,13 @@
 			  <!-- Wrapper for slides -->
 			  <div class="carousel-inner" role="listbox">
 			    <div class="item active">
-			      <img src="/static/images/banner.jpg" alt="">
+			      <img src="../images/banner01.jpg" alt="">
 			      <div class="carousel-caption">
 			        <h1> 去旅行，去生活，哪怕就住一晚。</h1>
 			      </div>
 			    </div>
 			    <div class="item">
-			      <img src="/static/images/banner.jpg" alt="">
+			      <img src="../images/banner02.jpg" alt="">
 			      <div class="carousel-caption">
 			        <h1>1去旅行，去生活，哪怕就住一晚。</h1>
 			      </div>
@@ -122,7 +126,7 @@
 		<!-- 轮播图结束 -->
 		
 		<!-- 主体开始 -->
-		<div class="ms-main">
+		<div class="ms-main clearfix">
 			<div class="container">
 				<div class="main-item">
 					<div class="main-title text-center">
@@ -137,7 +141,7 @@
 						<div class="col-sm-4">
 							<div class="ms-pic-box">
 								<a href="#" class="ms-pic">
-							      <img src="/static/images/pic02.jpg" alt="...">
+							      <img src="../images/pic02.jpg" alt="...">
 							       <p class="ms-dd"><strong>北京</strong></p>
 							    </a>
 						    </div>
@@ -145,7 +149,7 @@
 						<div class="col-sm-4">
 							<div class="ms-pic-box">
 								<a href="#" class="ms-pic">
-							      <img src="/static/images/pic02.jpg" alt="...">
+							      <img src="../images/pic02.jpg" alt="...">
 							       <p class="ms-dd"><strong>北京</strong></p>
 							    </a>
 						   </div>
@@ -153,7 +157,7 @@
 						<div class="col-sm-4">
 							<div class="ms-pic-box">
 								<a href="#" class="ms-pic">
-							      <img src="/static/images/pic02.jpg" alt="...">
+							      <img src="../images/pic02.jpg" alt="...">
 							       <p class="ms-dd"><strong>北京</strong></p>
 							    </a>
 						   </div>
@@ -181,7 +185,7 @@
 							<div class="col-sm-6">
 								<div class="ms-pic-box">
 									<a href="#" class="ms-pic">
-								      <img src="/static/images/pic02.jpg" alt="...">
+								      <img src="../images/pic02.jpg" alt="...">
 								       <p class="ms-dd"><strong>北京</strong></p>
 								    </a>
 							    </div>
@@ -189,13 +193,13 @@
 							<div class="col-sm-3">
 								<div class="ms-pic-box">
 									<a href="#" class="ms-pic">
-								      <img src="/static/images/pic02.jpg" alt="...">
+								      <img src="../images/pic02.jpg" alt="...">
 								       <p class="ms-dd"><strong>北京</strong></p>
 								    </a>
 							    </div>
 							    <div class="ms-pic-box">
 									<a href="#" class="ms-pic">
-								      <img src="/static/images/pic02.jpg" alt="...">
+								      <img src="../images/pic02.jpg" alt="...">
 								       <p class="ms-dd"><strong>北京</strong></p>
 								    </a>
 							    </div>
@@ -203,13 +207,13 @@
 							<div class="col-sm-3">
 								<div class="ms-pic-box">
 									<a href="#" class="ms-pic">
-								      <img src="/static/images/pic02.jpg" alt="...">
+								      <img src="../images/pic02.jpg" alt="...">
 								       <p class="ms-dd"><strong>北京</strong></p>
 								    </a>
 							    </div>
 							    <div class="ms-pic-box">
 									<a href="#" class="ms-pic">
-								      <img src="/static/images/pic02.jpg" alt="...">
+								      <img src="../images/pic02.jpg" alt="...">
 								       <p class="ms-dd"><strong>北京</strong></p>
 								    </a>
 							    </div>
@@ -220,13 +224,13 @@
 							<div class="col-sm-3">
 								<div class="ms-pic-box">
 									<a href="#" class="ms-pic">
-								      <img src="/static/images/pic02.jpg" alt="...">
+								      <img src="../images/pic02.jpg" alt="...">
 								       <p class="ms-dd"><strong>北京</strong></p>
 								    </a>
 							    </div>
 							    <div class="ms-pic-box">
 									<a href="#" class="ms-pic">
-								      <img src="/static/images/pic02.jpg" alt="...">
+								      <img src="../images/pic02.jpg" alt="...">
 								       <p class="ms-dd"><strong>北京</strong></p>
 								    </a>
 							    </div>
@@ -234,7 +238,7 @@
 							<div class="col-sm-6">
 								<div class="ms-pic-box">
 									<a href="#" class="ms-pic">
-								      <img src="/static/images/pic02.jpg" alt="...">
+								      <img src="../images/pic02.jpg" alt="...">
 								       <p class="ms-dd"><strong>北京</strong></p>
 								    </a>
 							    </div>
@@ -242,13 +246,13 @@
 							<div class="col-sm-3">
 								<div class="ms-pic-box">
 									<a href="#" class="ms-pic">
-								      <img src="/static/images/pic02.jpg" alt="...">
+								      <img src="../images/pic02.jpg" alt="...">
 								       <p class="ms-dd"><strong>北京</strong></p>
 								    </a>
 							    </div>
 							    <div class="ms-pic-box">
 									<a href="#" class="ms-pic">
-								      <img src="/static/images/pic02.jpg" alt="...">
+								      <img src="../images/pic02.jpg" alt="...">
 								       <p class="ms-dd"><strong>北京</strong></p>
 								    </a>
 							    </div>
@@ -260,7 +264,7 @@
 							<div class="col-sm-6">
 								<div class="ms-pic-box">
 									<a href="#" class="ms-pic">
-								      <img src="/static/images/pic02.jpg" alt="...">
+								      <img src="../images/pic02.jpg" alt="...">
 								       <p class="ms-dd"><strong>北京2</strong></p>
 								    </a>
 							    </div>
@@ -268,13 +272,13 @@
 							<div class="col-sm-3">
 								<div class="ms-pic-box">
 									<a href="#" class="ms-pic">
-								      <img src="/static/images/pic02.jpg" alt="...">
+								      <img src="../images/pic02.jpg" alt="...">
 								       <p class="ms-dd"><strong>北京</strong></p>
 								    </a>
 							    </div>
 							    <div class="ms-pic-box">
 									<a href="#" class="ms-pic">
-								      <img src="/static/images/pic02.jpg" alt="...">
+								      <img src="../images/pic02.jpg" alt="...">
 								       <p class="ms-dd"><strong>北京</strong></p>
 								    </a>
 							    </div>
@@ -282,13 +286,13 @@
 							<div class="col-sm-3">
 								<div class="ms-pic-box">
 									<a href="#" class="ms-pic">
-								      <img src="/static/images/pic02.jpg" alt="...">
+								      <img src="../images/pic02.jpg" alt="...">
 								       <p class="ms-dd"><strong>北京</strong></p>
 								    </a>
 							    </div>
 							    <div class="ms-pic-box">
 									<a href="#" class="ms-pic">
-								      <img src="/static/images/pic02.jpg" alt="...">
+								      <img src="../images/pic02.jpg" alt="...">
 								       <p class="ms-dd"><strong>北京</strong></p>
 								    </a>
 							    </div>
@@ -299,13 +303,13 @@
 							<div class="col-sm-3">
 								<div class="ms-pic-box">
 									<a href="#" class="ms-pic">
-								      <img src="/static/images/pic02.jpg" alt="...">
+								      <img src="../images/pic02.jpg" alt="...">
 								       <p class="ms-dd"><strong>北京</strong></p>
 								    </a>
 							    </div>
 							    <div class="ms-pic-box">
 									<a href="#" class="ms-pic">
-								      <img src="/static/images/pic02.jpg" alt="...">
+								      <img src="../images/pic02.jpg" alt="...">
 								       <p class="ms-dd"><strong>北京</strong></p>
 								    </a>
 							    </div>
@@ -313,7 +317,7 @@
 							<div class="col-sm-6">
 								<div class="ms-pic-box">
 									<a href="#" class="ms-pic">
-								      <img src="/static/images/pic02.jpg" alt="...">
+								      <img src="../images/pic02.jpg" alt="...">
 								       <p class="ms-dd"><strong>北京</strong></p>
 								    </a>
 							    </div>
@@ -321,13 +325,13 @@
 							<div class="col-sm-3">
 								<div class="ms-pic-box">
 									<a href="#" class="ms-pic">
-								      <img src="/static/images/pic02.jpg" alt="...">
+								      <img src="../images/pic02.jpg" alt="...">
 								       <p class="ms-dd"><strong>北京</strong></p>
 								    </a>
 							    </div>
 							    <div class="ms-pic-box">
 									<a href="#" class="ms-pic">
-								      <img src="/static/images/pic02.jpg" alt="...">
+								      <img src="../images/pic02.jpg" alt="...">
 								       <p class="ms-dd"><strong>北京</strong></p>
 								    </a>
 							    </div>
@@ -339,7 +343,7 @@
 							<div class="col-sm-6">
 								<div class="ms-pic-box">
 									<a href="#" class="ms-pic">
-								      <img src="/static/images/pic02.jpg" alt="...">
+								      <img src="../images/pic02.jpg" alt="...">
 								       <p class="ms-dd"><strong>北京3</strong></p>
 								    </a>
 							    </div>
@@ -347,13 +351,13 @@
 							<div class="col-sm-3">
 								<div class="ms-pic-box">
 									<a href="#" class="ms-pic">
-								      <img src="/static/images/pic02.jpg" alt="...">
+								      <img src="../images/pic02.jpg" alt="...">
 								       <p class="ms-dd"><strong>北京</strong></p>
 								    </a>
 							    </div>
 							    <div class="ms-pic-box">
 									<a href="#" class="ms-pic">
-								      <img src="/static/images/pic02.jpg" alt="...">
+								      <img src="../images/pic02.jpg" alt="...">
 								       <p class="ms-dd"><strong>北京</strong></p>
 								    </a>
 							    </div>
@@ -361,13 +365,13 @@
 							<div class="col-sm-3">
 								<div class="ms-pic-box">
 									<a href="#" class="ms-pic">
-								      <img src="/static/images/pic02.jpg" alt="...">
+								      <img src="../images/pic02.jpg" alt="...">
 								       <p class="ms-dd"><strong>北京</strong></p>
 								    </a>
 							    </div>
 							    <div class="ms-pic-box">
 									<a href="#" class="ms-pic">
-								      <img src="/static/images/pic02.jpg" alt="...">
+								      <img src="../images/pic02.jpg" alt="...">
 								       <p class="ms-dd"><strong>北京</strong></p>
 								    </a>
 							    </div>
@@ -378,13 +382,13 @@
 							<div class="col-sm-3">
 								<div class="ms-pic-box">
 									<a href="#" class="ms-pic">
-								      <img src="/static/images/pic02.jpg" alt="...">
+								      <img src="../images/pic02.jpg" alt="...">
 								       <p class="ms-dd"><strong>北京</strong></p>
 								    </a>
 							    </div>
 							    <div class="ms-pic-box">
 									<a href="#" class="ms-pic">
-								      <img src="/static/images/pic02.jpg" alt="...">
+								      <img src="../images/pic02.jpg" alt="...">
 								       <p class="ms-dd"><strong>北京</strong></p>
 								    </a>
 							    </div>
@@ -392,7 +396,7 @@
 							<div class="col-sm-6">
 								<div class="ms-pic-box">
 									<a href="#" class="ms-pic">
-								      <img src="/static/images/pic02.jpg" alt="...">
+								      <img src="../images/pic02.jpg" alt="...">
 								       <p class="ms-dd"><strong>北京</strong></p>
 								    </a>
 							    </div>
@@ -400,13 +404,13 @@
 							<div class="col-sm-3">
 								<div class="ms-pic-box">
 									<a href="#" class="ms-pic">
-								      <img src="/static/images/pic02.jpg" alt="...">
+								      <img src="../images/pic02.jpg" alt="...">
 								       <p class="ms-dd"><strong>北京</strong></p>
 								    </a>
 							    </div>
 							    <div class="ms-pic-box">
 									<a href="#" class="ms-pic">
-								      <img src="/static/images/pic02.jpg" alt="...">
+								      <img src="../images/pic02.jpg" alt="...">
 								       <p class="ms-dd"><strong>北京</strong></p>
 								    </a>
 							    </div>
@@ -425,7 +429,7 @@
 						<div class="col-sm-4">
 							<div class="ms-pic-box">
 								<a href="#" class="ms-pic">
-							      <img src="/static/images/pic02.jpg" alt="...">
+							      <img src="../images/pic02.jpg" alt="...">
 							    </a>
 							     <h2 class="ms-bt"><a href=""><strong>为了这一眼极光，再长的等待也值了</strong></a></h2>
 							    <p class="ms-nr">旅行故事</p>
@@ -434,7 +438,7 @@
 						<div class="col-sm-4">
 							<div class="ms-pic-box">
 								<a href="#" class="ms-pic">
-							      <img src="/static/images/pic02.jpg" alt="...">
+							      <img src="../images/pic02.jpg" alt="...">
 							    </a>
 							     <h2 class="ms-bt"><a href=""><strong>为了这一眼极光，再长的等待也值了</strong></a></h2>
 							    <p class="ms-nr">旅行故事</p>
@@ -443,7 +447,7 @@
 						<div class="col-sm-4">
 							<div class="ms-pic-box">
 								<a href="#" class="ms-pic">
-							      <img src="/static/images/pic02.jpg" alt="...">
+							      <img src="../images/pic02.jpg" alt="...">
 							    </a>
 							    <h2 class="ms-bt"><a href=""><strong>为了这一眼极光，再长的等待也值了</strong></a></h2>
 							    <p class="ms-nr">旅行故事</p>

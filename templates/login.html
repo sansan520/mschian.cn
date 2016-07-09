@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset= "utf-8" />
+		<meta name="format-detection" content="telephone=no">
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1.0">
+		<title>名宿中国</title>
+		<link rel="stylesheet" href="../style/bootstrap.css">
+		<link rel="stylesheet" href="../style/ms.css">
+		<script src="../js/jquery-1.12.1.min.js"></script>
+		<script src="../js/bootstrap.js"></script>
+		<style>
+			/* 登录界面 */
+			#main{
+				width: 100%;
+				min-height: 550px;
+				background: url("http://static.zzkcdn.com/registerbg2.png") no-repeat;
+				background-size: 100% 100%;
+				text-align:center
+			}
+			/*右侧登陆外包尾框*/
+			.signin{
+				position: relative;
+				top: 50px;
+				padding: 20px 30px;
+				width: 430px;
+				background-color: #ffffff;
+				margin:0 auto;
+			}
+			/*登录框头部*/
+			.signin-header{
+				overflow: hidden;
+				text-align: left;
+			}
+			/*自在客会员*/
+			.signin-header-title{
+				color: #666666;
+				display: inline;
+				font-size: 24px;
+				font-weight: normal;
+
+			}
+			/*立即注册*/
+			.signin-header-signup{
+				font-weight: normal;
+				display: inline;
+				float: right;
+				font-size: 20px;
+				color: red;
+				text-decoration: none;
+
+			}
+			/*分割线*/
+			.signin-header-line{
+				margin-top: 10px;
+				margin-bottom: 20px;
+				opacity: 0.5;
+			}
+			/*登陆框主内容*/
+			.signin-content{
+				width: 370px;
+				min-height: 210px;
+				margin-bottom: 30px;
+			}
+			/*输入用户名外包围框*/
+			.signin-content-username{
+				width:370px;
+				height:50px;
+
+			}
+
+			/*输入用户名左侧头像*/
+			.signin-content-username .username-img {
+				float: left;
+				display: block;
+				width: 50px;
+				height: 50px;
+				background-image: url("http://static.zzkcdn.com/login/user-normal.png");
+				background-color: rgba(204, 204, 204, 0.25);
+				background-repeat: no-repeat;
+				background-size: 50% 50%;
+				background-position: center;
+				border: 1px solid #cccccc;
+			}
+			.signin-content-username .username-img0{
+				float: left;
+				display: block;
+				width: 50px;
+				height: 50px;
+				background-image: url("http://static.zzkcdn.com/login/user-wrong.png");
+				background-color: #ffebec;
+				background-repeat: no-repeat;
+				background-size: 50% 50%;
+				background-position: center;
+				border: 1px solid red;
+			}
+			.signin-content-username .username-img1{
+				float: left;
+				display: block;
+				width: 50px;
+				height: 50px;
+				background-image: url("http://static.zzkcdn.com/login/user-right.png");
+				background-color: #ecf7fd;
+				background-repeat: no-repeat;
+				background-size: 50% 50%;
+				background-position: center;
+				border: 1px solid #83b9db;
+			}
+			/*输入用户民右侧输入框*/
+			.signin-content-username .username-input{
+				color: #666666;
+				width: 306px;
+				height: 50px;
+				border: 1px solid #cccccc;
+				font-size: 20px;
+				padding-left: 10px;
+			}
+			.signin-content-username .username-input0{
+				color: #666666;
+				width: 306px;
+				height: 50px;
+				border: 1px solid red;
+				border-left: 0px;
+				font-size: 20px;
+				padding-left: 10px;
+			}
+			.signin-content-username .username-input1{
+				color: #666666;
+				width: 306px;
+				height: 50px;
+				border: 1px solid #83b9db;
+				border-left: 0px;
+				font-size: 20px;
+				padding-left: 10px;
+			}
+
+			/*输入密码外包围框*/
+			.signin-content-pwd{
+				width:370px;
+				height:50px;
+			}
+			/*输入密码左侧图标*/
+			.signin-content-pwd .pwd-img {
+				float: left;
+				display: block;
+				width: 50px;
+				height: 50px;
+				background-image: url("http://static.zzkcdn.com/login/mima-normal.png");
+				background-color: rgba(204, 204, 204, 0.25);
+				background-repeat: no-repeat;
+				background-size: 50% 50%;
+				background-position: center;
+				border: 1px solid #cccccc;
+			}
+			.signin-content-pwd .pwd-img0 {
+				float: left;
+				display: block;
+				width: 50px;
+				height: 50px;
+				background-image: url("http://static.zzkcdn.com/login/mima-wrong.png");
+				background-color: #ffebec;
+				background-repeat: no-repeat;
+				background-size: 50% 50%;
+				background-position: center;
+				border: 1px solid red;
+			}
+			.signin-content-pwd .pwd-img1 {
+				float: left;
+				display: block;
+				width: 50px;
+				height: 50px;
+				background-image: url("http://static.zzkcdn.com/login/mima.png");
+				background-color: #ecf7fd;
+				background-repeat: no-repeat;
+				background-size: 50% 50%;
+				background-position: center;
+			}
+			/*输入密码右侧输入框*/
+			.signin-content-pwd .pwd-input{
+				width: 306px;
+				height: 50px;
+				border: 1px solid #cccccc;
+				font-size: 20px;
+				padding-left: 10px;
+			}
+			.signin-content-pwd .pwd-input0{
+				width: 306px;
+				height: 50px;
+				border: 1px solid red;
+				border-left: 0px;
+				font-size: 20px;
+				padding-left: 10px;
+
+			}
+
+			/*登录按钮*/
+			.signin-content-button{
+				letter-spacing: 20px;
+				display: block;
+				width: 370px;
+				height: 50px;
+				background-color: #f35758;
+				font-size: 24px;
+				color: #ffffff;
+				border-style: none;
+			}
+			/*登陆框尾部*/
+			.signin-footer{
+				margin-left: 30px;
+				margin-right: 30px;
+				font-size: 18px;
+			}
+			/*左侧微信登陆*/
+			.signin-footer-wechat{
+				text-decoration: none;
+				color: #666666;
+				margin-top:20px;
+				display:block;
+				float:left;
+			}
+			/*右侧QQ登录*/
+			.signin-footer-QQ{
+				text-decoration: none;
+				color: #666666;
+				margin-left:50px;
+				margin-top:20px;
+				display:block;
+				float:right;
+			}
+
+			/*页面底部*/
+			#footer
+			{
+				background:none repeat scroll 0 0 #F9F9F9;
+				bottom:0;
+				clear:both;
+				color:#333333;
+				font-family:'Verdana','Geneva','sans-serif';
+				font-size:12px;
+				height:80px;
+				line-height:30px;
+				margin-top:20px;
+				padding-top:10px;
+				text-align:center;
+				width:100%;
+			}
+			#footer a {text-decoration:none;color:#333333;font-size:12px;}
+			.footer-bottom {color:#8F8F8F;padding-right:1px;}
+		</style>
+	</head>
+
+	<body>
+		<!-- 名宿头部ms-hd开始 -->
+		<div class="ms-hd">
+			<nav class="navbar navbar-default">
+			  <div class="container-fluid">
+			    <div class="navbar-header">
+			      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+			        <span class="sr-only">Toggle navigation</span>
+			        <span class="icon-bar"></span>
+			        <span class="icon-bar"></span>
+			        <span class="icon-bar"></span>
+			      </button>
+			      <a class="navbar-brand" href="#"><img src="../images/logo.png" /></a>
+			       <form class="form-inline pull-left">
+					  <div class="form-group">
+					    <label class="sr-only" for="exampleInputAmount">Amount (in dollars)</label>
+					    <div class="input-group">
+					      <div class="input-group-addon"><span class="glyphicon glyphicon-search"></span></div>
+					      <input type="text" class="form-control" id="exampleInputAmount" placeholder="想去哪里？">
+					    </div>
+					  </div>
+					</form>
+			    </div>
+
+			    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+			      <ul class="nav navbar-nav navbar-right">
+			      	<li class="dropdown">
+			          <a href="#" class="first-A dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="btn begin-fd">成为房东</span></a>
+			          <ul class="dropdown-menu">
+			            <li><a href="#"><span>如何出租房源</span></a></li>
+			            <li><a href="#"><span>发布空间</span></a></li>
+			            <li><a href="#"><span>看看你在杭州能赚多少钱</span></a></li>
+			          </ul>
+			       </li>
+			        <li class="dropdown">
+			          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">帮助</span></a>
+			          <ul class="dropdown-menu">
+			            <li><a href="#"><span>我是租客</span></a></li>
+						<li><a href="#"><span>我是房东</span></a></li>
+			            <li role="separator" class="divider"></li>
+			            <li class="li-help"><a href="helpcenter.html">帮助中心</a></li>
+			          </ul>
+			        </li>
+			        <li><a href="#">注册</a></li>
+			        <li><a href="#">登录</a></li>
+			      </ul>
+			    </div>
+			  </div>
+			</nav>
+		</div>
+		<script>
+			$(document).ready(function(){
+				$(document).off('click.bs.dropdown.data-api');
+				dropdownOpen();//调用
+			});
+			/**
+			 * 鼠标划过就展开子菜单，免得需要点击才能展开
+			 */
+			function dropdownOpen() {
+
+				var $dropdownLi = $('li.dropdown');
+
+				$dropdownLi.mouseover(function() {
+					$(this).addClass('open');
+				}).mouseout(function() {
+					$(this).removeClass('open');
+				});
+			}
+		</script>
+		<!-- 名宿banner区ms-banner结束 -->
+
+		<!-- 主体开始 -->
+		<!--加载页面头部-->
+        <div id="main">
+		<div class="signin clearfix">
+                <!--登陆框头部-->
+                <header class="signin-header">
+                    <h2 class="signin-header-title">自在客会员</h2>
+                    <a class="signin-header-signup" href="http://zh.zizaike.com/register/" title="用户注册">用户注册>></a>
+                    <hr class="signin-header-line">
+                </header>
+                <!--登陆框-->
+                <section class="signin-content clearfix">
+                    <form id="user-login" accept-charset="UTF-8" method="post" action="./"  onsubmit="return zzk_user_login(this)" >
+                        <input name="pre_url" type="hidden" value="http://zh.zizaike.com/v2/register/other" />
+                        <input name="linkposition" type="hidden" value="" />
+                        <div><input type="hidden" name="typename" value="login" /></div>
+                        <!--用户名输入框-->
+                        <div class="signin-content-username"  data-status="">
+                            <span id="username-img" class="username-img"></span>
+                            <input id="int_name" class="username-input" placeholder="邮箱/手机号码"  type="text" name="name" tabindex="1" value='' />
+                        </div>
+                        <!--请输入用户名提示-->
+                        <div style="height:25px;width:318px;text-align: left" data-status="">
+                            <span class="form_label" id="name_label" style="color:red;line-height:25px;margin-left:10px;display:none;">
+                                请输入用户名!                            </span>
+                        </div>
+                        <!--密码输入框-->
+                        <div class="signin-content-pwd" data-status="">
+                            <span id="pwd-img" class="pwd-img"></span>
+                            <input id="int_pass" class="pwd-input" placeholder="请输入密码" type="password" name="pass" tabindex="2" />
+                        </div>
+                        <!--密码错误提示-->
+                        <div style="height:25px;width:318px;text-align: left">
+                            <span class="form_label" id="password_label"  style="line-height:25px;color:red;margin-left:10px;display:none;" >
+<!--                                -->                                请输入密码                            </span>
+                        </div>
+
+
+                        <!--验证码提示-->
+                        <div id="edit-captcha" style="height:20px;width:370px;text-align: center;display:none;">
+                            <span class="form_label" id="edit-captcha-response" style="display:none;color:red;">
+                                请输入验证码                            </span>
+                            <span class="form_label" id="edit-captcha-response-2" style="display:none;color:red;text-align: center">
+                                验证码错误                            </span>
+                        </div>
+
+                        <!--记住密码 忘记密码 -->
+                        <div class="login_check" style="margin-bottom: 20px;text-align: left">
+                            <input class="rem" type="checkbox" />
+                            <label class="rem" >记住密码</label>
+                            <a href="/v2/findpwd" style="display:block;float:right;color: #F35758;text-decoration: none;" title="找回密码" >忘了密码?</a>
+                        </div>
+                        <div><input id="veriy" type="hidden" name="veriy" /></div>
+                        <!--登录按钮-->
+                        <input class="signin-content-button" type="submit" id="login_click_l" value="登录" />
+                    </form>
+                </section>
+		</div>
+		</div>
+		<!-- 主体结束 -->
+
+		<!-- 底部开始 -->
+		<div class= "ms-footer">
+			<div class="container">
+				<div class="row">
+					<div class="col-sm-6 col-md-3">
+						<dl class= "ft-item">
+							<dt>公司信息</dt>
+							<dd><a href= "">关于</a></dd>
+							<dd><a href= "">工作机会</a></dd>
+							<dd><a href= "">新闻</a></dd>
+							<dd><a href= "">博客</a></dd>
+						</dl>
+					</div>
+					<div class="col-sm-6 col-md-3">
+						<dl class= "ft-item">
+							<dt>公司信息</dt>
+							<dd><a href= "">关于</a></dd>
+							<dd><a href= "">工作机会</a></dd>
+							<dd><a href= "">新闻</a></dd>
+							<dd><a href= "">博客</a></dd>
+						</dl>
+					</div>
+					<div class="col-sm-6 col-md-3">
+						<dl class= "ft-item">
+							<dt>公司信息</dt>
+							<dd><a href= "">关于</a></dd>
+							<dd><a href= "">工作机会</a></dd>
+							<dd><a href= "">新闻</a></dd>
+							<dd><a href= "">博客</a></dd>
+					</div>
+					<div class="col-sm-6 col-md-3">
+						<dl class= "ft-item">
+							<dt>公司信息</dt>
+							<dd><a href= "">关于</a></dd>
+							<dd><a href= "">工作机会</a></dd>
+							<dd><a href= "">新闻</a></dd>
+							<dd><a href= "">博客</a></dd>
+						</dl>
+					</div>
+				</div>
+				<p class= "ms-copyright">Copyright 2008-2016 www.wjy360.com All Rights Reserved 浙B2-20100360-12</p>
+			</div>
+		</div>
+		<!-- 底部结束 -->
+	</body>
+</html>
