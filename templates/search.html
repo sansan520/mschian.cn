@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset= "utf-8" />
+		<meta name="format-detection" content="telephone=no">
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1.0">
+		<title>中国名宿网</title>
+		<link rel="stylesheet" href="../style/bootstrap.css">
+		<link rel="stylesheet" href="../style/jquery-ui.min.css">
+		<link rel="stylesheet" href="../style/ms.css">
+		<script src="../js/jquery-1.12.1.min.js"></script>
+		  <script src="../js/jquery-ui.min.js"></script>
+		  <script src="../js/bootstrap.js"></script>
+		<style type="text/css">
+			body, html {width: 100%;height: 100%;margin:0;font-family:"微软雅黑";}
+			#allmap{width:100%;height:500px;}
+			p{margin-left:5px; font-size:14px;}
+		</style>
+		<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=Gd91rZFBVRt0z7D97fdk9FMdOXfn9qGd"></script>
+		<title>根据关键字本地搜索</title>
+	</head>
+	
+	<body>
+		<!-- 名宿头部ms-hd开始 -->
+		<div class="ms-hd">
+			<nav class="navbar navbar-default">
+			  <div class="container-fluid">
+			    <div class="navbar-header">
+			      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+			        <span class="sr-only">Toggle navigation</span>
+			        <span class="icon-bar"></span>
+			        <span class="icon-bar"></span>
+			        <span class="icon-bar"></span>
+			      </button>
+			      <a class="navbar-brand" href="#"><img src="../images/logo.png" /></a>
+			       <form class="form-inline pull-left">
+					  <div class="form-group">
+					    <label class="sr-only" for="exampleInputAmount">Amount (in dollars)</label>
+					    <div class="input-group">
+					      <div class="input-group-addon"><span class="glyphicon glyphicon-search"></span></div>
+					      <input type="text" class="form-control" id="exampleInputAmount" placeholder="想去哪里？">
+					    </div>
+					  </div>
+					</form>
+			    </div>
+				
+			    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+			      <ul class="nav navbar-nav navbar-right">
+			      	<li class="dropdown">
+			          <a href="#" class="first-A dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="btn begin-fd">成为房东</span></a>
+			          <ul class="dropdown-menu">
+			            <li><a href="#"><span>如何出租房源</span></a></li>
+			            <li><a href="#"><span>发布空间</span></a></li>
+			            <li><a href="#"><span>看看你在杭州能赚多少钱</span></a></li>
+			          </ul>
+			       </li>
+			        <li class="dropdown">
+			          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">帮助</span></a>
+			          <ul class="dropdown-menu">
+			            <li><a href="#"><span>入门指南</span></a></li>
+			            <li><a href="#"><span>预订的价格是如何计算的？</span></a></li>
+			            <li><a href="#"><span>Airbnb是如何处理付款的？</span></a></li>
+			            <li><a href="#"><span>房东可以更改预订吗？</span></a></li>
+			            <li role="separator" class="divider"></li>
+			            <li class="li-help"><a href="#">帮助中心</a></li>
+			          </ul>
+			        </li>
+			        <li><a href="#" data-toggle="modal" data-target="#myModalZC">注册</a></li>
+			        <li><a href="#" data-toggle="modal" data-target="#myModalDL">登录</a></li>
+			      </ul>
+			    </div>
+			  </div>
+			</nav>
+		</div>
+		<!-- Modal -->
+		<div class="modal fade" id="myModalZC" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+		  <div class="modal-dialog" role="document">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+		        <h4 class="modal-title">注册</h4>
+		      </div>
+		      <div class="modal-body">
+		        <form class="form-horizontal" role="form">
+					<div class="form-group">
+						<label for="inputEmail3" class="col-sm-2 control-label">邮箱</label>
+						<div class="col-sm-10">
+							<input type="email" class="form-control" id="inputEmail3" placeholder="邮箱">
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="inputPassword3" class="col-sm-2 control-label">电话</label>
+						<div class="col-sm-10">
+							<input type="password" class="form-control" id="inputPassword3" placeholder="电话">
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="inputEmail3" class="col-sm-2 control-label">密码</label>
+						<div class="col-sm-10">
+							<input type="email" class="form-control" id="inputEmail3" placeholder="密码">
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="inputEmail3" class="col-sm-2 control-label">确认密码</label>
+						<div class="col-sm-10">
+							<input type="email" class="form-control" id="inputEmail3" placeholder="确认密码">
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-sm-offset-2 col-sm-10">
+							<div class="checkbox">
+								<label>
+									<input type="checkbox">同意<a href="">中国名宿网的相关规则</a>
+								</label>
+							</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-sm-offset-2 col-sm-10">
+							<button type="submit" class="btn btn-danger">注册</button>
+						</div>
+					</div>
+				</form>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+		<!-- Modal -->
+		<div class="modal fade" id="myModalDL" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+		  <div class="modal-dialog" role="document">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+		        <h4 class="modal-title">登录</h4>
+		      </div>
+		      <div class="modal-body">
+		        <form class="form-horizontal" role="form">
+					<div class="form-group">
+						<label for="inputEmail3" class="col-sm-2 control-label">账号</label>
+						<div class="col-sm-10">
+							<input type="email" class="form-control" id="inputEmail3" placeholder="账号">
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="inputPassword3" class="col-sm-2 control-label">密码</label>
+						<div class="col-sm-10">
+							<input type="password" class="form-control" id="inputPassword3" placeholder="密码">
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-sm-offset-2 col-sm-10">
+							<div class="checkbox">
+								<label>
+									<input type="checkbox">记住账号
+								</label>
+							</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-sm-offset-2 col-sm-10">
+							<button type="submit" class="btn btn-success">登录</button>
+						</div>
+					</div>
+				</form>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+		<script>
+			$(document).ready(function(){
+				$(document).off('click.bs.dropdown.data-api');
+				dropdownOpen();//调用
+			});
+			/**
+			 * 鼠标划过就展开子菜单，免得需要点击才能展开
+			 */
+			function dropdownOpen() {
+			
+				var $dropdownLi = $('li.dropdown');
+			
+				$dropdownLi.mouseover(function() {
+					$(this).addClass('open');
+				}).mouseout(function() {
+					$(this).removeClass('open');
+				});
+			}
+		</script>
+		<!-- 名宿banner区ms-banner结束 -->
+		
+		<!-- 主体开始 -->
+		<div class="Se-main">
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-sm-8 col-xs-12">
+						<div class="Se-MainBox">
+							<div class="search-box">
+								<div class="search-if">
+									<div class="row">
+										<div class="col-sm-2">
+											<label for="" class="search-dt">日期</label>
+										</div>
+										<div class="col-sm-9">
+											<div class="container-fluid">
+												<div class="row">
+													<div class="col-md-4 col-sm-6 row-space-1-sm">
+														<div class="form-group">
+														    <input type="" name="" class="form-control datepicker01" id="" value="" placeholder="入住" />
+														</div>
+													</div>
+													<div class="col-md-4 col-sm-6 row-space-1-sm">
+														<div class="form-group">
+														    <input type="" name="" class="form-control datepicker02" id="" value="" placeholder="退房" />
+														</div>
+													</div>
+													<div class="col-md-4 col-sm-6 row-space-1-sm">
+														<div class="form-group">
+															<select class="form-control">
+																<option value="">1位房客</option>
+																<option value="">2位房客</option>
+																<option value="">3位房客</option>
+																<option value="">4位房客</option>
+																<option value="">5位房客</option>
+																<option value="">6位房客</option>
+																<option value="">7位房客</option>
+																<option value="">8位房客</option>
+																<option value="">8位+房客</option>
+															</select>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+										<script>
+										  $(function() {
+										   	$( ".datepicker01" ).datepicker();
+										   	$( ".datepicker02" ).datepicker();
+										  });
+										</script>
+									</div>
+								</div>
+								<div class="search-if">
+									<div class="row">
+										<div class="col-sm-2">
+											<label for="" class="search-dt">房间类型</label>
+										</div>
+										<div class="col-sm-9">
+											<div class="container-fluid">
+												<div class="row">
+													<div class="col-md-4 col-sm-6 row-space-1-sm">
+														<label class="checkbox"> 
+																<span class="glyphicon glyphicon-home"></span>
+																<span>整套房子/公寓</span>
+														      <input class="search-xzk" type="checkbox">
+														</label>
+													</div>
+													<div class="col-md-4 col-sm-6 row-space-1-sm">
+														<label class="checkbox"> 
+																<span class="glyphicon glyphicon-home"></span>
+																<span>独立房间</span>
+														      <input class="search-xzk" type="checkbox">
+														</label>
+													</div>
+													<div class="col-md-4 col-sm-6 row-space-1-sm">
+														<label class="checkbox"> 
+																<span class="glyphicon glyphicon-home"></span>
+																<span>合租房间</span>
+														      <input class="search-xzk" type="checkbox">
+														</label>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="search-if">
+									<div class="row">
+										<div class="col-sm-2">
+											<label for="" class="search-dt">面积</label>
+										</div>
+										<div class="col-sm-9">
+											<div class="container-fluid">
+												<div class="row">
+													<div class="col-md-4 col-sm-6 row-space-1-sm">
+														<div class="form-group">
+															<select class="form-control">
+																<option value="">卧室</option>
+																<option value="">1间卧室</option>
+																<option value="">2间卧室</option>
+																<option value="">3间卧室</option>
+																<option value="">4间卧室</option>
+																<option value="">5间卧室</option>
+																<option value="">6间卧室</option>
+																<option value="">7间卧室</option>
+																<option value="">8间卧室</option>
+															</select>
+														</div>
+													</div>
+													<div class="col-md-4 col-sm-6 row-space-1-sm">
+														<div class="form-group">
+															<select class="form-control">
+																<option value="">卫生间</option>
+																<option value="">1间卫生间</option>
+																<option value="">2间卫生间</option>
+																<option value="">3间卫生间</option>
+																<option value="">4间卫生间</option>
+																<option value="">5间卫生间</option>
+																<option value="">6间卫生间</option>
+																<option value="">7间卫生间</option>
+																<option value="">8间卫生间</option>
+															</select>
+														</div>
+													</div>
+													<div class="col-md-4 col-sm-6 row-space-1-sm">
+														<div class="form-group">
+															<select class="form-control">
+																<option value="">床位</option>
+																<option value="">1间床位</option>
+																<option value="">2间床位</option>
+																<option value="">3间床位</option>
+																<option value="">4间床位</option>
+																<option value="">5间床位</option>
+																<option value="">6间床位</option>
+																<option value="">7间床位</option>
+																<option value="">8间床位</option>
+															</select>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="search-nr">
+								<div class="row">
+									<div class="col-sm-6">
+										<div class="search-room">
+											<a href="" class="Se-room-pic">
+												<img src="../images/pic02.jpg"/>
+											</a>
+											<button type="button" class="Se-room-love glyphicon glyphicon-heart-empty" data-toggle="modal" data-target="#myModal01"></button>
+											<a href="" class="Se-room-fd"><img src="../images/pic03.jpg"/></a>
+											<span class="Se-room-pri">¥100</span>
+											<!-- Modal -->
+											<div class="modal fade" id="myModal01" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+											  <div class="modal-dialog" role="document">
+											    <div class="modal-content">
+											      <div class="modal-body">
+											      	<div class="tck-hd clearfix">
+											      		<div class="tck-hd-pic pull-left"><img src="../images/pic04.jpg" alt="" /></div>
+											      		<div class="tck-hd-text pull-right">
+											      			<h1>Private Room in Amazing Space (R2)</h1>
+											      			<a href="" class="search-A"><span>独立房间</span><span> · 6位房客</span><span> · <i class="glyphicon glyphicon-star Cffb400"></i><i class="glyphicon glyphicon-star Cffb400"></i><i class="glyphicon glyphicon-star"></i><i class="glyphicon glyphicon-star"></i><i class="glyphicon glyphicon-star"></i></span><span> · 3条评价</span></a>
+											      		</div>
+											      	</div>
+											      	<div class="tck-jianjie">
+											      		<h3>简介</h3>
+											      		<p>通过Airbnb，您可以在人们家中找到独一无二的住宿体验——从独栋房子到公寓，再到树屋和冰屋。以下的房源详情阐述了此房源所提供的一切。如有任何疑问，您可以直接联系房东。</p>
+											      	</div>
+											      	<div class="tck-main">
+											      		<p class="clearfix tck-main-p">
+											      			<span class="pull-left">房间类型</span>
+											      			<span class="pull-right">独立房间</span>
+											      		</p>
+											      		<p class="clearfix tck-main-p">
+											      			<span class="pull-left">房源类型</span>
+											      			<span class="pull-right">公寓</span>
+											      		</p>
+											      		<p class="clearfix tck-main-p">
+											      			<span class="pull-left">可住</span>
+											      			<span class="pull-right">6</span>
+											      		</p>
+											      		<p class="clearfix tck-main-p">
+											      			<span class="pull-left">卧室</span>
+											      			<span class="pull-right">1</span>
+											      		</p>
+											      	</div>
+											      </div>
+											    </div>
+											  </div>
+											</div>
+										</div>
+										<div class="search-h">
+											<h3 class="search-h3"><a href="">Unique Studio in Wicker Park</a></h3>
+								   			<a href="" class="search-A"><span>独立房间</span><span> · 6位房客</span><span> · <i class="glyphicon glyphicon-star Cffb400"></i><i class="glyphicon glyphicon-star Cffb400"></i><i class="glyphicon glyphicon-star"></i><i class="glyphicon glyphicon-star"></i><i class="glyphicon glyphicon-star"></i></span><span> · 3条评价</span></a>
+										</div>
+									</div>
+									<div class="col-sm-6">
+										<div class="search-room">
+											<a href="" class="Se-room-pic">
+												<img src="../images/pic02.jpg"/>
+											</a>
+											<button type="button" class="Se-room-love glyphicon glyphicon-heart-empty" data-toggle="modal" data-target="#myModal02"></button>
+											<a href="" class="Se-room-fd"><img src="../images/pic03.jpg"/></a>
+											<!-- Modal -->
+											<div class="modal fade" id="myModal02" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+											  <div class="modal-dialog" role="document">
+											    <div class="modal-content">
+											      <div class="modal-header">
+											        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+											        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+											      </div>
+											      <div class="modal-body">
+											        ...
+											      </div>
+											      <div class="modal-footer">
+											        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+											        <button type="button" class="btn btn-primary">Save changes</button>
+											      </div>
+											    </div>
+											  </div>
+											</div>
+										</div>
+										<div class="search-h">
+											<h3 class="search-h3"><a href="">Unique Studio in Wicker Park</a></h3>
+								   			<a href="" class="search-A"><span>独立房间</span><span> · 6位房客</span><span> · <i class="glyphicon glyphicon-star Cffb400"></i><i class="glyphicon glyphicon-star Cffb400"></i><i class="glyphicon glyphicon-star"></i><i class="glyphicon glyphicon-star"></i><i class="glyphicon glyphicon-star"></i></span><span> · 3条评价</span></a>
+										</div>
+									</div>
+									<div class="col-sm-6">
+										<div class="search-room">
+											<a href="" class="Se-room-pic">
+												<img src="../images/pic02.jpg"/>
+											</a>
+											<button type="button" class="Se-room-love glyphicon glyphicon-heart-empty" data-toggle="modal" data-target="#myModal02"></button>
+											<a href="" class="Se-room-fd"><img src="../images/pic03.jpg"/></a>
+											<!-- Modal -->
+											<div class="modal fade" id="myModal02" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+											  <div class="modal-dialog" role="document">
+											    <div class="modal-content">
+											      <div class="modal-header">
+											        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+											        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+											      </div>
+											      <div class="modal-body">
+											        ...
+											      </div>
+											      <div class="modal-footer">
+											        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+											        <button type="button" class="btn btn-primary">Save changes</button>
+											      </div>
+											    </div>
+											  </div>
+											</div>
+										</div>
+										<div class="search-h">
+											<h3 class="search-h3"><a href="">Unique Studio in Wicker Park</a></h3>
+								   			<a href="" class="search-A"><span>独立房间</span><span> · 6位房客</span><span> · <i class="glyphicon glyphicon-star Cffb400"></i><i class="glyphicon glyphicon-star Cffb400"></i><i class="glyphicon glyphicon-star Cffb400"></i><i class="glyphicon glyphicon-star Cffb400"></i><i class="glyphicon glyphicon-star"></i></span><span> · 3条评价</span></a>
+										</div>
+									</div>
+								</div>
+								
+								<nav class="text-center">
+								  <ul class="pagination">
+								    <li>
+								      <a href="#" aria-label="Previous">
+								        <span aria-hidden="true">&laquo;</span>
+								      </a>
+								    </li>
+								    <li><a href="#">1</a></li>
+								    <li><a href="#">2</a></li>
+								    <li><a href="#">3</a></li>
+								    <li><a href="#">4</a></li>
+								    <li><a href="#">5</a></li>
+								    <li>
+								      <a href="#" aria-label="Next">
+								        <span aria-hidden="true">&raquo;</span>
+								      </a>
+								    </li>
+								  </ul>
+								</nav>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-4 col-xs-12">
+						<div id="allmap"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script type="text/javascript">
+			// 百度地图API功能
+			var map = new BMap.Map("allmap");
+			var top_left_control = new BMap.ScaleControl({ anchor: BMAP_ANCHOR_TOP_LEFT });// 左上角，添加比例尺
+			var top_left_navigation = new BMap.NavigationControl();  //左上角，添加默认缩放平移控件
+			map.addControl(top_left_control);
+			map.addControl(top_left_navigation);
+	
+			var point = new BMap.Point(120.169742,30.278812);
+			map.centerAndZoom(point, 15);
+			var marker = new BMap.Marker(point);  // 创建标注
+			var local = new BMap.LocalSearch(map, {
+				renderOptions:{map: map}
+			});
+			local.search("旅馆");
+			map.addOverlay(marker);               // 将标注添加到地图中
+			marker.setAnimation(BMAP_ANIMATION_BOUNCE); //跳动的动画
+			map.enableScrollWheelZoom();   //启用滚轮放大缩小，默认禁用
+			map.enableContinuousZoom();    //启用地图惯性拖拽，默认禁用
+		
+		</script>
+		<!-- 主体结束 -->
+		
+		<!-- 底部开始 -->
+		<div class= "ms-footer">
+			<div class="container">
+				<div class="row">
+					<div class="col-sm-6 col-md-3">
+						<dl class= "ft-item">
+							<dt>公司信息</dt>
+							<dd><a href= "">关于</a></dd>
+							<dd><a href= "">工作机会</a></dd>
+							<dd><a href= "">新闻</a></dd>
+							<dd><a href= "">博客</a></dd>
+							<dd><a href= "">帮助</a></dd>
+							<dd><a href= "">政策</a></dd>
+							<dd><a href= "">灾难响应</a></dd>
+							<dd><a href= "">条款与隐私</a></dd>
+						</dl>
+					</div>
+					<div class="col-sm-6 col-md-3">
+						<dl class= "ft-item">
+							<dt>公司信息</dt>
+							<dd><a href= "">关于</a></dd>
+							<dd><a href= "">工作机会</a></dd>
+							<dd><a href= "">新闻</a></dd>
+							<dd><a href= "">博客</a></dd>
+							<dd><a href= "">帮助</a></dd>
+							<dd><a href= "">政策</a></dd>
+							<dd><a href= "">灾难响应</a></dd>
+							<dd><a href= "">条款与隐私</a></dd>
+						</dl>
+					</div>
+					<div class="col-sm-6 col-md-3">
+						<dl class= "ft-item">
+							<dt>公司信息</dt>
+							<dd><a href= "">关于</a></dd>
+							<dd><a href= "">工作机会</a></dd>
+							<dd><a href= "">新闻</a></dd>
+							<dd><a href= "">博客</a></dd>
+							<dd><a href= "">帮助</a></dd>
+							<dd><a href= "">政策</a></dd>
+							<dd><a href= "">灾难响应</a></dd>
+							<dd><a href= "">条款与隐私</a></dd>
+						</dl>
+					</div>
+					<div class="col-sm-6 col-md-3">
+						<dl class= "ft-item">
+							<dt>公司信息</dt>
+							<dd><a href= "">关于</a></dd>
+							<dd><a href= "">工作机会</a></dd>
+							<dd><a href= "">新闻</a></dd>
+							<dd><a href= "">博客</a></dd>
+							<dd><a href= "">帮助</a></dd>
+							<dd><a href= "">政策</a></dd>
+							<dd><a href= "">灾难响应</a></dd>
+							<dd><a href= "">条款与隐私</a></dd>
+						</dl>
+					</div>
+				</div>
+				<p class= "ms-copyright">Copyright 2008-2016 www.wjy360.com All Rights Reserved 浙B2-20100360-12</p>
+			</div>
+		</div>
+		<!-- 底部结束 -->
+		<script type="text/javascript">
+			$("#allmap").height($(".Se-MainBox").height()) ;
+			$(window).resize(function() {
+				$("#allmap").height($(".Se-MainBox").height()) ;
+			});
+		</script>
+	</body>
+</html>
