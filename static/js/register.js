@@ -25,13 +25,14 @@ $(function(){
     });
     return bool;
 });
+
 function ajaxValidateName(){
     ho_name = $("#ho_name").val();
     if(!ho_name){
         return error("姓名不能为空");
     }
     $.ajax({
-        url:"/view/register",
+        url:"/do_ho_register",
         data:{method:"ajaxValidateName",ho_name:value},
         type:"POST",
         dataType:"json",
@@ -46,6 +47,7 @@ function ajaxValidateName(){
     });
     return true;
 }
+
 function ajaxVallidateAccount(){
     ho_account = $("#ho_account").val();
     if (!ho_account){
@@ -55,7 +57,7 @@ function ajaxVallidateAccount(){
         return error("长度要大于6小于16");
     }
     $.ajax({
-        url:"/view/register",
+        url:"/do_ho_register",
         data:{method:"ajaxValidateAccount",ho_account:value},
         type:"POST",
         dataType:"json",
@@ -70,6 +72,7 @@ function ajaxVallidateAccount(){
     });
     return true;
 }
+
 function ajaxValidatePassword(){
     ho_password = $("#ho_passord").val();
     if(!ho_password ){
@@ -79,7 +82,7 @@ function ajaxValidatePassword(){
         return error("密码要大于6小于16");
     }
     $.ajax({
-        url:"/view/register",
+        url:"/do_ho_register",
         data:{method:"ajaxValidatePassword",ho_password:value},
         type:"POST",
         dataType:"json",
@@ -94,6 +97,7 @@ function ajaxValidatePassword(){
     });
     return true;
 }
+
 function ajaxValidateMobile(){
     ho_mobile = $("#ho_mobile").val();
     if(!ho_mobile){
@@ -106,7 +110,7 @@ function ajaxValidateMobile(){
         return error("手机号格式不正确");
     }
     $.ajax({
-        url:"/view/register",
+        url:"/do_ho_register",
         data:{method:"ajaxValidateMobile",ho_mobile:value},
         type:"POST",
         dataType:"json",
@@ -118,14 +122,15 @@ function ajaxValidateMobile(){
             }
 
         }
-    });
+});
+
 function ajaxValidateTel(){
     ho_tel = $("#ho_tel").val();
     if(!/^(0[0-9]{3})+-([0-9]{8})$/.test(ho_mobile)){
         return error("手机号格式不正确");
     }
     $.ajax({
-        url:"/view/register",
+        url:"/do_ho_register",
         data:{method:"ajaxValidateTel",ho_tel:value},
         type:"POST",
         dataType:"json",
@@ -147,7 +152,7 @@ function ajaxValidateEmail(){
         return error("email格式不正确");
     }
     $.ajax({
-        url:"/view/register",
+        url:"/do_ho_register",
         data:{method:"ajaxValidateEmail",ho_email:value},
         type:"POST",
         dataType:"json",
