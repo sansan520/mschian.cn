@@ -13,6 +13,9 @@ def index():
     return "index"
 
 
+
+
+
 # #http://wjapi.wjw.cn/api/RegistLogon?Mobile=15957124901  = > post
 # @app.route("/login", methods=['POST'])
 # def get_data():

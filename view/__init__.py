@@ -4,4 +4,9 @@ from flask import Blueprint
 
 vi = Blueprint('vi', __name__)
 
-from . import test1
+from . import index
+from . import about_user
+from . import error
+
+
+

@@ -14,9 +14,104 @@
     {% endblock %}
 </head>
 <body>
-    {% block banner %}{% endblock %}
+    {% block banner %}
+        <!-- 名宿头部ms-hd开始 -->
+		<div class="ms-hd">
+			<nav class="navbar navbar-default">
+			  <div class="container-fluid">
+			    <div class="navbar-header">
+			      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+			        <span class="sr-only">Toggle navigation</span>
+			        <span class="icon-bar"></span>
+			        <span class="icon-bar"></span>
+			        <span class="icon-bar"></span>
+			      </button>
+			      <a class="navbar-brand" href="#"><img src="/static/images/ms_logo.png" width="120" height="50"/></a>
+			       <form class="form-inline pull-left">
+					  <div class="form-group">
+					    <label class="sr-only" for="exampleInputAmount">Amount (in dollars)</label>
+					    <div class="input-group">
+					      <div class="input-group-addon"><span class="glyphicon glyphicon-search"></span></div>
+					      <input type="text" class="form-control" id="exampleInputAmount" placeholder="想去哪里？">
+					    </div>
+					  </div>
+					</form>
+			    </div>
+
+			    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+			      <ul class="nav navbar-nav navbar-right">
+			      	<li class="dropdown">
+			          <a href="#" class="first-A dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="btn begin-fd">成为房东</span></a>
+			          <ul class="dropdown-menu">
+			            <li><a href="#"><span>如何出租房源</span></a></li>
+			            <li><a href="#"><span>发布空间</span></a></li>
+			            <li><a href="#"><span>看看你在杭州能赚多少钱</span></a></li>
+			          </ul>
+			       </li>
+			        <li class="dropdown">
+			          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">帮助</span></a>
+			          <ul class="dropdown-menu">
+			            <li class="li-help"><a href="#">帮助中心</a></li>
+			          </ul>
+			        </li>
+			        <li><a href="/register"  data-target="">注册</a></li>
+                      <li><a href="/login" data-target="">登录</a></li>
+{#			        <li><a href="#" data-toggle="modal" data-target="#myModalDL">登录</a></li>#}
+			      </ul>
+			    </div>
+			  </div>
+			</nav>
+		</div>
+		<!-- 名宿banner区ms-banner结束 -->
+    {% endblock %}
     {% block lbt %}{% endblock %}
     {% block content %}{% endblock %}
-    {% block footer %}{% endblock %}
+    {% block footer %}
+        <!-- 底部开始 -->
+        <div class= "ms-footer">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-6 col-md-3">
+                            <dl class= "ft-item">
+                                <dt>公司信息</dt>
+                                <dd><a href= "">关于</a></dd>
+                                <dd><a href= "">新闻</a></dd>
+                                <dd><a href= "">博客</a></dd>
+                                <dd><a href= "">帮助</a></dd>
+                            </dl>
+                        </div>
+                        <div class="col-sm-6 col-md-3">
+                            <dl class= "ft-item">
+                                <dt>公司信息</dt>
+                                <dd><a href= "">关于</a></dd>
+                                <dd><a href= "">新闻</a></dd>
+                                <dd><a href= "">博客</a></dd>
+                                <dd><a href= "">帮助</a></dd>
+                            </dl>
+                        </div>
+                        <div class="col-sm-6 col-md-3">
+                            <dl class= "ft-item">
+                                <dt>公司信息</dt>
+                                <dd><a href= "">关于</a></dd>
+                                <dd><a href= "">新闻</a></dd>
+                                <dd><a href= "">博客</a></dd>
+                                <dd><a href= "">帮助</a></dd>
+                            </dl>
+                        </div>
+                        <div class="col-sm-6 col-md-3">
+                            <dl class= "ft-item">
+                                <dt>公司信息</dt>
+                                <dd><a href= "">关于</a></dd>
+                                <dd><a href= "">新闻</a></dd>
+                                <dd><a href= "">博客</a></dd>
+                                <dd><a href= "">帮助</a></dd>
+                            </dl>
+                        </div>
+                    </div>
+                    <p class= "ms-copyright">Copyright 2016 www.mschina.cn All Rights Reserved</p>
+                </div>
+            </div>
+        <!-- 底部结束 -->
+    {% endblock %}
 </body>
 </html>
