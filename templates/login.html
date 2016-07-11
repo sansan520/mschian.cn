@@ -256,14 +256,12 @@
                 </header>
                 <!--登陆框-->
                 <section class="signin-content clearfix">
-                    <form id="user-login" accept-charset="UTF-8" method="post" action="./"  onsubmit="return zzk_user_login(this)" >
-                        <input name="pre_url" type="hidden" value="http://zh.zizaike.com/v2/register/other" />
-                        <input name="linkposition" type="hidden" value="" />
-                        <div><input type="hidden" name="typename" value="login" /></div>
+                    <form id="user-login" accept-charset="UTF-8" >
+
                         <!--用户名输入框-->
                         <div class="signin-content-username"  data-status="">
                             <span id="username-img" class="username-img"></span>
-                            <input id="int_name" class="username-input" placeholder="邮箱/手机号码"  type="text" name="name" tabindex="1" value='' />
+                            <input id="int_name" class="username-input" placeholder="账号"  type="text" name="name" tabindex="1" value='' />
                         </div>
                         <!--请输入用户名提示-->
                         <div style="height:25px;width:318px;text-align: left" data-status="">
@@ -282,13 +280,13 @@
                         </div>
 
 
-                        <!--验证码提示-->
-                        <div id="edit-captcha" style="height:20px;width:370px;text-align: center;display:none;">
-                            <span class="form_label" id="edit-captcha-response" style="display:none;color:red;">
-                                请输入验证码                            </span>
-                            <span class="form_label" id="edit-captcha-response-2" style="display:none;color:red;text-align: center">
-                                验证码错误                            </span>
-                        </div>
+{#                        <!--验证码提示-->#}
+{#                        <div id="edit-captcha" style="height:20px;width:370px;text-align: center;display:none;">#}
+{#                            <span class="form_label" id="edit-captcha-response" style="display:none;color:red;">#}
+{#                                请输入验证码                            </span>#}
+{#                            <span class="form_label" id="edit-captcha-response-2" style="display:none;color:red;text-align: center">#}
+{#                                验证码错误                            </span>#}
+{#                        </div>#}
 
                         <!--记住密码 忘记密码 -->
                         <div class="login_check" style="margin-bottom: 20px;text-align: left">
@@ -298,7 +296,7 @@
                         </div>
                         <div><input id="veriy" type="hidden" name="veriy" /></div>
                         <!--登录按钮-->
-                        <input class="signin-content-button" type="submit" id="login_click_l" value="登录" />
+                        <input class="signin-content-button" type="button" id="login_click_l" value="登录" />
                     </form>
                 </section>
 		</div>

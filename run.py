@@ -9,7 +9,7 @@ def create_app():
     app.config.from_object(Conf)
 
     app.config['ALLOW_FOLDER'] = True
-    # app.secret_key = app.config['SECRET_KEY']
+    app.secret_key = app.config['SECRET_KEY']
 
     app.debug = app.config['DEBUG']
 

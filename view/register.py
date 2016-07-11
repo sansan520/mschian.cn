@@ -10,15 +10,15 @@ def house_owner_register():
     return render_template("homestay.html")
 
 
-@vi.route("/do_ho_register", method=["POST"])
-def validate_register():
+@vi.route("/do_ho_register", methods=["POST"])
+def do_ho_register():
     # 接收JS POST 过来的参数,并进行验证
     ho_name = request.get_json.get("ho_name")
     if ho_name == "" | ho_name is None:
-        return jsonify({"code" : 0,"message" : "用户姓名不能为空"})
+        return jsonify({"code": 0, "message": "用户姓名不能为空"})
 
     #获取参数后,将这些数据,通过接口传给service api==> http://localhost:8080/接口名称
-    data = {"ho_name":ho_name,"abc":abc}
+    data = {"ho_name": ho_name, "abc": abc}
     # service api 返回的 response
     response = requests.post(url="http://localhost:8080/api/v1.0/ho_register",
                                  data=data,
