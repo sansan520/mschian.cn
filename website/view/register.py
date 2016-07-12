@@ -1,8 +1,10 @@
 # coding : utf-8
 from flask import render_template
 from . import vi
-# from flask import jsonify,request,g,current_app
-# from service.mschina.cn.service_api.model import HouseOwner
+import requests
+import json
+from flask import jsonify,request,g,current_app
+from website.model import HouseOwner
 
 
 @vi.route("/ho_register")
@@ -14,11 +16,24 @@ def house_owner_register():
 def do_ho_register():
     # 接收JS POST 过来的参数,并进行验证
     ho_name = request.get_json.get("ho_name")
-    if ho_name == "" | ho_name is None:
+    if not ho_name:
         return jsonify({"code": 0, "message": "用户姓名不能为空"})
+    ho_account = request.get_json.get("ho_account")
+    ho_mobile = request.get_json().get("ho_mobile")
+    ho_tel = request.get_json().get("ho_tel")
+    ho_email = request.get_json().get("ho_email")
+    ho_nicard = request.get_json().get("ho_nicard")
+    ho_image = request.json.get("ho_image")
 
     #获取参数后,将这些数据,通过接口传给service api==> http://localhost:8080/接口名称
-    data = {"ho_name": ho_name, "abc": abc}
+    data = {"ho_name": ho_name,
+            "ho_account":ho_account,
+            "ho_mobile" :ho_mobile,
+            "ho_tel" : ho_tel,
+            "ho_email" : ho_email,
+            "ho_nicard" : ho_nicard,
+            "ho_image" : ho_image
+            }
     # service api 返回的 response
     response = requests.post(url="http://localhost:8080/api/v1.0/ho_register",
                                  data=data,
@@ -27,6 +42,15 @@ def do_ho_register():
     response_data = json.loads(response.content)
 
     return jsonify(response_data)
+    if response_data["code"] == 0:
+        user = HouseOwner()
+        user.account = response_data["ho_account"]
+        user.email = response_data["ho_email"]
+        user.mobile = response_data["ho_mobile"]
+        return jonsify(response_data)
+    if response_data["code"] == 1:
+        return redirect(url_for(vi.index))
+
 
 
 # def validate_register():
