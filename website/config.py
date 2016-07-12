@@ -2,6 +2,10 @@
 class ProductionConfig(object):
     DEBUG = False
 
+    SERVICE_HOST = 'mschina.cn'
+    SERVICE_PORT = 8000
+    SECRET_KEY = 'A0Zr98j/3yX R~XHH!jmN]LWX/,?RT/json/wang'
+
     REDIS_HOST = 'localhost'
     REDIS_PORT = 80
 
@@ -9,7 +13,7 @@ class ProductionConfig(object):
 class DevelopmentConfig(object):
     DEBUG = True
 
-    SERVICE_HOST = '127.0.0.1'
+    SERVICE_HOST = 'mschina.cn'
     SERVICE_PORT = 8000
     SECRET_KEY = 'A0Zr98j/3yX R~XHH!jmN]LWX/,?RT/json/wang'
     MYSQL_INFO = "mysql+pymysql://root:123@127.0.0.1:3306/mschina?charset=utf8"

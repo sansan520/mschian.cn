@@ -18,8 +18,8 @@ def create_app():
 
     # flask_login
     # LM = flask_login.LoginManager()
-    lm.session_protection = 'strong'
-    lm.init_app(app)
+    # lm.session_protection = 'strong'
+    # lm.init_app(app)
     # loginManager.login_view = "login"
     # 蓝图
     app.register_blueprint(vi_blueprint)
