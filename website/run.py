@@ -1,7 +1,10 @@
 # coding:utf-8
 from flask import Flask
-from config import Conf
-from view import vi as vi_blueprint
+from website import lm
+
+from website.config import Conf
+from website.view import vi as vi_blueprint
+
 
 def create_app():
 
@@ -13,10 +16,16 @@ def create_app():
 
     app.debug = app.config['DEBUG']
 
-    # from service_api.v1_0 import api as api_1_0_blueprint
+    # flask_login
+    # LM = flask_login.LoginManager()
+    lm.session_protection = 'strong'
+    lm.init_app(app)
+    # loginManager.login_view = "login"
+    # 蓝图
     app.register_blueprint(vi_blueprint)
 
     return app
+
 
 if __name__ == '__main__':
     app = create_app()

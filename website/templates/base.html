@@ -6,10 +6,10 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1.0">
-		<link rel="stylesheet" href="/static/css/bootstrap.css">
-		<link rel="stylesheet" href="/static/css/ms.css">
-		<script src="/static/js/jquery-1.12.1.min.js"></script>
-		<script src="/static/js/bootstrap.js"></script>
+		<link rel="stylesheet" href="static/css/bootstrap.css">
+		<link rel="stylesheet" href="static/css/ms.css">
+		<script src="static/js/jquery-1.12.1.min.js"></script>
+		<script src="static/js/bootstrap.js"></script>
 
     {% endblock %}
 </head>
@@ -26,7 +26,7 @@
 			        <span class="icon-bar"></span>
 			        <span class="icon-bar"></span>
 			      </button>
-			      <a class="navbar-brand" href="#"><img src="/static/images/ms_logo.png" width="120" height="50"/></a>
+			      <a class="navbar-brand" href="#"><img src="static/images/ms_logo.png" width="120" height="50"/></a>
 			       <form class="form-inline pull-left">
 					  <div class="form-group">
 					    <label class="sr-only" for="exampleInputAmount">Amount (in dollars)</label>
@@ -56,7 +56,6 @@
 			        </li>
 			        <li><a href="/register"  data-target="">注册</a></li>
                       <li><a href="/login" data-target="">登录</a></li>
-{#			        <li><a href="#" data-toggle="modal" data-target="#myModalDL">登录</a></li>#}
 			      </ul>
 			    </div>
 			  </div>
@@ -115,3 +114,5 @@
     {% endblock %}
 </body>
 </html>
+{% block script %}
+{% endblock %}

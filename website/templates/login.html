@@ -2,7 +2,7 @@
 {% block title %}Index{% endblock %}
 {% block head %}
     {{ super() }}
-    <script src="/static/js/common.js"></script>
+    <script src="/website/static/js/common.js"></script>
     <style>
 			/* 登录界面 */
 			#main{
@@ -241,6 +241,7 @@
 			#footer a {text-decoration:none;color:#333333;font-size:12px;}
 			.footer-bottom {color:#8F8F8F;padding-right:1px;}
 		</style>
+
 {% endblock %}
 
 {% block content %}
@@ -254,7 +255,7 @@
                     <a class="signin-header-signup" href="/register" title="用户注册">用户注册>></a>
                     <hr class="signin-header-line">
                 </header>
-                <!--登陆框-->
+                <!--用户登陆框-->
                 <section class="signin-content clearfix">
                     <form id="user-login" accept-charset="UTF-8" >
 
@@ -278,23 +279,12 @@
                             <span class="form_label" id="password_label"  style="line-height:25px;color:red;margin-left:10px;display:none;" >
 <!--                        -->请输入密码</span>
                         </div>
-
-
-{#                        <!--验证码提示-->#}
-{#                        <div id="edit-captcha" style="height:20px;width:370px;text-align: center;display:none;">#}
-{#                            <span class="form_label" id="edit-captcha-response" style="display:none;color:red;">#}
-{#                                请输入验证码                            </span>#}
-{#                            <span class="form_label" id="edit-captcha-response-2" style="display:none;color:red;text-align: center">#}
-{#                                验证码错误                            </span>#}
-{#                        </div>#}
-
                         <!--记住密码 忘记密码 -->
                         <div class="login_check" style="margin-bottom: 20px;text-align: left">
                             <input class="rem" type="checkbox" />
                             <label class="rem" >记住密码</label>
-                            <a href="/v2/findpwd" style="display:block;float:right;color: #F35758;text-decoration: none;" title="找回密码" >忘了密码?</a>
+                            <a href="#" style="display:block;float:right;color: #F35758;text-decoration: none;" title="找回密码" >忘了密码?</a>
                         </div>
-                        <div><input id="veriy" type="hidden" name="veriy" /></div>
                         <!--登录按钮-->
                         <input class="signin-content-button" type="button" id="login_click_l" value="登录" />
                     </form>
@@ -303,7 +293,36 @@
 		</div>
     <!-- 主体结束 -->
 {% endblock %}
+{% block script %}
+    <script>
+$(function(){
+    $(".username-input").blur(function () {
+        ms_login_check_name();
+    });
 
+    $(".pwd-input").blur(function () {
+        ms_login_check_password();
+    });
+
+    $("#login_click_l").click(function () {
+        var u_name = $("#int_name").val();
+        var u_password = $("#int_pass").val();
+        $.ajax({
+            url:"/do_login",
+            type: 'POST',
+            data: JSON.stringify({"ho_account":u_name,"ho_password":u_password}),
+            contentType: 'application/json',
+            success: function(data){
+                if(data.code==0){
+                    alert(data.message);
+                }
+            }
+        });
+        return false;
+    });
+});
+</script>
+{% endblock %}
 
 
 

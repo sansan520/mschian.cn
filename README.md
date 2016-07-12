@@ -36,3 +36,4 @@ run.py    本地接口主要入口文件,执行该文件后进行测试.
 
 
 
+Successfully installed flask-login-0.3.2

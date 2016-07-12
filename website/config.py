@@ -12,6 +12,7 @@ class DevelopmentConfig(object):
     SERVICE_HOST = '127.0.0.1'
     SERVICE_PORT = 8000
     SECRET_KEY = 'A0Zr98j/3yX R~XHH!jmN]LWX/,?RT/json/wang'
+    MYSQL_INFO = "mysql+pymysql://root:123@127.0.0.1:3306/mschina?charset=utf8"
     #API_ADDRESS = "http://127.0.0.1:8080"
 
 Conf = DevelopmentConfig
