@@ -1,14 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-{% if current_user %}
-Hello, {{ current_user }}!
-{% else %}
-Hello, Stranger!
-{% endif %}
-</body>
+<html>
+  <head>
+    {% if title %}
+    <title>{{title}} - microblog</title>
+    {% else %}
+    <title>microblog</title>
+    {% endif %}
+  </head>
+  <body>
+    <h1>Hi, {{user.nickname}}!</h1>
+    {% for post in posts %}
+        <p>{{post.ho_id}} : <b>{{post.hs_province}}</b></p>
+{#    <p>{{post.author.nickname}} says: <b>{{post.body}}</b></p>#}
+    {% endfor %}
+  </body>
 </html>

@@ -34,7 +34,7 @@ def do_login():
 
         session['current_user'] = current_user
 
-        return jsonify({'code': 1, 'message': '登录成功', 'gourl': '/index'})
+        return jsonify({'code': 1, 'message': '登录成功', 'go_url': '/index'})
     #code ==0 登录失败
     if response_data['code'] == 0:
         return jsonify(response_data)

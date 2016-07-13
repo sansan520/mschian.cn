@@ -54,65 +54,52 @@
     <!-- 主体开始 -->
 	<div class="ms-main">
 			<div class="container">
+                <!--热门房源-->
 				<div class="main-item">
 					<div class="main-title text-center">
 						<h2 class="row-space-1">
-				          <strong>探索世界</strong>
+				          <strong>探索发现</strong>
 				        </h2>
-				        <p class="text-lead">
-				          搜罗全球热门目的地
-				        </p>
+				        <p class="text-lead">搜罗热门目的地</p>
 					</div>
 					<div class="row">
+
+                        {% for hot in hot4index %}
 						<div class="col-sm-4">
 							<div class="ms-pic-box">
 								<a href="#" class="ms-pic">
-							      <img src="static/images/pic02.jpg" alt="...">
-							       <p class="ms-dd"><strong>北京</strong></p>
+							      <img src="{{ hot.hs_images }}" alt="">
+							       <p class="ms-dd"><strong>{{ hot.hs_province }}</strong></p>
 							    </a>
 						    </div>
 						</div>
-						<div class="col-sm-4">
-							<div class="ms-pic-box">
-								<a href="#" class="ms-pic">
-							      <img src="static/images/pic02.jpg" alt="...">
-							       <p class="ms-dd"><strong>北京</strong></p>
-							    </a>
-						   </div>
-						</div>
-						<div class="col-sm-4">
-							<div class="ms-pic-box">
-								<a href="#" class="ms-pic">
-							      <img src="static/images/pic02.jpg" alt="...">
-							       <p class="ms-dd"><strong>北京</strong></p>
-							    </a>
-						   </div>
-						</div>
+                        {% endfor %}
 					</div>
 				</div>
-
+                <!--热门房源结束-->
+                <!--其他房源金牌房源,特色房源等-->
 				<div class="main-item">
 					<div class="main-title text-center">
 						<h2 class="row-space-1">
 				          <strong>房源</strong>
 				        </h2>
-				        <p class="text-lead">
-				          好房源
-				        </p>
+				        <p class="text-lead">好房源</p>
 					</div>
 				  <ul class="nav nav-tabs" role="tablist">
 				    <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">热门房源</a></li>
 				    <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">特色房源</a></li>
 				    <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">金牌推荐</a></li>
 				  </ul>
+                   <!--三个切换版-->
 				  <div class="tab-content">
+                      <!--第一版块-->
 				    <div role="tabpanel" class="tab-pane active" id="home">
 				    	<div class="row">
 							<div class="col-sm-6">
 								<div class="ms-pic-box">
 									<a href="#" class="ms-pic">
 								      <img src="static/images/pic02.jpg" alt="...">
-								       <p class="ms-dd"><strong>北京</strong></p>
+								       <p class="ms-dd"><strong>1</strong></p>
 								    </a>
 							    </div>
 							</div>
@@ -120,13 +107,13 @@
 								<div class="ms-pic-box">
 									<a href="#" class="ms-pic">
 								      <img src="static/images/pic02.jpg" alt="...">
-								       <p class="ms-dd"><strong>北京</strong></p>
+								       <p class="ms-dd"><strong>2</strong></p>
 								    </a>
 							    </div>
 							    <div class="ms-pic-box">
 									<a href="#" class="ms-pic">
 								      <img src="static/images/pic02.jpg" alt="...">
-								       <p class="ms-dd"><strong>北京</strong></p>
+								       <p class="ms-dd"><strong>3</strong></p>
 								    </a>
 							    </div>
 							</div>
@@ -134,13 +121,13 @@
 								<div class="ms-pic-box">
 									<a href="#" class="ms-pic">
 								      <img src="static/images/pic02.jpg" alt="...">
-								       <p class="ms-dd"><strong>北京</strong></p>
+								       <p class="ms-dd"><strong>4</strong></p>
 								    </a>
 							    </div>
 							    <div class="ms-pic-box">
 									<a href="#" class="ms-pic">
 								      <img src="static/images/pic02.jpg" alt="...">
-								       <p class="ms-dd"><strong>北京</strong></p>
+								       <p class="ms-dd"><strong>5</strong></p>
 								    </a>
 							    </div>
 							</div>
@@ -151,13 +138,13 @@
 								<div class="ms-pic-box">
 									<a href="#" class="ms-pic">
 								      <img src="static/images/pic02.jpg" alt="...">
-								       <p class="ms-dd"><strong>北京</strong></p>
+								       <p class="ms-dd"><strong>6</strong></p>
 								    </a>
 							    </div>
 							    <div class="ms-pic-box">
 									<a href="#" class="ms-pic">
 								      <img src="static/images/pic02.jpg" alt="...">
-								       <p class="ms-dd"><strong>北京</strong></p>
+								       <p class="ms-dd"><strong>7</strong></p>
 								    </a>
 							    </div>
 							</div>
@@ -165,7 +152,7 @@
 								<div class="ms-pic-box">
 									<a href="#" class="ms-pic">
 								      <img src="static/images/pic02.jpg" alt="...">
-								       <p class="ms-dd"><strong>北京</strong></p>
+								       <p class="ms-dd"><strong>8</strong></p>
 								    </a>
 							    </div>
 							</div>
@@ -173,18 +160,19 @@
 								<div class="ms-pic-box">
 									<a href="#" class="ms-pic">
 								      <img src="static/images/pic02.jpg" alt="...">
-								       <p class="ms-dd"><strong>北京</strong></p>
+								       <p class="ms-dd"><strong>9</strong></p>
 								    </a>
 							    </div>
 							    <div class="ms-pic-box">
 									<a href="#" class="ms-pic">
 								      <img src="static/images/pic02.jpg" alt="...">
-								       <p class="ms-dd"><strong>北京</strong></p>
+								       <p class="ms-dd"><strong>10</strong></p>
 								    </a>
 							    </div>
 							</div>
 						</div>
 				    </div>
+                      <!--第二版块-->
 				    <div role="tabpanel" class="tab-pane" id="profile">
 				    	<div class="row">
 							<div class="col-sm-6">
@@ -264,6 +252,7 @@
 							</div>
 						</div>
 				    </div>
+                      <!--第三版块-->
 				    <div role="tabpanel" class="tab-pane" id="messages">
 				    	<div class="row">
 							<div class="col-sm-6">
@@ -344,7 +333,10 @@
 						</div>
 				    </div>
 				  </div>
+                     <!--三个切换版结束-->
 				</div>
+                <!--其他房源金牌房源,特色房源结束-->
+                <!--旅行故事-->
 				<div class="main-item">
 					<div class="main-title">
 						<h2 class="row-space-1">
@@ -381,6 +373,7 @@
 						</div>
 					</div>
 				</div>
+                <!--旅行故事结束-->
 			</div>
 		</div>
 	<!-- 主体结束 -->

@@ -86,6 +86,7 @@ class HouseResources(Base):
     hs_images = Column('hs_images', String(500))
 
 
+
 class RoomType(Base):
 
     __tablename__ = "roomtype"
