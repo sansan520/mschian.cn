@@ -9,3 +9,5 @@ from . import about_user
 from . import error
 from . import register
 
+from . import test
+

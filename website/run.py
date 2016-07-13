@@ -1,10 +1,11 @@
 # coding:utf-8
 from flask import Flask
-from website import lm
-
 from website.config import Conf
 from website.view import vi as vi_blueprint
+import redis
+from flask_session import Session
 
+sess = Session()
 
 def create_app():
 
@@ -16,11 +17,10 @@ def create_app():
 
     app.debug = app.config['DEBUG']
 
-    # flask_login
-    # LM = flask_login.LoginManager()
-    # lm.session_protection = 'strong'
-    # lm.init_app(app)
-    # loginManager.login_view = "login"
+    rd = redis.Redis(host='127.0.0.1', port=6379, db=0)
+    SESSION_REDIS = rd
+    sess.init_app(app)
+
     # 蓝图
     app.register_blueprint(vi_blueprint)
 

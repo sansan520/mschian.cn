@@ -32,7 +32,6 @@ class HouseOwner(Base, flask_login.UserMixin):
     ho_email = Column('ho_email', String(45))
     ho_nicard = Column('ho_nicard', String(100), nullable=False)
     ho_images = Column('ho_images', String(100))
-
     ho_createtime = Column('ho_createtime', DateTime, default=datetime.datetime.now)
     ho_modifytime = Column('ho_modifytime', DateTime, default=datetime.datetime.now)
 
@@ -42,11 +41,16 @@ class HouseOwner(Base, flask_login.UserMixin):
     def to_json(self):
         return {
             'ho_id': self.ho_id,
+            'ho_account': self.ho_account,
             'ho_name': self.ho_name,
-            'ho_password':self.ho_password,
+            'ho_password': self.ho_password,
             'ho_tel': self.ho_tel,
-            'ho_mobile':self.ho_mobile
+            'ho_mobile': self.ho_mobile,
+            'ho_email': self.ho_email,
+            'ho_images': self.ho_images
         }
+
+
 
 class HouseType(Base):
 

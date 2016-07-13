@@ -2,7 +2,7 @@
 {% block title %}Index{% endblock %}
 {% block head %}
     {{ super() }}
-    <script src="/website/static/js/common.js"></script>
+    <script src="static/js/common.js"></script>
     <style>
 			/* 登录界面 */
 			#main{
@@ -279,12 +279,12 @@
                             <span class="form_label" id="password_label"  style="line-height:25px;color:red;margin-left:10px;display:none;" >
 <!--                        -->请输入密码</span>
                         </div>
-                        <!--记住密码 忘记密码 -->
-                        <div class="login_check" style="margin-bottom: 20px;text-align: left">
-                            <input class="rem" type="checkbox" />
-                            <label class="rem" >记住密码</label>
-                            <a href="#" style="display:block;float:right;color: #F35758;text-decoration: none;" title="找回密码" >忘了密码?</a>
-                        </div>
+{#                        <!--记住密码 忘记密码 -->#}
+{#                        <div class="login_check" style="margin-bottom: 20px;text-align: left">#}
+{#                            <input class="rem" type="checkbox" />#}
+{#                            <label class="rem" >记住密码</label>#}
+{#                            <a href="#" style="display:block;float:right;color: #F35758;text-decoration: none;" title="找回密码" >忘了密码?</a>#}
+{#                        </div>#}
                         <!--登录按钮-->
                         <input class="signin-content-button" type="button" id="login_click_l" value="登录" />
                     </form>
@@ -315,6 +315,8 @@ $(function(){
             success: function(data){
                 if(data.code==0){
                     alert(data.message);
+                }else if(data.code==1){
+                    location.href="/index";
                 }
             }
         });

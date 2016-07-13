@@ -2,7 +2,7 @@
 
 import flask_login
 import requests
-from flask import render_template, jsonify, request, json, redirect, url_for
+from flask import render_template, jsonify, request, json, redirect, url_for, session
 from website.config import Conf
 from website.model import HouseOwner
 from . import vi
@@ -30,11 +30,11 @@ def do_login():
     response_data = json.loads(response.content)
     # code == 1登录成功
     if response_data['code'] == 1:
-        user = HouseOwner()
-        user.ho_id = 1
-        user.ho_account = response_data['acount']
+        current_user = response_data['current_user']
 
-        return redirect(url_for('vi.index'))
+        session['current_user'] = current_user
+
+        return jsonify({'code': 1, 'message': '登录成功', 'gourl': '/index'})
     #code ==0 登录失败
     if response_data['code'] == 0:
         return jsonify(response_data)
@@ -48,10 +48,8 @@ def do_login():
 def register():
     return render_template("register.html")
 
-@vi.route("/do_logout")
+@vi.route("/do_logout",methods=["POST"])
 def do_logout():
-    # remove the username from the session if it's there
-    flask_login.logout_user()
-    # session.pop('username', None)
-    return redirect(('index'))
+    session['current_user'] = ''
+    return jsonify({'code': 1, 'message': '已成功退出!', 'gourl': 'index'})
 
