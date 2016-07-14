@@ -53,8 +53,9 @@
 {% block content %}
     <!-- 主体开始 -->
 	<div class="ms-main">
-			<div class="container">
+        <div class="container">
                 <!--热门房源-->
+                {% if hot4index != None%}
 				<div class="main-item">
 					<div class="main-title text-center">
 						<h2 class="row-space-1">
@@ -76,6 +77,7 @@
                         {% endfor %}
 					</div>
 				</div>
+                {% endif %}
                 <!--热门房源结束-->
                 <!--其他房源金牌房源,特色房源等-->
 				<div class="main-item">
@@ -85,297 +87,147 @@
 				        </h2>
 				        <p class="text-lead">好房源</p>
 					</div>
+                  <!--第一板块-->
 				  <ul class="nav nav-tabs" role="tablist">
-				    <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">热门房源</a></li>
-				    <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">特色房源</a></li>
-				    <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">金牌推荐</a></li>
+				    <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">特色房源</a></li>
 				  </ul>
-                   <!--三个切换版-->
 				  <div class="tab-content">
-                      <!--第一版块-->
+                      <!--特色房源-->
 				    <div role="tabpanel" class="tab-pane active" id="home">
+                        {% if special != None %}
 				    	<div class="row">
 							<div class="col-sm-6">
 								<div class="ms-pic-box">
 									<a href="#" class="ms-pic">
-								      <img src="static/images/pic02.jpg" alt="...">
-								       <p class="ms-dd"><strong>1</strong></p>
+								      <img src="{{ special[0].hs_images }}" alt="...">
+								       <p class="ms-dd"><strong>{{ special[0].hs_province }}</strong></p>
 								    </a>
 							    </div>
 							</div>
 							<div class="col-sm-3">
 								<div class="ms-pic-box">
 									<a href="#" class="ms-pic">
-								      <img src="static/images/pic02.jpg" alt="...">
-								       <p class="ms-dd"><strong>2</strong></p>
+								      <img src="{{ special[2].hs_images }}" alt="...">
+								       <p class="ms-dd"><strong>{{ special[2].hs_province }}</strong></p>
 								    </a>
 							    </div>
 							    <div class="ms-pic-box">
 									<a href="#" class="ms-pic">
-								      <img src="static/images/pic02.jpg" alt="...">
-								       <p class="ms-dd"><strong>3</strong></p>
+								      <img src="{{ special[3].hs_images }}" alt="...">
+								       <p class="ms-dd"><strong>{{ special[3].hs_province }}</strong></p>
 								    </a>
 							    </div>
 							</div>
 							<div class="col-sm-3">
 								<div class="ms-pic-box">
 									<a href="#" class="ms-pic">
-								      <img src="static/images/pic02.jpg" alt="...">
-								       <p class="ms-dd"><strong>4</strong></p>
+								      <img src="{{ special[4].hs_images }}" alt="...">
+								       <p class="ms-dd"><strong>{{ special[4].hs_province }}</strong></p>
 								    </a>
 							    </div>
 							    <div class="ms-pic-box">
 									<a href="#" class="ms-pic">
-								      <img src="static/images/pic02.jpg" alt="...">
-								       <p class="ms-dd"><strong>5</strong></p>
+								      <img src="{{ special[1].hs_images }}" alt="...">
+								       <p class="ms-dd"><strong>{{ special[1].hs_province }}</strong></p>
 								    </a>
 							    </div>
 							</div>
 						</div>
-
-						<div class="row">
-							<div class="col-sm-3">
-								<div class="ms-pic-box">
-									<a href="#" class="ms-pic">
-								      <img src="static/images/pic02.jpg" alt="...">
-								       <p class="ms-dd"><strong>6</strong></p>
-								    </a>
-							    </div>
-							    <div class="ms-pic-box">
-									<a href="#" class="ms-pic">
-								      <img src="static/images/pic02.jpg" alt="...">
-								       <p class="ms-dd"><strong>7</strong></p>
-								    </a>
-							    </div>
-							</div>
-							<div class="col-sm-6">
-								<div class="ms-pic-box">
-									<a href="#" class="ms-pic">
-								      <img src="static/images/pic02.jpg" alt="...">
-								       <p class="ms-dd"><strong>8</strong></p>
-								    </a>
-							    </div>
-							</div>
-							<div class="col-sm-3">
-								<div class="ms-pic-box">
-									<a href="#" class="ms-pic">
-								      <img src="static/images/pic02.jpg" alt="...">
-								       <p class="ms-dd"><strong>9</strong></p>
-								    </a>
-							    </div>
-							    <div class="ms-pic-box">
-									<a href="#" class="ms-pic">
-								      <img src="static/images/pic02.jpg" alt="...">
-								       <p class="ms-dd"><strong>10</strong></p>
-								    </a>
-							    </div>
-							</div>
-						</div>
-				    </div>
-                      <!--第二版块-->
-				    <div role="tabpanel" class="tab-pane" id="profile">
-				    	<div class="row">
-							<div class="col-sm-6">
-								<div class="ms-pic-box">
-									<a href="#" class="ms-pic">
-								      <img src="static/images/pic02.jpg" alt="...">
-								       <p class="ms-dd"><strong>北京2</strong></p>
-								    </a>
-							    </div>
-							</div>
-							<div class="col-sm-3">
-								<div class="ms-pic-box">
-									<a href="#" class="ms-pic">
-								      <img src="static/images/pic02.jpg" alt="...">
-								       <p class="ms-dd"><strong>北京</strong></p>
-								    </a>
-							    </div>
-							    <div class="ms-pic-box">
-									<a href="#" class="ms-pic">
-								      <img src="static/images/pic02.jpg" alt="...">
-								       <p class="ms-dd"><strong>北京</strong></p>
-								    </a>
-							    </div>
-							</div>
-							<div class="col-sm-3">
-								<div class="ms-pic-box">
-									<a href="#" class="ms-pic">
-								      <img src="static/images/pic02.jpg" alt="...">
-								       <p class="ms-dd"><strong>北京</strong></p>
-								    </a>
-							    </div>
-							    <div class="ms-pic-box">
-									<a href="#" class="ms-pic">
-								      <img src="static/images/pic02.jpg" alt="...">
-								       <p class="ms-dd"><strong>北京</strong></p>
-								    </a>
-							    </div>
-							</div>
-						</div>
-
-						<div class="row">
-							<div class="col-sm-3">
-								<div class="ms-pic-box">
-									<a href="#" class="ms-pic">
-								      <img src="static/images/pic02.jpg" alt="...">
-								       <p class="ms-dd"><strong>北京</strong></p>
-								    </a>
-							    </div>
-							    <div class="ms-pic-box">
-									<a href="#" class="ms-pic">
-								      <img src="static/images/pic02.jpg" alt="...">
-								       <p class="ms-dd"><strong>北京</strong></p>
-								    </a>
-							    </div>
-							</div>
-							<div class="col-sm-6">
-								<div class="ms-pic-box">
-									<a href="#" class="ms-pic">
-								      <img src="static/images/pic02.jpg" alt="...">
-								       <p class="ms-dd"><strong>北京</strong></p>
-								    </a>
-							    </div>
-							</div>
-							<div class="col-sm-3">
-								<div class="ms-pic-box">
-									<a href="#" class="ms-pic">
-								      <img src="static/images/pic02.jpg" alt="...">
-								       <p class="ms-dd"><strong>北京</strong></p>
-								    </a>
-							    </div>
-							    <div class="ms-pic-box">
-									<a href="#" class="ms-pic">
-								      <img src="static/images/pic02.jpg" alt="...">
-								       <p class="ms-dd"><strong>北京</strong></p>
-								    </a>
-							    </div>
-							</div>
-						</div>
-				    </div>
-                      <!--第三版块-->
-				    <div role="tabpanel" class="tab-pane" id="messages">
-				    	<div class="row">
-							<div class="col-sm-6">
-								<div class="ms-pic-box">
-									<a href="#" class="ms-pic">
-								      <img src="static/images/pic02.jpg" alt="...">
-								       <p class="ms-dd"><strong>北京3</strong></p>
-								    </a>
-							    </div>
-							</div>
-							<div class="col-sm-3">
-								<div class="ms-pic-box">
-									<a href="#" class="ms-pic">
-								      <img src="static/images/pic02.jpg" alt="...">
-								       <p class="ms-dd"><strong>北京</strong></p>
-								    </a>
-							    </div>
-							    <div class="ms-pic-box">
-									<a href="#" class="ms-pic">
-								      <img src="static/images/pic02.jpg" alt="...">
-								       <p class="ms-dd"><strong>北京</strong></p>
-								    </a>
-							    </div>
-							</div>
-							<div class="col-sm-3">
-								<div class="ms-pic-box">
-									<a href="#" class="ms-pic">
-								      <img src="static/images/pic02.jpg" alt="...">
-								       <p class="ms-dd"><strong>北京</strong></p>
-								    </a>
-							    </div>
-							    <div class="ms-pic-box">
-									<a href="#" class="ms-pic">
-								      <img src="static/images/pic02.jpg" alt="...">
-								       <p class="ms-dd"><strong>北京</strong></p>
-								    </a>
-							    </div>
-							</div>
-						</div>
-
-						<div class="row">
-							<div class="col-sm-3">
-								<div class="ms-pic-box">
-									<a href="#" class="ms-pic">
-								      <img src="static/images/pic02.jpg" alt="...">
-								       <p class="ms-dd"><strong>北京</strong></p>
-								    </a>
-							    </div>
-							    <div class="ms-pic-box">
-									<a href="#" class="ms-pic">
-								      <img src="static/images/pic02.jpg" alt="...">
-								       <p class="ms-dd"><strong>北京</strong></p>
-								    </a>
-							    </div>
-							</div>
-							<div class="col-sm-6">
-								<div class="ms-pic-box">
-									<a href="#" class="ms-pic">
-								      <img src="static/images/pic02.jpg" alt="...">
-								       <p class="ms-dd"><strong>北京</strong></p>
-								    </a>
-							    </div>
-							</div>
-							<div class="col-sm-3">
-								<div class="ms-pic-box">
-									<a href="#" class="ms-pic">
-								      <img src="static/images/pic02.jpg" alt="...">
-								       <p class="ms-dd"><strong>北京</strong></p>
-								    </a>
-							    </div>
-							    <div class="ms-pic-box">
-									<a href="#" class="ms-pic">
-								      <img src="static/images/pic02.jpg" alt="...">
-								       <p class="ms-dd"><strong>北京</strong></p>
-								    </a>
-							    </div>
-							</div>
-						</div>
+                        {% endif %}
 				    </div>
 				  </div>
-                     <!--三个切换版结束-->
+                  <!--第二板块-->
+                  <ul class="nav nav-tabs" role="tablist">
+				    <li role="presentation" class="active"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">金牌推荐</a></li>
+				  </ul>
+				  <div class="tab-content">
+                      <!--金牌推荐-->
+                    {% if goden != None %}
+				    <div role="tabpanel" class="tab-pane active" id="profile">
+						<div class="row">
+							<div class="col-sm-3">
+								<div class="ms-pic-box">
+									<a href="#" class="ms-pic">
+								      <img src="{{ goden[0].hs_images }}" alt="...">
+								       <p class="ms-dd"><strong>{{ goden[0].hs_province }}</strong></p>
+								    </a>
+							    </div>
+							    <div class="ms-pic-box">
+									<a href="#" class="ms-pic">
+								      <img src="{{ goden[2].hs_images }}" alt="...">
+								       <p class="ms-dd"><strong>{{ goden[2].hs_province }}</strong></p>
+								    </a>
+							    </div>
+							</div>
+							<div class="col-sm-6">
+								<div class="ms-pic-box">
+									<a href="#" class="ms-pic">
+								      <img src="static/images/pic02.jpg" alt="...">
+								       <p class="ms-dd"><strong>{{ goden[3].hs_province }}</strong></p>
+								    </a>
+							    </div>
+							</div>
+							<div class="col-sm-3">
+								<div class="ms-pic-box">
+									<a href="#" class="ms-pic">
+								      <img src="{{ goden[4].hs_images }}" alt="...">
+								       <p class="ms-dd"><strong>{{ goden[4].hs_province }}</strong></p>
+								    </a>
+							    </div>
+							    <div class="ms-pic-box">
+									<a href="#" class="ms-pic">
+								      <img src="{{ goden[1].hs_images }}" alt="...">
+								       <p class="ms-dd"><strong>{{ goden[1].hs_province }}</strong></p>
+								    </a>
+							    </div>
+							</div>
+						</div>
+				    </div>
+                    {% endif %}
+				  </div>
+
 				</div>
                 <!--其他房源金牌房源,特色房源结束-->
                 <!--旅行故事-->
-				<div class="main-item">
-					<div class="main-title">
-						<h2 class="row-space-1">
-				          <strong>加入上百万来自中国的小朋友</strong>
-				       </h2>
-					</div>
-					<div class="row">
-						<div class="col-sm-4">
-							<div class="ms-pic-box">
-								<a href="#" class="ms-pic">
-							      <img src="static/images/pic02.jpg" alt="...">
-							    </a>
-							     <h2 class="ms-bt"><a href=""><strong>为了这一眼极光，再长的等待也值了</strong></a></h2>
-							    <p class="ms-nr">旅行故事</p>
-						    </div>
-						</div>
-						<div class="col-sm-4">
-							<div class="ms-pic-box">
-								<a href="#" class="ms-pic">
-							      <img src="static/images/pic02.jpg" alt="...">
-							    </a>
-							     <h2 class="ms-bt"><a href=""><strong>为了这一眼极光，再长的等待也值了</strong></a></h2>
-							    <p class="ms-nr">旅行故事</p>
-						   </div>
-						</div>
-						<div class="col-sm-4">
-							<div class="ms-pic-box">
-								<a href="#" class="ms-pic">
-							      <img src="static/images/pic02.jpg" alt="...">
-							    </a>
-							    <h2 class="ms-bt"><a href=""><strong>为了这一眼极光，再长的等待也值了</strong></a></h2>
-							    <p class="ms-nr">旅行故事</p>
-						   </div>
-						</div>
-					</div>
-				</div>
+{#				<div class="main-item">#}
+{#					<div class="main-title">#}
+{#						<h2 class="row-space-1">#}
+{#				          <strong>加入上百万来自中国的小朋友</strong>#}
+{#				       </h2>#}
+{#					</div>#}
+{#					<div class="row">#}
+{#						<div class="col-sm-4">#}
+{#							<div class="ms-pic-box">#}
+{#								<a href="#" class="ms-pic">#}
+{#							      <img src="static/images/pic02.jpg" alt="...">#}
+{#							    </a>#}
+{#							     <h2 class="ms-bt"><a href=""><strong>为了这一眼极光，再长的等待也值了</strong></a></h2>#}
+{#							    <p class="ms-nr">旅行故事</p>#}
+{#						    </div>#}
+{#						</div>#}
+{#						<div class="col-sm-4">#}
+{#							<div class="ms-pic-box">#}
+{#								<a href="#" class="ms-pic">#}
+{#							      <img src="static/images/pic02.jpg" alt="...">#}
+{#							    </a>#}
+{#							     <h2 class="ms-bt"><a href=""><strong>为了这一眼极光，再长的等待也值了</strong></a></h2>#}
+{#							    <p class="ms-nr">旅行故事</p>#}
+{#						   </div>#}
+{#						</div>#}
+{#						<div class="col-sm-4">#}
+{#							<div class="ms-pic-box">#}
+{#								<a href="#" class="ms-pic">#}
+{#							      <img src="static/images/pic02.jpg" alt="...">#}
+{#							    </a>#}
+{#							    <h2 class="ms-bt"><a href=""><strong>为了这一眼极光，再长的等待也值了</strong></a></h2>#}
+{#							    <p class="ms-nr">旅行故事</p>#}
+{#						   </div>#}
+{#						</div>#}
+{#					</div>#}
+{#				</div>#}
                 <!--旅行故事结束-->
 			</div>
-		</div>
+    </div>
 	<!-- 主体结束 -->
 {% endblock %}
 {% block script %}

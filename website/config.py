@@ -22,8 +22,7 @@ class DevelopmentConfig(object):
     SESSION_COOKIE_DOMAIN = SERVICE_HOST
     PERMANENT_SESSION_LIFETIME = 60*10  # session保存10分钟
 
-
+    API_ADDRESS = "http://127.0.0.1:8080"
     MYSQL_INFO = "mysql+pymysql://root:123@127.0.0.1:3306/mschina?charset=utf8"
-    #API_ADDRESS = "http://127.0.0.1:8080"
 
 Conf = DevelopmentConfig
