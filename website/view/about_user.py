@@ -17,16 +17,19 @@ def login():
 
 @vi.route("/do_login", methods=['POST'])
 def do_login():
-
-    u_name = request.json.get("ho_account")
-    if not u_name:
+    user_account = request.json.get("user_account")
+    if not user_account:
         return jsonify({'code': 0, 'message': "账号不能为空"})
-    u_password = request.json.get("ho_password")
-    if not u_password:
+
+    user_password = request.json.get("user_password")
+    if not user_password:
         return jsonify({'code': 0, 'message': '密码不能为空'})
-    data = json.dumps({"ho_account": u_name, "ho_password": u_password})
-    # api_url = Conf.API_ADDRESS
-    response = requests.post(url="http://localhost:8080/api/v1.0/ho_login", data=data, headers={"content-type": "application/json"})
+
+    data = json.dumps({"user_account": user_account, "user_password": user_password})
+    api_url = Conf.API_ADDRESS
+    # url = api_url+"/api/v1.0/user_login"
+    # print(url)
+    response = requests.post(url=api_url+"/api/v1.0/user_login", data=data, headers={"content-type": "application/json"})
     response_data = json.loads(response.content)
     # code == 1登录成功
     if response_data['code'] == 1:
