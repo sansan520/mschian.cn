@@ -305,12 +305,12 @@ $(function(){
     });
 
     $("#login_click_l").click(function () {
-        var u_name = $("#int_name").val();
-        var u_password = $("#int_pass").val();
+        var user_account = $("#int_name").val();
+        var user_password = $("#int_pass").val();
         $.ajax({
             url:"/do_login",
             type: 'POST',
-            data: JSON.stringify({"ho_account":u_name,"ho_password":u_password}),
+            data: JSON.stringify({"user_account":user_account,"user_password":user_password}),
             contentType: 'application/json',
             success: function(data){
                 if(data.code==0){
