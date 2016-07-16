@@ -3,45 +3,45 @@
  */
 $(function () {
     $("#registerSubmit").submit(function () {
-        ho_name = $("#ho_name").val();
-        ho_account = $("#ho_account").val();
-        ho_password = $("#ho_passord").val();
-        ho_mobile = $("#ho_mobile").val();
-        ho_tel = $("#ho_tel").val();
-        ho_email = $("#ho_email").val();
-        ho_nicard = $("#ho_nicard").val();
-        ho_image = $("ho_image").val();
+        var ho_name = $("#ho_name").val();
+        var ho_account = $("#ho_account").val();
+        var ho_password = $("#ho_passord").val();
+        var ho_mobile = $("#ho_mobile").val();
+        var ho_tel = $("#ho_tel").val();
+        var ho_email = $("#ho_email").val();
+        var ho_nicard = $("#ho_nicard").val();
+        var ho_image = $("ho_image").val();
         if (!ho_name) {
-            return error("ĞÕÃû²»ÄÜÎª¿Õ");
+            alter("å§“åä¸èƒ½ä¸ºç©º");
         }
         if (!ho_account) {
-            return error("ÕËºÅ²»ÄÜÎª¿Õ");
+            alter("è´¦å·ä¸èƒ½ä¸ºç©º");
         }
         if (ho_account.length < 6 || ho_account.length > 16) {
-            return error("³¤¶ÈÒª´óÓÚ6Ğ¡ÓÚ16");
+            alter("è´¦å·é•¿åº¦å¤§äº6å°äº16");
         }
         if (!ho_password) {
-            return error("ĞÕÃû²»ÄÜÎª¿Õ");
+            alter("å¯†ç ä¸èƒ½ä¸ºç©º");
         }
         if (ho_password.length < 6 || ho_password.length > 16) {
-            return error("ÃÜÂëÒª´óÓÚ6Ğ¡ÓÚ16");
+            alter("å¯†ç é•¿åº¦å¤§äº6å°äº16");
         }
         if (!ho_mobile) {
-            return error("ÊÖ»úºÅ²»ÄÜÎª¿Õ,·½±ãÓÎ¿ÍÓëÄúÁªÏµ");
+            alter("æ‰‹æœºå·ä¸èƒ½ä¸ºç©º");
         }
         if (ho_mobile.length < 11) {
-            return error("ÊÖ»úºÅ¸ñÊ½²»ÕıÈ·");
+            alter("æ‰‹æœºå·ä¸èƒ½å°äº11");
         }
         if (!/^(13|15|18|17[0-9]{9})$/.test(ho_mobile)) {
-            return error("ÊÖ»úºÅ¸ñÊ½²»ÕıÈ·");
+           alter("æ‰‹æœºå·æ ¼å¼ä¸æ­£ç¡®");
         }
-        if (!/^(0[0-9]{3})+-([0-9]{8})$/.test(ho_mobile)) {
-            return error("ÊÖ»úºÅ¸ñÊ½²»ÕıÈ·");
+        if (!/^(0[0-9]{3})+-([0-9]{8})$/.test(ho_tel)) {
+            alter("ç”µè¯æ ¼å¼ä¸æ­£ç¡®");
         }
-        if (!/^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+((\.[a-zA-Z0-9_-]{2,3}){1,2})$/.test(ho_mobile)) {
-            return error("email¸ñÊ½²»ÕıÈ·");
+        if (!/^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+((\.[a-zA-Z0-9_-]{2,3}){1,2})$/.test(ho_email)) {
+            alter("é‚®ç®±æ ¼å¼ä¸æ­£ç¡®");
         }
-        $.post("/view/register", {
+        $.post("/do_ho_register", {
             "ho_name": ho_name,
             "ho_account": ho_account,
             "ho_password": ho_password,
@@ -50,7 +50,13 @@ $(function () {
             "ho_email": ho_email,
             "ho_nicard": ho_nicard,
             "ho_image": ho_image
-        }, function (statue, data) {
+        }, function (data) {
+            if(data.code == 0){
+                alert("æ³¨å†Œå¤±è´¥");
+            }else if(data.code == 1){
+                location.href = "/index";
+            }
+
         });
     });
     

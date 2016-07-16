@@ -43,13 +43,9 @@ def do_ho_register():
 
     #return jsonify(response_data)
     if response_data["code"] == 0:
-        user = HouseOwner()
-        user.account = response_data["ho_account"]
-        user.email = response_data["ho_email"]
-        user.mobile = response_data["ho_mobile"]
         return jsonify(response_data)
     if response_data["code"] == 1:
-        return redirect(url_for("vi.index"))
+        return jsonify({"code":1,"message":"注册成功","go_url":"/index"})
 
 
 
