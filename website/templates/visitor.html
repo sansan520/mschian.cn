@@ -27,14 +27,10 @@
     <!-- 主体开始 -->
     <div style="background-image: url('http://static.zzkcdn.com/registerbg2.png');width: 100%;background-size: cover;">
 		<div class="select_re_center">
-			<!--房东注册-->
+			<!--游客注册-->
             <div class="register">
                 <form id="register-form" method="post" action="">
-                    <h1>房东注册</h1>
-                <li>
-                    <label>姓名:</label>
-                    <input id="ho_name" class="input-text ipt-border" type="text" name="ho_name" value="" placeholder="请输入姓名"/>
-                </li>
+                    <h1>游客注册</h1>
                 <li>
                     <label>账号:</label>
                     <input id="user_account" class="input-text ipt-border" type="text" name="user_account" value="" placeholder="请输入账号"/>
@@ -47,20 +43,12 @@
                     <label>手机号:</label>
                     <input id="user_mobile" class="input-text ipt-border" type="text" name="user_mobile" value="" maxlength="11" placeholder="请输入11位手机号"/>
                 </li>
-                 <li>
-                    <label>电话:</label>
-                    <input id="ho_tel" class="input-text ipt-border" type="text" name="ho_tel" value="" maxlength="17" placeholder="请输入电话"/>
-                </li>
                 <li>
-                    <label>email:</label>
-                    <input id="email" class="input-text ipt-border" type="text" name="ho_email" value="" placeholder="请输入电子邮件"/>
+                    <label>头像:</label>
+                    <input id="user_headimg" type="text" name="user_headimg" value="" placeholder="请上传头像"/>
+                    <a href="/uploadfile.html">上传头像</a>
                 </li>
-                <li>
-                    <label>身份证:</label>
-                    <input id="ho_nicard" type="text" name="ho_nicard" value="" placeholder="请上传身份证件照"/>
-                    <a href="/uploadfile.html">上传证件照</a>
-                </li>
-                <li class="center">
+                    <li class="center">
                     <input id="registerSubmit" class="btn redBtn btn2" type="submit"  value="注册" />
                 </li>
 

@@ -5,6 +5,7 @@ import requests
 import json
 from flask import jsonify,request,g,current_app,redirect,url_for
 from website.model import HouseOwner
+from website.config import Conf
 
 
 @vi.route("/ho_register")
@@ -18,24 +19,21 @@ def do_ho_register():
     ho_name = request.get_json.get("ho_name")
     if not ho_name:
         return jsonify({"code": 0, "message": "用户姓名不能为空"})
-    ho_account = request.get_json.get("ho_account")
     ho_mobile = request.get_json().get("ho_mobile")
     ho_tel = request.get_json().get("ho_tel")
     ho_email = request.get_json().get("ho_email")
     ho_nicard = request.get_json().get("ho_nicard")
-    ho_image = request.json.get("ho_image")
 
     #获取参数后,将这些数据,通过接口传给service api==> http://localhost:8080/接口名称
-    data = {"ho_name": ho_name,
-            "ho_account":ho_account,
+    data =json.dumps({"ho_name": ho_name,
             "ho_mobile" :ho_mobile,
             "ho_tel" : ho_tel,
             "ho_email" : ho_email,
             "ho_nicard" : ho_nicard,
-            "ho_image" : ho_image
-            }
+            })
+    api = Conf.API_ADDRESS
     # service api 返回的 response
-    response = requests.post(url="http://localhost:8080/api/v1.0/ho_register",
+    response = requests.post(url=api+"/api/v1.0/ho_register",
                                  data=data,
                                  headers={"content-type": "application/json"})
     #json格式化并返回JS
@@ -47,37 +45,40 @@ def do_ho_register():
     if response_data["code"] == 1:
         return jsonify({"code":1,"message":"注册成功","go_url":"/index"})
 
+@vi.route("user_register")
+def user_register():
+    return render_template("visitor.html")
 
+@vi.route("/do_user_register",methods = ["POST"])
+def do_user_register():
+    user_account = request.json.get("user_account")
+    if not user_account:
+        return jsonify({"code":0,"message":"用户名不能为空"})
+    user_password = request.json.get("user_password")
+    if not user_password:
+        return jsonify({"code": 0, "message": "密码不能为空"})
+    user_mobile = request.json.get("user_mobile")
+    if not user_account:
+        return jsonify({"code": 0, "message": "手机号不能为空"})
+    user_headimg = request.json.get("user_headimg")
+    user_type = request.json.get("user_type")
 
-# def validate_register():
-#     ho_name = request.get_json.get("ho_name")
-#     if ho_name == "" | ho_name is None:
-#         return jsonify({"code" : 0,"message" : "用户姓名不能为空"})
-#
-#     ho_account = request.get_json.get("ho_account")
-#     if ho_account == "" | ho_account is None:
-#         return jsonify({"code": 0, "message": "用户名不能为空"})
-#     if ho_account.length <= 6 | ho_account.length >= 16:
-#         return jsonify({"code": 0, "message": "用户名长度大于等于6小于等于16"})
-#     if (HouseOwner.ho_owner.get_house_owner(ho_account)):
-#         return jsonify({"code": 0, "message": "用户名已存在"})
-#
-#     ho_mobile = request.get_json().get("ho_mobile")
-#     if ho_mobile == "" | ho_mobile is None:
-#         return jsonify({"code": 0, "message": "手机号不能为空"})
-#     if ho_mobile.matches("^13|15|17|18[0-9]{9}*$"):
-#         return jsonify({"code": 0, "message": "手机号码的格式不正确"})
-#     if (HouseOwner.ho_owner.getbymobile(ho_mobile)):
-#         return jsonify({"code": 1, "message": "手机号已存在"})
-#
-#     ho_email = request.get_json().get("ho_email")
-#     if ho_email == "" | ho_email is None:
-#         return jsonify({"code" : 0,"message" :"邮箱不能为空"})
-#     if ho_email.matches("^([a-zA-Z0-9 -]) + @([a-zA-Z0-9_-]) + ((\\.[a-zA-Z0-9_-]{2,3}){1,2})$"):
-#         return jsonify({"code": 0, "message": "邮箱格式不正确"})
-#     if (HouseOwner.ho_owner.getbyemail(ho_email)):
-#         return jsonify({"code": 1, "message": "邮箱已存在"})
-#
-#     ho_nicard = request.get_json().get("ho_nicard")
-#     if ho_nicard == "" | ho_nicard is None:
-#         return jsonify("请上传证件照")
+    data=json.dumps({
+        "user_account":user_account,
+        "user_password":user_password,
+        "user_mobile":user_mobile,
+        "user_headimg":user_headimg,
+        "user_type":user_type
+    })
+    api = Conf.API_ADDRESS
+    response = requests.post(url=api+"/api/v1.0/user_register",
+                            data = data,
+                            headers = {"contentType":"application/json"})
+    response_data = json.loads(response.content)
+    #code =1 注册成功
+    if response_data['code'] == 1:
+        return jsonify({"code":1,"message":"注册成功","go_url":"/index"})
+    #code = 0 注册失败
+    if response_data['code'] == 0:
+        return jsonify(response_data)
+    return jsonify(response_data)
