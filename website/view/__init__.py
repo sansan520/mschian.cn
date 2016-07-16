@@ -7,6 +7,7 @@ from . import error
 from . import index
 from . import about_user
 from . import register
-
-from . import test
+from . import res_more
+#
+# from . import test
 

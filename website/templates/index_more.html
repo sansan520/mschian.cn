@@ -1,0 +1,130 @@
+﻿{% extends "base.html" %}
+{% block title %}Index{% endblock %}
+{% block head %}
+    {{ super() }}
+    <script src="static/js/common.js"></script>
+    <style>
+    ul{border:0; margin:0; padding:0;}
+
+    .pagination li{
+    border:0; margin:0; padding:0;
+    font-size:11px;
+    list-style:none;
+    }
+    .pagination a{
+    border:solid 1px #DDDDDD;
+    margin-right:2px;
+    }
+    .pagination .previous-off,
+    .pagination .next-off {
+    color:#666666;
+    display:block;
+    float:left;
+    font-weight:bold;
+    padding:3px 4px;
+    }
+    .pagination .next a,
+    .pagination .previous a {
+    font-weight:bold;
+    border:solid 1px #FFFFFF;
+    }
+    .pagination .active{
+    color:#ff0084;
+    font-weight:bold;
+    display:block;
+    float:left;
+    padding:4px 6px;
+    }
+    .pagination a:link,
+    .pagination a:visited {
+    color:#0063e3;
+    display:block;
+    float:left;
+    padding:3px 6px;
+    text-decoration:none;
+    }
+    .pagination a:hover{
+    border:solid 1px #666666;
+    }
+    </style>
+{% endblock %}
+
+{% block content %}
+    <!-- 主体开始 -->
+    <div class="ms-main clearfix">
+        <div class="container">
+				<div class="main-item">
+					<div class="main-title text-center">
+						<h2 class="row-space-1">
+				          <strong>放搜索栏</strong>
+				        </h2>
+					</div>
+					<!--分页开始-->
+					<div class="row">
+						<div class="col-sm-4">
+							<div class="ms-pic-box">
+								<a href="#" class="ms-pic">
+							      <img src="static/images/pic02.jpg" alt="...">
+							       <p class="ms-dd"><strong>北京</strong></p>
+							    </a>
+						    </div>
+						</div>
+						<div class="col-sm-4">
+							<div class="ms-pic-box">
+								<a href="#" class="ms-pic">
+							      <img src="static/images/pic02.jpg" alt="...">
+							       <p class="ms-dd"><strong>北京</strong></p>
+							    </a>
+						   </div>
+						</div>
+						<div class="col-sm-4">
+							<div class="ms-pic-box">
+								<a href="#" class="ms-pic">
+							      <img src="static/images/pic02.jpg" alt="...">
+							       <p class="ms-dd"><strong>北京</strong></p>
+							    </a>
+						   </div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-4">
+							<div class="ms-pic-box">
+								<a href="#" class="ms-pic">
+							      <img src="static/images/pic02.jpg" alt="...">
+							       <p class="ms-dd"><strong>北京</strong></p>
+							    </a>
+						    </div>
+						</div>
+						<div class="col-sm-4">
+							<div class="ms-pic-box">
+								<a href="#" class="ms-pic">
+							      <img src="static/images/pic02.jpg" alt="...">
+							       <p class="ms-dd"><strong>北京</strong></p>
+							    </a>
+						   </div>
+						</div>
+						<div class="col-sm-4">
+							<div class="ms-pic-box">
+								<a href="#" class="ms-pic">
+							      <img src="static/images/pic02.jpg" alt="...">
+							       <p class="ms-dd"><strong>北京</strong></p>
+							    </a>
+						   </div>
+						</div>
+					</div>
+					<!--分页结束-->
+{#                    http://blog.csdn.net/ying847782627/article/details/51329245#}
+{#                    http://pythonhosted.org/Flask-paginate/#}
+					<!--分页栏开始-->
+                    {{ pagination.links }}
+					<!--分页栏结束-->
+				</div>
+			</div>
+    </div>
+    <!-- 主体结束 -->
+{% endblock %}
+{% block script %}
+{% endblock %}
+
+
+
