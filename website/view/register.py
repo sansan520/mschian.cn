@@ -3,7 +3,7 @@ from flask import render_template
 from . import vi
 import requests
 import json
-from flask import jsonify,request,g,current_app
+from flask import jsonify,request,g,current_app,redirect,url_for
 from website.model import HouseOwner
 
 
@@ -41,15 +41,15 @@ def do_ho_register():
     #json格式化并返回JS
     response_data = json.loads(response.content)
 
-    return jsonify(response_data)
+    #return jsonify(response_data)
     if response_data["code"] == 0:
         user = HouseOwner()
         user.account = response_data["ho_account"]
         user.email = response_data["ho_email"]
         user.mobile = response_data["ho_mobile"]
-        return jonsify(response_data)
+        return jsonify(response_data)
     if response_data["code"] == 1:
-        return redirect(url_for(vi.index))
+        return redirect(url_for("vi.index"))
 
 
 
