@@ -11,6 +11,7 @@ $(function () {
         var ho_email = $("#ho_email").val();
         var ho_nicard = $("#ho_nicard").val();
         var user_headimg = $("user_headimg").val();
+
         if (!ho_name) {
             alter("姓名不能为空");
         }
@@ -41,6 +42,7 @@ $(function () {
         if (!/^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+((\.[a-zA-Z0-9_-]{2,3}){1,2})$/.test(ho_email)) {
             alter("邮箱格式不正确");
         }
+
         switch(type){
             case 0:
                 $.ajax({url: "/do_ho_register",
@@ -65,44 +67,24 @@ $(function () {
 
         });
             case 1:
-                $.ajax({
-            url: "/do_user_register",
-            data: JSON.stringify({
+                $.ajax({url: "/do_user_register",
+                data: JSON.stringify({
                 "user_account": user_account,
                 "user_password": user_password,
                 "user_mobile": user_mobile,
                 "user_headimg":user_headimg
-            }),
-            contentType: "application/json",
-            success:function (data) {
-                if(data.code == 0){
-                alert("注册失败");
-            }else if(data.code == 1){
-                location.href = "/index";
-            }
-            }
+                }),
+                contentType: "application/json",
+                success:function (data) {
+                    if(data.code == 0){
+                        alert("注册失败");
+                    }else if(data.code == 1){
+                        location.href = "/index";
+                    }
+                }
 
-        });
+            });
         }
-
-
-        // $.post("/do_ho_register", {
-        //     "ho_name": ho_name,
-        //     "ho_account": ho_account,
-        //     "ho_password": ho_password,
-        //     "ho_mobile": ho_mobile,
-        //     "ho_tel": ho_tel,
-        //     "ho_email": ho_email,
-        //     "ho_nicard": ho_nicard,
-        //     "ho_image": ho_image
-        // }, function (data) {
-        //     if(data.code == 0){
-        //         alert("注册失败");
-        //     }else if(data.code == 1){
-        //         location.href = "/index";
-        //     }
-        //
-        // });
     });
     
 });
