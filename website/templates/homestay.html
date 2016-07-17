@@ -18,8 +18,8 @@
 			.select_re_center a img {float:left;margin-top:26px;margin-left:103px;border:0}
 			.select_re_shadow .shadow{background:url("http://pages.zizaike.com/a/newweb/register/shadow.png");margin-top:2px;display:block;width:414px;height:48px;float:left}
 			.select_re_button {float:left;background-color:#f35758;display:block; width: 295px; margin-left: 2px;height:55px;line-height:55px;color:#fff;font-size:20px;text-align:center;margin-top:30px;text-decoration: none;}
-            .register-form li{list-style: none;}
-            .input-text{height: 200px;width: 320px;line-height: 100px;text-align: right;}
+            .register-form li{list-style: none;margin:3px auto;padding-top: 1px;}
+            .input-text{height: 50px;width: 300px;line-height: 50px;border:1px ;border-radius:10px;text-align: left;}
             .center .btn{text-align: center;}
             .redBtn :hover{color:red;cursor: pointer;}
             .tdText{text-align: left;}
@@ -68,8 +68,7 @@
                 </li>
                 <li>
                     <label class="tdText">身份证:</label>
-                    <input id="uploadFile" type="file" name="ho_nicard" />
-                    <input type="button" id="btnUpload" value="上传证件照" onclick="uploadImage()"/>
+                    <input id="uploadFile" type="file" name="ho_nicard" onclick="uploadImage()" />
                     <div id="imgDiv"></div>
                 </li>
                 <li class="center">
