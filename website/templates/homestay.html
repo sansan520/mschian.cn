@@ -5,7 +5,7 @@
     <script src="/website/static/js/common.js"></script>
     <script src = "/website/static/js/register.js"></script>
     <style>
-			.select_re_center {clear:both;margin:0 auto;width:760px;padding-top:103px; height:650px;}
+			.select_re_center {clear:both;margin:0 auto;width:760px;padding-top:103px; height:650px;text-align: center;}
 			.select_re_center .point{margin-bottom: 10px;background:url("http://static.zzkcdn.com/registerOval%203.png");margin-right:13px;display:block;margin-top:4px;background-size: inherit;    padding-left: 15px;
 				background-repeat: no-repeat;background-position: 1px 4px;}
 			.select_re_left {float:left;width:300px;margin-left:25px;}
@@ -18,6 +18,11 @@
 			.select_re_center a img {float:left;margin-top:26px;margin-left:103px;border:0}
 			.select_re_shadow .shadow{background:url("http://pages.zizaike.com/a/newweb/register/shadow.png");margin-top:2px;display:block;width:414px;height:48px;float:left}
 			.select_re_button {float:left;background-color:#f35758;display:block; width: 295px; margin-left: 2px;height:55px;line-height:55px;color:#fff;font-size:20px;text-align:center;margin-top:30px;text-decoration: none;}
+            .register-form li{list-style: none;}
+            .input-text{height: 200px;width: 320px;line-height: 100px;text-align: right;}
+            .center .btn{text-align: center;}
+            .redBtn :hover{color:red;cursor: pointer;}
+            .tdText{text-align: left;}
 
 
 		</style>
@@ -29,36 +34,43 @@
 		<div class="select_re_center">
 			<!--房东注册-->
             <div class="register">
-                <form id="register-form" method="post" action="">
+                <form class="register-form" method="post" action="">
                     <h1>房东注册</h1>
-                <li>
-                    <label>姓名:</label>
+                <li >
+                    <label class="tdText">姓名:</label>
                     <input id="ho_name" class="input-text ipt-border" type="text" name="ho_name" value="" placeholder="请输入姓名"/>
+                    <label class="errorClass" id="ho_nameError"></label>
                 </li>
                 <li>
                     <label>账号:</label>
                     <input id="user_account" class="input-text ipt-border" type="text" name="user_account" value="" placeholder="请输入账号"/>
+                    <label class="errorClass" id="user_accountError"></label>
                 </li>
                 <li>
-                    <label>密码:</label>
+                    <label class="tdText">密码:</label>
                     <input id="user_password" class="input-text ipt-border" type="password" name="user_password" value="" placeholder="请输入密码"/>
+                    <label class="errorClass" id="user_passwordError"></label>
                 </li>
                 <li>
-                    <label>手机号:</label>
+                    <label class="tdText">手机号:</label>
                     <input id="user_mobile" class="input-text ipt-border" type="text" name="user_mobile" value="" maxlength="11" placeholder="请输入11位手机号"/>
+                    <label class="errorClass" id="user_mobileError"></label>
                 </li>
                  <li>
-                    <label>电话:</label>
+                    <label class="tdText">电话:</label>
                     <input id="ho_tel" class="input-text ipt-border" type="text" name="ho_tel" value="" maxlength="17" placeholder="请输入电话"/>
+                     <label class="errorClass" id="ho_telError"></label>
                 </li>
                 <li>
-                    <label>email:</label>
-                    <input id="email" class="input-text ipt-border" type="text" name="ho_email" value="" placeholder="请输入电子邮件"/>
+                    <label class="tdText">email:</label>
+                    <input id="ho_email" class="input-text ipt-border" type="text" name="ho_email" value="" placeholder="请输入电子邮件"/>
+                    <label class="errorClass" id="ho_emailError"></label>
                 </li>
                 <li>
-                    <label>身份证:</label>
-                    <input id="ho_nicard" type="text" name="ho_nicard" value="" placeholder="请上传身份证件照"/>
-                    <a href="/uploadfile.html">上传证件照</a>
+                    <label class="tdText">身份证:</label>
+                    <input id="uploadFile" type="file" name="ho_nicard" />
+                    <input type="button" id="btnUpload" value="上传证件照" onclick="uploadImage()"/>
+                    <div id="imgDiv"></div>
                 </li>
                 <li class="center">
                     <input id="registerSubmit" class="btn redBtn btn2" type="submit"  value="注册" />

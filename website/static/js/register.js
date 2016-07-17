@@ -11,6 +11,11 @@ $(function () {
         var ho_email = $("#ho_email").val();
         var ho_nicard = $("#ho_nicard").val();
         var user_headimg = $("user_headimg").val();
+        $(".input-text").focus(function(){
+            var labelId = $(this).attr(id)+"Error";
+            $("#"+labelId).text("");
+            showError($("#"+labelId));
+        });
 
         if (!ho_name) {
             alter("姓名不能为空");
@@ -88,3 +93,11 @@ $(function () {
     });
     
 });
+function showError(ele){
+    var text = ele.text();
+    if (!text){
+        ele.css("display","none");
+    }else{
+        ele.css("display","");
+    }
+}
