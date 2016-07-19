@@ -1,4 +1,4 @@
-## coding : utf8
+# coding : utf8
 
 import flask_login
 import requests
@@ -6,8 +6,9 @@ from flask import render_template, jsonify, request, json, redirect, url_for, se
 from website.config import Conf
 from website.model import HouseOwner
 from . import vi
+import hashlib
 
-
+# http://www.361way.com/python-hashlib-md5-sha/4249.html  => hashlib
 # http://www.cnblogs.com/agmcs/p/4445428.html
 
 
@@ -25,7 +26,8 @@ def do_login():
     if not user_password:
         return jsonify({'code': 0, 'message': '密码不能为空'})
 
-    data = json.dumps({"user_account": user_account, "user_password": user_password})
+    user_password_hash = hashlib.md5(user_password.encode('utf-8')).hexdigest()
+    data = json.dumps({"user_account": user_account, "user_password": user_password_hash})
     api_url = Conf.API_ADDRESS
     # url = api_url+"/api/v1.0/user_login"
     # print(url)
