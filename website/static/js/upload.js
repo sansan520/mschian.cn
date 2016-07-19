@@ -18,10 +18,13 @@ $(function () {
             type:"POST",
             cache : false,
             success:function (data) {
-                alert("上传成功");
-                $("#imgDiv").empty();
-                $("#imgDiv").html(data);
-                $("#imgDiv").show();
+                if (data.code == 1){
+                    alert("上传成功");
+                    $("#imgDiv").empty();
+                    $("#imgDiv").html(data);
+                    $("#imgDiv").show();
+                }
+
             },
             error:function(XMLHttpRequest,textStatus,errorThrown){
                 alert("上传失败，请检查网络后重试");

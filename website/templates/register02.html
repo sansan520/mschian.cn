@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset= "utf-8" />
+		<meta name="format-detection" content="telephone=no">
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1.0">
+		<title>名宿中国</title>
+		<link rel="stylesheet" href="../style/bootstrap.css">
+		<link rel="stylesheet" href="../style/ms.css">
+		<script src="../js/jquery-1.12.1.min.js"></script>
+		<script src="../js/bootstrap.js"></script>
+	</head>
+
+	<body>
+		<!-- 名宿头部ms-hd开始 -->
+		<div class="ms-hd">
+			<nav class="navbar navbar-default">
+			  <div class="container-fluid">
+			    <div class="navbar-header">
+			      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+			        <span class="sr-only">Toggle navigation</span>
+			        <span class="icon-bar"></span>
+			        <span class="icon-bar"></span>
+			        <span class="icon-bar"></span>
+			      </button>
+			      <a class="navbar-brand" href="#"><img src="../images/logo.png" /></a>
+			       <form class="form-inline pull-left">
+					  <div class="form-group">
+					    <label class="sr-only" for="exampleInputAmount">Amount (in dollars)</label>
+					    <div class="input-group">
+					      <div class="input-group-addon"><span class="glyphicon glyphicon-search"></span></div>
+					      <input type="text" class="form-control" id="exampleInputAmount" placeholder="想去哪里？">
+					    </div>
+					  </div>
+					</form>
+			    </div>
+
+			    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+			      <ul class="nav navbar-nav navbar-right">
+			      	<li class="dropdown">
+			          <a href="#" class="first-A dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="btn begin-fd">成为房东</span></a>
+			          <ul class="dropdown-menu">
+			            <li><a href="#"><span>如何出租房源</span></a></li>
+			            <li><a href="#"><span>发布空间</span></a></li>
+			            <li><a href="#"><span>看看你在杭州能赚多少钱</span></a></li>
+			          </ul>
+			       </li>
+			        <li class="dropdown">
+			          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">帮助</span></a>
+			          <ul class="dropdown-menu">
+			            <li><a href="#"><span>我是租客</span></a></li>
+						<li><a href="#"><span>我是房东</span></a></li>
+			            <li role="separator" class="divider"></li>
+			            <li class="li-help"><a href="helpcenter.html">帮助中心</a></li>
+			          </ul>
+			        </li>
+			        <li><a href="#">注册</a></li>
+			        <li><a href="#">登录</a></li>
+			      </ul>
+			    </div>
+			  </div>
+			</nav>
+		</div>
+		<script>
+			$(document).ready(function(){
+				$(document).off('click.bs.dropdown.data-api');
+				dropdownOpen();//调用
+			});
+			/**
+			 * 鼠标划过就展开子菜单，免得需要点击才能展开
+			 */
+			function dropdownOpen() {
+
+				var $dropdownLi = $('li.dropdown');
+
+				$dropdownLi.mouseover(function() {
+					$(this).addClass('open');
+				}).mouseout(function() {
+					$(this).removeClass('open');
+				});
+			}
+		</script>
+		<!-- 名宿banner区ms-banner结束 -->
+
+		<!-- 主体开始 -->
+		<div class="logreg-mian container">
+			<div class="row">
+				<div class="col-xs-12 col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
+					<div class="register-box">
+						<div class="form-horizontal">
+							<div class="page-header clearfix">
+								<h4 class="pull-left">房东注册</h4>
+								<div class="pull-right reg-login">
+									<span>已是会员</span>
+									<a href="" class="login-yhzc">登录</a>
+								</div>
+							</div>
+							<div class="form-group">
+							  <label for="" class="col-sm-3 col-lg-2 control-label">账号</label>
+							  <div class="col-sm-9 col-lg-10">
+							  	<input type="text" class="text-left reg-ipt" placeholder="账号" required="">
+							  </div>
+							</div>
+							<div class="form-group">
+								  <label for="" class="col-sm-3 col-lg-2 control-label">密码</label>
+								  <div class="col-sm-9 col-lg-10">
+								  	<input type="text" class="text-left reg-ipt" placeholder="密码">
+								  </div>
+							</div>
+							<!--<div class="form-group">
+								  <label for="" class="col-sm-3 col-lg-2 control-label">确认密码</label>
+								  <div class="col-sm-9 col-lg-10">
+								  	<input type="text" class="text-left reg-ipt" placeholder="确认密码">
+								  </div>
+							</div>-->
+							<div class="form-group">
+								  <label for="" class="col-sm-3 col-lg-2 control-label">手机号</label>
+								  <div class="col-sm-9 col-lg-10">
+								  	<input type="text" class="text-left reg-ipt" placeholder="手机号">
+								  </div>
+							</div>
+                            <div class="form-group">
+							  <label for="" class="col-sm-3 col-lg-2 control-label">头像</label>
+							  <div class="col-sm-9 col-lg-10 msMagND-txt">
+								<div class="form-group">
+									<div class="upFile up-idCard-box">
+										<input type="file" id="fileupload" name="file[]">
+										<p class="btn sfz-btn">点击上传头像</p>
+									</div>
+								</div>
+							  </div>
+							</div>
+
+							<!--<div class="form-group">
+								  <label for="" class="col-xs-12 col-sm-3 col-lg-2 control-label">验证码</label>
+								  <div class="col-xs-8 col-sm-6 col-lg-7">
+								  	<input type="text" class="text-left reg-ipt" placeholder="验证码">
+								  </div>
+								   <div class="col-xs-4 col-sm-3 col-lg-3">
+								  	<img class="reg-yzm" style="height: 36px; width: 100%;" src= "http://taiwan.zizaike.com/zzk_public/captcha.php" />
+								  </div>
+							</div>-->
+
+						  	<div class="form-group">
+						  		<div class="col-xs-12 col-sm-4 col-sm-offset-3  col-lg-offset-2">
+						  			<button class="btn btn-login btn-reg" type="submit">下一步</button>
+						  		</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- 主体结束 -->
+
+		<!-- 底部开始 -->
+		<div class= "ms-footer">
+			<div class="container">
+				<div class="row">
+					<div class="col-sm-6 col-md-3">
+						<dl class= "ft-item">
+							<dt>公司信息</dt>
+							<dd><a href= "">关于</a></dd>
+							<dd><a href= "">工作机会</a></dd>
+							<dd><a href= "">新闻</a></dd>
+							<dd><a href= "">博客</a></dd>
+						</dl>
+					</div>
+					<div class="col-sm-6 col-md-3">
+						<dl class= "ft-item">
+							<dt>公司信息</dt>
+							<dd><a href= "">关于</a></dd>
+							<dd><a href= "">工作机会</a></dd>
+							<dd><a href= "">新闻</a></dd>
+							<dd><a href= "">博客</a></dd>
+						</dl>
+					</div>
+					<div class="col-sm-6 col-md-3">
+						<dl class= "ft-item">
+							<dt>公司信息</dt>
+							<dd><a href= "">关于</a></dd>
+							<dd><a href= "">工作机会</a></dd>
+							<dd><a href= "">新闻</a></dd>
+							<dd><a href= "">博客</a></dd>
+					</div>
+					<div class="col-sm-6 col-md-3">
+						<dl class= "ft-item">
+							<dt>公司信息</dt>
+							<dd><a href= "">关于</a></dd>
+							<dd><a href= "">工作机会</a></dd>
+							<dd><a href= "">新闻</a></dd>
+							<dd><a href= "">博客</a></dd>
+						</dl>
+					</div>
+				</div>
+				<p class= "ms-copyright">Copyright 2008-2016 www.wjy360.com All Rights Reserved 浙B2-20100360-12</p>
+			</div>
+		</div>
+		<!-- 底部结束 -->
+	</body>
+</html>
