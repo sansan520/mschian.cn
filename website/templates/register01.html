@@ -1,20 +1,11 @@
-<!DOCTYPE html>
-<html>
-	<head>
-		<meta charset= "utf-8" />
-		<meta name="format-detection" content="telephone=no">
-		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1.0">
-		<title>名宿中国</title>
-		<link rel="stylesheet" href="../style/bootstrap.css">
-		<link rel="stylesheet" href="../style/ms.css">
-		<script src="../js/jquery-1.12.1.min.js"></script>
-		<script src="../js/bootstrap.js"></script>
-		<script src="../js/layer/layer.js"></script>
-	</head>
+{% extends "base.html" %}
+{% block title %}Index{% endblock %}
+{% block head %}
+    {{ super() }}
+    <script src="static/js/common.js"></script>
+{% endblock %}
 
-	<body>
+	{% block content %}
 		<!-- 名宿头部ms-hd开始 -->
 		<div class="ms-hd">
 			<nav class="navbar navbar-default">
@@ -202,5 +193,47 @@
 			</div>
 		</div>
 		<!-- 底部结束 -->
-	</body>
-</html>
+	{% endblock %}
+{% block script %}
+    <script>
+    $(".btn-reg").submit(function () {
+        var ho_name = $("#ho_name").val();
+        var ho_tel = $("#ho_tel").val();
+        var ho_email = $("#ho_email").val();
+        var ho_nicard = $("#ho_nicard").val();
+        if (!ho_name) {
+            alter("姓名不能为空");
+        }
+        if (!ho_nicard) {
+            alert("请上传身份证")
+        }
+        if (!/^(0[0-9]{3})+-([0-9]{8})$/.test(ho_tel)) {
+            alter("电话格式不正确");
+        }
+        if (!/^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+((\.[a-zA-Z0-9_-]{2,3}){1,2})$/.test(ho_email)) {
+            alter("邮箱格式不正确");
+        }
+        $.ajax({url: "/do_ho_register",
+                data: JSON.stringify({
+                "ho_name": ho_name,
+                "user_account":user_account,
+                "user_password":user_password,
+                "user_mobile": user_mobile,
+                "ho_tel": ho_tel,
+                "ho_email": ho_email,
+                "ho_nicard": ho_nicard,
+                "user_headimg":user_headimg
+            }),
+            contentType: "application/json",
+            success:function (data) {
+                if(data.code == 0){
+                alert("注册失败");
+            }else if(data.code == 1){
+                location.href = "/index";
+            }
+            }
+
+        });
+});
+    </script>
+{% endblock %}
