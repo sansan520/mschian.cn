@@ -19,7 +19,7 @@ function ms_login_check_name() {
         $("#username-img").className="username-img0";
         $("#int_name").style.borderLeft="0px";
     }else{
-        $("#int_name").style.borderColor='#949393'
+        // $("#int_name").style.borderColor='#949393';
         $("#name_label").html("");
     }
 }
@@ -34,7 +34,7 @@ function ms_login_check_password() {
         $("#pwd-img").className="pwd-img0";
         $("#int_name").style.borderLeft="0px";
     }else{
-        $("#int_name").style.borderColor='#949393'
+        // $("#int_name").style.borderColor='#949393';
         $("#password_label").html("");
     }
 }
