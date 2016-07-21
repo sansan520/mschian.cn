@@ -189,45 +189,6 @@
 				  </div>
 
 				</div>
-                <!--其他房源金牌房源,特色房源结束-->
-                <!--旅行故事-->
-{#				<div class="main-item">#}
-{#					<div class="main-title">#}
-{#						<h2 class="row-space-1">#}
-{#				          <strong>加入上百万来自中国的小朋友</strong>#}
-{#				       </h2>#}
-{#					</div>#}
-{#					<div class="row">#}
-{#						<div class="col-sm-4">#}
-{#							<div class="ms-pic-box">#}
-{#								<a href="#" class="ms-pic">#}
-{#							      <img src="static/images/pic02.jpg" alt="...">#}
-{#							    </a>#}
-{#							     <h2 class="ms-bt"><a href=""><strong>为了这一眼极光，再长的等待也值了</strong></a></h2>#}
-{#							    <p class="ms-nr">旅行故事</p>#}
-{#						    </div>#}
-{#						</div>#}
-{#						<div class="col-sm-4">#}
-{#							<div class="ms-pic-box">#}
-{#								<a href="#" class="ms-pic">#}
-{#							      <img src="static/images/pic02.jpg" alt="...">#}
-{#							    </a>#}
-{#							     <h2 class="ms-bt"><a href=""><strong>为了这一眼极光，再长的等待也值了</strong></a></h2>#}
-{#							    <p class="ms-nr">旅行故事</p>#}
-{#						   </div>#}
-{#						</div>#}
-{#						<div class="col-sm-4">#}
-{#							<div class="ms-pic-box">#}
-{#								<a href="#" class="ms-pic">#}
-{#							      <img src="static/images/pic02.jpg" alt="...">#}
-{#							    </a>#}
-{#							    <h2 class="ms-bt"><a href=""><strong>为了这一眼极光，再长的等待也值了</strong></a></h2>#}
-{#							    <p class="ms-nr">旅行故事</p>#}
-{#						   </div>#}
-{#						</div>#}
-{#					</div>#}
-{#				</div>#}
-                <!--旅行故事结束-->
 			</div>
     </div>
 	<!-- 主体结束 -->
@@ -243,6 +204,7 @@
             success: function(data){
                 if(data.code==0){
                     alert(data.message);
+                    alert(data.response);
                 }else if(data.code==1){
                     location.href="/index";
                 }

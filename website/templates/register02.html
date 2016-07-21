@@ -6,78 +6,8 @@
 {% endblock %}
 
 {% block  content %}
-		<!-- 名宿头部ms-hd开始 -->
-		<div class="ms-hd">
-			<nav class="navbar navbar-default">
-			  <div class="container-fluid">
-			    <div class="navbar-header">
-			      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-			        <span class="sr-only">Toggle navigation</span>
-			        <span class="icon-bar"></span>
-			        <span class="icon-bar"></span>
-			        <span class="icon-bar"></span>
-			      </button>
-			      <a class="navbar-brand" href="#"><img src="../images/logo.png" /></a>
-			       <form class="form-inline pull-left">
-					  <div class="form-group">
-					    <label class="sr-only" for="exampleInputAmount">Amount (in dollars)</label>
-					    <div class="input-group">
-					      <div class="input-group-addon"><span class="glyphicon glyphicon-search"></span></div>
-					      <input type="text" class="form-control" id="exampleInputAmount" placeholder="想去哪里？">
-					    </div>
-					  </div>
-					</form>
-			    </div>
-
-			    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-			      <ul class="nav navbar-nav navbar-right">
-			      	<li class="dropdown">
-			          <a href="#" class="first-A dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="btn begin-fd">成为房东</span></a>
-			          <ul class="dropdown-menu">
-			            <li><a href="#"><span>如何出租房源</span></a></li>
-			            <li><a href="#"><span>发布空间</span></a></li>
-			            <li><a href="#"><span>看看你在杭州能赚多少钱</span></a></li>
-			          </ul>
-			       </li>
-			        <li class="dropdown">
-			          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">帮助</span></a>
-			          <ul class="dropdown-menu">
-			            <li><a href="#"><span>我是租客</span></a></li>
-						<li><a href="#"><span>我是房东</span></a></li>
-			            <li role="separator" class="divider"></li>
-			            <li class="li-help"><a href="helpcenter.html">帮助中心</a></li>
-			          </ul>
-			        </li>
-			        <li><a href="#">注册</a></li>
-			        <li><a href="#">登录</a></li>
-			      </ul>
-			    </div>
-			  </div>
-			</nav>
-		</div>
-		<script>
-			$(document).ready(function(){
-				$(document).off('click.bs.dropdown.data-api');
-				dropdownOpen();//调用
-			});
-			/**
-			 * 鼠标划过就展开子菜单，免得需要点击才能展开
-			 */
-			function dropdownOpen() {
-
-				var $dropdownLi = $('li.dropdown');
-
-				$dropdownLi.mouseover(function() {
-					$(this).addClass('open');
-				}).mouseout(function() {
-					$(this).removeClass('open');
-				});
-			}
-		</script>
-		<!-- 名宿banner区ms-banner结束 -->
-
-		<!-- 主体开始 -->
-		<div class="logreg-mian container">
+    <!-- 主体开始 -->
+	<div class="logreg-mian container">
 			<div class="row">
 				<div class="col-xs-12 col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
 					<div class="register-box">
@@ -101,12 +31,6 @@
 								  	<input type="text" class="text-left reg-ipt" placeholder="密码">
 								  </div>
 							</div>
-							<!--<div class="form-group">
-								  <label for="" class="col-sm-3 col-lg-2 control-label">确认密码</label>
-								  <div class="col-sm-9 col-lg-10">
-								  	<input type="text" class="text-left reg-ipt" placeholder="确认密码">
-								  </div>
-							</div>-->
 							<div class="form-group">
 								  <label for="" class="col-sm-3 col-lg-2 control-label">手机号</label>
 								  <div class="col-sm-9 col-lg-10">
@@ -145,53 +69,8 @@
 				</div>
 			</div>
 		</div>
-		<!-- 主体结束 -->
+	<!-- 主体结束 -->
 
-		<!-- 底部开始 -->
-		<div class= "ms-footer">
-			<div class="container">
-				<div class="row">
-					<div class="col-sm-6 col-md-3">
-						<dl class= "ft-item">
-							<dt>公司信息</dt>
-							<dd><a href= "">关于</a></dd>
-							<dd><a href= "">工作机会</a></dd>
-							<dd><a href= "">新闻</a></dd>
-							<dd><a href= "">博客</a></dd>
-						</dl>
-					</div>
-					<div class="col-sm-6 col-md-3">
-						<dl class= "ft-item">
-							<dt>公司信息</dt>
-							<dd><a href= "">关于</a></dd>
-							<dd><a href= "">工作机会</a></dd>
-							<dd><a href= "">新闻</a></dd>
-							<dd><a href= "">博客</a></dd>
-						</dl>
-					</div>
-					<div class="col-sm-6 col-md-3">
-						<dl class= "ft-item">
-							<dt>公司信息</dt>
-							<dd><a href= "">关于</a></dd>
-							<dd><a href= "">工作机会</a></dd>
-							<dd><a href= "">新闻</a></dd>
-							<dd><a href= "">博客</a></dd>
-					</div>
-					<div class="col-sm-6 col-md-3">
-						<dl class= "ft-item">
-							<dt>公司信息</dt>
-							<dd><a href= "">关于</a></dd>
-							<dd><a href= "">工作机会</a></dd>
-							<dd><a href= "">新闻</a></dd>
-							<dd><a href= "">博客</a></dd>
-						</dl>
-					</div>
-				</div>
-				<p class= "ms-copyright">Copyright 2008-2016 www.wjy360.com All Rights Reserved 浙B2-20100360-12</p>
-			</div>
-		</div>
-		<!-- 底部结束 -->
-	</body>
 {% endblock %}
 {% block script %}
     <script>

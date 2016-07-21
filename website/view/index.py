@@ -1,19 +1,29 @@
 # coding = utf8
-from flask import Flask, render_template, json, request, jsonify, session
+from flask import Flask, render_template, json, request, jsonify, current_app
 import requests
 from . import vi
 from website.model import HouseOwner
 from website.config import Conf
+import hashlib
+import website.tools
 
 @vi.route('/')
 @vi.route('/index')
 def index():
     api_address = Conf.API_ADDRESS
-    current_user = session.get('current_user', '') # json
-    if current_user == '':
-        username = ''
-    else:
-        username = current_user['ho_account']
+
+    # 从cookie获取值
+    username = request.cookies.get('username')
+    password = request.cookies.get('password')
+    if username and password:
+        user_hash_account = tools.get_hash_account(username, password)  # 2dd99d263ecc5ebf25b91d2532b46080
+        # # 从session_redis中获取数据,查看用户是否已经登录
+        # hmget一次取多个值,hget一个值 ,hkeys返回list,HGETALL返回dict
+        current_user = current_app.session_redis.hget('user:%s' % user_hash_account, 'current_user')
+        if current_user:
+            current_user = current_user.decode()
+            login_user = username  # current_user[b'user_account'].decode()
+
     # 从接口获取热门目的地房源:/api/v1.0/get_hot_source4index
     try:
         response = requests.get(url=api_address + "/api/v1.0/get_hot_source4index")

@@ -3,23 +3,22 @@ from flask import Flask
 from website.config import Conf
 from website.view import vi as vi_blueprint
 import redis
-from flask_session import Session
 
-sess = Session()
 
 def create_app():
 
     app = Flask(__name__)
     app.config.from_object(Conf)
 
+    app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
     app.config['ALLOW_FOLDER'] = True
     app.secret_key = app.config['SECRET_KEY']
 
     app.debug = app.config['DEBUG']
 
-    rd = redis.Redis(host='127.0.0.1', port=6379, db=0)
-    SESSION_REDIS = rd
-    sess.init_app(app)
+    app.session_redis = redis.Redis(host=app.config['REDIS_HOST'], port=app.config['REDIS_PORT'],
+                                    db=app.config['SESSION_DB'], password=app.config['REDIS_PASSWORD'])
+
 
     # 蓝图
     app.register_blueprint(vi_blueprint)
