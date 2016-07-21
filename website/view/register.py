@@ -10,7 +10,7 @@ from website.config import Conf
 
 @vi.route("/ho_register")
 def house_owner_register():
-    return render_template("homestay.html")
+    return render_template("register02.html")
 
 #房东注册
 @vi.route("/do_ho_register", methods=["POST"])
@@ -57,7 +57,7 @@ def do_ho_register():
 #游客注册
 @vi.route("/user_register")
 def user_register():
-    return render_template("visitor.html")
+    return render_template("register01.html")
 
 @vi.route("/do_user_register",methods = ["POST"])
 def do_user_register():
