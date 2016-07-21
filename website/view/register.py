@@ -3,8 +3,9 @@ from flask import render_template
 from . import vi
 import requests
 import json
+import hashlib
 from flask import jsonify,request,g,current_app,redirect,url_for
-from website.model import HouseOwner
+from website.model import HouseOwner,UserBase
 from website.config import Conf
 
 
@@ -16,7 +17,8 @@ def house_owner_register():
 @vi.route("/do_ho_register", methods=["POST"])
 def do_ho_register():
     # 接收JS POST 过来的参数,并进行验证
-    user_id = do_user_register("user_id")
+    userbase = UserBase()
+    user_id = userbase.user_id
     ho_name = request.json.get("ho_name")
     if not ho_name:
         return jsonify({"code": 0, "message": "姓名不能为空"})
@@ -67,6 +69,10 @@ def do_user_register():
     user_password = request.json.get("user_password")
     if not user_password:
         return jsonify({"code": 0, "message": "密码不能为空"})
+    else:
+        m = hashlib.md5()
+        m.update(user_password.encode('utf-8'))
+        password = m.hexdigst()
     user_mobile = request.json.get("user_mobile")
     if not user_account:
         return jsonify({"code": 0, "message": "手机号不能为空"})
@@ -75,7 +81,7 @@ def do_user_register():
 
     data=json.dumps({
         "user_account":user_account,
-        "user_password":user_password,
+        "user_password":password,
         "user_mobile":user_mobile,
         "user_headimg":user_headimg,
         "user_type":user_type
@@ -87,7 +93,7 @@ def do_user_register():
     response_data = json.loads(response.content)
     #code =1 注册成功
     if response_data['code'] == 1:
-        user_id = response_data['user_id']
+        #user_id = response_data['user_id']
         return jsonify({"code":1,"message":"注册成功","go_url":"/index"})
     #code = 0 注册失败
     if response_data['code'] == 0:
