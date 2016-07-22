@@ -23,7 +23,7 @@ ALLOWED_EXTENSIONS = set(['jpg', 'png', 'JPEG'])
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 @vi.route('/croptest')
-def index():
+def croptest():
     return render_template('croptest.html')
 
 @vi.route('/crop_uploadPic', methods=['POST'])
