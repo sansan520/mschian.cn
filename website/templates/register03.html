@@ -3,6 +3,14 @@
 {% block head %}
     {{ super() }}
     <script src="static/js/common.js"></script>
+    <link href="../static/css/croppic.css" rel="stylesheet">
+    <style>
+    #cropContaineroutput {
+            width:180px; height:150px;
+			position:relative; /* or fixed or absolute */
+            border:1px solid #ccc;
+    }
+    </style>
 {% endblock %}
 
 	<body>
@@ -112,8 +120,10 @@
 							  <div class="col-sm-9 col-lg-10 msMagND-txt">
 								<div class="form-group">
 									<div class="upFile up-idCard-box">
-										<input type="file" id="fileupload" name="file[]">
-										<p class="btn sfz-btn">点击上传身份证照</p>
+                                        <div id="cropContaineroutput"></div>
+		                                <input type="text" id="cropOutput" disabled="disabled" class="text-left reg-ipt" required="required" placeholder="身份证地址" style="width: 330px;"/>
+{#										<input type="file" id="fileupload" name="file[]">#}
+{#										<p class="btn sfz-btn">点击上传头像</p>#}
 									</div>
 								</div>
 							  </div>
@@ -198,7 +208,24 @@
 	</body>
 {% exdblock %}
 {% block script %}
+    <script src="../static/js/croppic.js"></script>
     <script>
+    var croppicContaineroutputOptions = {
+				uploadUrl:'/crop_uploadPic',
+				cropUrl:'/crop_cutPic',
+				outputUrlId:'cropOutput',
+				modal:false,
+				loaderHtml:'<div class="loader bubblingG"><span id="bubblingG_1"></span><span id="bubblingG_2"></span><span id="bubblingG_3"></span></div> ',
+				onBeforeImgUpload: function(){ console.log('onBeforeImgUpload') },
+				onAfterImgUpload: function(){ console.log('onAfterImgUpload') },
+				onImgDrag: function(){ console.log('onImgDrag') },
+				onImgZoom: function(){ console.log('onImgZoom') },
+				onBeforeImgCrop: function(){ console.log('onBeforeImgCrop') },
+				onAfterImgCrop:function(){ console.log('onAfterImgCrop') },
+				onReset:function(){ console.log('onReset') },
+				onError:function(errormessage){ console.log('onError:'+errormessage) }
+		}
+    var cropContaineroutput = new Croppic('cropContaineroutput', croppicContaineroutputOptions);
     $(".btn-reg").submit(function () {
         var ho_name = $("#ho_name").val();
         var ho_tel = $("#ho_tel").val();
