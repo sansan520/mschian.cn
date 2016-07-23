@@ -4,6 +4,7 @@ from sqlalchemy import create_engine, ForeignKey, Column, Integer, String, DateT
     DECIMAL
 from sqlalchemy.orm import sessionmaker, scoped_session
 import os,sys
+
 #parentdir  父目录
 granddir =os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 sys.path.insert(0, granddir)
@@ -21,6 +22,7 @@ db = SQLAlchemy(app)
 migrate = Migrate(app, db)
 manager = Manager(app)
 manager.add_command('db', MigrateCommand)
+
 
 engine = create_engine(app.config['SQLALCHEMY_DATABASE_URI'], pool_recycle=7200)
 db_session = scoped_session(sessionmaker(autocommit=False, autoflush=False, bind=engine))
