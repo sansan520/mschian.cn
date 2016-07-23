@@ -70,11 +70,10 @@ def check_user_account():
     user_account = request.json.get("user_account")
     response = requests.get(url=Conf.API_ADDRESS + "/api/v1.0/get_by_account/"+user_account)
     response_data = json.loads(response.content.decode())
-
-    result = response_data['message']
-    if not result:
+    code = response_data['code']
+    if code==0:
         return jsonify({"code": 0, "message": "该账号可以使用"})
-    else:
+    if code==1:
         return jsonify({"code": 1, "message": "该用户已经存在"})
 
 @vi.route("/check_user_mobile",methods=["POST"])
@@ -82,10 +81,10 @@ def check_user_mobile():
     user_mobile = request.json.get("user_mobile")
     response = requests.get(url=Conf.API_ADDRESS + "/api/v1.0/get_by_mobile/" + user_mobile)
     response_data = json.loads(response.content.decode())
-    result = response_data['message']
-    if not result:
-        return jsonify({"code": 0, "message": "该账号可以使用"})
-    else:
+    code = response_data['code']
+    if code==0:
+        return jsonify({"code": 0, "message": "该手机可以使用"})
+    if code==1:
         return jsonify({"code": 1, "message": "该用户已经存在"})
 
 @vi.route("/do_user_register",methods = ["POST"])
