@@ -22,19 +22,19 @@
 							<div class="form-group">
 							  <label for="" class="col-sm-3 col-lg-2 control-label">账号</label>
 							  <div class="col-sm-9 col-lg-10">
-							  	<input type="text" class="text-left reg-ipt" placeholder="账号" required="">
+							  	<input type="text" id="user_account" class="text-left reg-ipt" placeholder="账号" required="">
 							  </div>
 							</div>
 							<div class="form-group">
 								  <label for="" class="col-sm-3 col-lg-2 control-label">密码</label>
 								  <div class="col-sm-9 col-lg-10">
-								  	<input type="text" class="text-left reg-ipt" placeholder="密码">
+								  	<input type="text" id="password" class="text-left reg-ipt" placeholder="密码">
 								  </div>
 							</div>
 							<div class="form-group">
 								  <label for="" class="col-sm-3 col-lg-2 control-label">手机号</label>
 								  <div class="col-sm-9 col-lg-10">
-								  	<input type="text" class="text-left reg-ipt" placeholder="手机号">
+								  	<input type="text" id="mobile" class="text-left reg-ipt" placeholder="手机号">
 								  </div>
 							</div>
                             <div class="form-group">
@@ -74,11 +74,11 @@
 {% endblock %}
 {% block script %}
     <script>
-    $(".reg_btn").submit(function () {
-        var user_account = $("#ho_account").val();
-        var user_password = $("#ho_passord").val();
-        var user_mobile = $("#ho_mobile").val();
-        var user_headimg = $("user_headimg").val();
+    $(".btn-reg").submit(function () {
+        var user_account = $("#user_account").val();
+        var user_password = $("#passord").val();
+        var user_mobile = $("#mobile").val();
+        var user_headimg = $("#cropOutput").val();
         if (!user_account) {
             alter("账号不能为空");
         }
@@ -102,9 +102,9 @@
         }
         $.ajax({url: "/do_user_register",
                 data: JSON.stringify({"user_account": user_account,
-                "user_password": user_password,
-                "user_mobile": user_mobile,
-                "user_headimg":user_headimg
+                "password": user_password,
+                "mobile": user_mobile,
+                "cropOutput":user_headimg
                 }),
                 contentType: "application/json",
                 success:function (data) {
