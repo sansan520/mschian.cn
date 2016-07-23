@@ -64,17 +64,17 @@ def crop_pic():
     """
     # original size 原图信息--地址/大小
     imgUrl = request.form['imgUrl']
-    imgInitW = request.form['imgInitW']  # 700
-    imgInitH = request.form['imgInitH']   # 525
+    imgInitW = request.form['imgInitW']  # 800
+    imgInitH = request.form['imgInitH']   # 1036
     # resized sizes  调整后大小
-    imgW = request.form['imgW']  # 698
-    imgH = request.form['imgH']    # 523.5
+    imgW = request.form['imgW']  # 318
+    imgH = request.form['imgH']    # 412
     # offsets 偏移量
-    imgY1 = request.form['imgY1']  # 126
-    imgX1 = request.form['imgX1']  # 293
+    imgY1 = request.form['imgY1']  # 0
+    imgX1 = request.form['imgX1']  # 59
     # crop box  裁剪框
-    cropW = request.form['cropW']  # 358
-    cropH = request.form['cropH']  # 143
+    cropW = request.form['cropW']  # 178
+    cropH = request.form['cropH']  # 148
     # rotation angle 旋转角度
     angle = request.form['rotation']  # 0
 
@@ -87,9 +87,16 @@ def crop_pic():
         crop_h = int(cropH) + int(imgY1)
         box = (int(imgX1), int(imgY1), crop_w, crop_h)
         newImg = img.crop(box)
-        filepath = os.path.join(app.config['UPLOAD_FOLDER'] + 'croppedImg_1_2.jpg')
-        newImg.save(filepath, 'JPEG')
-        return jsonify({"status": 'success', "url": 'static/upload/' + 'croppedImg_1_2.jpg'})
+        file_prename = datetime.datetime.now().strftime("%Y%m%d%H%M%S%f")
+        filename =  "small_"+ file_prename + ".jpg"
+        filepath = os.path.join(app.config['UPLOAD_FOLDER'] + filename)
+        os.remove(ABSPATH + imgUrl)
+        try:
+            newImg.save(filepath, 'JPEG')
+            time.sleep(0.5)
+            return jsonify({"status": 'success', "url": 'static/upload/' + filename})
+        except IOError:
+            return jsonify({"status": 'error', "message": '图片裁剪错误!'})
     except IOError:
         return jsonify({"status": 'error', "message": '图片裁剪错误!'})
 
