@@ -9,6 +9,10 @@ from website.model import HouseOwner,UserBase
 from website.config import Conf
 
 
+@vi.route("/register")
+def register():
+    return render_template("register.html")
+
 @vi.route("/ho_register")
 def house_owner_register():
     return render_template("register02.html")

@@ -103,10 +103,10 @@
     var cropContaineroutput = new Croppic('cropContaineroutput', croppicContaineroutputOptions);
 
     $('.btn-reg').on('click', function(){
-				if($(".regTel").val() != "123") {
-					layer.msg('手机号输入有误');
-					return;
-				}
+        if($(".regTel").val() != "123") {
+            layer.msg('手机号输入有误');
+            return;
+        }
 	});
 
     $(".btn-reg").submit(function () {
