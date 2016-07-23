@@ -40,14 +40,14 @@ def do_login():
     data = json.dumps({"user_account": user_account, "user_password": user_password_hash})
     api_url = Conf.API_ADDRESS
     response_data = requests.post(url=api_url+"/api/v1.0/user_login", data=data, headers={"content-type": "application/json"})
-    result_data = json.loads(responseData.content)
+    result_data = json.loads(response_data.content)
     # code == 1登录成功
     if response_data['code'] == 1:
         # current_user = result_data['current_user']
         response = make_response()
         response.set_cookie('username', value=user_account, max_age=60*5)
         response.set_cookie('password', value=user_password_hash, max_age=60*5)  # cookie存储的是密码md5之后的hash
-        response.data = '{"code":"1","message":"scuess"}'  # response.data 返回json字符串
+        response.data = '{"code":"1","message":"success"}'  # response.data 返回json字符串
         return response
 
     #code ==0 登录失败
