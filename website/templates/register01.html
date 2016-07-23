@@ -103,8 +103,41 @@
     var cropContaineroutput = new Croppic('cropContaineroutput', croppicContaineroutputOptions);
 
     $("#user_account").blur(function () {
-       layer.msg('sdfsdfs');
-        return;
+         var user_account = $("#user_account").val();
+         if (user_account != ""){
+             $.ajax({
+                url: "/check_user_account", type: 'POST',
+                data: JSON.stringify({"user_account": user_account}),
+                contentType: "application/json",
+                success:function (data) {
+                    if(data.code == 0){
+                        layer.msg('该账号可以使用');
+                    }else if(data.code == 1){
+                        layer.msg('该账号已经存在,请换一个试试...');
+                        this.focus();
+                    }
+                }
+         });
+         return false;
+         }
+    });
+
+    $("#mobile").blur(function () {
+        var user_mobile = $("#mobile").val();
+         if (user_mobile != ""){
+             $.ajax({
+                url: "/check_user_mobile", type: 'POST',
+                data: JSON.stringify({"user_mobile": user_mobile}),
+                contentType: "application/json",
+                success:function (data) {
+                    if(data.code == 1){
+                        layer.msg('该手机号已经存在,请换一个试试...');
+                        this.focus();
+                    }
+                }
+         });
+         return false;
+         }
     });
 
 
@@ -114,25 +147,25 @@
         var user_mobile = $("#mobile").val();
         var user_headimg = $("#cropOutput").val();
         if (!user_account) {
-            alter("账号不能为空");
+            layer.msg("账号不能为空");
         }
         if (user_account.length < 6 || user_account.length > 16) {
-            alter("账号长度大于6小于16");
+            layer.msg("账号长度大于6小于16");
         }
         if (!user_password) {
-            alter("密码不能为空");
+            layer.msg("密码不能为空");
         }
         if (user_password.length < 6 || user_password.length > 16) {
-            alter("密码长度大于6小于16");
+            layer.msg("密码长度大于6小于16");
         }
         if (!user_mobile) {
-            alter("手机号不能为空");
+            layer.msg("手机号不能为空");
         }
         if (user_mobile.length < 11) {
-            alter("手机号不能小于11");
+            layer.msg("手机号不能小于11");
         }
         if (!/^(13|15|18|17[0-9]{9})$/.test(user_mobile)) {
-            alter("手机号格式不正确");
+            layer.msg("手机号格式不正确");
         }
         $.ajax({url: "/do_user_register",
                 data: JSON.stringify({"user_account": user_account,
