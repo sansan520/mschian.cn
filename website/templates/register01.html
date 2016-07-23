@@ -29,23 +29,23 @@
 									</div>
 								</div>
 								<div class="form-group">
-								  <label for="" class="col-sm-3 col-lg-2 text-right control-label">姓名</label>
+								  <label for="" class="col-sm-3 col-lg-2 text-right control-label">账号</label>
 								  <div class="col-sm-9 col-lg-10">
 								  	
-								  	<input type="text" id="user_account" class="text-left reg-ipt" required="required" placeholder="邮箱/手机号码">
+								  	<input type="text" id="user_account" class="text-left reg-ipt" required="required" placeholder="请输入账号">
 								  
 								  </div>
 								</div>
 								<div class="form-group">
 									  <label for="" class="col-sm-3 col-lg-2 text-right control-label">密码</label>
 									  <div class="col-sm-9 col-lg-10">
-									  	<input type="text" id="password" class="text-left reg-ipt" required="required" placeholder="密码">
+									  	<input type="text" id="password" class="text-left reg-ipt" required="required" placeholder="请输入密码">
 									  </div>
 								</div>
 								<div class="form-group">
 									  <label for="" class="col-sm-3 col-lg-2 text-right control-label">手机号</label>
 									  <div class="col-sm-9 col-lg-10">
-									  	<input type="text" id="mobile" class="text-left reg-ipt regTel" required="required" placeholder="手机号">
+									  	<input type="text" id="mobile" class="text-left reg-ipt regTel" required="required" placeholder="请输入手机号">
 									  </div>
 								</div>
                             <div class="form-group">
@@ -102,12 +102,11 @@
 		}
     var cropContaineroutput = new Croppic('cropContaineroutput', croppicContaineroutputOptions);
 
-    $('.btn-reg').on('click', function(){
-        if($(".regTel").val() != "123") {
-            layer.msg('手机号输入有误');
-            return;
-        }
-	});
+    $("#user_account").blur(function () {
+       layer.msg('sdfsdfs');
+        return;
+    });
+
 
     $(".btn-reg").submit(function () {
         var user_account = $("#user_account").val();
