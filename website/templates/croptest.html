@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="../static/css/bootstrap.css" rel="stylesheet">
+    <link href="../static/css/croppic.css" rel="stylesheet">
+    <style>
+        #cropContaineroutput {
+            margin: 20px auto;
+            width:250px; height:200px;
+			position:relative; /* or fixed or absolute */
+            border:1px solid #ccc;
+		}
+        .croppedImg{
+            width: 250px;
+            height: 200px;
+        }
+    </style>
+</head>
+<body>
+    <div style="width: 300px;height: 300px; margin: 20px auto">
+		<div id="cropContaineroutput"></div>
+		<input type="text" id="cropOutput" style="width:220px; padding:5px 4%; margin-top:10px;display:block; border: 1px solid #CCC;" />
+	</div>
+</body>
+</html>
+<script src="../static/js/jquery-1.12.1.min.js"></script>
+<script src="../static/js/croppic.js"></script>
+<script src="../static/js/bootstrap.js"></script>
+<script>
+
+    var croppicContaineroutputOptions = {
+				uploadUrl:'/crop_uploadPic',
+				cropUrl:'/crop_cutPic',
+				outputUrlId:'cropOutput',
+				modal:false,
+				loaderHtml:'<div class="loader bubblingG"><span id="bubblingG_1"></span><span id="bubblingG_2"></span><span id="bubblingG_3"></span></div> ',
+				onBeforeImgUpload: function(){ console.log('onBeforeImgUpload') },
+				onAfterImgUpload: function(){ console.log('onAfterImgUpload') },
+				onImgDrag: function(){ console.log('onImgDrag') },
+				onImgZoom: function(){ console.log('onImgZoom') },
+				onBeforeImgCrop: function(){ console.log('onBeforeImgCrop') },
+				onAfterImgCrop:function(){ console.log('onAfterImgCrop') },
+				onReset:function(){ console.log('onReset') },
+				onError:function(errormessage){ console.log('onError:'+errormessage) }
+		}
+    var cropContaineroutput = new Croppic('cropContaineroutput', croppicContaineroutputOptions);
+
+
+
+</script>
