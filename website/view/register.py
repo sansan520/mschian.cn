@@ -4,25 +4,25 @@ from . import vi
 import requests
 import json
 import hashlib
-from flask import jsonify,request,g,current_app,redirect,url_for,make_response
+from flask import jsonify,request,g,current_app,redirect,url_for,make_response,session
 from website.model import HouseOwner,UserBase
 from website.config import Conf
 
 
 @vi.route("/register")
 def register():
-    return render_template("register02.html")
+    return render_template("register.html")
 
 @vi.route("/ho_register")
 def house_owner_register():
-    return render_template("register03.html")
+    return render_template("register02.html")
 
 #房东注册
 @vi.route("/do_ho_register", methods=["POST"])
 def do_ho_register():
     api = Conf.API_ADDRESS
     # 接收JS POST 过来的参数,并进行验证
-    user_account = request.json.get("user_account")
+    user_account = session["user_account"]
     resp = requests.get(url=api+"/api/v1.0/get_by_account/"+user_account)
     resp_data = json.loads(resp.content.decode())
     user_id = resp_data['user_id']
@@ -129,6 +129,10 @@ def do_user_register():
             response.data({"code":1,"message":"注册成功"})
             return response
         if user_type == 0:
+            response = make_response()
+            response.set_cookie("username", value=user_account, max_age=60 * 5)
+            response.set_cookie("userpassword", value=user_password_hash, max_age=60 * 5)
+            response.data({"code": 1, "message": "注册成功"})
             return jsonify({"code":1,"message":"注册成功","go_url":"/register03"})
     #code = 0 注册失败
     if response_data['code'] == 0:
