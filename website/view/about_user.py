@@ -59,9 +59,9 @@ def do_login():
 # json.loads:str转成dict
 
 
-@vi.route("/register")
-def register():
-    return render_template("register.html")
+# @vi.route("/register")
+# def register():
+#     return render_template("register.html")
 
 @vi.route("/do_logout",methods=["POST"])
 def do_logout():

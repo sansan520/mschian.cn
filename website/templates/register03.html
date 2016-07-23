@@ -92,19 +92,19 @@
                             <div class="form-group">
 								  <label for="" class="col-sm-3 col-lg-2 control-label">姓名</label>
 								  <div class="col-sm-9 col-lg-10">
-								  	<input type="text" class="text-left reg-ipt" placeholder="姓名">
+								  	<input type="text" id="ho_name" class="text-left reg-ipt" placeholder="姓名">
 								  </div>
 							</div>
                             <div class="form-group">
 								  <label for="" class="col-sm-3 col-lg-2 control-label">email</label>
 								  <div class="col-sm-9 col-lg-10">
-								  	<input type="text" class="text-left reg-ipt" placeholder="email">
+								  	<input type="text" id="ho_email" class="text-left reg-ipt" placeholder="email">
 								  </div>
 							</div>
                             <div class="form-group">
 								  <label for="" class="col-sm-3 col-lg-2 control-label">家庭电话</label>
 								  <div class="col-sm-9 col-lg-10">
-								  	<input type="text" class="text-left reg-ipt" placeholder="家庭电话">
+								  	<input type="text" id="ho_tel" class="text-left reg-ipt" placeholder="家庭电话">
 								  </div>
 							</div>
 							<div class="form-group">
@@ -199,11 +199,11 @@
 {% exdblock %}
 {% block script %}
     <script>
-    $(".reg_btn").submit(function () {
+    $(".btn-reg").submit(function () {
         var ho_name = $("#ho_name").val();
         var ho_tel = $("#ho_tel").val();
         var ho_email = $("#ho_email").val();
-        var ho_nicard = $("#ho_nicard").val();
+        var ho_nicard = $("#fileupload").val();
         if (!ho_name) {
             alter("姓名不能为空");
         }
@@ -219,13 +219,13 @@
         $.ajax({url: "/do_ho_register",
                 data: JSON.stringify({
                 "ho_name": ho_name,
-                "user_account":user_account,
-                "user_password":user_password,
-                "user_mobile": user_mobile,
+                //"user_account":user_account,
+                //"user_password":user_password,
+                //"user_mobile": user_mobile,
                 "ho_tel": ho_tel,
                 "ho_email": ho_email,
-                "ho_nicard": ho_nicard,
-                "user_headimg":user_headimg
+                "fileupload": ho_nicard,
+                //"user_headimg":user_headimg
             }),
             contentType: "application/json",
             success:function (data) {
