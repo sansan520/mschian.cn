@@ -39,7 +39,7 @@
 								<div class="form-group">
 									  <label for="" class="col-sm-3 col-lg-2 text-right control-label">密码</label>
 									  <div class="col-sm-9 col-lg-10">
-									  	<input type="text" id="password" class="text-left reg-ipt" required="required" placeholder="请输入密码">
+									  	<input type="password" id="password" class="text-left reg-ipt" required="required" placeholder="请输入密码">
 									  </div>
 								</div>
 								<div class="form-group">
@@ -70,7 +70,7 @@
 							  	</div>
 							  	<div class="form-group">
 							  		<div class="col-xs-12 col-sm-4 col-sm-offset-3  col-lg-offset-2">
-							  			<button class="btn btn-login btn-reg" type="submit">立即注册</button>
+							  			<button class="btn btn-login btn-reg" type="button">立即注册</button>
 							  		</div>
 								</div>
 							</div>
@@ -144,10 +144,9 @@
          }
     });
 
-
-    $(".btn-reg").submit(function () {
+    $(".btn-reg").click(function () {
         var user_account = $("#user_account").val();
-        var user_password = $("#passord").val();
+        var user_password = $("#password").val();
         var user_mobile = $("#mobile").val();
         var user_headimg = $("#cropOutput").val();
         if (!user_account) {
@@ -168,7 +167,7 @@
         if (user_mobile.length < 11) {
             layer.msg("手机号不能小于11");
         }
-        if (!/^(13|15|18|17[0-9]{9})$/.test(user_mobile)) {
+        if (!(/^13|15|18|17[0-9]{9}$/.test(user_mobile))) {
             layer.msg("手机号格式不正确");
         }
         $.ajax({url: "/do_user_register",
