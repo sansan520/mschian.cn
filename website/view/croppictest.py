@@ -9,6 +9,7 @@ from PIL import Image,ImageDraw,ImageFont, ImageEnhance
 from . import vi
 
 # http://www.cnblogs.com/kissdodog/archive/2012/12/21/2827867.html
+# os.path.getsize(filePath) 获取文件大小bytes单位 /1024/1024 = > M
 
 app = Flask(__name__)
 

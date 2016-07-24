@@ -183,7 +183,12 @@
 			}
 											
 			that.form.find('input[type="file"]').change(function(){
-				
+
+
+				var r = checkUploadfile();
+
+				if(!r) return false;
+
 				if (that.options.onBeforeImgUpload) that.options.onBeforeImgUpload.call(that);
 				
 				that.showLoader();
