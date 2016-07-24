@@ -70,7 +70,7 @@
 							  	</div>
 							  	<div class="form-group">
 							  		<div class="col-xs-12 col-sm-4 col-sm-offset-3  col-lg-offset-2">
-							  			<button class="btn btn-login btn-reg" type="submit">立即注册</button>
+							  			<button class="btn btn-login btn-reg" type="button">立即注册</button>
 							  		</div>
 								</div>
 							</div>
@@ -145,7 +145,7 @@
     });
 
 
-    $(".btn-reg").submit(function () {
+    $(".btn-reg").click(function () {
         var user_account = $("#user_account").val();
         var user_password = $("#passord").val();
         var user_mobile = $("#mobile").val();
