@@ -1,10 +1,8 @@
 # coding : utf-8
-from flask import render_template
+from flask import render_template,jsonify, request, json,jsonify,g,current_app,redirect,url_for,make_response,session
 from . import vi
 import requests
-import json
 import hashlib
-from flask import jsonify,request,g,current_app,redirect,url_for,make_response,session
 from website.model import HouseOwner,UserBase
 from website.config import Conf
 
@@ -16,6 +14,10 @@ def register():
 @vi.route("/ho_register")
 def house_owner_register():
     return render_template("register02.html")
+
+@vi.route("/ho_next_register")
+def ho_next_register():
+    return render_template("register03.html")
 
 #房东注册
 @vi.route("/do_ho_register", methods=["POST"])
@@ -49,7 +51,7 @@ def do_ho_register():
     # 获取参数后,将这些数据,通过接口传给service api==> http://localhost:8080/接口名称
     response = requests.post(url=api + "/api/v1.0/ho_register",
                              data=data,
-                             headers={"contentTyep": "application/json"})
+                             headers={"content-type": "application/json"})
     # service api 返回的 response
     #json格式化并返回JS
     response_data = json.loads(response.content)
@@ -98,10 +100,14 @@ def do_user_register():
     user_password = request.json.get("user_password")
     if not user_password:
         return jsonify({"code": 0, "message": "密码不能为空"})
-    user_password_hash = hashlib.md5(user_password.encode('utf-8')).hexdight()
 
+    # m = hashlib.md5()
+    # m.update(user_password.encode("utf8"))
+    # user_hash_password = m.hexdigest()
+    # user_password_hash = hashlib.md5(user_password).hexdight()
+    user_password_hash = hashlib.md5(user_password.encode('utf-8')).hexdigest()
     user_mobile = request.json.get("user_mobile")
-    if not user_account:
+    if not user_mobile:
         return jsonify({"code": 0, "message": "手机号不能为空"})
     user_headimg = request.json.get("user_headimg")
     user_type = request.json.get("user_type")
@@ -113,10 +119,8 @@ def do_user_register():
         "user_headimg":user_headimg,
         "user_type":user_type
     })
-    api = Conf.API_ADDRESS
-    response_data = requests.post(url=api+"/api/v1.0/user_register",
-                            data = data,
-                            headers = {"contentType":"application/json"})
+    # data = json.dumps({"user_account": user_account, "user_password": user_password_hash})
+    response_data = requests.post(url=Conf.API_ADDRESS+"/api/v1.0/user_register", data = data, headers={"content-type": "application/json"})
     result_data = json.loads(response_data.content)
     #code =1 注册成功
     if result_data['code'] == 1:
@@ -126,14 +130,14 @@ def do_user_register():
             response = make_response()
             response.set_cookie("username",value = user_account,max_age=60*5)
             response.set_cookie("userpassword",value = user_password_hash,max_age=60*5)
-            response.data({"code":1,"message":"注册成功"})
+            response.data = '{"code":"1","message":"注册成功","user_type":1}'
             return response
         if user_type == 0:
             response = make_response()
             response.set_cookie("username", value=user_account, max_age=60 * 5)
             response.set_cookie("userpassword", value=user_password_hash, max_age=60 * 5)
-            response.data({"code": 1, "message": "注册成功"})
-            return jsonify({"code":1,"message":"注册成功","go_url":"/register03"})
+            response.data = '{"code":"1","message": "注册成功","user_type":0}'
+            return response
     #code = 0 注册失败
     if response_data['code'] == 0:
         return jsonify(result_data)
