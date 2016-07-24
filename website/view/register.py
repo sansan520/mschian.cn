@@ -132,6 +132,7 @@ def do_user_register():
             response.set_cookie("userpassword",value = user_password_hash,max_age=60*5)
             response.data = '{"code":"1","message":"注册成功","user_type":1}'
             return response
+
         if user_type == 0:
             response = make_response()
             response.set_cookie("username", value=user_account, max_age=60 * 5)
