@@ -101,10 +101,6 @@ def do_user_register():
     if not user_password:
         return jsonify({"code": 0, "message": "密码不能为空"})
 
-    # m = hashlib.md5()
-    # m.update(user_password.encode("utf8"))
-    # user_hash_password = m.hexdigest()
-    # user_password_hash = hashlib.md5(user_password).hexdight()
     user_password_hash = hashlib.md5(user_password.encode('utf-8')).hexdigest()
     user_mobile = request.json.get("user_mobile")
     if not user_mobile:
