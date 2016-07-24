@@ -7,6 +7,7 @@ import sys
 import time,datetime
 from PIL import Image,ImageDraw,ImageFont, ImageEnhance
 from . import vi
+from website.tools import json_mkdir
 
 # http://www.cnblogs.com/kissdodog/archive/2012/12/21/2827867.html
 # os.path.getsize(filePath) 获取文件大小bytes单位 /1024/1024 = > M
@@ -18,10 +19,12 @@ ABSPATH = os.path.abspath(sys.argv[0])
 
 ABSPATH = os.path.dirname(ABSPATH)+"/"
 
-UPLOAD_FOLDER = ABSPATH + 'static/upload/'
+UPLOAD_FOLDER = ABSPATH + 'static/upload/bhImg/'  # 裁剪前的图片 big_head_img  服务器定时删除
+CROPPIC_FOLDER = ABSPATH + 'static/upload/shImg/'  # 裁剪后的小图片 small head img
 ALLOWED_EXTENSIONS = set(['jpg', 'png', 'JPEG'])
 
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+app.config['CROPPIC_FOLDER'] = CROPPIC_FOLDER
 
 @vi.route('/croptest')
 def croptest():
@@ -35,12 +38,13 @@ def upload_pic():
             file_prename = datetime.datetime.now().strftime("%Y%m%d%H%M%S%f")
             filename = file_prename + "_" + random_str(8) + "." + file.filename.rsplit('.', 1)[1]
             upload_folder = app.config['UPLOAD_FOLDER']
+            r = json_mkdir(upload_folder)
             filepath = os.path.join(upload_folder, filename)
             try:
                 file.save(filepath)
                 img = Image.open(filepath)
                 width, height = img.size
-                return jsonify({"status": 'success', "url": 'static/upload/' + filename, "width": width,
+                return jsonify({"status": 'success', "url": 'static/upload/bhImg/' + filename, "width": width,
                                 "height": height})
             except IOError:
                 return jsonify({"status": 'error', "message": '图片存取错误!'})
@@ -90,12 +94,13 @@ def crop_pic():
         newImg = img.crop(box)
         file_prename = datetime.datetime.now().strftime("%Y%m%d%H%M%S%f")
         filename =  "small_"+ file_prename + ".jpg"
-        filepath = os.path.join(app.config['UPLOAD_FOLDER'] + filename)
+        r = json_mkdir(app.config['CROPPIC_FOLDER'])
+        filepath = os.path.join(app.config['CROPPIC_FOLDER'] + filename)
         os.remove(ABSPATH + imgUrl)
         try:
             newImg.save(filepath, 'JPEG')
             time.sleep(0.5)
-            return jsonify({"status": 'success', "url": 'static/upload/' + filename})
+            return jsonify({"status": 'success', "url": 'static/upload/shImg/' + filename})
         except IOError:
             return jsonify({"status": 'error', "message": '图片裁剪错误!'})
     except IOError:
