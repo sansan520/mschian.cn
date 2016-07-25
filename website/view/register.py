@@ -1,8 +1,8 @@
 # coding : utf-8
-from flask import render_template,jsonify, request, json,jsonify,g,current_app,redirect,url_for,make_response,session
-from . import vi
 import requests
 import hashlib
+from flask import render_template,jsonify, request, json,jsonify,g,current_app,redirect,url_for,make_response,session
+from . import vi
 from website.model import HouseOwner,UserBase
 from website.config import Conf
 
@@ -126,15 +126,15 @@ def do_user_register():
         #user_type==1用户类型为游客
         if user_type == 1:
             response = make_response()
-            response.set_cookie("username",value = user_account,max_age=60*10)
-            response.set_cookie("userpassword",value = user_password_hash,max_age=60*10)
+            response.set_cookie("username",value = user_account,max_age=60*60*24*7)
+            response.set_cookie("userpassword",value = user_password_hash,max_age=60*60*24*7)
             response.data = '{"code":"1","message":"注册成功","user_type":1}'
             return response
 
         if user_type == 0:
             response = make_response()
-            response.set_cookie("username", value=user_account, max_age=60 * 10)
-            response.set_cookie("userpassword", value=user_password_hash, max_age=60 * 10)
+            response.set_cookie("username", value=user_account, max_age=60*60*24*7)
+            response.set_cookie("userpassword", value=user_password_hash, max_age=60*60*24*7)
             response.data = '{"code":"1","message": "注册成功","user_type":0}'
             return response
     #code = 0 注册失败
