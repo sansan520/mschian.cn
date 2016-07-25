@@ -51,7 +51,7 @@
 								<div class="form-group">
 									<div class="upFile up-idCard-box">
                                         <div id="cropContaineroutput"></div>
-		                                <input type="text" id="cropOutput" disabled="disabled" class="text-left reg-ipt" required="required" placeholder="身份证地址" style="width: 330px;"/>
+		                                <input type="text" id="cropOutput" class="text-left reg-ipt" required="required" placeholder="身份证地址" style="width: 330px;"/>
 {#										<input type="file" id="fileupload" name="file[]">#}
 {#										<p class="btn sfz-btn">点击上传头像</p>#}
 									</div>
@@ -113,83 +113,27 @@
 		}
     var cropContaineroutput = new Croppic('cropContaineroutput', croppicContaineroutputOptions);
 
-
-
-    $("#user_account").blur(function () {
-         var user_account = $("#user_account").val();
-         if (user_account != ""){
-             $.ajax({
-                url: "/check_user_account", type: 'POST',
-                data: JSON.stringify({"user_account": user_account}),
-                contentType: "application/json",
-                success:function (data) {
-                    if(data.code == 0){
-                        layer.msg('该账号可以使用');
-                    }else if(data.code == 1){
-                        layer.msg('该账号已经存在,请换一个试试...');
-                        this.focus();
-                    }
-                }
-         });
-         return false;
-         }
-    });
-
-    $("#mobile").blur(function () {
-        var user_mobile = $("#mobile").val();
-         if (user_mobile != ""){
-             $.ajax({
-                url: "/check_user_mobile", type: 'POST',
-                data: JSON.stringify({"user_mobile": user_mobile}),
-                contentType: "application/json",
-                success:function (data) {
-                    if(data.code == 1){
-                        layer.msg('该手机号已经存在,请换一个试试...');
-                        this.focus();
-                    }
-                }
-         });
-         return false;
-         }
-    });
-
-
     $(".btn-reg").click(function () {
-        var user_account = $("#user_account").val();
-        var user_password = $("#user_password").val();
-        var user_mobile = $("#mobile").val();
-        var user_headimg = $("#cropOutput").val();
-        if (!user_account) {
-            layer.msg("账号不能为空");
-        }
-        if (user_account.length < 6 || user_account.length > 16) {
-            layer.msg("账号长度大于6小于16");
-        }
-        if (!user_password) {
-            layer.msg("密码不能为空");
-        }
-        if (user_password.length < 6 || user_password.length > 16) {
-            layer.msg("密码长度大于6小于16");
-        }
-        if (!user_mobile) {
-            layer.msg("手机号不能为空");
-        }
-        if (user_mobile.length < 11) {
-            layer.msg("手机号不能小于11");
+        var ho_name = $("#ho_name").val();
+        var ho_email = $("#ho_email").val();
+        var ho_tel = $("#ho_tel").val();
+        var ho_nicard = $("#cropOutput").val();
+
+        if (!ho_name) {
+            layer.msg("请填写真实姓名");
         }
 
-        if (!/^(((13[0-9]{1})|(15[0-9]{1})|(18[0-9]{1})|(17[0-9]{1}))+\d{8})$/.test(user_mobile)) {
-            layer.msg("手机号格式不正确");
+        if (!ho_nicard) {
+            layer.msg("请上传证件照");
         }
 
-        $.ajax({url: "/do_user_register",
+        $.ajax({url: "/do_ho_register",
             type: 'POST',
             data: JSON.stringify({
-                "user_account": user_account,
-                "user_password": user_password,
-                "user_mobile": user_mobile,
-                "user_headimg":user_headimg,
-                "user_type" :0
+                "ho_name": ho_name,
+                "ho_email": ho_email,
+                "ho_tel": ho_tel,
+                "ho_nicard":ho_nicard
                 }),
                 contentType: "application/json",
                 success:function (data) {
@@ -197,12 +141,8 @@
                     if(data.code == 0){
                         alert("注册失败");
                     }else if(data.code == 1){
-                        if (data.user_type == 1)
-                        {
-                           location.href = "/index";
-                        }else if (data.user_type == 0){
-                            location.href = "/ho_next_register";
-                        }
+                        alert("注册成功");
+                        location.href = "/index";
                     }
                 }
             });

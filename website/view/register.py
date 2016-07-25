@@ -24,10 +24,12 @@ def ho_next_register():
 def do_ho_register():
     api = Conf.API_ADDRESS
     # 接收JS POST 过来的参数,并进行验证
-    user_account = session["user_account"]
+    user_account = request.cookies.get('username')
     resp = requests.get(url=api+"/api/v1.0/get_by_account/"+user_account)
     resp_data = json.loads(resp.content.decode())
-    user_id = resp_data['user_id']
+    if(resp_data['code'] ==1):
+        result = resp_data['message']
+        user_id = result[0]['user_id']
     ho_name = request.json.get("ho_name")
     if not ho_name:
         return jsonify({"code": 0, "message": "姓名不能为空"})
@@ -124,15 +126,15 @@ def do_user_register():
         #user_type==1用户类型为游客
         if user_type == 1:
             response = make_response()
-            response.set_cookie("username",value = user_account,max_age=60*5)
-            response.set_cookie("userpassword",value = user_password_hash,max_age=60*5)
+            response.set_cookie("username",value = user_account,max_age=60*10)
+            response.set_cookie("userpassword",value = user_password_hash,max_age=60*10)
             response.data = '{"code":"1","message":"注册成功","user_type":1}'
             return response
 
         if user_type == 0:
             response = make_response()
-            response.set_cookie("username", value=user_account, max_age=60 * 5)
-            response.set_cookie("userpassword", value=user_password_hash, max_age=60 * 5)
+            response.set_cookie("username", value=user_account, max_age=60 * 10)
+            response.set_cookie("userpassword", value=user_password_hash, max_age=60 * 10)
             response.data = '{"code":"1","message": "注册成功","user_type":0}'
             return response
     #code = 0 注册失败
