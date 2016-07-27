@@ -1,6 +1,8 @@
 import requests
-from flask import render_template,request,jsonify,json,redirect,url_for,session
+from flask import render_template,request,jsonify,json,redirect,url_for,current_app
 from website.model import HouseOwner,HouseResources,HouseType
+from website.config import Conf
+from website import tools
 from .import vi
 
 @vi.route("/houseresources")
@@ -10,9 +12,24 @@ def add_houseresource():
 @vi.route("/do_hs_insert")
 #将JS Post过来的参数转化成Json格式
 def add_houseresources():
-    #从session中获取用户，得到用户id--ho_id
-    user = session["current_user"]
-    ho_id = user.ho_id
+    api = Conf.APIADRESS
+    username = request.cookies.get("username")
+    password = request.cookies.get("password")
+    if username and password:
+        user_hash_account = tools.get_hash_account(username, password)
+        current_user = current_app.session_redis.hget("user % " % user_hash_account, 'current_user')
+    #判断用户是否登录:用户登录
+    if current_user:
+        current_user = current_user.decode()
+        ho_id = current_user['username']
+
+        # #从缓存里查询房东
+        # ho_name = request.cookies.get("username")
+        # resp = requests.get(api+"/api/v1.0/get_hs/"+ho_name)
+        # resp_data = json.loads(resp.content.decode())
+        # if resp_data["code"] == 1:
+        #     result = resp_data["message"]
+        #     ho_id = result[0]['ho_id']
     ty_id = request.json.get("ty_id")
     hs_intro = request.json.get("hs_intro")
     hs_province = request.json.get("hs_province")
@@ -28,13 +45,13 @@ def add_houseresources():
         "hs_province":hs_province,
         "hs_city":hs_city,
         "hs_country":hs_country,
-        "hs_address":hs_country,
+        "hs_address":hs_address,
         "hs_hitvalume":hs_hitvalume,
         "hs_image":hs_images
     }
     #data = json.dumps({})
     #访问service api
-    response = requests.post("http://127.0.0.1:8080/api/v1.0/hs_insert",
+    response = requests.post(api+"/api/v1.0/hs_insert",
                   data = data,
                   headers = {"content-type":"application/json"}
                   )
@@ -43,12 +60,8 @@ def add_houseresources():
     if response_data["code"] == 0:
         return jsonify(response_data)
     return jsonify(response_data)
-
-
     #code = 1 添加成功
     if request_data["code"] == 1:
-        current_user = response_data["current_user"]
-        session["current_user"] = current_user
         return jsonify({"code":1,"message":"添加成功"})
 #加载用户添加的房源
 @vi.route("/do_loadhs")
@@ -56,23 +69,16 @@ def loadhs():
     hs_id = request.json.get("hs_id")
     if not hs_id:
         return jsonify({"code":0,"message":"房源不存在"})
-    user = session['current_user']
-    ho_id = user.ho_id
-    data = json.dumps({"hs_id":hs_id,
-                       "ho_id":ho_id})
-    response = requests.get("http://127.0.0.1:8080/api/v1.0/get_by_hs_id/<int:hs_id>",
-                            data = data,
-                            headers = {"content-type":"application/json"})
+    api = Conf.API_ADDRESS
+    response = requests.get(api+"/api/v1.0/get_by_hs_id/<int:hs_id>"+hs_id)
     response_data = json.loads(response.content)
 #code = 0查询失败
     if response_data["code"] == 0:
         return jsonify(response_data)
     return jsonify(response_data)
-
-
 #code = 1 查询成功
     if response_data["code"] == 1:
-        return jsonify({"code":1,"go_url":"/index"})
+        return jsonify({"code":1,"message":"success"})
 
 
 #编辑房源

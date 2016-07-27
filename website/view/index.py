@@ -4,8 +4,9 @@ import requests
 from . import vi
 from website.model import HouseOwner
 from website.config import Conf
+from website import tools
 import hashlib
-import website.tools
+#import website.tools
 
 @vi.route('/')
 @vi.route('/index')
