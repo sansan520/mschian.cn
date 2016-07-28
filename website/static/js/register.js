@@ -17,7 +17,6 @@ var croppicContaineroutputOptions = {
     var cropContaineroutput = new Croppic('cropContaineroutput', croppicContaineroutputOptions);
 
 
-
     $("#user_account").blur(function () {
          var user_account = $("#user_account").val();
          if (user_account != ""){
@@ -84,34 +83,34 @@ var croppicContaineroutputOptions = {
         if (!/^(((13[0-9]{1})|(15[0-9]{1})|(18[0-9]{1})|(17[0-9]{1}))+\d{8})$/.test(user_mobile)) {
             layer.msg("手机号格式不正确");
         }
-        if($(".checkbox").is(":checked")){
-            $.ajax({url: "/do_user_register",
-                type: 'POST',
-                data: JSON.stringify({
-                    "user_account": user_account,
-                    "user_password": user_password,
-                    "user_mobile": user_mobile,
-                    "user_headimg":user_headimg,
-                    "user_type" :1
-                    }),
-                    contentType: "application/json",
-                    success:function (data) {
-                        var data = JSON.parse(data);
-                        if(data.code == 0){
-                            alert("注册失败");
-                        }else if(data.code == 1){
-                            if (data.user_type == 1)
-                            {
-                               location.href = "/index";
-                            }else if (data.user_type == 0){
-                                location.href = "/ho_next_register";
+            if($('.checkbox').is(":checked")){
+                $.ajax({url: "/do_user_register",
+                    type: 'POST',
+                    data: JSON.stringify({
+                        "user_account": user_account,
+                        "user_password": user_password,
+                        "user_mobile": user_mobile,
+                        "user_headimg":user_headimg,
+                        "user_type" :1
+                        }),
+                        contentType: "application/json",
+                        success:function (data) {
+                            var data = JSON.parse(data);
+                            if(data.code == 0){
+                                alert("注册失败");
+                            }else if(data.code == 1){
+                                if (data.user_type == 1)
+                                {
+                                   location.href = "/index";
+                                }else if (data.user_type == 0){
+                                    location.href = "/ho_next_register";
+                                }
                             }
                         }
-                    }
-                })
-        }
-        else{
-            layer.msg("请勾选同意条款");
-        }
-    });
+                    })
+            }
+            else{
+                layer.msg("请勾选同意条款");
+            }
+        });
 });

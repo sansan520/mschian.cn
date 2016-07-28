@@ -43,6 +43,7 @@ def upload_pic():
             try:
                 file.save(filepath)
                 img = Image.open(filepath)
+                #img.thumbnail(800*600)
                 width, height = img.size
                 return jsonify({"status": 'success', "url": 'static/upload/bhImg/' + filename, "width": width,
                                 "height": height})
