@@ -24,10 +24,10 @@ def res_more_page():
             page = response_data['page']
             pages = response_data['pages']
             total = response_data['total']
-            # entities = response_data['message']
+            entities = response_data['message']
 
             pagination = Pagination(page=page, total=total, pages=pages)
-            return render_template("index_more.html", pagination=pagination)
+            return render_template("index_more.html", pagination=pagination,entities=entities)
 
     except Exception as e:
         return render_template("index_more.html")
