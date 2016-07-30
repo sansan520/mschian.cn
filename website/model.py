@@ -2,30 +2,14 @@
 import datetime
 from sqlalchemy import create_engine, ForeignKey, Column, Integer, String, DateTime, \
     DECIMAL
-from sqlalchemy.orm import sessionmaker, scoped_session
-import os,sys
-
-#parentdir  父目录
-granddir =os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-sys.path.insert(0, granddir)
-parentdir=os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-sys.path.insert(1, parentdir)
 
 # print(sys.path)
 from website.run import create_app
 from flask_sqlalchemy import SQLAlchemy
-from flask_script import Manager
-from flask_migrate import Migrate, MigrateCommand
 
 app = create_app()
 db = SQLAlchemy(app)
-migrate = Migrate(app, db)
-manager = Manager(app)
-manager.add_command('db', MigrateCommand)
 
-
-engine = create_engine(app.config['SQLALCHEMY_DATABASE_URI'], pool_recycle=7200)
-db_session = scoped_session(sessionmaker(autocommit=False, autoflush=False, bind=engine))
 
 # 用户基础表(游客/房东公共部分)
 class UserBase(db.Model):
@@ -113,14 +97,15 @@ class HouseResources(db.Model):
     hs_id = Column('hs_id', Integer, primary_key=True)
     ty_id = Column('ty_id', Integer, ForeignKey('housetype.ty_id'))
     ho_id = Column('ho_id', Integer, ForeignKey('houseowner.ho_id', ondelete='CASCADE'))
+    hs_name = Column('hs_name', String(20))   # 房源名称
     hs_intro = Column('hs_intro', String(500))
-    hs_province = Column('hs_province', String(50))
-    hs_city = Column('hs_city', String(50))
-    hs_country = Column('hs_country', String(50))
+    hs_province = Column('hs_province', String(20))
+    hs_city = Column('hs_city', String(20))
+    hs_country = Column('hs_country', String(20))
     hs_address = Column('hs_address', String(50))
-    hs_hitvalume = Column('hs_hitvalume', String(50))
+    hs_hitvalume = Column('hs_hitvalume', Integer)    # 点击量
     hs_images = Column('hs_images', String(500))
-
+    hs_status = Column('hs_status',Integer)  #  房源状态, 0 表示暂停营业,1 表示正常营业
     hs_createtime = Column('hs_createtime', DateTime, default=datetime.datetime.now())
     hs_modifytime = Column('hs_modifytime', DateTime, default=datetime.datetime.now())
 
@@ -129,12 +114,14 @@ class HouseResources(db.Model):
             'hs_id': self.hs_id,
             'ty_id': self.ty_id,
             'ho_id': self.ho_id,
+            'hs_name':self.hs_name,
             'hs_province': self.hs_province,
             'hs_city': self.hs_city,
             'hs_country': self.hs_country,
             'hs_address': self.hs_address,
             'hs_hitvalume':self.hs_hitvalume,
-            'hs_images': self.hs_images
+            'hs_images': self.hs_images,
+            'hs_status':self.hs_status
         }
 
 # 客房类型表

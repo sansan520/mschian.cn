@@ -1,7 +1,7 @@
 # coding:utf-8
 from flask import Flask
 from website.config import Conf
-from website.view import vi as vi_blueprint
+from website.controller import vi as vi_blueprint
 import redis
 
 
