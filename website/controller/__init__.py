@@ -9,6 +9,7 @@ from . import about_user
 from . import register
 from . import res_more
 from . import croppictest
+from . import houseresources
 
 # from . import test
 

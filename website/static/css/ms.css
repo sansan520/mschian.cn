@@ -136,11 +136,11 @@
 	display: block;
 	position: relative;
 }
-/*.ms-pic img {*/
-	/*width: 100%;*/
-	/*max-width: 100%;*/
-	/*height: 100%;*/
-/*}*/
+.ms-pic img {
+	width: 100%;
+	max-width: 100%;
+	height: 100%;
+}
 .ms-dd {
 	position: absolute;
 	bottom: 0;
@@ -152,12 +152,12 @@
 .ms-pic-box {
 	margin-bottom: 30px;
 }
-/*.col-sm-6 .ms-pic {*/
-	/*height: 280px;*/
-/*}*/
-/*.col-sm-3 .ms-pic {*/
-	/*height: 125px;*/
-/*}*/
+.col-sm-6 .ms-pic {
+	height: 280px;
+}
+.col-sm-3 .ms-pic {
+	height: 125px;
+}
 
 .main-item a {
 	color: #333;
@@ -302,7 +302,7 @@ ul {
 }
 /* */
 .Se-main {
-	
+
 }
 .search-if {
 	padding-top: 15px;
@@ -460,7 +460,7 @@ ul {
 	}
 }
 .help-aside {
-	
+
 }
 .help-aside h4 {
 	font-size: 16px;
@@ -534,10 +534,10 @@ ul {
 	color: #fff;
 	font-size: 16px;
 }
-.msMag-nav .navbar-nav > .active > a, 
-.msMag-nav .navbar-nav > .active > a:hover, 
+.msMag-nav .navbar-nav > .active > a,
+.msMag-nav .navbar-nav > .active > a:hover,
 .msMag-nav .navbar-nav > .active > a:focus,
-.msMag-nav .navbar-nav > li > a:hover, 
+.msMag-nav .navbar-nav > li > a:hover,
 .msMag-nav .navbar-nav > li > a:focus {
 	color: #ff5a5f;
 	background: #fff;
@@ -555,7 +555,7 @@ ul {
     margin-top: 0px;
 }
 .msMag-block-aside {
-	
+
 	margin-bottom: 20px;
 }
 .msMag-block-aside a {
@@ -565,8 +565,8 @@ ul {
 	background: #fff;
 	padding: 0 15px 10px;
 }
-.msMag-block-aside .nav-pills > li.active > a, 
-.msMag-block-aside .nav-pills > li.active > a:hover, 
+.msMag-block-aside .nav-pills > li.active > a,
+.msMag-block-aside .nav-pills > li.active > a:hover,
 .msMag-block-aside .nav-pills > li.active > a:focus,
 .msMag-block-aside .nav-pills > li:hover > a {
 	background: #ff5a5f;
@@ -608,11 +608,11 @@ ul {
 .msMag-blockM-nr > .table {
 	margin-bottom: 0;
 }
-.msMag-blockM-nr .table > thead > tr > th, 
-.msMag-blockM-nr .table > tbody > tr > th, 
-.msMag-blockM-nr .table > tfoot > tr > th, 
-.msMag-blockM-nr .table > thead > tr > td, 
-.msMag-blockM-nr .table > tbody > tr > td, 
+.msMag-blockM-nr .table > thead > tr > th,
+.msMag-blockM-nr .table > tbody > tr > th,
+.msMag-blockM-nr .table > tfoot > tr > th,
+.msMag-blockM-nr .table > thead > tr > td,
+.msMag-blockM-nr .table > tbody > tr > td,
 .msMag-blockM-nr .table > tfoot > tr > td {
 	line-height: 34px;
 }
@@ -624,7 +624,7 @@ ul {
 	color: #666;
 }
 .msMag-room {
-	width: 33.33333333333333%; 
+	width: 33.33333333333333%;
 }
 .msMag-state {
 	width: 16.666666666666664%;
@@ -645,7 +645,7 @@ ul {
     background-color: #e45055;
     border-color: #e45055;
 }
-.table-btn:focus, 
+.table-btn:focus,
 .table-btn.focus {
     color: #fff;
 }*/
@@ -732,7 +732,7 @@ ul {
 }
 .btn-login:hover,
 .btn-login:focus,
-.btn-login:active, 
+.btn-login:active,
 .btn-login.active,
 .btn-login:active:hover,
 .btn-login.active:hover,
@@ -792,7 +792,7 @@ ul {
 	width: 25%;
 }*/
 .register-box .nav-tabs {
-	margin-bottom: 20px;	
+	margin-bottom: 20px;
 }
 .register-box .nav-tabs a {
 	color: #333;
@@ -904,63 +904,3 @@ ul {
     z-index: 100;
 
 }
-
-/*分页控件样式*/
-.pagination > ul > li {
-			  display: inline;
-			}
-			.pagination > ul > li > a,
-			.pagination > ul > li > span {
-			  position: relative;
-			  float: left;
-			  padding: 6px 12px;
-			  margin-left: -1px;
-			  line-height: 1.42857143;
-			  color: #337ab7;
-			  text-decoration: none;
-			  background-color: #fff;
-			  border: 1px solid #ddd;
-			}
-			.pagination > ul > li:first-child > a,
-			.pagination > ul > li:first-child > span {
-			  margin-left: 0;
-			  border-top-left-radius: 4px;
-			  border-bottom-left-radius: 4px;
-			}
-			.pagination > ul > li:last-child > a,
-			.pagination > ul > li:last-child > span {
-			  border-top-right-radius: 4px;
-			  border-bottom-right-radius: 4px;
-			}
-			.pagination > ul > li > a:hover,
-			.pagination > ul > li > span:hover,
-			.pagination > ul > li > a:focus,
-			.pagination > ul > li > span:focus {
-			  z-index: 3;
-			  color: #23527c;
-			  background-color: #eee;
-			  border-color: #ddd;
-			}
-			.pagination > ul > .active > a,
-			.pagination > ul > .active > span,
-			.pagination > ul > .active > a:hover,
-			.pagination > ul > .active > span:hover,
-			.pagination > ul > .active > a:focus,
-			.pagination > ul > .active > span:focus {
-			  z-index: 2;
-			  color: #fff;
-			  cursor: default;
-			  background-color: #337ab7;
-			  border-color: #337ab7;
-			}
-			.pagination > ul > .disabled > span,
-			.pagination > ul > .disabled > span:hover,
-			.pagination > ul > .disabled > span:focus,
-			.pagination > ul > .disabled > a,
-			.pagination > ul > .disabled > a:hover,
-			.pagination > ul > .disabled > a:focus {
-			  color: #777;
-			  cursor: not-allowed;
-			  background-color: #fff;
-			  border-color: #ddd;
-			}

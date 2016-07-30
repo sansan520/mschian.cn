@@ -5,9 +5,9 @@ from website.config import Conf
 from website import tools
 from .import vi
 
-@vi.route("/houseresources")
-def add_houseresource():
-    return render_template("/houseresources.html")
+@vi.route("/house_sources")
+def house_sources():
+    return render_template("house_sources.html")
 
 @vi.route("/do_hs_insert")
 #将JS Post过来的参数转化成Json格式
@@ -25,14 +25,6 @@ def add_houseresources():
     else:
         return redirect(url_for("/login"))
 
-        # #从缓存里查询房东
-        # ho_name = request.cookies.get("username")
-        # resp = requests.get(api+"/api/v1.0/get_hs/"+ho_name)
-        # resp_data = json.loads(resp.content.decode())
-        # if resp_data["code"] == 1:
-        #     result = resp_data["message"]
-        #     ho_id = result[0]['ho_id']
-    ty_id = request.json.get("ty_id")
     hs_intro = request.json.get("hs_intro")
     hs_province = request.json.get("hs_province")
     hs_city = request.json.get("hs_city")
@@ -42,7 +34,7 @@ def add_houseresources():
     hs_images = request.json.get("hs_images")
     data = {
         "ho_id":ho_id,
-        "ty_id":ty_id,
+        "ty_id":0,  #  房源类型房东不可自己修改,初始化0
         "hs_intro":hs_intro,
         "hs_province":hs_province,
         "hs_city":hs_city,

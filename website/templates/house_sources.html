@@ -1,0 +1,141 @@
+{% extends "ho_base.html" %}
+{% block title %}添加房源_自由者_来去自由_中国名宿网{% endblock %}
+{% block head %}
+    {{ super() }}
+    <script src="static/js/geo.js" type="text/javascript" charset="utf-8"></script>
+    <style type="text/css">
+    </style>
+{% endblock %}
+{% block content %}
+    <!-- 主体开始 -->
+    <div class="ms-manage">
+			<div class="container" style="margin-top: 80px;">
+				<div class="row msMag-block">
+					<div class="col-sm-2 msMag-block-aside">
+						<ul class="nav nav-pills nav-stacked">
+						  <li role="presentation" class="msMag-block-name page-header">我的房源</li>
+						  <li role="presentation"><a href="#">添加新房源+</a></li>
+						  <li role="presentation" class="active"><a href="#">清河小镇</a></li>
+						  <li role="presentation"><a href="#">清河小镇</a></li>
+						  <li role="presentation"><a href="#">清河小镇</a></li>
+						</ul>
+					</div>
+					<div class="col-sm-10 msMag-block-main">
+						<div class="msMag-blockM-top">
+							<div class="msMag-blockM-top-col clearfix">
+								<h2 class="pull-left">添加房源信息</h2>
+								<div class="pull-right mT13">
+									<button type="button" class="btn btn-mag" id="btn_save_source">保存</button>
+									<button type="button" class="btn btn-mag">取消</button>
+								</div>
+							</div>
+						</div>
+						<div class="msMag-blockM-nr">
+							<div class="msMag-nr-detail">
+								<div class="row">
+									<div class="col-xs-2 text-right msMagND-name">房源名称：</div>
+									<div class="col-xs-10 text-left msMagND-txt">
+										<input type="text" class="msMagND-txt-ipt" id="house_name" placeholder="5~6个汉字以内" /></div>
+								</div>
+								<div class="row">
+									<div class="col-xs-2 text-right msMagND-name">状态：</div>
+									<div class="col-xs-10 text-left msMagND-txt">
+										<label class="radio-inline">
+										  <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="1"> 开启
+										</label>
+										<label class="radio-inline">
+										  <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="0"> 休假(暂停营业)
+										</label>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-xs-2 text-right msMagND-name">房源民宿地址：</div>
+									<div class="col-xs-2">
+										<div class="form-group">
+											<select class="form-control" name="province" id="s1">
+												<option></option>
+											</select>
+										</div>
+									</div>
+									<div class="col-xs-2">
+										<div class="form-group">
+											<select class="form-control" name="city" id="s2">
+											  <option></option>
+											</select>
+										</div>
+									</div>
+									<div class="col-xs-2">
+										<div class="form-group">
+											<select class="form-control" name="town" id="s3">
+											  <option></option>
+											</select>
+										</div>
+									</div>
+									<div class="col-xs-4 text-left msMagND-txt">
+										<input type="text" class="msMagND-txt-ipt h34"></div>
+								</div>
+								<div class="row">
+									<div class="col-xs-2 text-right msMagND-name">简介：</div>
+									<div class="col-xs-10 text-left msMagND-txt">
+                                        <input type="text" class="msMagND-txt-ipt" id="house_intro"/></div>
+								</div>
+								<div class="row">
+									<div class="col-xs-2 text-right msMagND-name">民宿概览图：</div>
+									<div class="col-xs-10 text-left msMagND-txt">
+										<div class="form-group">
+											<div class="upFile">
+												<input type="file" id="exampleInputFile">
+												<img class="addImg" src="http://static.zzkcdn.com/bcenter/homestay/pic－add.png" title="添加图片">
+											</div>
+										    <p>一次上传多张，总大小需小于8M</p>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	<!-- 主体结束 -->
+{% endblock %}
+{% block script %}
+    <script>
+    // jquery 页面加载完成后执行
+    $(function () {
+        // 初始化省市区
+        setup();preselect('浙江省'); //promptinfo();
+
+
+        
+        $("#btn_save_source").click(function () {
+            var h_name = $("#house_name").val();
+            var h_status=$("input[name='inlineRadioOptions']:checked").val();
+            var h_province = $("#s1").val();
+            var h_city = $("#s2").val();
+            var h_country = $("#s3").val();
+            var h_intro = $("#house_intro").val();
+
+
+        });
+        //jQuery("#select1").val()
+        //(#select1  option:selected").text();
+        $("#user_log_out").click(function () {
+            $.ajax({
+            url:"/do_logout",
+            type: 'POST',
+            contentType: 'application/json',
+            success: function(data){
+                if(data.code==0){
+                    alert(data.message);
+                    alert(data.response);
+                }else if(data.code==1){
+                    location.href="/index";
+                }
+            }
+        });
+        });
+    });
+
+    </script>
+{% endblock %}
