@@ -12,9 +12,8 @@
 			<div class="main-item">
                 <div class="ms-list-box">
                     <!--行开始-->
+                <div class="row">
                     {% for item in entities %}
-
-                    <div class="row">
                         <div class="col-sm-3">
                             <div class="ms-pic-box">
                                 <a href="#" class="ms-pic">
@@ -23,8 +22,8 @@
                                 </a>
                             </div>
                         </div>
-                    </div>
                     {% endfor %}
+                </div>
                     <!--行结束-->
                     <nav class="text-center">
                         {{ pagination.links }}

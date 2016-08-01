@@ -2,9 +2,11 @@
 {% block title %}添加房源_自由者_来去自由_中国名宿网{% endblock %}
 {% block head %}
     {{ super() }}
+    <link rel="stylesheet" href="static/css/jquery.fileupload.css">
     <script src="static/js/geo.js" type="text/javascript" charset="utf-8"></script>
-    <style type="text/css">
-    </style>
+    <script src="static/js/jquery.ui.widget.js"></script>
+    <script src="static/js/jquery.iframe-transport.js"></script>
+    <script src="static/js/jquery.fileupload.js"></script>
 {% endblock %}
 {% block content %}
     <!-- 主体开始 -->
@@ -14,19 +16,19 @@
 					<div class="col-sm-2 msMag-block-aside">
 						<ul class="nav nav-pills nav-stacked">
 						  <li role="presentation" class="msMag-block-name page-header">我的房源</li>
-						  <li role="presentation"><a href="#">添加新房源+</a></li>
+						  <li role="presentation"><a href="#" id="addNewHouse">添加房源+</a></li>
 						  <li role="presentation" class="active"><a href="#">清河小镇</a></li>
 						  <li role="presentation"><a href="#">清河小镇</a></li>
 						  <li role="presentation"><a href="#">清河小镇</a></li>
 						</ul>
 					</div>
-					<div class="col-sm-10 msMag-block-main">
+					<div class="col-sm-10 msMag-block-main" style="display: none">
 						<div class="msMag-blockM-top">
 							<div class="msMag-blockM-top-col clearfix">
 								<h2 class="pull-left">添加房源信息</h2>
 								<div class="pull-right mT13">
 									<button type="button" class="btn btn-mag" id="btn_save_source">保存</button>
-									<button type="button" class="btn btn-mag">取消</button>
+									<button type="button" class="btn btn-mag" id="btn_cancel_source">取消</button>
 								</div>
 							</div>
 						</div>
@@ -72,7 +74,7 @@
 										</div>
 									</div>
 									<div class="col-xs-4 text-left msMagND-txt">
-										<input type="text" class="msMagND-txt-ipt h34"></div>
+										<input type="text" class="msMagND-txt-ipt h34" id="house_address"></div>
 								</div>
 								<div class="row">
 									<div class="col-xs-2 text-right msMagND-name">简介：</div>
@@ -83,11 +85,24 @@
 									<div class="col-xs-2 text-right msMagND-name">民宿概览图：</div>
 									<div class="col-xs-10 text-left msMagND-txt">
 										<div class="form-group">
-											<div class="upFile">
-												<input type="file" id="exampleInputFile">
-												<img class="addImg" src="http://static.zzkcdn.com/bcenter/homestay/pic－add.png" title="添加图片">
-											</div>
-										    <p>一次上传多张，总大小需小于8M</p>
+                                            <div class="container">
+                                            <!-- The fileinput-button span is used to style the file input field as button -->
+                                            <span class="btn btn-success fileinput-button">
+                                                <i class="glyphicon glyphicon-plus"></i>
+                                                <span>添加图片...</span>
+                                                <!-- The file input field used as target for the file upload widget -->
+                                                <input id="fileupload" type="file" name="files[]" multiple>
+                                            </span>
+                                            <br>
+                                            <br>
+                                            <!-- The global progress bar -->
+                                            <div id="progress" class="progress" style="width: 50%">
+                                                <div class="progress-bar progress-bar-success"></div>
+                                            </div>
+                                            <!-- The container for the uploaded files -->
+                                            <div id="filesContainer" class="files"></div>
+                                            <p>最毒上传3张，总大小需小于8M</p>
+                                            </div>
 										</div>
 									</div>
 								</div>
@@ -103,38 +118,112 @@
     <script>
     // jquery 页面加载完成后执行
     $(function () {
+        
+        $("#addNewHouse").click(function () {
+            //$(".msMag-block-main").toggle();
+            $(".msMag-block-main").show();
+        });
+
+        $("#btn_cancel_source").click(function () {
+            // $(".msMag-block-main").hide();
+            $("#house_name").val('');
+            $("input[name='inlineRadioOptions']:checked").val('');
+            $("#s1").val('');
+            $("#s2").val('');
+            $("#s3").val('');
+            $("#house_address").val('');
+            $("#house_intro").val('');
+        });
+
         // 初始化省市区
         setup();preselect('浙江省'); //promptinfo();
 
+		    var url = "/uploadPic";
 
+
+        $('#fileupload').fileupload({
+                url: url,
+                dataType: 'json',
+                add:function (e, data) {
+                    var myCount = $("#filesContainer").children().length;
+                    if(myCount >= 3){
+                        alert("最多只能上传3张图片");
+                        return false;
+                    }
+                    data.submit();
+                },
+                done: function (e,data) {
+                    $.each(data.result.files, function (index, file) {
+                        var filename = file.name;
+                        var tmpdiv = $('<div style="float:left;"></div>').appendTo('#filesContainer');
+                        $('<img />').attr('src', filename).attr('width','100').attr('height','60').appendTo(tmpdiv);
+                        $('<p/>').text(filename).appendTo(tmpdiv);
+                    });
+                },
+                progressall: function (e, data) {
+                    var progress = parseInt(data.loaded / data.total * 100, 10);
+                    $('#progress .progress-bar').css(
+                        'width',
+                        progress + '%'
+                    );
+                },
+
+        }).prop('disabled', !$.support.fileInput).parent().addClass($.support.fileInput ? undefined : 'disabled');
         
+        
+        // 保存房源事件
         $("#btn_save_source").click(function () {
             var h_name = $("#house_name").val();
             var h_status=$("input[name='inlineRadioOptions']:checked").val();
             var h_province = $("#s1").val();
             var h_city = $("#s2").val();
             var h_country = $("#s3").val();
+            var h_address = $("#house_address").val();
             var h_intro = $("#house_intro").val();
 
-
-        });
-        //jQuery("#select1").val()
-        //(#select1  option:selected").text();
-        $("#user_log_out").click(function () {
-            $.ajax({
-            url:"/do_logout",
-            type: 'POST',
-            contentType: 'application/json',
-            success: function(data){
-                if(data.code==0){
-                    alert(data.message);
-                    alert(data.response);
-                }else if(data.code==1){
-                    location.href="/index";
-                }
+            if(!h_name){
+                layer.msg("房源名称不能为空");
+                return false;
             }
+            if(!h_status){
+                layer.msg("请选择房源状态");
+                return false;
+            }
+            if(!h_address){
+                layer.msg("请填写房源地址");
+                $("#house_address").focus();
+                return false;
+            }
+            $.ajax({
+                url: "/do_hs_insert",
+                type: 'POST',
+                data: JSON.stringify({
+                    "hs_name": h_name,
+                    "hs_intro": h_intro,
+                    "hs_province": h_province,
+                    "hs_city":h_city,
+                    "hs_country":h_country,
+                    "hs_address" :h_address,
+                    "hs_images" :1
+                }),
+                contentType: "application/json",
+                success:function (data) {
+                    var data = JSON.parse(data);
+                    if(data.code == 0){
+                        alert("注册失败");
+                    }else if(data.code == 1){
+                        if (data.user_type == 1)
+                        {
+                            location.href = "/index";
+                        }else if (data.user_type == 0){
+                            location.href = "/ho_next_register";
+                        }
+                    }
+                }
+            });
         });
-        });
+        // 保存房源事件结束
+
     });
 
     </script>

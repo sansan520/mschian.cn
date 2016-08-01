@@ -23,25 +23,29 @@ def add_houseresources():
         current_user = current_user.decode()
         ho_id = current_user['username']
     else:
-        return redirect(url_for("/login"))
+        return jsonify({"code": 0, "message": "您还未登陆,请先登陆"})
+        # return redirect(url_for("/login"))
 
+    hs_name = request.json.get("hs_name")
     hs_intro = request.json.get("hs_intro")
     hs_province = request.json.get("hs_province")
     hs_city = request.json.get("hs_city")
     hs_country = request.json.get("hs_country")
     hs_address = request.json.get("hs_address")
-    hs_hitvalume = request.json.get("hs_hitvalume")
+    # hs_hitvalume = request.json.get("hs_hitvalume") # 点击量由后台统计
     hs_images = request.json.get("hs_images")
+
     data = {
         "ho_id":ho_id,
+        "hs_name":hs_name,
         "ty_id":0,  #  房源类型房东不可自己修改,初始化0
         "hs_intro":hs_intro,
         "hs_province":hs_province,
         "hs_city":hs_city,
         "hs_country":hs_country,
         "hs_address":hs_address,
-        "hs_hitvalume":hs_hitvalume,
-        "hs_image":hs_images
+        "hs_hitvalume":0,  # 统计数初始化为0
+        "hs_image":hs_images  # 多张图片以|分隔,最多3张
     }
     #data = json.dumps({})
     #访问service api
@@ -50,13 +54,16 @@ def add_houseresources():
                   headers = {"content-type":"application/json"}
                   )
     response_data = json.loads(response.content)
-    #code = 0 添加失败
+    #  code = 0 添加失败
     if response_data["code"] == 0:
         return jsonify(response_data)
     return jsonify(response_data)
-    #code = 1 添加成功
+    # code = 1 添加成功
+
     if request_data["code"] == 1:
         return jsonify({"code":1,"message":"添加成功"})
+
+
 #加载用户添加的房源
 @vi.route("/do_loadhs")
 def loadhs():

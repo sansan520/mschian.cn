@@ -1,6 +1,6 @@
 
 import os
-from flask import Flask, request, render_template, jsonify
+from flask import Flask, request, render_template, jsonify,make_response,json
 from werkzeug.utils import secure_filename
 import os
 import sys
@@ -15,8 +15,8 @@ from website.tools import json_mkdir
 app = Flask(__name__)
 
 #绝对路径获取
+HS_LOCATION = 'static/upload/hs/'   #房源图片路径
 ABSPATH = os.path.abspath(sys.argv[0])
-
 ABSPATH = os.path.dirname(ABSPATH)+"/"
 
 UPLOAD_FOLDER = ABSPATH + 'static/upload/bhImg/'  # 裁剪前的图片 big_head_img  服务器定时删除
@@ -25,6 +25,31 @@ ALLOWED_EXTENSIONS = set(['jpg', 'png', 'JPEG'])
 
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.config['CROPPIC_FOLDER'] = CROPPIC_FOLDER
+app.config['HS_FOLDER'] = ABSPATH + HS_LOCATION
+
+@vi.route('/uploadPic', methods=['POST'])
+def upload_pic_new():
+    if request.method == 'POST':
+        uploaded_files = request.files.getlist("files[]")
+        response = make_response()
+        for file in uploaded_files:
+            if file and allowed_file(file.filename):
+                file_prename = datetime.datetime.now().strftime("%Y%m%d%H%M%S%f")
+                filename = file_prename + "." + file.filename.rsplit('.', 1)[1]
+                filepath = os.path.join(app.config['HS_FOLDER'], filename)
+                minetype = file.content_type
+                r = json_mkdir(app.config['HS_FOLDER'])
+                try:
+                    file.save(filepath)
+                    response.data = json.dumps({"files": [{"name": HS_LOCATION + filename, "minetype": minetype}]})
+                    return response
+                except IOError:
+                    response.data = '{"code":"0","file_names":"图片存取错误!"}'
+                    return response
+            response.data = '{"code":"0","file_names":"图片格式不正确!!"}'
+            return response
+    response.data = '{"code":"0","file_names":"必须POST提交!!"}'
+    return response
 
 @vi.route('/croptest')
 def croptest():
