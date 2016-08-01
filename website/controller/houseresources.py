@@ -9,7 +9,7 @@ from .import vi
 def house_sources():
     return render_template("house_sources.html")
 
-@vi.route("/do_hs_insert")
+@vi.route("/do_hs_insert",methods='POST')
 #将JS Post过来的参数转化成Json格式
 def add_houseresources():
     api = Conf.APIADRESS
@@ -120,7 +120,7 @@ def ediths():
                        "hs_images": hs_images,
                        "hs_hitvalume": hs_hitvalume
                        })
-    response = requests.get(api+"/api/v1.0/hs_edit/<int:hs_id>",
+    response = requests.post(api+"/api/v1.0/hs_edit/<int:hs_id>",
                             data=data,
                             headers={"content-type": "application/json"})
     response_data = json.loads(response.content)
@@ -143,7 +143,7 @@ def deletehs():
     if not hs_id:
         return jsonify({"code": 0, "message": "房源不存在"})
     data = json.dumps({"hs_id": hs_id})
-    response = requests.get(api+"/api/v1.0/hs_delete/<int:hs_id>",
+    response = requests.post(api+"/api/v1.0/hs_delete/<int:hs_id>",
                             data=data,
                             headers={"content-type": "application/json"})
     response_data = json.loads(response.content)
