@@ -15,9 +15,10 @@
          browserCfg.chrome = true;
      }
 
-    function checkUploadfile(){
+    //"cropContaineroutput_imgUploadField"
+    function checkUploadfile(inputFileId){
             try{
-                var obj_file = document.getElementById("cropContaineroutput_imgUploadField");
+                var obj_file = document.getElementById(inputFileId);
                 if(obj_file.value==""){
                     alert("请先选择上传文件");
                     return false;
