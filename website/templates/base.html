@@ -59,16 +59,23 @@
 			          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">帮助</span></a>
 			          <ul class="dropdown-menu">
 			            <li class="li-help"><a href="#">帮助中心</a></li>
+                          <li><a href="#"><span>sdfsdf</span></a></li>
 			          </ul>
 			        </li>
                       {% if username %}
-                          <li><a href=""  data-target="">{{ username }}</a></li>
-                          <li><a href="" data-target="" id="user_log_out">退出</a></li>
+                          <li class="dropdown">
+                              <a href="#" class="first-A dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                  <span class="btn begin-fd">欢迎您:{{ username }}</span></a>
+                              <ul class="dropdown-menu">
+                                <li><a href="#"><span>房源管理</span></a></li>
+                                <li><a href="#"><span>个人信息管理</span></a></li>
+                                <li><a href="#" data-target="" id="user_log_out"><span>退出登录</span></a></li>
+                              </ul>
+                           </li>
                       {% else %}
                           <li><a href="/register"  data-target="">注册</a></li>
                           <li><a href="/login" data-target="">登录</a></li>
                       {% endif %}
-
 			      </ul>
 			    </div>
 			  </div>

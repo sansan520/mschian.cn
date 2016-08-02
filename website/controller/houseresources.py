@@ -9,7 +9,7 @@ from .import vi
 def house_sources():
     return render_template("house_sources.html")
 
-@vi.route("/do_hs_insert",methods='POST')
+@vi.route("/do_hs_insert",methods=['POST'])
 #将JS Post过来的参数转化成Json格式
 def add_houseresources():
     api = Conf.APIADRESS
