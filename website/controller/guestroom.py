@@ -11,7 +11,7 @@ def insert_guestroom():
     return render_template("/guestroom.html")
 
 #添加客户
-@vi.route("/do_insert_guestroom")
+@vi.route("/do_insert_guestroom",methods=['POST'])
 def insert_guestroom():
 
     username = request.cookies.get('username')
@@ -44,7 +44,7 @@ def insert_guestroom():
     return jsonify(response_data)
 
 #编辑客户
-@vi.route("/do_update_guestroom")
+@vi.route("/do_update_guestroom",methods=['POST'])
 def update_guestroom():
     username = requests.cookies.get("username")
     password = requests.cookies.get("password")
@@ -77,7 +77,7 @@ def update_guestroom():
     return jsonify(response_data)
 
 #删除客户
-@vi.route("/do_delete_guestroom")
+@vi.route("/do_delete_guestroom",methods=['POST'])
 def delete_guestroom():
     username = requests.cookies.get("username")
     password = requests.cookies.get("password")
@@ -99,7 +99,7 @@ def delete_guestroom():
         return jsonify(response_data)
     return jsonify(response_data)
 
-@vi.route("/do_search_guestroom")
+@vi.route("/do_search_guestroom",methods=['GET'])
 def search_guestroom_all():
     response = requests.get(url=api+"/api/v1.0/get_all_guest_room",headers={"contenttype":"application/json"})
     response_data = json.loads(response.content)

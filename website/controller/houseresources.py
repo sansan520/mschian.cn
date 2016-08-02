@@ -34,6 +34,7 @@ def add_houseresources():
     hs_address = request.json.get("hs_address")
     # hs_hitvalume = request.json.get("hs_hitvalume") # 点击量由后台统计
     hs_images = request.json.get("hs_images")
+    hs_status = request.json.get("hs_status")
 
     data = {
         "ho_id":ho_id,
@@ -45,7 +46,8 @@ def add_houseresources():
         "hs_country":hs_country,
         "hs_address":hs_address,
         "hs_hitvalume":0,  # 统计数初始化为0
-        "hs_image":hs_images  # 多张图片以|分隔,最多3张
+        "hs_image":hs_images,  # 多张图片以|分隔,最多3张
+        "hs_status":hs_status
     }
     #data = json.dumps({})
     #访问service api
@@ -65,7 +67,7 @@ def add_houseresources():
 
 
 #加载用户添加的房源
-@vi.route("/do_loadhs")
+@vi.route("/do_loadhs",methods=['GET'])
 def loadhs():
     hs_id = request.json.get("hs_id")
     if not hs_id:
@@ -83,7 +85,7 @@ def loadhs():
 
 
 #编辑房源
-@vi.route("/do_ediths")
+@vi.route("/do_ediths",methods=['POST'])
 def ediths():
     api = Conf.APIADRESS
     username = request.cookies.get("username")
@@ -108,6 +110,7 @@ def ediths():
     hs_address = request.json.get("hs_address")
     hs_hitvalume = request.json.get("hs_hitvalume")
     hs_images = request.json.get("hs_images")
+    hs_status = request.json.get("hs_status")
 
     data = json.dumps({"hs_id": hs_id,
                        "ho_id":ho_id,
@@ -118,7 +121,8 @@ def ediths():
                        "hs_country": hs_country,
                        "hs_address": hs_address,
                        "hs_images": hs_images,
-                       "hs_hitvalume": hs_hitvalume
+                       "hs_hitvalume": hs_hitvalume,
+                       "hs_status":hs_status
                        })
     response = requests.post(api+"/api/v1.0/hs_edit/<int:hs_id>",
                             data=data,
@@ -136,7 +140,7 @@ def ediths():
 
 
 #删除房源
-@vi.route("/do_delete_hs")
+@vi.route("/do_delete_hs",methods=['POST'])
 def deletehs():
     api = Conf.API_ADDRESS
     hs_id = request.json.get("hs_id")
@@ -156,7 +160,7 @@ def deletehs():
     if response_data["code"] == 1:
         return jsonify({"code": 1, "message": "删除成功"})
 #根据点击量的提升更新房源类型
-@vi.route("/do_update_type")
+@vi.route("/do_update_type",methods=['POST'])
 def update_type():
     api = Conf.API_ADDRESS
     ty_id = request.json.get("ty_id")
