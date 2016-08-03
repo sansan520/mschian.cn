@@ -67,13 +67,13 @@ def add_houseresources():
 
 
 #加载用户添加的房源
-@vi.route("/do_loadhs",methods=['GET'])
+@vi.route("/do_loadhs")
 def loadhs():
     hs_id = request.json.get("hs_id")
     if not hs_id:
         return jsonify({"code":0,"message":"房源不存在"})
     api = Conf.API_ADDRESS
-    response = requests.get(api+"/api/v1.0/get_by_hs_id/<int:hs_id>"+hs_id)
+    response = requests.get(api+"/api/v1.0/get_by_hs_id/"+hs_id)
     response_data = json.loads(response.content)
 #code = 0查询失败
     if response_data["code"] == 0:

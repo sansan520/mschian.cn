@@ -89,7 +89,7 @@ def delete_guestroom():
     else:
         return jsonify({"code": 0, "message": "您还未登录,请先登录"})
     data = json.dumps({"gr_id":gr__id})
-    response = requests.post(url=api+"/api/v1.0/gr_delete/<int:gr_id>",
+    response = requests.post(url=api+"/api/v1.0/gr_delete/"+gr__id,
                   data=data,
                   headers={"contenttype":"application/json"})
     response_data = json.loads(response.content)
@@ -99,7 +99,7 @@ def delete_guestroom():
         return jsonify(response_data)
     return jsonify(response_data)
 
-@vi.route("/do_search_guestroom",methods=['GET'])
+@vi.route("/do_search_guestroom")
 def search_guestroom_all():
     response = requests.get(url=api+"/api/v1.0/get_all_guest_room",headers={"contenttype":"application/json"})
     response_data = json.loads(response.content)

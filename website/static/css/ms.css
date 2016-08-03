@@ -718,6 +718,7 @@ ul {
 	color: #ff5a5f;
 }
 .btn-login {
+	margin-top:10px;
 	color: #fff;
     background-color: #ff5a5f;
     border-color: #ff5a5f;
@@ -903,4 +904,10 @@ ul {
     height: 61px;
     z-index: 100;
 
+}
+ .form-group .col-sm-4 {
+	 margin-top: 80px;
+}
+.form-group .checkbox{
+	margin-top: 80px;
 }
