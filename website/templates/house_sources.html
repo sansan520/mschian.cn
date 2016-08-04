@@ -165,6 +165,8 @@
                       } else {
                         data.submit();
                       }
+                    var height = $("#fileupload").height;
+                    var width = $("#fileupload").width;
                 },
                 done: function (e,data) {
                     $.each(data.result.files, function (index, file) {
@@ -194,6 +196,7 @@
             var h_country = $("#s3").val();
             var h_address = $("#house_address").val();
             var h_intro = $("#house_intro").val();
+            var h_images = $("#fileupload").val();
 
             if(!h_name){
                 layer.msg("房源名称不能为空");
@@ -218,13 +221,13 @@
                     "hs_city":h_city,
                     "hs_country":h_country,
                     "hs_address" :h_address,
-                    "hs_images" :1
+                    "hs_images" :h_images
                 }),
                 contentType: "application/json",
                 success:function (data) {
                     var data = JSON.parse(data);
                     if(data.code == 0){
-                        alert("注册失败");
+                        alert("添加失败");
                     }else if(data.code == 1){
                         if (data.user_type == 1)
                         {

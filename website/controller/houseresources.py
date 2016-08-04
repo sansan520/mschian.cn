@@ -3,14 +3,18 @@ from flask import render_template,request,jsonify,json,redirect,url_for,current_
 from website.model import HouseOwner,HouseResources,HouseType
 from website.config import Conf
 from website import tools
+
+
 from .import vi
 
 @vi.route("/house_sources")
 def house_sources():
     return render_template("house_sources.html")
 
+
 @vi.route("/do_hs_insert",methods=['POST'])
 #将JS Post过来的参数转化成Json格式
+@checkuser
 def add_houseresources():
     api = Conf.APIADRESS
     username = request.cookies.get("username")
@@ -86,6 +90,7 @@ def loadhs():
 
 #编辑房源
 @vi.route("/do_ediths",methods=['POST'])
+@checkuser
 def ediths():
     api = Conf.APIADRESS
     username = request.cookies.get("username")

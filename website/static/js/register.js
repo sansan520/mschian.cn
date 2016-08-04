@@ -61,6 +61,7 @@ var croppicContaineroutputOptions = {
         var user_password = $("#user_password").val();
         var user_mobile = $("#mobile").val();
         var user_headimg = $("#cropOutput").val();
+        var bool = $(".checkbox").attr("checked");
         if (!user_account) {
             layer.msg("账号不能为空");
         }
@@ -83,8 +84,13 @@ var croppicContaineroutputOptions = {
         if (!/^(((13[0-9]{1})|(15[0-9]{1})|(18[0-9]{1})|(17[0-9]{1}))+\d{8})$/.test(user_mobile)) {
             layer.msg("手机号格式不正确");
         }
-            if($('.checkbox').is(":checked")){
-                $.ajax({url: "/do_user_register",
+            if(bool){
+                layer.msg("已勾选复选框");
+            }
+            else{
+                layer.msg("请勾选同意条款");
+            }
+        $.ajax({url: "/do_user_register",
                     type: 'POST',
                     data: JSON.stringify({
                         "user_account": user_account,
@@ -107,10 +113,6 @@ var croppicContaineroutputOptions = {
                                 }
                             }
                         }
-                    })
-            }
-            else{
-                layer.msg("请勾选同意条款");
-            }
+                    });
         });
 });
