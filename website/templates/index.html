@@ -90,7 +90,7 @@
                       <!--第一板块-->
     				  <ul class="nav nav-tabs" role="tablist">
     				    <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">特色房源</a></li>
-    				    <li role="presentation" style="float: right;font-size: small;"><a href="#" aria-controls="home" role="tab" data-toggle="tab">更多...</a></li>
+    				    <li role="presentation" style="float: right;font-size: small;"><a href="/re_more_page">更多...</a></li>
                       </ul>
     				  <div class="tab-content">
                           <!--特色房源-->
@@ -140,7 +140,7 @@
                       <!--第二板块-->
                       <ul class="nav nav-tabs" role="tablist">
     				    <li role="presentation" class="active"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">金牌推荐</a></li>
-    				    <li role="presentation" style="float: right;font-size: small;"><a href="#" aria-controls="home" role="tab" data-toggle="tab">更多...</a></li>
+    				    <li role="presentation" style="float: right;font-size: small;"><a href="/re_more_page">更多...</a></li>
                       </ul>
     				  <div class="tab-content">
                           <!--金牌推荐-->
@@ -204,8 +204,8 @@
             success: function(data){
                 if(data.code==0){
                     alert(data.message);
-                    alert(data.response);
                 }else if(data.code==1){
+                    alert(data.message);
                     location.href="/index";
                 }
             }

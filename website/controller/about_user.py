@@ -42,7 +42,7 @@ def do_login():
     response_data = requests.post(url=api_url+"/api/v1.0/user_login", data=data, headers={"content-type": "application/json"})
     result_data = json.loads(response_data.content)
     # code == 1登录成功
-    if response_data['code'] == 1:
+    if result_data['code'] == 1:
         # current_user = result_data['current_user']
         response = make_response()
         response.set_cookie('username', value=user_account, max_age=60*60*24*7)
@@ -63,7 +63,7 @@ def do_login():
 # def register():
 #     return render_template("register.html")
 
-@vi.route("/do_logout",methods=["POST"])
+@vi.route("/do_logout")
 def do_logout():
     # 从redis中删除缓存
     username = request.cookies.get('username')
@@ -71,6 +71,7 @@ def do_logout():
     hash_account = tools.get_hash_account(username, password)
     if hash_account:
         result = current_app.session_redis.hdel('user:%s' % hash_account, 'current_user')
-        return jsonify({'code': 1, 'message': '成功退出!', 'gourl': 'index'})
-    return jsonify({'code': 1, 'message': '退出异常!', 'gourl': 'index'})
+        print(result)
+        return jsonify({'code': 1, 'message': '成功退出!'})
+    return jsonify({'code': 0, 'message': '退出异常!'})
 
