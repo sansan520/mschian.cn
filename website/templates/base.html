@@ -62,7 +62,7 @@
                               <ul class="dropdown-menu">
                                 <li><a href="/house_sources"><span>房源管理</span></a></li>
                                 <li><a href="/house_sources"><span>个人信息管理</span></a></li>
-                                <li><a href="/do_logout" class="li-help" id="user_log_out">退出登录</a></li>
+                                <li><a href="" class="li-help" id="user_log_out">退出登录</a></li>
                               </ul>
                            </li>
                       {% else %}
@@ -129,8 +129,23 @@
 </html>
 {% block script %}
     <script type="text/javascript">
-    function check() {
-        
-    }
+    $(function () {
+        $("#user_log_out").click(function () {
+            $.ajax({url: "/do_logout",
+                type: 'POST',
+                data: JSON.stringify({}),
+                contentType: "application/json",
+                success:function (data) {
+                    var data = JSON.parse(data);
+                    if(data.code == 0){
+                        alert("退出失败");
+                    }else if(data.code == 1){
+                        layer.msg("成功推出");
+                        location.href = "/index";
+                    }
+                }
+            });
+        });
+    });
     </script>
 {% endblock %}

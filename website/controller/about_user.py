@@ -63,7 +63,7 @@ def do_login():
 # def register():
 #     return render_template("register.html")
 
-@vi.route("/do_logout")
+@vi.route("/do_logout",methods=["POST"])
 def do_logout():
     # 从redis中删除缓存
     username = request.cookies.get('username')

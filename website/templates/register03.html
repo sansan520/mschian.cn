@@ -3,15 +3,6 @@
 {% block head %}
     {{ super() }}
     <script src="static/js/common.js"></script>
-    <link href="../static/css/croppic.css" rel="stylesheet">
-    <style>
-    #cropContaineroutput {
-            width:180px; height:150px;
-			position:relative; /* or fixed or absolute */
-            border:1px solid #ccc;
-    }
-    </style>
-
 {% endblock %}
 {% block content %}
     <!-- 主体开始 -->
@@ -49,12 +40,10 @@
 							  <label for="" class="col-sm-3 col-lg-2 control-label">身份证</label>
 							  <div class="col-sm-9 col-lg-10 msMagND-txt">
 								<div class="form-group">
-									<div class="upFile up-idCard-box">
-                                        <div id="cropContaineroutput"></div>
-		                                <input type="hidden" id="cropOutput" class="text-left reg-ipt" required="required" placeholder="身份证地址" style="width: 330px;"/>
-{#										<input type="file" id="fileupload" name="file[]">#}
-{#										<p class="btn sfz-btn">点击上传头像</p>#}
-									</div>
+{#									<div class="upFile up-idCard-box">#}
+{#                                        <div id="cropContaineroutput"></div>#}
+{#		                                <input type="hidden" id="cropOutput" class="text-left reg-ipt" required="required" placeholder="身份证地址" style="width: 330px;"/>#}
+{#									</div>#}
 								</div>
 							  </div>
 							</div>
@@ -75,78 +64,25 @@
 				</div>
 			</div>
 		</div>
-    <script>
-			$(function () {
-			    $('#fileupload').fileupload({
-			        dataType: 'json',
-			        add: function (e, data) {
-			            data.context = $('<img />').attr('src', "http://www.wjw.cn/upload/pinpai/tongli.jpg")
-			                .insertBefore($(".up-idCard-box"));
-			        },
-			        done: function (e, data) {
-			            data.context.text('Upload finished.');
-			        }
-			    });
-			});
-		</script>
     <!-- 主体结束 -->
 {% endblock %}
 {% block script %}
-    <script src="../static/js/upload.js"></script>
-    <script src="../static/js/croppic.js"></script>
     <script type="text/javascript">
 
-    var croppicContaineroutputOptions = {
-				uploadUrl:'/crop_uploadPic',
-				cropUrl:'/crop_cutPic',
-				outputUrlId:'cropOutput',
-				modal:false,
-				loaderHtml:'<div class="loader bubblingG"><span id="bubblingG_1"></span><span id="bubblingG_2"></span><span id="bubblingG_3"></span></div> ',
-				onBeforeImgUpload: function(){ console.log('onBeforeImgUpload') },
-				onAfterImgUpload: function(){ console.log('onAfterImgUpload') },
-				onImgDrag: function(){ console.log('onImgDrag') },
-				onImgZoom: function(){ console.log('onImgZoom') },
-				onBeforeImgCrop: function(){ console.log('onBeforeImgCrop') },
-				onAfterImgCrop:function(){ console.log('onAfterImgCrop') },
-				onReset:function(){ console.log('onReset') },
-				onError:function(errormessage){ console.log('onError:'+errormessage) }
-		}
-    var cropContaineroutput = new Croppic('cropContaineroutput', croppicContaineroutputOptions);
-    $("#ho_name").blur(function () {
-        var ho_name = $("#ho_name").val();
-        if(ho_name != ""){
-            $.ajax({
-                url:"/check_ho_name",
-                type:"POST",
-                data:JSON.stringify({"ho_name":ho_name}),
-                contentType:"application/json",
-                success:function (data) {
-                    if(data.code == 1){
-                        layer.msg("该用户已存在,请换一个试试");
-                    }else if(data.code == 0){
-                        layer.msg("该用户可用");
-                        this.focus();
-                    }
-
-                }
-            });
-        }
-        return false;
-    });
 
     $(".btn-reg").click(function () {
         var ho_name = $("#ho_name").val();
         var ho_email = $("#ho_email").val();
         var ho_tel = $("#ho_tel").val();
-        var ho_nicard = $("#cropOutput").val();
+{#        var ho_nicard = $("#cropOutput").val();#}
 
         if (!ho_name) {
             layer.msg("请填写真实姓名");
         }
 
-        if (!ho_nicard) {
-            layer.msg("请上传证件照");
-        }
+{#        if (!ho_nicard) {#}
+{#            layer.msg("请上传证件照");#}
+{#        }#}
 
         $.ajax({url: "/do_ho_register",
             type: 'POST',
@@ -158,7 +94,7 @@
                 }),
                 contentType: "application/json",
                 success:function (data) {
-                    var data = JSON.parse(data);
+{#                    var data = JSON.parse(data);#}
                     if(data.code == 0){
                         layer.msg("注册失败");
                     }else if(data.code == 1){
