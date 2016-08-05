@@ -61,7 +61,8 @@ var croppicContaineroutputOptions = {
         var user_password = $("#user_password").val();
         var user_mobile = $("#mobile").val();
         var user_headimg = $("#cropOutput").val();
-        var checklist = $(".checkbox .checked ");
+        var isChecked = $("input[type='checkbox']").is(':checked');
+
         if (!user_account) {
             layer.msg("账号不能为空");
         }
@@ -84,7 +85,8 @@ var croppicContaineroutputOptions = {
         if (!/^(((13[0-9]{1})|(15[0-9]{1})|(18[0-9]{1})|(17[0-9]{1}))+\d{8})$/.test(user_mobile)) {
             layer.msg("手机号格式不正确");
         }
-        if (checklist <= 0){
+
+        if(!isChecked){
             layer.msg("请同意条款");
             return false;
         }
