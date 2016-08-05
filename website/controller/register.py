@@ -139,14 +139,14 @@ def do_user_register():
             response = make_response()
             response.set_cookie("username",value = user_account,max_age=60*60*24*7)
             response.set_cookie("userpassword",value = user_password_hash,max_age=60*60*24*7)
-            response.data = '{"code":"1","message":"注册成功","user_type":1}'
+            response.data = '{"code":"1","message":"注册成功"}'
             return response
 
         if user_type == 0:
             response = make_response()
             response.set_cookie("username", value=user_account, max_age=60*60*24*7)
             response.set_cookie("userpassword", value=user_password_hash, max_age=60*60*24*7)
-            response.data = '{"code":"1","message": "注册成功","user_type":0}'
+            response.data = '{"code":"1","message": "注册成功"}'
             return response
     #code = 0 注册失败
     if response_data['code'] == 0:

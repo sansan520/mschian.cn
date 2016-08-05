@@ -2,7 +2,10 @@
 {% block title %}Index{% endblock %}
 {% block head %}
     {{ super() }}
-    <script src="static/js/common.js"></script>
+    <link rel="stylesheet" href="static/css/jquery.fileupload.css">
+    <script src="static/js/jquery.ui.widget.js"></script>
+    <script src="static/js/jquery.iframe-transport.js"></script>
+    <script src="static/js/jquery.fileupload.js"></script>
 {% endblock %}
 {% block content %}
     <!-- 主体开始 -->
@@ -38,14 +41,25 @@
 							</div>
 							<div class="form-group">
 							  <label for="" class="col-sm-3 col-lg-2 control-label">身份证</label>
-							  <div class="col-sm-9 col-lg-10 msMagND-txt">
-								<div class="form-group">
-{#									<div class="upFile up-idCard-box">#}
-{#                                        <div id="cropContaineroutput"></div>#}
-{#		                                <input type="hidden" id="cropOutput" class="text-left reg-ipt" required="required" placeholder="身份证地址" style="width: 330px;"/>#}
-{#									</div>#}
-								</div>
-							  </div>
+                               <div class="form-group">
+                                   <div class="container" style="width: 100%">
+                                            <!-- The fileinput-button span is used to style the file input field as button -->
+                                            <span class="btn btn-success fileinput-button">
+                                                <i class="glyphicon glyphicon-plus"></i>
+                                                <span>添加图片...</span>
+                                                <!-- The file input field used as target for the file upload widget -->
+                                                <input id="fileupload" type="file" name="files[]" multiple>
+                                            </span>
+                                            <br>
+                                            <br>
+                                            <!-- The global progress bar -->
+                                            <div id="progress" class="progress" style="width: 100%">
+                                                <div class="progress-bar progress-bar-success"></div>
+                                            </div>
+                                            <!-- The container for the uploaded files -->
+                                            <div id="filesContainer" class="files"></div>
+                                   </div>
+                               </div>
 							</div>
                             <div class="form-group">
 						      	<div class="checkbox text-left col-sm-offset-3 col-lg-offset-2 reg-check">
@@ -56,7 +70,7 @@
 						  	</div>
 						  	<div class="form-group">
 						  		<div class="col-xs-12 col-md-4 col-sm-offset-3  col-lg-offset-2">
-						  			<button class="btn btn-login btn-reg" type="button" onclick="click()">注册</button>
+						  			<button class="btn btn-login btn_ho_finish_reg" type="button">注册</button>
 						  		</div>
 							</div>
 						</div>
@@ -67,43 +81,51 @@
     <!-- 主体结束 -->
 {% endblock %}
 {% block script %}
-    <script type="text/javascript">
-
-
-    $(".btn-reg").click(function () {
-        var ho_name = $("#ho_name").val();
-        var ho_email = $("#ho_email").val();
-        var ho_tel = $("#ho_tel").val();
-{#        var ho_nicard = $("#cropOutput").val();#}
-
-        if (!ho_name) {
-            layer.msg("请填写真实姓名");
-        }
-
-{#        if (!ho_nicard) {#}
-{#            layer.msg("请上传证件照");#}
-{#        }#}
-
-        $.ajax({url: "/do_ho_register",
-            type: 'POST',
-            data: JSON.stringify({
-                "ho_name": ho_name,
-                "ho_email": ho_email,
-                "ho_tel": ho_tel,
-                "ho_nicard":ho_nicard
-                }),
-                contentType: "application/json",
-                success:function (data) {
-{#                    var data = JSON.parse(data);#}
-                    if(data.code == 0){
-                        layer.msg("注册失败");
-                    }else if(data.code == 1){
-                        //alert("注册成功");
-                        location.href = "/index";
+    <script src="static/js/croppic.js"></script>
+    <script src="static/js/register.js"></script>
+    <script>
+    // 房东上传身份证件照
+    $('#fileupload').fileupload({
+                url: "/uploadPic",
+                dataType: 'json',
+                add:function (e, data) {
+                    //  图片数量限制
+                    var myCount = $("#filesContainer").children().length;
+                    if(myCount >=1){
+                        alert("只能上传1张身份证件照");
+                        return false;
                     }
-                }
-            });
+                    // 图片格式和大小限制
+                    var uploadErrors = [];
+                    var acceptFileTypes = /^image\/(gif|jpe?g|png)$/i;
+                      if(data.originalFiles[0].type && !acceptFileTypes.test(data.originalFiles[0].type)) {
+                        uploadErrors.push('请上传图片文件,不支持其他类型的文件!');
+                      }
+                      if(data.originalFiles[0].size && data.originalFiles[0].size > 1024*1024*1) {
+                        uploadErrors.push('图片文件太大了,限制1M以内!');
+                      }
+                      if(uploadErrors.length > 0) {
+                        alert(uploadErrors.join("\n"));
+                      } else {
+                        data.submit();
+                      }
+                },
+                done: function (e,data) {
+                    $.each(data.result.files, function (index, file) {
+                        var filename = file.name;
+                        var tmpdiv = $('<div style="margin-left: 30px;margin-top: 5px;"></div>').appendTo('#filesContainer');
+                        $('<img />').attr('src', filename).attr('width','200').attr('height','160').appendTo(tmpdiv);
+                        // $('<input hidden="hidden" id="hid_pic_address"/>').text(filename).appendTo(tmpdiv);
+                    });
+                },
+                progressall: function (e, data) {
+                    var progress = parseInt(data.loaded / data.total * 100, 10);
+                    $('#progress .progress-bar').css(
+                        'width',
+                        progress + '%'
+                    );
+                },
 
-    });
+        }).prop('disabled', !$.support.fileInput).parent().addClass($.support.fileInput ? undefined : 'disabled');
     </script>
 {% endblock %}
