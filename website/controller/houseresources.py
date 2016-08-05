@@ -14,7 +14,7 @@ def house_sources():
 
 @vi.route("/do_hs_insert",methods=['POST'])
 #将JS Post过来的参数转化成Json格式
-@checkuser
+#@checkuser
 def add_houseresources():
     api = Conf.APIADRESS
     username = request.cookies.get("username")
@@ -90,7 +90,7 @@ def loadhs():
 
 #编辑房源
 @vi.route("/do_ediths",methods=['POST'])
-@checkuser
+#@checkuser
 def ediths():
     api = Conf.APIADRESS
     username = request.cookies.get("username")
