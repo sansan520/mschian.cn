@@ -122,6 +122,7 @@ var croppicContaineroutputOptions = {
         var ho_email = $("#ho_email").val();
         var ho_tel = $("#ho_tel").val();
         var ho_nicard = $("#filesContainer").find('img').attr('src');
+        var isChecked = $("input[type='checkbox']").is(':checked');
         if (!ho_name) {
             layer.msg("账号不能为空");
             layer.msg("请填写真实姓名");
@@ -129,24 +130,30 @@ var croppicContaineroutputOptions = {
         if(!ho_nicard){
             layer.msg("请上传身份证件照!");
         }
-        // $.ajax({url: "/do_ho_register",
-        //     type: 'POST',
-        //     data: JSON.stringify({
-        //         "ho_name": ho_name,
-        //         "ho_email": ho_email,
-        //         "ho_tel": ho_tel,
-        //         "ho_nicard":ho_nicard
-        //         }),
-        //         contentType: "application/json",
-        //         success:function (data) {
-        //             if(data.code == 0){
-        //                 layer.msg("注册失败");
-        //             }else if(data.code == 1){
-        //                 //alert("注册成功");
-        //                 location.href = "/index";
-        //             }
-        //         }
-        // });
+
+        if(!isChecked){
+            layer.msg("请同意条款");
+            return false;
+        }
+        $.ajax({url: "/do_ho_register",
+            type: 'POST',
+            data: JSON.stringify({
+                "ho_name": ho_name,
+                "ho_email": ho_email,
+                "ho_tel": ho_tel,
+                "ho_nicard":ho_nicard
+                }),
+                contentType: "application/json",
+                success:function (data) {
+                    if(data.code == 0){
+                        layer.msg("注册失败");
+                        return false;
+                    }else if(data.code == 1){
+                        //alert("注册成功");
+                        location.href = "/index";
+                    }
+                }
+        });
     });
 
 
