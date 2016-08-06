@@ -4,10 +4,10 @@ from website.model import HouseOwner,HouseResources,HouseType
 from website.config import Conf
 from website import tools
 
-
 from .import vi
 
 @vi.route("/house_sources")
+@tools.check_user_wrapper
 def house_sources():
     return render_template("house_sources.html")
 
@@ -21,7 +21,7 @@ def add_houseresources():
     password = request.cookies.get("password")
     if username and password:
         user_hash_account = tools.get_hash_account(username, password)
-        current_user = current_app.session_redis.hget("user % " % user_hash_account, 'current_user')
+        current_user = current_app.session_redis.hget('user:%s' % user_hash_account, 'current_user')
     #判断用户是否登录:用户登录
     if current_user:
         current_user = current_user.decode()
