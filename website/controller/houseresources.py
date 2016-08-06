@@ -14,20 +14,20 @@ def house_sources():
 
 @vi.route("/do_hs_insert",methods=['POST'])
 #将JS Post过来的参数转化成Json格式
-#@checkuser
-def add_houseresources():
-    api = Conf.APIADRESS
+#@tools.check_user_wrapper
+def do_hs_insert():
+    api = Conf.API_ADDRESS
     username = request.cookies.get("username")
     password = request.cookies.get("password")
     if username and password:
         user_hash_account = tools.get_hash_account(username, password)
         current_user = current_app.session_redis.hget('user:%s' % user_hash_account, 'current_user')
-    #判断用户是否登录:用户登录
+    # #判断用户是否登录:用户登录
     if current_user:
         current_user = current_user.decode()
-        ho_id = current_user['username']
-    else:
-        return jsonify({"code": 0, "message": "您还未登陆,请先登陆"})
+        user_id = current_user['user_id']
+    # else:
+    #     return jsonify({"code": 0, "message": "您还未登陆,请先登陆"})
         # return redirect(url_for("/login"))
 
     hs_name = request.json.get("hs_name")
@@ -40,8 +40,8 @@ def add_houseresources():
     hs_images = request.json.get("hs_images")
     hs_status = request.json.get("hs_status")
 
-    data = {
-        "ho_id":ho_id,
+    data = json.dumps({
+        "user_id":user_id,
         "hs_name":hs_name,
         "ty_id":0,  #  房源类型房东不可自己修改,初始化0
         "hs_intro":hs_intro,
@@ -49,10 +49,10 @@ def add_houseresources():
         "hs_city":hs_city,
         "hs_country":hs_country,
         "hs_address":hs_address,
-        "hs_hitvalume":0,  # 统计数初始化为0
+        #"hs_hitvalume":0,  # 统计数初始化为0
         "hs_image":hs_images,  # 多张图片以|分隔,最多3张
         "hs_status":hs_status
-    }
+    })
     #data = json.dumps({})
     #访问service api
     response = requests.post(api+"/api/v1.0/hs_insert",
@@ -72,7 +72,7 @@ def add_houseresources():
 
 #加载用户添加的房源
 @vi.route("/do_loadhs")
-def loadhs():
+def do_loadhs():
     hs_id = request.json.get("hs_id")
     if not hs_id:
         return jsonify({"code":0,"message":"房源不存在"})
@@ -90,9 +90,9 @@ def loadhs():
 
 #编辑房源
 @vi.route("/do_ediths",methods=['POST'])
-#@checkuser
-def ediths():
-    api = Conf.APIADRESS
+@tools.check_user_wrapper
+def do_ediths():
+    api = Conf.API_ADDRESS
     username = request.cookies.get("username")
     password = request.cookies.get("password")
     if username and password:
@@ -101,7 +101,7 @@ def ediths():
     # 判断用户是否登录:用户登录
     if current_user:
         current_user = current_user.decode()
-        ho_id = current_user['username']
+        user_id = current_user['user_id']
     else:
         return redirect(url_for("/login"))
     hs_id = request.json.get("hs_id")
@@ -118,7 +118,7 @@ def ediths():
     hs_status = request.json.get("hs_status")
 
     data = json.dumps({"hs_id": hs_id,
-                       "ho_id":ho_id,
+                       "user_id":user_id,
                        "ty_id": ty_id,
                        "hs_intro": hs_intro,
                        "hs_province": hs_province,
@@ -146,7 +146,7 @@ def ediths():
 
 #删除房源
 @vi.route("/do_delete_hs",methods=['POST'])
-def deletehs():
+def do_delete_hs():
     api = Conf.API_ADDRESS
     hs_id = request.json.get("hs_id")
     if not hs_id:
@@ -166,7 +166,7 @@ def deletehs():
         return jsonify({"code": 1, "message": "删除成功"})
 #根据点击量的提升更新房源类型
 @vi.route("/do_update_type",methods=['POST'])
-def update_type():
+def do_update_type():
     api = Conf.API_ADDRESS
     ty_id = request.json.get("ty_id")
     if not ty_id:

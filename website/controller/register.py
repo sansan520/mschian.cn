@@ -6,7 +6,7 @@ from . import vi
 from website.model import HouseOwner,UserBase
 from website.config import Conf
 
-api = Conf.API_ADDRESS
+
 @vi.route("/register")
 def register():
     return render_template("register.html")
@@ -22,12 +22,13 @@ def ho_next_register():
 #房东注册
 @vi.route("/do_ho_register", methods=["POST"])
 def do_ho_register():
-    #api = Conf.API_ADDRESS
+    api = Conf.API_ADDRESS
     # 接收JS POST 过来的参数,并进行验证
+    #如果redis缓存中存在则从redis中取值
     user_account = request.cookies.get('username')
     resp = requests.get(url=api+"/api/v1.0/get_by_account/"+user_account)
     resp_data = json.loads(resp.content.decode())
-    if(resp_data['code'] ==1):
+    if resp_data['code'] ==1:
         result = resp_data['message']
         user_id = result[0]['user_id']
     ho_name = request.json.get("ho_name")
@@ -67,16 +68,17 @@ def do_ho_register():
         return jsonify(response_data)
     return jsonify(response_data)
 #检查姓名是否存在
-@vi.route("/check_ho_name",methods=["POST"])
-def check_ho_name():
-    ho_name = request.json.get("ho_name")
-    response = requests.get(url=api+"/api/v1.0/get_hs/"+ho_name)
-    response_data = json.loads(response.content.decode())
-    #code = 1 用户存在
-    if response_data["code"] == 1:
-        return jsonify({"code":1,"message":"该用户已存在"})
-    if response_data["code"] == 0:
-        return jsonify({"code":0,"message":"该账号可以使用"})
+# @vi.route("/check_ho_name",methods=["POST"])
+# def check_ho_name():
+#     api = Conf.API_ADDRESS
+#     ho_name = request.json.get("ho_name")
+#     response = requests.get(url=api+"/api/v1.0/get_hs/"+ho_name)
+#     response_data = json.loads(response.content.decode())
+#     #code = 1 用户存在
+#     if response_data["code"] == 1:
+#         return jsonify({"code":1,"message":"该用户已存在"})
+#     if response_data["code"] == 0:
+#         return jsonify({"code":0,"message":"该账号可以使用"})
 
 #游客注册
 @vi.route("/user_register")
