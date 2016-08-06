@@ -152,8 +152,8 @@
                       if(data.originalFiles[0].type && !acceptFileTypes.test(data.originalFiles[0].type)) {
                         uploadErrors.push('请上传图片文件,不支持其他类型的文件!');
                       }
-                      if(data.originalFiles[0].size && data.originalFiles[0].size > 50) {
-                        uploadErrors.push('图片文件太大了,限制2M以内!');
+                      if(data.originalFiles[0].size && data.originalFiles[0].size > 1024*1024*1) {
+                        uploadErrors.push('图片文件太大了,限制1M以内!');
                       }
                       if(uploadErrors.length > 0) {
                         alert(uploadErrors.join("\n"));
@@ -166,9 +166,9 @@
                 done: function (e,data) {
                     $.each(data.result.files, function (index, file) {
                         var filename = file.name;
-                        var tmpdiv = $('<div style="float:left;"></div>').appendTo('#filesContainer');
-                        $('<img />').attr('src', filename).attr('width','100').attr('height','60').appendTo(tmpdiv);
-                        $('<p/>').text(filename).appendTo(tmpdiv);
+                        var tmpdiv = $('<div style="float:left; margin-left:5px;" ></div>').appendTo('#filesContainer');
+                        $('<img />').attr('src', filename).attr('width','200').attr('height','160').appendTo(tmpdiv);
+{#                        $('<p/>').text(filename).appendTo(tmpdiv);#}
                     });
                 },
                 progressall: function (e, data) {
@@ -184,6 +184,7 @@
         
         // 保存房源事件
         $("#btn_save_source").click(function () {
+             //var h_images ="static/upload/hs/20160806150801882901.jpg|static/upload/hs/20160806150801882902.jpg|static/upload/hs/20160806150801882903.jpg|";
             var h_name = $("#house_name").val();
             var h_status=$("input[name='inlineRadioOptions']:checked").val();
             var h_province = $("#s1").val();
@@ -191,7 +192,11 @@
             var h_country = $("#s3").val();
             var h_address = $("#house_address").val();
             var h_intro = $("#house_intro").val();
-            var h_images = $("#fileupload").val();
+            //var tmp = $("#filesContainer").find('img').attr('src');
+            var h_images ="";
+            $("#filesContainer >div").each(function(){
+                h_images += $(this).find('img').attr('src')+"|";
+            });
 
             if(!h_name){
                 layer.msg("房源名称不能为空");
@@ -206,6 +211,10 @@
                 $("#house_address").focus();
                 return false;
             }
+            if(h_images!=""){
+                h_images = h_images.substring(0,h_images.lastIndexOf('|'));
+            }
+
             $.ajax({
                 url: "/do_hs_insert",
                 type: 'POST',
@@ -222,14 +231,12 @@
                 success:function (data) {
                     var data = JSON.parse(data);
                     if(data.code == 0){
-                        alert("添加失败");
+                        layer.msg("添加失败");
+                        return false;
                     }else if(data.code == 1){
-                        if (data.user_type == 1)
-                        {
-                            location.href = "/index";
-                        }else if (data.user_type == 0){
-                            location.href = "/ho_next_register";
-                        }
+                        layer.msg("房源添加成功");
+                        // 添加成功后,刷新当然页面
+                        location.reload();
                     }
                 }
             });
