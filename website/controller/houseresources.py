@@ -22,9 +22,18 @@ def do_hs_insert():
     if username and password:
         user_hash_account = tools.get_hash_account(username, password)
         current_user = current_app.session_redis.hget('user:%s' % user_hash_account, 'current_user')
+        print(type(current_user))
     # #判断用户是否登录:用户登录
     if current_user:
-        current_user = current_user.decode()
+        # redis返回的类型为bytes的字符串,如下格式:
+        # b"{'user_account': 'sansan', 'user_mobile': '15957124901', 'user_id': 1, 'user_type': 0, 'user_headimg': None}"
+        # 这里使用eval()将bytes字符串转为dict
+        # {'user_type': 0, 'user_account': 'sansan', 'user_id': 1, 'user_mobile': '15957124901', 'user_headimg': None}
+        current_user= eval(current_user)
+
+        # tmp = json.loads(tmp) 和 decode() 都会生成str,格式如: #'{\\'user_account\\': \\'sansan\\', \\'user_mobile\\': \\'15957124901\\', \\'user_id\\': 1, \\'user_type\\': 0, \\'user_headimg\\': None}'
+        # current_user = current_user.decode()
+        # print(type(current_user))
         user_id = current_user['user_id']
     # else:
     #     return jsonify({"code": 0, "message": "您还未登陆,请先登陆"})
@@ -43,14 +52,13 @@ def do_hs_insert():
     data = json.dumps({
         "user_id":user_id,
         "hs_name":hs_name,
-        "ty_id":0,  #  房源类型房东不可自己修改,初始化0
         "hs_intro":hs_intro,
         "hs_province":hs_province,
         "hs_city":hs_city,
         "hs_country":hs_country,
         "hs_address":hs_address,
         #"hs_hitvalume":0,  # 统计数初始化为0
-        "hs_image":hs_images,  # 多张图片以|分隔,最多3张
+        "hs_images":hs_images,  # 多张图片以|分隔,最多3张
         "hs_status":hs_status
     })
     #data = json.dumps({})
@@ -62,15 +70,13 @@ def do_hs_insert():
     response_data = json.loads(response.content)
     #  code = 0 添加失败
     if response_data["code"] == 0:
-        return jsonify(response_data)
-    return jsonify(response_data)
+        return jsonify({'code':0,'message':'添加失败'})
     # code = 1 添加成功
+    if response_data["code"] == 1:
+        return jsonify({'code': 1, 'message': '添加成功'})
+        # return jsonify({"code":1,"message":"添加成功"})
 
-    if request_data["code"] == 1:
-        return jsonify({"code":1,"message":"添加成功"})
-
-
-#加载用户添加的房源
+#  加载用户添加的房源
 @vi.route("/do_loadhs")
 def do_loadhs():
     hs_id = request.json.get("hs_id")
@@ -79,11 +85,10 @@ def do_loadhs():
     api = Conf.API_ADDRESS
     response = requests.get(api+"/api/v1.0/get_by_hs_id/"+hs_id)
     response_data = json.loads(response.content)
-#code = 0查询失败
+    #code = 0查询失败
     if response_data["code"] == 0:
         return jsonify(response_data)
-    return jsonify(response_data)
-#code = 1 查询成功
+    #code = 1 查询成功
     if response_data["code"] == 1:
         return jsonify({"code":1,"message":"success"})
 
@@ -136,7 +141,6 @@ def do_ediths():
     # code = 0编辑失败
     if response_data["code"] == 0:
         return jsonify(response_data)
-    return jsonify(response_data)
 
     # code = 1 编辑成功
     if response_data["code"] == 1:
@@ -159,11 +163,12 @@ def do_delete_hs():
     # code = 0删除失败
     if response_data["code"] == 0:
         return jsonify(response_data)
-    return jsonify(response_data)
 
     # code = 1 删除成功
     if response_data["code"] == 1:
         return jsonify({"code": 1, "message": "删除成功"})
+
+
 #根据点击量的提升更新房源类型
 @vi.route("/do_update_type",methods=['POST'])
 def do_update_type():
@@ -187,7 +192,6 @@ def do_update_type():
     #code = 0 更新失败
     if response_data["code"] == 0:
         return jsonify(response_data)
-    return jsonify(response_data)
 
 
 
