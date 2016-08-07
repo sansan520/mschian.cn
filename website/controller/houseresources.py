@@ -6,10 +6,32 @@ from website import tools
 
 from .import vi
 
-@vi.route("/house_sources")
+
+@vi.route("/house_default")
+# @tools.check_user_wrapper
+def house_default():
+    # 获取user_id,根据user_id获取当前用户对应的所有房源列表,以及默认第一个房源信息
+    current_user = tools.get_current_user()
+    if not current_user:
+        user_id = current_user['user_id']
+        response = requests.get(Conf.API_ADDRESS + "/api/v1.0/get_resource_by_user_id/" + user_id)
+        response_data = json.loads(response.content)
+        if response_data["code"] == 1:
+            house_list = response_data["message"]
+            namelist = []
+            for item in house_list:
+                namelist.append(item.hs_name)
+            #----
+            # return None
+    return render_template('house_default.html')
+
+
+
+
+@vi.route("/house_add")
 @tools.check_user_wrapper
-def house_sources():
-    return render_template("house_sources.html")
+def house_add():
+    return render_template("house_add.html")
 
 
 @vi.route("/do_hs_insert",methods=['POST'])
@@ -22,7 +44,7 @@ def do_hs_insert():
     if username and password:
         user_hash_account = tools.get_hash_account(username, password)
         current_user = current_app.session_redis.hget('user:%s' % user_hash_account, 'current_user')
-        print(type(current_user))
+        # print(type(current_user))
     # #判断用户是否登录:用户登录
     if current_user:
         # redis返回的类型为bytes的字符串,如下格式:
@@ -35,8 +57,8 @@ def do_hs_insert():
         # current_user = current_user.decode()
         # print(type(current_user))
         user_id = current_user['user_id']
-    # else:
-    #     return jsonify({"code": 0, "message": "您还未登陆,请先登陆"})
+    else:
+        return jsonify({"code": 0, "message": "您还未登陆,请先登陆"})
         # return redirect(url_for("/login"))
 
     hs_name = request.json.get("hs_name")
@@ -74,7 +96,6 @@ def do_hs_insert():
     # code = 1 添加成功
     if response_data["code"] == 1:
         return jsonify({'code': 1, 'message': '添加成功'})
-        # return jsonify({"code":1,"message":"添加成功"})
 
 #  加载用户添加的房源
 @vi.route("/do_loadhs")

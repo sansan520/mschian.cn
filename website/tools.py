@@ -54,3 +54,18 @@ def check_user_wrapper(func):
         return func(*args, **kwargs)
     # print(wrapper.__name__)
     return wrapper
+
+
+def get_current_user():
+    username = request.cookies.get("username")
+    password = request.cookies.get("password")
+    if username and password:
+        user_hash_account = get_hash_account(username, password)
+        current_user = current_app.session_redis.hget('user:%s' % user_hash_account, 'current_user')
+        if current_user:
+            current_user = eval(current_user)
+            # user_id = current_user['user_id']
+            return current_user
+        else:
+            return None
+    return None
