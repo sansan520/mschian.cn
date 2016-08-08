@@ -2,6 +2,7 @@
 import requests
 import hashlib
 from flask import render_template,jsonify, request, json,jsonify,g,current_app,redirect,url_for,make_response,session
+from website import tools
 from . import vi
 from website.model import HouseOwner,UserBase
 from website.config import Conf
@@ -25,12 +26,21 @@ def do_ho_register():
     api = Conf.API_ADDRESS
     # 接收JS POST 过来的参数,并进行验证
     #如果redis缓存中存在则从redis中取值
-    user_account = request.cookies.get('username')
-    resp = requests.get(url=api+"/api/v1.0/get_by_account/"+user_account)
-    resp_data = json.loads(resp.content.decode())
-    if resp_data['code'] ==1:
-        result = resp_data['message']
-        user_id = result[0]['user_id']
+    username = request.cookies.get('username')
+    password = request.cookies.get('password')
+    user_hash_account = tools.get_hash_account(username,password)
+    current_user = current_app.session_redis.hget("user%" % user_hash_account,"current_user")
+    if current_user:
+        current_user = eval(current_user)
+        user_id = current_user['user_id']
+    #如果缓存过期则从cookie中取值
+    else:
+        user_account = request.cookies.get('username')
+        resp = requests.get(url=api+"/api/v1.0/get_by_account/"+user_account)
+        resp_data = json.loads(resp.content.decode())
+        if resp_data['code'] ==1:
+            result = resp_data['message']
+            user_id = result[0]['user_id']
     ho_name = request.json.get("ho_name")
     if not ho_name:
         return jsonify({"code": 0, "message": "姓名不能为空"})

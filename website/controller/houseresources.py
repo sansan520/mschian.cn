@@ -63,7 +63,7 @@ def house_add():
 
 @vi.route("/do_hs_insert",methods=['POST'])
 #将JS Post过来的参数转化成Json格式
-#@tools.check_user_wrapper
+@tools.check_user_wrapper
 def do_hs_insert():
     api = Conf.API_ADDRESS
     username = request.cookies.get("username")
@@ -127,11 +127,15 @@ def do_hs_insert():
 #  加载用户添加的房源
 @vi.route("/do_loadhs")
 def do_loadhs():
-    hs_id = request.json.get("hs_id")
-    if not hs_id:
-        return jsonify({"code":0,"message":"房源不存在"})
+    username = request.cookies.get("username")
+    password = request.cookies.get("password")
+    user_hash_account = tools.get_hash_account(username,password)
+    current_user = current_app.session_redis.hget("user % " % user_hash_account,"current_user")
+    if current_user:
+        current_user = eval(current_user)
+        user_id = current_user['user_id']
     api = Conf.API_ADDRESS
-    response = requests.get(api+"/api/v1.0/get_by_hs_id/"+hs_id)
+    response = requests.get(api+"/api/v1.0/get_resource_by_user_id/"+user_id)
     response_data = json.loads(response.content)
     #code = 0查询失败
     if response_data["code"] == 0:
@@ -153,10 +157,8 @@ def do_ediths():
         current_user = current_app.session_redis.hget("user % " % user_hash_account, 'current_user')
     # 判断用户是否登录:用户登录
     if current_user:
-        current_user = current_user.decode()
+        current_user = eval(current_user)
         user_id = current_user['user_id']
-    else:
-        return redirect(url_for("/login"))
     hs_id = request.json.get("hs_id")
     if not hs_id:
         return jsonify({"code": 0, "message": "房源不存在"})
@@ -170,7 +172,7 @@ def do_ediths():
     hs_images = request.json.get("hs_images")
     hs_status = request.json.get("hs_status")
 
-    data = json.dumps({"hs_id": hs_id,
+    data = json.dumps({
                        "user_id":user_id,
                        "ty_id": ty_id,
                        "hs_intro": hs_intro,
@@ -182,7 +184,7 @@ def do_ediths():
                        "hs_hitvalume": hs_hitvalume,
                        "hs_status":hs_status
                        })
-    response = requests.post(api+"/api/v1.0/hs_edit/<int:hs_id>",
+    response = requests.post(api+"/api/v1.0/hs_edit/"+hs_id,
                             data=data,
                             headers={"content-type": "application/json"})
     response_data = json.loads(response.content)
@@ -203,9 +205,8 @@ def do_delete_hs():
     hs_id = request.json.get("hs_id")
     if not hs_id:
         return jsonify({"code": 0, "message": "房源不存在"})
-    data = json.dumps({"hs_id": hs_id})
-    response = requests.post(api+"/api/v1.0/hs_delete/<int:hs_id>",
-                            data=data,
+    #data = json.dumps({"hs_id": hs_id})
+    response = requests.post(api+"/api/v1.0/hs_delete/"+hs_id,
                             headers={"content-type": "application/json"})
     response_data = json.loads(response.content)
     # code = 0删除失败
