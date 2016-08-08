@@ -17,7 +17,6 @@
 						<ul class="nav nav-pills nav-stacked">
 						  <li role="presentation" class="msMag-block-name page-header">我的房源</li>
 						  <li role="presentation"><a href="#">添加新房源+</a></li>
-						  <li role="presentation" class="active"><a href="#">芹川古民居</a></li>
 						</ul>
 					</div>
 					<div class="col-sm-10 msMag-block-main">
@@ -31,25 +30,26 @@
 						</div>
 						<div class="msMag-blockM-nr">
 							<div class="msMag-nr-detail">
+                                <input hidden="hidden" id="hid_hs_id" value="">
 								<div class="row">
 									<div class="col-xs-2 text-right msMagND-name">房源名称：</div>
-									<div class="col-xs-10 text-left msMagND-txt">清河小镇</div>
+									<div class="col-xs-10 text-left msMagND-txt"></div>
 								</div>
 								<div class="row">
 									<div class="col-xs-2 text-right msMagND-name">状态：</div>
-									<div class="col-xs-10 text-left msMagND-txt">开启</div>
+									<div class="col-xs-10 text-left msMagND-txt"></div>
 								</div>
 								<div class="row">
 									<div class="col-xs-2 text-right msMagND-name">房源民宿地址：</div>
-									<div class="col-xs-10 text-left msMagND-txt">浙江省杭州市</div>
+									<div class="col-xs-10 text-left msMagND-txt"></div>
 								</div>
 								<div class="row">
 									<div class="col-xs-2 text-right msMagND-name">简介：</div>
-									<div class="col-xs-10 text-left msMagND-txt">浙江省杭州市</div>
+									<div class="col-xs-10 text-left msMagND-txt"></div>
 								</div>
 								<div class="row">
 									<div class="col-xs-2 text-right msMagND-name">民宿概览图：</div>
-									<div class="col-xs-10 text-left msMagND-txt"><img src= "http://img1.zzkcdn.com/rr177bea245c40fcf79732ce1b1fe4c1/2000x1500.jpg-roompic.jpg" /></div>
+									<div class="col-xs-10 text-left msMagND-txt"></div>
 								</div>
 							</div>
 						</div>
@@ -60,5 +60,96 @@
 	<!-- 主体结束 -->
 {% endblock %}
 {% block script %}
+<script>
 
+    var myArray = new Array();
+
+    function click_func(hs_id) {
+        if(hs_id>0){
+            for(i=0;i<myArray.length;i++){
+                item = myArray[i];
+                if(item.hs_id == hs_id){
+                    insertContainer(item);
+                    break;
+                }
+            }
+        }
+    }
+
+    function insertContainer(object) {
+        //alert(object.hs_images);
+        if(object != undefined){
+            $(".msMag-nr-detail").html('');
+        }
+        var content ='';
+        content+='<input hidden="hidden" id="hid_hs_id" value="'+object.hs_id+'">';
+        //房源名称
+        content += '<div class="row"><div class="col-xs-2 text-right msMagND-name">房源名称：</div><div class="col-xs-10 text-left msMagND-txt">'+object.hs_name+'</div></div>';
+        //状态
+        content+='<div class="row"><div class="col-xs-2 text-right msMagND-name">状态：</div>';
+        if(object.hs_status==1){
+            content+='<div class="col-xs-10 text-left msMagND-txt">开启</div></div>';
+        }else{
+            content+='<div class="col-xs-10 text-left msMagND-txt">关闭</div></div>';
+        }
+
+        //房源民宿地址
+        var address = '';
+        address+=object.hs_province+object.hs_city+object.hs_country+object.hs_address;
+        content+='<div class="row"><div class="col-xs-2 text-right msMagND-name">房源民宿地址：</div>';
+        content+='<div class="col-xs-10 text-left msMagND-txt">'+address+'</div></div>';
+        //简介
+        content+='<div class="row"><div class="col-xs-2 text-right msMagND-name">简介：</div>';
+        content+='<div class="col-xs-10 text-left msMagND-txt">'+object.hs_intro+'</div></div>';
+
+        //图片
+        var imglist = new Array();
+        imglist = object.hs_images.split('|');
+        content+='<div class="row"><div class="col-xs-2 text-right msMagND-name">民宿概览图：</div>';
+        content+='<div class="col-xs-10 text-left msMagND-txt">';
+        content+='<img src= "http://img1.zzkcdn.com/rr177bea245c40fcf79732ce1b1fe4c1/2000x1500.jpg-roompic.jpg" />';
+        for(i=0;i<imglist.length;i++){
+            content+='<img src= "'+imglist[i]+'" />';
+        }
+        content+='</div></div>';
+
+        $(".msMag-nr-detail").html(content);
+
+    }
+
+
+$(function () {
+
+
+    $.ajax({
+            url:"/get_resource_by_user_id",
+            type: 'post',
+            data: JSON.stringify({"user_id":"1"}),
+            contentType: 'application/json',
+            success: function(data){
+                if(data.code==1){
+                    var tmp='';
+                    myArray = data.message;
+                    if(myArray.length>0){
+                        for(i=0;i<myArray.length;i++){
+                            item = myArray[i];
+                            tmp+='<li role="presentation" ><a id="'+item.hs_id+'" href="javascript:click_func('+item.hs_id+')">'+item.hs_name+'</a></li>';
+                        }
+                        $(".nav-stacked").append(tmp);
+                    }
+                }
+            }
+    });
+
+    $(".btn-mag").click(function () {
+        var hid_hs_id = $("#hid_hs_id").val();
+        if(hid_hs_id > 0){
+            //alert(hid_hs_id);
+            location.href='/house_edit/'+hid_hs_id;
+        }
+
+        return false;
+    });
+});
+</script>
 {% endblock %}
