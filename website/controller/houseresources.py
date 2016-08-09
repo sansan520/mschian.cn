@@ -47,12 +47,12 @@ def get_resource_by_user_id():
 
 @vi.route("/house_edit/<int:hs_id>")
 def house_edit(hs_id):
-    # if hs_id > 0:
-    #     response = requests.get(Conf.API_ADDRESS + "/api/v1.0/get_houseresources_by_hs_id/" + str(hs_id))
-    #     response_data = json.loads(response.content)
-    #     if response_data["code"] == 1:
-    #         house_entity = response_data["message"]
-    #         return render_template('house_edit.html',entity=house_entity)
+    if hs_id > 0:
+        response = requests.get(Conf.API_ADDRESS + "/api/v1.0/get_houseresources_by_hs_id/" + str(hs_id))
+        response_data = json.loads(response.content)
+        if response_data["code"] == 1:
+            house_entity = response_data["message"]
+            return render_template('house_edit.html',entity=house_entity)
     return render_template('house_edit.html')
 
 @vi.route("/house_add")
@@ -147,7 +147,7 @@ def do_loadhs():
 
 #编辑房源
 @vi.route("/do_ediths",methods=['POST'])
-@tools.check_user_wrapper
+# @tools.check_user_wrapper
 def do_ediths():
     api = Conf.API_ADDRESS
     username = request.cookies.get("username")
@@ -184,7 +184,7 @@ def do_ediths():
                        "hs_hitvalume": hs_hitvalume,
                        "hs_status":hs_status
                        })
-    response = requests.post(api+"/api/v1.0/hs_edit/"+hs_id,
+    response = requests.put(api+"/api/v1.0/hs_edit/"+hs_id,
                             data=data,
                             headers={"content-type": "application/json"})
     response_data = json.loads(response.content)

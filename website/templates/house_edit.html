@@ -2,13 +2,11 @@
 {% block title %}添加房源_自由者_来去自由_中国名宿网{% endblock %}
 {% block head %}
     {{ super() }}
-    <link rel="stylesheet" href="static/css/jquery.fileupload.css">
-    <link rel="stylesheet" href="static/css/bootstrap.css">
-    <script type="text/javascript" src="static/js/jquery-1.12.1.min.js" charset="utf-8"></script>
-    <script src="static/js/geo.js" type="text/javascript" charset="utf-8"></script>
-    <script src="static/js/jquery.ui.widget.js"></script>
-    <script src="static/js/jquery.iframe-transport.js"></script>
-    <script src="static/js/jquery.fileupload.js"></script>
+    <link rel="stylesheet" href="/static/css/jquery.fileupload.css">
+    <script src="/static/js/geo.js" type="text/javascript" charset="utf-8"></script>
+    <script src="/static/js/jquery.ui.widget.js"></script>
+    <script src="/static/js/jquery.iframe-transport.js"></script>
+    <script src="/static/js/jquery.fileupload.js"></script>
 {% endblock %}
 {% block content %}
     <!-- 主体开始 -->
@@ -26,34 +24,48 @@
 							<div class="msMag-blockM-top-col clearfix">
 								<h2 class="pull-left">编辑房源信息</h2>
 								<div class="pull-right mT13">
-									<button type="button" class="btn btn-mag" id="btn_edit_source">编辑</button>
-									<button type="button" class="btn btn-mag" id="btn_cancel_source">取消</button>
+									<button type="button" class="btn btn-mag" id="btn_update_source">保存修改</button>
+									<button type="button" class="btn btn-mag" id="btn_cancel_source">取消退出</button>
 								</div>
 							</div>
 						</div>
 						<div class="msMag-blockM-nr">
 							<div class="msMag-nr-detail">
-                                {% if entity!= None %}
+                                {% if entity %}
 								<div class="row">
 									<div class="col-xs-2 text-right msMagND-name">房源名称：</div>
 									<div class="col-xs-10 text-left msMagND-txt">
-										<input type="text" class="msMagND-txt-ipt" id="house_name" placeholder="5~6个汉字以内" value=""/></div>
+										<input type="text" class="msMagND-txt-ipt" id="house_name" placeholder="5~6个汉字以内" value="{{ entity.hs_name }}"/>
+                                        <input type="hidden" id="hid_imgList" value="{{ entity.hs_images }}">
+                                        <input type="hidden" id="hid_hsId" value="{{ entity.hs_id }}">
+                                    </div>
 								</div>
 								<div class="row">
 									<div class="col-xs-2 text-right msMagND-name">状态：</div>
 									<div class="col-xs-10 text-left msMagND-txt">
-										<label class="radio-inline">
-										  <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="1"> 开启
-										</label>
-										<label class="radio-inline">
-										  <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="0"> 休假(暂停营业)
-										</label>
+                                        {% if entity.hs_status==1 %}
+                                            <label class="radio-inline">
+                                              <input type="radio" name="inlineRadioOptions" id="inlineRadio1" checked="checked" value="1"> 开启
+                                            </label>
+                                            <label class="radio-inline">
+                                              <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="0"> 休假(暂停营业)
+                                            </label>
+                                        {% elif entity.hs_status==0 %}
+                                            <label class="radio-inline">
+                                              <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="1"> 开启
+                                            </label>
+                                            <label class="radio-inline">
+                                              <input type="radio" name="inlineRadioOptions" id="inlineRadio2" checked="checked" value="0"> 休假(暂停营业)
+                                            </label>
+                                        {% endif %}
+
 									</div>
 								</div>
 								<div class="row">
 									<div class="col-xs-2 text-right msMagND-name">房源民宿地址：</div>
 									<div class="col-xs-2">
 										<div class="form-group">
+                                            <input type="hidden" id="hid_province" value="{{ entity.hs_province }}">
 											<select class="form-control" name="province" id="s1">
 												<option></option>
 											</select>
@@ -61,6 +73,7 @@
 									</div>
 									<div class="col-xs-2">
 										<div class="form-group">
+                                            <input type="hidden" id="hid_city" value="{{ entity.hs_city }}">
 											<select class="form-control" name="city" id="s2">
 											  <option></option>
 											</select>
@@ -68,18 +81,19 @@
 									</div>
 									<div class="col-xs-2">
 										<div class="form-group">
+                                            <input type="hidden" id="hid_country" value="{{ entity.hs_country }}">
 											<select class="form-control" name="town" id="s3">
 											  <option></option>
 											</select>
 										</div>
 									</div>
 									<div class="col-xs-4 text-left msMagND-txt">
-										<input type="text" class="msMagND-txt-ipt h34" id="house_address"></div>
+										<input type="text" class="msMagND-txt-ipt h34" id="house_address" value="{{ entity.hs_address }}"></div>
 								</div>
 								<div class="row">
 									<div class="col-xs-2 text-right msMagND-name">简介：</div>
 									<div class="col-xs-10 text-left msMagND-txt">
-                                        <input type="text" class="msMagND-txt-ipt" id="house_intro"/></div>
+                                        <input type="text" class="msMagND-txt-ipt" id="house_intro" value="{{ entity.hs_intro  }}"/></div>
 								</div>
 								<div class="row">
 									<div class="col-xs-2 text-right msMagND-name">民宿概览图：</div>
@@ -101,8 +115,9 @@
                                             </div>
                                             <!-- The container for the uploaded files -->
                                             <div id="filesContainer" class="files"></div>
-                                            <p>最多上传3张，总大小需小于8M</p>
+
                                             </div>
+                                            <div style="text-align: center;margin: 10px auto;">最多上传3张，总大小需小于8M</div>
 										</div>
 									</div>
 								</div>
@@ -116,5 +131,103 @@
 	<!-- 主体结束 -->
 {% endblock %}
 {% block script %}
+<script>
+$(function () {
 
+    // 初始化下拉列表
+    setup();
+    var provice = $("#hid_province").val();
+    if(provice.length>0){
+        preselect(provice);
+    }else{
+        preselect('浙江省');
+    }
+    //
+    $("select[name='city']").val($("#hid_city").val());
+    var country = $("#hid_country").val();
+    var str = '<option value="'+country+'">'+country+'</option>';
+    $("select[name='town']").html(str);
+
+    // 图片列表
+    var imgList=new Array();
+    var imgListStr = $("#hid_imgList").val();
+    if(imgListStr.length>0){
+        imgList = imgListStr.split('|');
+        var tmp ='';
+        for(i=0;i<imgList.length;i++){
+            tmp+='<div style="float:left; margin-left:5px;" >';
+            tmp+='<img src="'+imgList[i]+'" style="height: 160px; width: 200px;"/>';
+            tmp+='</div>';
+        }
+        $("#filesContainer").html(tmp);
+    }
+
+    // 保存修改事件
+    $("#btn_update_source").click(function () {
+        var hid_hsId = $("#hid_hsId").val();
+        var h_name = $("#house_name").val();
+            var h_status=$("input[name='inlineRadioOptions']:checked").val();
+            var h_province = $("#s1").val();
+            var h_city = $("#s2").val();
+            var h_country = $("#s3").val();
+            var h_address = $("#house_address").val();
+            var h_intro = $("#house_intro").val();
+            //var tmp = $("#filesContainer").find('img').attr('src');
+            var h_images ="";
+
+            $("#filesContainer >div").each(function(){
+                h_images += $(this).find('img').attr('src')+"|";
+            });
+
+            if(!h_name){
+                layer.msg("房源名称不能为空");
+                return false;
+            }
+            if(!h_status){
+                layer.msg("请选择房源状态");
+                return false;
+            }
+            if(!h_address){
+                layer.msg("请填写房源地址");
+                $("#house_address").focus();
+                return false;
+            }
+            if(h_images.length>1){
+                h_images = h_images.substring(0,h_images.lastIndexOf('|'));
+            }
+
+        $.ajax({
+                url: "/do_ediths",
+                type: 'POST',
+                data: JSON.stringify({
+                    "hs_id":hid_hsId,
+                    "hs_name": h_name,
+                    "hs_intro": h_intro,
+                    "hs_province": h_province,
+                    "hs_city":h_city,
+                    "hs_country":h_country,
+                    "hs_address" :h_address,
+                    "hs_images" :h_images,
+                    "hs_status":h_status
+                }),
+                contentType: "application/json",
+                success:function (data) {
+                    if(data.code == 0){
+                        layer.msg("修改失败");
+                        return false;
+                    }else if(data.code == 1){
+                        layer.msg("修改成功");
+                        location.href="/house_default";
+                    }
+                }
+            });
+
+    });
+
+    // 取消退出按钮事件
+    $("#btn_cancel_source").click(function () {
+        location.href="/house_default";
+    });
+});
+</script>
 {% endblock %}
