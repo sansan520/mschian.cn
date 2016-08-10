@@ -9,7 +9,18 @@ api = Conf.API_ADDRESS
 
 @vi.route("/room_default/<int:hs_id>")
 def room_default(hs_id):
-    return render_template("/room_default.html")
+    # 获取房源信息
+    response = requests.get(api + "/api/v1.0/get_houseresources_by_hs_id/" + str(hs_id))
+    response_data = json.loads(response.content)
+    if response_data["code"] == 1:
+        entity = response_data["message"]
+    # 获取该房源下的所有客房列表
+    response_room = requests.get(api + "/api/v1.0/get_guestroom_by_hsId/" + str(hs_id))
+    response_room_data = json.loads(response_room.content)
+    if response_room_data["code"] == 1:
+        roomlist = response_room_data["message"]
+    return render_template("/room_default.html",entity = entity,roomlist=roomlist)
+
 
 @vi.route('/room_add/<int:hs_id>')   #  hs_id 房源的主键ID
 def room_add(hs_id):

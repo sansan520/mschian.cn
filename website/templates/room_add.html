@@ -2,10 +2,10 @@
 {% block title %}添加房源_自由者_来去自由_中国名宿网{% endblock %}
 {% block head %}
     {{ super() }}
-    <link rel="stylesheet" href="static/css/jquery.fileupload.css">
-    <script src="static/js/jquery.ui.widget.js"></script>
-    <script src="static/js/jquery.iframe-transport.js"></script>
-    <script src="static/js/jquery.fileupload.js"></script>
+    <link rel="stylesheet" href="/static/css/jquery.fileupload.css">
+    <script src="/static/js/jquery.ui.widget.js"></script>
+    <script src="/static/js/jquery.iframe-transport.js"></script>
+    <script src="/static/js/jquery.fileupload.js"></script>
 {% endblock %}
 {% block content %}
     <!-- 主体开始 -->
@@ -32,7 +32,7 @@
                                 <div class="row">
 									<div class="col-xs-2 text-right msMagND-name">房间价格：</div>
 									<div class="col-xs-10 text-left msMagND-txt">
-										<input type="text" class="msMagND-txt-ipt" id="gr_price" placeholder="人民币" />(单位:元)
+										<input type="text" class="msMagND-txt-ipt" id="gr_price" placeholder="人民币 单位:元" />
                                     </div>
 								</div>
 								<div class="row">
@@ -60,8 +60,8 @@
                                             </div>
                                             <!-- The container for the uploaded files -->
                                             <div id="filesContainer" class="files"></div>
-                                            <p>单张最大1M,最多上传8张，总大小需小于等于8M</p>
                                             </div>
+                                            <div style="text-align: center;margin: 10px auto;">单张最大1M,最多上传8张，总大小需小于等于8M</div>
 										</div>
 									</div>
 								</div>

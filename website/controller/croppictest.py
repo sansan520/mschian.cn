@@ -15,12 +15,12 @@ from website.tools import json_mkdir
 app = Flask(__name__)
 
 #绝对路径获取
-HS_LOCATION = 'static/upload/hs/'   #房源图片路径
+HS_LOCATION = '/static/upload/hs/'   #房源图片路径
 ABSPATH = os.path.abspath(sys.argv[0])
 ABSPATH = os.path.dirname(ABSPATH)+"/"
 
-UPLOAD_FOLDER = ABSPATH + 'static/upload/bhImg/'  # 裁剪前的图片 big_head_img  服务器定时删除
-CROPPIC_FOLDER = ABSPATH + 'static/upload/shImg/'  # 裁剪后的小图片 small head img
+UPLOAD_FOLDER = ABSPATH + '/static/upload/bhImg/'  # 裁剪前的图片 big_head_img  服务器定时删除
+CROPPIC_FOLDER = ABSPATH + '/static/upload/shImg/'  # 裁剪后的小图片 small head img
 ALLOWED_EXTENSIONS = set(['jpg', 'png', 'JPEG'])
 
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
@@ -70,7 +70,7 @@ def upload_pic():
                 img = Image.open(filepath)
                 #img.thumbnail(800*600)
                 width, height = img.size
-                return jsonify({"status": 'success', "url": 'static/upload/bhImg/' + filename, "width": width,
+                return jsonify({"status": 'success', "url": '/static/upload/bhImg/' + filename, "width": width,
                                 "height": height})
             except IOError:
                 return jsonify({"status": 'error', "message": '图片存取错误!'})
@@ -126,7 +126,7 @@ def crop_pic():
         try:
             newImg.save(filepath, 'JPEG')
             time.sleep(0.5)
-            return jsonify({"status": 'success', "url": 'static/upload/shImg/' + filename})
+            return jsonify({"status": 'success', "url": '/static/upload/shImg/' + filename})
         except IOError:
             return jsonify({"status": 'error', "message": '图片裁剪错误!'})
     except IOError:
