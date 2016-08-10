@@ -18,8 +18,9 @@
 					<div class="col-sm-10 msMag-block-main">
 						<div class="msMag-blockM-top">
 							<div class="msMag-blockM-top-col clearfix">
-								<h2 class="pull-left">当前房源:xxxx</h2>
+								<h2 class="pull-left">当前房源:{{ house_name }}</h2>
 								<div class="pull-right mT13">
+                                    <input type="hidden" id="hid_house_id" value="{{ house_id }}">
 									<button type="button" class="btn btn-mag" id="btn_save_room">保存客房</button>
 									<button type="button" class="btn btn-mag" id="btn_cancel_room">取消操作</button>
 								</div>
@@ -63,7 +64,12 @@
                                                 </div>
                                             </div>
 										</div>
-                                        <div id="filesContainer" class="files"></div>
+                                        <div id="filesContainer" class="files">
+                                            <div style="float:left; margin-left:5px;margin-bottom: 5px;position:relative;" >
+                                                <img src="/static/upload/hs/20160806150801882901.jpg" width="200" height="160"/>
+                                                <div onClick="delcfm(this)" style="position: absolute;top: 0;right: 0"><img  src="/static/img/close.png"></div>
+                                            </div>
+                                        </div>
 									</div>
 								</div>
 							</div>
@@ -78,17 +84,54 @@
     <script>
 
     function delcfm(obj) {
-        $(obj).parent().remove();
+        // 找到图片url ,调用视图函数,删除图片
+        var imgUrl = $(obj).prev().attr('src');  // ok
+        //alert(imgUrl);
+        postDelImgs(imgUrl,obj);
+
+        //$(obj).parent().remove();
     }
+    
+    function postDelImgs(imgUrls,obj) {
+        $.ajax({
+                url: "/upload_delete_image",   // croppictest.py
+                type: 'POST',
+                data: JSON.stringify({
+                    "del_image":imgUrls
+                }),
+                contentType: "application/json",
+                success:function (data) {
+                    if(data.code == 0){
+                        layer.msg("程序错误");
+                        return false;
+                    }else if(data.code == 1){
+                        if(obj){
+                            $(obj).parent().remove();
+                        }else{
+                            $("#gr_name").val('');
+                            $("#gr_price").val('');
+                            $("#gr_desc").val('');
+                            $("#filesContainer").html('');
+                        }
+                    }
+                }
+            });
+    }
+
+
     // jquery 页面加载完成后执行
     $(function () {
-
+        // 取消当前操作按钮事件
         $("#btn_cancel_room").click(function () {
-            // $(".msMag-block-main").hide();
-            $("#gr_name").val('');
-            $("#gr_price").val('');
-            $("#gr_desc").val('');
-            $("#filesContainer").html('');
+            var images ="";
+            $("#filesContainer >div").each(function(){
+                images += $(this).find('img').attr('src')+"|";
+            });
+            if(images.length>1){
+                images = gr_images.substring(0,gr_images.lastIndexOf('|'));
+            }
+            postDelImgs(images,null);
+
         });
 
 
@@ -140,9 +183,10 @@
         }).prop('disabled', !$.support.fileInput).parent().addClass($.support.fileInput ? undefined : 'disabled');
         
         
-        // 保存房源事件
+        // 保存客房按钮事件
         $("#btn_save_room").click(function () {
-             //var h_images ="static/upload/hs/20160806150801882901.jpg|static/upload/hs/20160806150801882902.jpg|static/upload/hs/20160806150801882903.jpg|";
+             //var h_images ="/static/upload/hs/20160806150801882901.jpg|/static/upload/hs/20160806150801882902.jpg|/static/upload/hs/20160806150801882903.jpg|";
+            var hs_id = $("#hid_house_id").val();
             var gr_name = $("#gr_name").val();
             var gr_price = $("#gr_price").val();
             var gr_desc = $("#gr_desc").val();
@@ -156,16 +200,24 @@
                 layer.msg("客房名称不能为空");
                 return false;
             }
-
+            if(!gr_price){
+                layer.msg("请填写客房单价");
+                return false;
+            }
             if(gr_images.length>1){
                 gr_images = gr_images.substring(0,gr_images.lastIndexOf('|'));
+            }
+
+            if(!hs_id){
+                layer.msg("当前操作出错,请联系管理员");
+                return false;
             }
 
             $.ajax({
                 url: "/do_insert_guestroom",
                 type: 'POST',
                 data: JSON.stringify({
-                    "hs_id":1,
+                    "hs_id":hs_id,
                     "gr_name": gr_name,
                     "gr_price":gr_price,
                     "gr_desc": gr_desc,

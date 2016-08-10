@@ -24,8 +24,12 @@ def room_default(hs_id):
 
 @vi.route('/room_add/<int:hs_id>')   #  hs_id 房源的主键ID
 def room_add(hs_id):
-
-    return render_template("/room_add.html")
+    # 获取房源信息
+    response = requests.get(api + "/api/v1.0/get_houseresources_by_hs_id/" + str(hs_id))
+    response_data = json.loads(response.content)
+    if response_data["code"] == 1:
+        entity = response_data["message"]
+    return render_template("/room_add.html",house_name = entity['hs_name'],house_id = entity['hs_id'])
 
 #添加客户
 @vi.route("/do_insert_guestroom",methods=['POST'])

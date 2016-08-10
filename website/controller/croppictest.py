@@ -166,5 +166,14 @@ def random_str(randomlength=8):
         str += chars[random.randint(0, length)]
     return str
 
+@vi.route('/upload_delete_image', methods=['POST'])
+def upload_delete_image():
+    del_image = request.json.get("del_image")
+    data = json.dumps({"image": del_image})
+    response = requests.post(url=api + "/api/v1.0/save_delete_image",data=data, headers={"content-type": "application/json"})
+    response_data = json.loads(response.content)
+
+    return jsonify(response_data)
+
 if __name__ == '__main__':
     app.run(debug=True)
