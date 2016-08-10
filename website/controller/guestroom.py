@@ -33,6 +33,7 @@ def room_add(hs_id):
 
 #添加客户
 @vi.route("/do_insert_guestroom",methods=['POST'])
+@tools.check_user_wrapper
 def do_insert_guestroom():
 
     username = request.cookies.get('username')
@@ -42,7 +43,7 @@ def do_insert_guestroom():
         current_user = current_app.session_redis.hget('user%' % user_hash_account,'current_user')
         #判断用户是否登录，用户登录，从缓存中得到房源id
         if current_user:
-            current_user = current_user.decode()
+            current_user = eval(current_user)
             hs_id = current_user['username']
         else:
             return jsonify({"code":0,"message":"您还未登录,请先登录"})
