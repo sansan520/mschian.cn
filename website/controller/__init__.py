@@ -11,6 +11,7 @@ from . import res_more
 from . import croppictest
 from . import houseresources
 from . import checkUser
+from . import guestroom
 
 # from . import test
 

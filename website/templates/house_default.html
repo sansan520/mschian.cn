@@ -16,15 +16,16 @@
 					<div class="col-sm-2 msMag-block-aside">
 						<ul class="nav nav-pills nav-stacked">
 						  <li role="presentation" class="msMag-block-name page-header">我的房源</li>
-						  <li role="presentation"><a href="#">添加新房源+</a></li>
+						  <li role="presentation"><a href="#">添加房源+</a></li>
 						</ul>
 					</div>
 					<div class="col-sm-10 msMag-block-main">
 						<div class="msMag-blockM-top">
 							<div class="msMag-blockM-top-col clearfix">
-								<h2 class="pull-left">民宿信息</h2>
+								<h2 class="pull-left">房源信息</h2>
 								<div class="pull-right mT13">
-									<button type="button" class="btn btn-mag">编辑</button>
+									<button type="button" class="btn btn-mag" id="btn_edit_house">编辑房源</button>
+                                    <button type="button" class="btn btn-mag" id="btn_manage_room">管理客房</button>
 								</div>
 							</div>
 						</div>
@@ -141,13 +142,22 @@ $(function () {
             }
     });
 
-    $(".btn-mag").click(function () {
+    // 编辑房源
+    $("#btn_edit_house").click(function () {
         var hid_hs_id = $("#hid_hs_id").val();
         if(hid_hs_id > 0){
             //alert(hid_hs_id);
             location.href='/house_edit/'+hid_hs_id;
         }
+        return false;
+    });
 
+    // 管理该房源下的客房
+    $("#btn_manage_room").click(function () {
+        var hid_hs_id = $("#hid_hs_id").val();
+        if(hid_hs_id > 0){
+            location.href='/room_default/'+hid_hs_id;
+        }
         return false;
     });
 });

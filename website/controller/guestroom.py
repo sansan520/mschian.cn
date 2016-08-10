@@ -6,13 +6,19 @@ from . import vi
 
 
 api = Conf.API_ADDRESS
-@vi.route('insert_guestroom')
-def insert_guestroom():
-    return render_template("/guestroom.html")
+
+@vi.route("/room_default/<int:hs_id>")
+def room_default(hs_id):
+    return render_template("/room_default.html")
+
+@vi.route('/room_add/<int:hs_id>')   #  hs_id 房源的主键ID
+def room_add(hs_id):
+
+    return render_template("/room_add.html")
 
 #添加客户
 @vi.route("/do_insert_guestroom",methods=['POST'])
-def insert_guestroom():
+def do_insert_guestroom():
 
     username = request.cookies.get('username')
     password = request.cookies.get('password')
@@ -45,7 +51,7 @@ def insert_guestroom():
 
 #编辑客户
 @vi.route("/do_update_guestroom",methods=['POST'])
-def update_guestroom():
+def do_update_guestroom():
     username = requests.cookies.get("username")
     password = requests.cookies.get("password")
     user_hash_hashlib = tools.get_hash_account(username,password)
@@ -78,7 +84,7 @@ def update_guestroom():
 
 #删除客户
 @vi.route("/do_delete_guestroom",methods=['POST'])
-def delete_guestroom():
+def do_delete_guestroom():
     username = requests.cookies.get("username")
     password = requests.cookies.get("password")
     user_hash_hashlib = tools.get_hash_account(username, password)
@@ -100,7 +106,7 @@ def delete_guestroom():
     return jsonify(response_data)
 
 @vi.route("/do_search_guestroom")
-def search_guestroom_all():
+def do_search_guestroom():
     response = requests.get(url=api+"/api/v1.0/get_all_guest_room",headers={"contenttype":"application/json"})
     response_data = json.loads(response.content)
     if response_data["code"] == 1:

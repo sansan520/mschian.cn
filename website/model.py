@@ -45,7 +45,7 @@ class HouseOwner(db.Model):
 
     ho_id = Column('ho_id', Integer, primary_key=True, autoincrement=True)
     user_id = Column('user_id', Integer, ForeignKey('userbase.user_id'))   # 外键
-    ho_name = Column('user_name', String(45), index=True, nullable=False)   # 真实姓名
+    ho_name = Column('ho_name', String(45), index=True, nullable=False)   # 真实姓名
     ho_tel = Column('ho_tel', String(45))    # 家庭电话
     ho_email = Column('ho_email', String(45))   # 邮箱
     ho_nicard = Column('ho_nicard', String(100), nullable=False)    # 身份证件照
@@ -56,10 +56,11 @@ class HouseOwner(db.Model):
     def to_json(self):
         return {
             'ho_id': self.ho_id,
+            'user_id':self.user_id,
             'ho_name': self.ho_name,
             'ho_tel': self.ho_tel,
             'ho_email': self.ho_email,
-            'ho_images': self.ho_images
+            'ho_nicard': self.ho_nicard
         }
 
 # 游客扩展表(以后可能需要预约登记之类的),就可以加扩展表,登记更多用户资料
@@ -96,7 +97,7 @@ class HouseResources(db.Model):
 
     hs_id = Column('hs_id', Integer, primary_key=True)
     ty_id = Column('ty_id', Integer, ForeignKey('housetype.ty_id'))
-    ho_id = Column('ho_id', Integer, ForeignKey('houseowner.ho_id', ondelete='CASCADE'))
+    user_id = Column('user_id', Integer, ForeignKey('userbase.user_id', ondelete='CASCADE'))
     hs_name = Column('hs_name', String(20))   # 房源名称
     hs_intro = Column('hs_intro', String(500))
     hs_province = Column('hs_province', String(20))
@@ -113,7 +114,7 @@ class HouseResources(db.Model):
         return {
             'hs_id': self.hs_id,
             'ty_id': self.ty_id,
-            'ho_id': self.ho_id,
+            'user_id': self.user_id,
             'hs_name':self.hs_name,
             'hs_province': self.hs_province,
             'hs_city': self.hs_city,
@@ -121,7 +122,8 @@ class HouseResources(db.Model):
             'hs_address': self.hs_address,
             'hs_hitvalume':self.hs_hitvalume,
             'hs_images': self.hs_images,
-            'hs_status':self.hs_status
+            'hs_status':self.hs_status,
+            'hs_intro':self.hs_intro
         }
 
 # 客房类型表
@@ -138,11 +140,13 @@ class GuestRoom(db.Model):
 
     __tablename__ = "guestroom"
 
-    gr_id = Column('gt_id', Integer, primary_key=True)
+    gr_id = Column('gr_id', Integer, primary_key=True)
     hs_id = Column('hs_id', Integer, ForeignKey('houseresources.hs_id', ondelete='CASCADE'))
+
     gr_name = Column('gr_name', String(100))    # 客房名称
-    gr_price = Column('gt_price', DECIMAL(10, 2))
-    gr_describe = Column('gt_describe', String(500))
+    gr_price = Column('gr_price', DECIMAL(10, 2))
+    gr_desc = Column('gr_desc', String(500))   # 简单描述:如几张床,是否有独立卫浴等;
+    gr_images = Column('gr_images', String(500))
 
     gr_createtime = Column('gr_createtime',DateTime,default=datetime.datetime.now())
     gr_modifytime = Column('gr_modifytiem',DateTime,default=datetime.datetime.now())
@@ -153,8 +157,10 @@ class GuestRoom(db.Model):
             'hs_id': self.hs_id,
             'gr_name':self.gr_name,
             'gr_price': self.gr_price,
-            'gr_describe': self.gr_describe
+            'gr_describe': self.gr_describe,
+            'gr_images':self.gr_images
         }
+
 
 # if __name__ == '__main__':
 #     db.create_all()
