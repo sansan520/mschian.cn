@@ -6,6 +6,9 @@
     <script src="/static/js/jquery.ui.widget.js"></script>
     <script src="/static/js/jquery.iframe-transport.js"></script>
     <script src="/static/js/jquery.fileupload.js"></script>
+
+    <style type="text/css">
+    </style>
 {% endblock %}
 {% block content %}
     <!-- 主体开始 -->
@@ -45,24 +48,22 @@
 									<div class="col-xs-10 text-left msMagND-txt">
 										<div class="form-group">
                                             <div class="container">
-                                            <!-- The fileinput-button span is used to style the file input field as button -->
-                                            <span class="btn btn-success fileinput-button">
-                                                <i class="glyphicon glyphicon-plus"></i>
-                                                <span>添加图片...</span>
-                                                <!-- The file input field used as target for the file upload widget -->
-                                                <input id="fileupload" type="file" name="files[]" multiple>
-                                            </span>
-                                            <br>
-                                            <br>
-                                            <!-- The global progress bar -->
-                                            <div id="progress" class="progress" style="width: 50%">
-                                                <div class="progress-bar progress-bar-success"></div>
+                                                <!-- The fileinput-button span is used to style the file input field as button -->
+                                                <span class="btn btn-success fileinput-button">
+                                                    <i class="glyphicon glyphicon-plus"></i>
+                                                    <span>添加图片...</span>
+                                                    <!-- The file input field used as target for the file upload widget -->
+                                                    <input id="fileupload" type="file" name="files[]" multiple>
+                                                </span>
+                                                <br>
+                                                <br>
+                                                <!-- The global progress bar -->
+                                                <div id="progress" class="progress" style="width: 50%">
+                                                    <div class="progress-bar progress-bar-success"></div>
+                                                </div>
                                             </div>
-                                            <!-- The container for the uploaded files -->
-                                            <div id="filesContainer" class="files"></div>
-                                            </div>
-                                            <div style="text-align: center;margin: 10px auto;">单张最大1M,最多上传8张，总大小需小于等于8M</div>
 										</div>
+                                        <div id="filesContainer" class="files"></div>
 									</div>
 								</div>
 							</div>
@@ -75,6 +76,10 @@
 {% endblock %}
 {% block script %}
     <script>
+
+    function delcfm(obj) {
+        $(obj).parent().remove();
+    }
     // jquery 页面加载完成后执行
     $(function () {
 
@@ -83,6 +88,7 @@
             $("#gr_name").val('');
             $("#gr_price").val('');
             $("#gr_desc").val('');
+            $("#filesContainer").html('');
         });
 
 
@@ -117,8 +123,9 @@
                 done: function (e,data) {
                     $.each(data.result.files, function (index, file) {
                         var filename = file.name;
-                        var tmpdiv = $('<div style="float:left; margin-left:5px;" ></div>').appendTo('#filesContainer');
+                        var tmpdiv = $('<div style="float:left; margin-left:5px;margin-bottom: 5px;position:relative;" ></div>').appendTo('#filesContainer');
                         $('<img />').attr('src', filename).attr('width','200').attr('height','160').appendTo(tmpdiv);
+                        $('<div onClick="delcfm(this)" style="position: absolute;top: 0;right: 0"><img  src="/static/img/close.png"></div>').appendTo(tmpdiv);
                         //$('<p/>').text(filename).appendTo(tmpdiv);
                     });
                 },
