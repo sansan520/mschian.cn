@@ -8,6 +8,7 @@ import time,datetime
 from PIL import Image,ImageDraw,ImageFont, ImageEnhance
 from . import vi
 from website.tools import json_mkdir,get_hash_file_name
+from website.config import Conf
 
 
 # http://www.cnblogs.com/kissdodog/archive/2012/12/21/2827867.html
@@ -176,7 +177,7 @@ def random_str(randomlength=8):
 def upload_delete_image():
     del_image = request.json.get("del_image")
     data = json.dumps({"image": del_image})
-    response = requests.post(url=api + "/api/v1.0/save_delete_image",data=data, headers={"content-type": "application/json"})
+    response = request.post(url=Conf.API_ADDRESS + "/api/v1.0/save_delete_image",data=data, headers={"content-type": "application/json"})
     response_data = json.loads(response.content)
 
     return jsonify(response_data)
