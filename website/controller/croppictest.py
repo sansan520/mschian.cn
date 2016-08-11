@@ -7,7 +7,8 @@ import sys
 import time,datetime
 from PIL import Image,ImageDraw,ImageFont, ImageEnhance
 from . import vi
-from website.tools import json_mkdir
+from website.tools import json_mkdir,get_hash_file_name
+
 
 # http://www.cnblogs.com/kissdodog/archive/2012/12/21/2827867.html
 # os.path.getsize(filePath) 获取文件大小bytes单位 /1024/1024 = > M
@@ -34,13 +35,15 @@ def upload_pic_new():
         response = make_response()
         for file in uploaded_files:
             if file and allowed_file(file.filename):
-                file_prename = datetime.datetime.now().strftime("%Y%m%d%H%M%S%f")
-                filename = file_prename + "." + file.filename.rsplit('.', 1)[1]
+                ext_name = file.filename.rsplist('.',1)[1]
+                img = resizeImg(file)
+                prename = get_hash_file_name(datetime.datetime.now().strftime("%Y%m%d%H%M%S%f"))
+                filename = prename + "." + ext_name
                 filepath = os.path.join(app.config['HS_FOLDER'], filename)
                 minetype = file.content_type
                 r = json_mkdir(app.config['HS_FOLDER'])
                 try:
-                    file.save(filepath)
+                    img.save(filepath,qua=85)
                     response.data = json.dumps({"files": [{"name": HS_LOCATION + filename, "minetype": minetype}]})
                     return response
                 except IOError:
@@ -60,8 +63,11 @@ def upload_pic():
     if request.method == 'POST':
         file = request.files['img']
         if file and allowed_file(file.filename):
-            file_prename = datetime.datetime.now().strftime("%Y%m%d%H%M%S%f")
-            filename = file_prename + "_" + random_str(8) + "." + file.filename.rsplit('.', 1)[1]
+            ext_name = file.filename.rsplist('.', 1)[1]
+            # file_prename = datetime.datetime.now().strftime("%Y%m%d%H%M%S%f")
+            # filename = file_prename + "_" + random_str(8) + "." + file.filename.rsplit('.', 1)[1]
+            prename = get_hash_file_name(datetime.datetime.now().strftime("%Y%m%d%H%M%S%f"))
+            filename = prename + "." + ext_name
             upload_folder = app.config['UPLOAD_FOLDER']
             r = json_mkdir(upload_folder)
             filepath = os.path.join(upload_folder, filename)
@@ -70,7 +76,7 @@ def upload_pic():
                 img = Image.open(filepath)
                 #img.thumbnail(800*600)
                 width, height = img.size
-                return jsonify({"status": 'success', "url": '/static/upload/bhImg/' + filename, "width": width,
+                return jsonify({"status": 'success', "url": UPLOAD_FOLDER + filename, "width": width,
                                 "height": height})
             except IOError:
                 return jsonify({"status": 'error', "message": '图片存取错误!'})
@@ -174,6 +180,61 @@ def upload_delete_image():
     response_data = json.loads(response.content)
 
     return jsonify(response_data)
+
+def resizeImg(imgUrl):
+    im = Image.open(imgUrl)
+    dst_w = 800
+    dst_h = 600
+
+    ori_w,ori_h = im.size
+
+    if(ori_h > ori_w and ori_w >= 800):
+        im = cut_pic(im,dst_w,dst_h)
+        ori_w, ori_h = im.size
+
+    widthRatio = heightRatio =None
+    ratio = 1
+    if (ori_w and ori_w > dst_w) or (ori_h and ori_h > dst_h):
+        if dst_w and ori_w > dst_w:
+            widthRatio = float(dst_w) / ori_w
+        if dst_h and ori_h > dst_h:
+            heightRatio = float(dst_h) / ori_h
+        if widthRatio and heightRatio:
+            if widthRatio < heightRatio:
+                ratio = widthRatio
+            else:
+                ratio = heightRatio
+        if widthRatio and not heightRatio:
+            ratio = widthRatio
+        if heightRatio and not widthRatio:
+            ratio = heightRatio
+        newWidth = int(ori_w * ratio)
+        newHeight = int(ori_h * ratio)
+        im.resize((newWidth, newHeight), Image.ANTIALIAS).save(app.config['UPLOAD_FOLDER']+'test1.jpg', qua=85)
+        return "hello"
+    else:
+        newWidth = ori_w
+        newHeight = ori_h
+
+        im.resize((newWidth,newHeight),Image.ANTIALIAS).save(app.config['UPLOAD_FOLDER']+'test2.jpg',qua=85)
+        return "hello"
+
+
+
+def cut_pic(Image,dst_w,dst_h):
+    # dst_w = 800,dst_h = 600
+    try:
+        ori_w, ori_h = Image.size
+        if(ori_h>ori_w):
+            y = (ori_h-dst_h)/2
+            box = (0, int(y), dst_w, dst_h+y)
+        newImg = Image.crop(box)
+        try:
+            return newImg
+        except IOError:
+            return None
+    except IOError:None
+
 
 if __name__ == '__main__':
     app.run(debug=True)

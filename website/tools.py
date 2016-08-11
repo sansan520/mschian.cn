@@ -4,6 +4,7 @@ import hashlib
 from functools import wraps
 from flask import request,current_app,redirect,url_for
 
+# 用户名和密码md5
 def get_hash_account(username,password):
     if username and password:
         m = hashlib.md5()
@@ -13,6 +14,12 @@ def get_hash_account(username,password):
         return user_hash_account
     return ""
 
+# 文件名MD5
+def get_hash_file_name(filename):
+    if filename:
+        m = hashlib.md5()
+        m.update(filename.encode("utf8"))
+    return m.hexdigest()
 
 # 用来创建文件夹
 def json_mkdir(path):
