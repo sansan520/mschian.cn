@@ -1,4 +1,4 @@
-{% extends "ho_base.html" %}
+{% extends "/hcenter/ho_base.html" %}
 {% block title %}添加房源_自由者_来去自由_中国名宿网{% endblock %}
 {% block head %}
     {{ super() }}
@@ -20,7 +20,7 @@
 								<h2 class="pull-left">当前房源:{{ house_name }}</h2>
 								<div class="pull-right mT13">
                                     <input type="hidden" id="hid_house_id" value="{{ house_id }}">
-									<button type="button" class="btn btn-mag" id="btn_save_room">保存修改</button>
+									<button type="button" class="btn btn-mag" id="btn_save_room">保存客房</button>
 									<button type="button" class="btn btn-mag" id="btn_cancel_room">取消操作</button>
 								</div>
 							</div>
@@ -90,7 +90,7 @@
 
         //$(obj).parent().remove();
     }
-
+    
     function postDelImgs(imgUrls,obj) {
         $.ajax({
                 url: "/upload_delete_image",   // croppictest.py
@@ -177,8 +177,8 @@
                 },
 
         }).prop('disabled', !$.support.fileInput).parent().addClass($.support.fileInput ? undefined : 'disabled');
-
-
+        
+        
         // 保存客房按钮事件
         $("#btn_save_room").click(function () {
              //var h_images ="/static/upload/hs/20160806150801882901.jpg|/static/upload/hs/20160806150801882902.jpg|/static/upload/hs/20160806150801882903.jpg|";
@@ -210,7 +210,7 @@
             }
 
             $.ajax({
-                url: "/do_update_guestroom",
+                url: "/do_insert_guestroom",
                 type: 'POST',
                 data: JSON.stringify({
                     "hs_id":hs_id,
@@ -226,7 +226,7 @@
                         layer.msg("添加失败");
                         return false;
                     }else if(data.code == 1){
-                        layer.msg("修改客房成功");
+                        layer.msg("房源客房成功");
                         location.href='/room_default';
                     }
                 }

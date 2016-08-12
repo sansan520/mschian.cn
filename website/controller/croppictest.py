@@ -57,7 +57,7 @@ def upload_pic_new():
 
 @vi.route('/croptest')
 def croptest():
-    return render_template('croptest.html')
+    return render_template('/test/croptest.html')
 
 @vi.route('/crop_uploadPic', methods=['POST'])
 def upload_pic():

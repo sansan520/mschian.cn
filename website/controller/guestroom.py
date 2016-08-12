@@ -19,7 +19,7 @@ def room_default(hs_id):
     response_room_data = json.loads(response_room.content)
     if response_room_data["code"] == 1:
         roomlist = response_room_data["message"]
-    return render_template("/room_default.html",entity = entity,roomlist=roomlist)
+    return render_template("/hcenter/room_default.html",entity = entity,roomlist=roomlist)
 
 
 @vi.route('/room_add/<int:hs_id>')   #  hs_id 房源的主键ID
@@ -29,7 +29,7 @@ def room_add(hs_id):
     response_data = json.loads(response.content)
     if response_data["code"] == 1:
         entity = response_data["message"]
-    return render_template("/room_add.html",house_name = entity['hs_name'],house_id = entity['hs_id'])
+    return render_template("/hcenter/room_add.html",house_name = entity['hs_name'],house_id = entity['hs_id'])
 
 #添加客户
 @vi.route("/do_insert_guestroom",methods=['POST'])
@@ -72,7 +72,7 @@ def do_insert_guestroom():
 
 @vi.route('/room_edit/<int:gr_id>')
 def room_edit(gr_id):  # gr_id 客房主键ID
-    return render_template("/room_edit.html")
+    return render_template("/hcenter/room_edit.html")
 
 
 #编辑客户

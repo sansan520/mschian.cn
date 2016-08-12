@@ -12,7 +12,7 @@ from .import vi
 def house_default():
     # 获取user_id,根据user_id获取当前用户对应的所有房源列表,以及默认第一个房源信息
     current_user = tools.get_current_user()
-    return render_template('house_default.html',user_id=current_user['user_id'])
+    return render_template('/hcenter/house_default.html',user_id=current_user['user_id'])
 
 
 @vi.route("/get_resource_by_user_id", methods=['POST'])
@@ -36,13 +36,13 @@ def house_edit(hs_id):
         if response_data["code"] == 1:
             house_entity = response_data["message"]
             return render_template('house_edit.html',entity=house_entity)
-    return render_template('house_edit.html')
+    return render_template('/hcenter/house_edit.html')
 
 @vi.route("/house_add")
 @tools.check_user_wrapper
 def house_add():
     current_user = tools.get_current_user()
-    return render_template("house_add.html",user_id=current_user['user_id'])
+    return render_template("/hcenter/house_add.html",user_id=current_user['user_id'])
 
 
 @vi.route("/do_hs_insert",methods=['POST'])
