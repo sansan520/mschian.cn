@@ -11,25 +11,8 @@ from .import vi
 @tools.check_user_wrapper
 def house_default():
     # 获取user_id,根据user_id获取当前用户对应的所有房源列表,以及默认第一个房源信息
-    # current_user = tools.get_current_user()
-    # if current_user is not None:
-        # user_id = current_user['user_id']
-    #user_id ="1"
-    #response = requests.get(Conf.API_ADDRESS + "/api/v1.0/get_resource_by_user_id/" + user_id)
-    #response_data = json.loads(response.content)
-    #if response_data["code"] == 1:
-        # <class 'list'>:
-        # [{'hs_city': '杭州市', 'user_id': 1, 'hs_status': 1, 'hs_images': 'static/upload/hs/20160806201620685193.jpg|static/upload/hs/20160806201623776844.jpg', 'hs_country': '下城区', 'hs_id': 32, 'ty_id': 1, 'hs_address': '西溪湿地18号', 'hs_hitvalume': '0', 'hs_province': '浙江省', 'hs_name': '房源123'},
-        # {'hs_city': '杭州市', 'user_id': 1, 'hs_status': 1, 'hs_images': 'static/upload/hs/20160806201620685193.jpg|static/upload/hs/20160806201623776844.jpg', 'hs_country': '下城区', 'hs_id': 33, 'ty_id': 1, 'hs_address': '西溪湿地18号', 'hs_hitvalume': '0', 'hs_province': '浙江省', 'hs_name': '房源123'},
-        # {'hs_city': '杭州市', 'user_id': 1, 'hs_status': 1, 'hs_images': 'static/upload/hs/20160806201620685193.jpg|static/upload/hs/20160806201623776844.jpg', 'hs_country': '下城区', 'hs_id': 34, 'ty_id': 1, 'hs_address': '西溪湿地18号', 'hs_hitvalume': '0', 'hs_province': '浙江省', 'hs_name': '房源123'},
-        # {'hs_city': '杭州市', 'user_id': 1, 'hs_status': 1, 'hs_images': 'static/upload/hs/20160806201620685193.jpg|static/upload/hs/20160806201623776844.jpg', 'hs_country': '下城区', 'hs_id': 35, 'ty_id': 1, 'hs_address': '西溪湿地18号', 'hs_hitvalume': '0', 'hs_province': '浙江省', 'hs_name': '房源123'}]
-        #house_list = response_data["message"]
-        # namelist = []  #
-        # for item in house_list:  # item - > dict
-        #     # tmp = item['hs_name']
-        #     namelist.append(item['hs_name'])
-        #, house_list = house_list
-    return render_template('house_default.html')
+    current_user = tools.get_current_user()
+    return render_template('house_default.html',user_id=current_user['user_id'])
 
 
 @vi.route("/get_resource_by_user_id", methods=['POST'])
@@ -58,7 +41,8 @@ def house_edit(hs_id):
 @vi.route("/house_add")
 @tools.check_user_wrapper
 def house_add():
-    return render_template("house_add.html")
+    current_user = tools.get_current_user()
+    return render_template("house_add.html",user_id=current_user['user_id'])
 
 
 @vi.route("/do_hs_insert",methods=['POST'])

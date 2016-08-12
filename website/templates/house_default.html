@@ -12,11 +12,12 @@
     <!-- 主体开始 -->
     <div class="ms-manage">
 			<div class="container" style="margin-top: 80px;">
+                <input type="hidden" id="hid_user_id" value="{{ user_id }}">
 				<div class="row msMag-block">
 					<div class="col-sm-2 msMag-block-aside">
 						<ul class="nav nav-pills nav-stacked">
 						  <li role="presentation" class="msMag-block-name page-header">我的房源</li>
-						  <li role="presentation"><a href="#">添加房源+</a></li>
+						  <li role="presentation"><a href="/house_add">添加房源+</a></li>
 						</ul>
 					</div>
 					<div class="col-sm-10 msMag-block-main">
@@ -32,26 +33,29 @@
 						<div class="msMag-blockM-nr">
 							<div class="msMag-nr-detail">
                                 <input hidden="hidden" id="hid_hs_id" value="">
-								<div class="row">
-									<div class="col-xs-2 text-right msMagND-name">房源名称：</div>
-									<div class="col-xs-10 text-left msMagND-txt"></div>
+                                <div class="row">
+									<div class="col-xs-5 text-right">请从左边选择合适的房源进行编辑</div>
 								</div>
-								<div class="row">
-									<div class="col-xs-2 text-right msMagND-name">状态：</div>
-									<div class="col-xs-10 text-left msMagND-txt"></div>
-								</div>
-								<div class="row">
-									<div class="col-xs-2 text-right msMagND-name">房源民宿地址：</div>
-									<div class="col-xs-10 text-left msMagND-txt"></div>
-								</div>
-								<div class="row">
-									<div class="col-xs-2 text-right msMagND-name">简介：</div>
-									<div class="col-xs-10 text-left msMagND-txt"></div>
-								</div>
-								<div class="row">
-									<div class="col-xs-2 text-right msMagND-name">民宿概览图：</div>
-									<div class="col-xs-10 text-left msMagND-txt"></div>
-								</div>
+{#								<div class="row">#}
+{#									<div class="col-xs-2 text-right msMagND-name">房源名称：</div>#}
+{#									<div class="col-xs-10 text-left msMagND-txt"></div>#}
+{#								</div>#}
+{#								<div class="row">#}
+{#									<div class="col-xs-2 text-right msMagND-name">状态：</div>#}
+{#									<div class="col-xs-10 text-left msMagND-txt"></div>#}
+{#								</div>#}
+{#								<div class="row">#}
+{#									<div class="col-xs-2 text-right msMagND-name">房源民宿地址：</div>#}
+{#									<div class="col-xs-10 text-left msMagND-txt"></div>#}
+{#								</div>#}
+{#								<div class="row">#}
+{#									<div class="col-xs-2 text-right msMagND-name">简介：</div>#}
+{#									<div class="col-xs-10 text-left msMagND-txt"></div>#}
+{#								</div>#}
+{#								<div class="row">#}
+{#									<div class="col-xs-2 text-right msMagND-name">民宿概览图：</div>#}
+{#									<div class="col-xs-10 text-left msMagND-txt"></div>#}
+{#								</div>#}
 							</div>
 						</div>
 					</div>
@@ -67,6 +71,8 @@
 
     function click_func(hs_id) {
         if(hs_id>0){
+            $("#btn_edit_house").removeAttr("disabled");
+            $("#btn_manage_room").removeAttr("disabled");
             for(i=0;i<myArray.length;i++){
                 item = myArray[i];
                 if(item.hs_id == hs_id){
@@ -108,7 +114,7 @@
         imglist = object.hs_images.split('|');
         content+='<div class="row"><div class="col-xs-2 text-right msMagND-name">民宿概览图：</div>';
         content+='<div class="col-xs-10 text-left msMagND-txt">';
-        content+='<img src= "http://img1.zzkcdn.com/rr177bea245c40fcf79732ce1b1fe4c1/2000x1500.jpg-roompic.jpg" />';
+        //content+='<img src= "http://img1.zzkcdn.com/rr177bea245c40fcf79732ce1b1fe4c1/2000x1500.jpg-roompic.jpg" />';
         for(i=0;i<imglist.length;i++){
             content+='<img src= "'+imglist[i]+'" />';
         }
@@ -121,11 +127,14 @@
 
 $(function () {
 
+    $("#btn_edit_house").attr({"disabled":"disabled"});
+    $("#btn_manage_room").attr({"disabled":"disabled"});
 
+    // 页面加载,获取该用户下所有的房源列表
     $.ajax({
             url:"/get_resource_by_user_id",
             type: 'post',
-            data: JSON.stringify({"user_id":"1"}),
+            data: JSON.stringify({"user_id":$("#hid_user_id").val()}),
             contentType: 'application/json',
             success: function(data){
                 if(data.code==1){
