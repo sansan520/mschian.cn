@@ -65,6 +65,11 @@ def do_insert_guestroom():
         return jsonify(response_data)
     return jsonify(response_data)
 
+@vi.route('/room_edit/<int:gr_id>')
+def room_edit(gr_id):  # gr_id 客房主键ID
+    return render_template("/room_edit.html")
+
+
 #编辑客户
 @vi.route("/do_update_guestroom",methods=['POST'])
 def do_update_guestroom():

@@ -25,7 +25,7 @@
 								<h2 class="pull-left">编辑房源信息</h2>
 								<div class="pull-right mT13">
 									<button type="button" class="btn btn-mag" id="btn_update_source">保存修改</button>
-									<button type="button" class="btn btn-mag" id="btn_cancel_source">取消退出</button>
+									<button type="button" class="btn btn-mag" id="btn_cancel_source">取消返回</button>
 								</div>
 							</div>
 						</div>
@@ -132,6 +132,39 @@
 {% endblock %}
 {% block script %}
 <script>
+
+function delcfm(obj) {
+        // 找到图片url ,调用视图函数,删除图片
+        var imgUrl = $(obj).prev().attr('src');  // ok
+        //alert(imgUrl);
+        postDelImgs(imgUrl,obj);
+
+        //$(obj).parent().remove();
+    }
+
+    function postDelImgs(imgUrls,obj) {
+        $.ajax({
+                url: "/upload_delete_image",   // croppictest.py
+                type: 'POST',
+                data: JSON.stringify({
+                    "del_image":imgUrls
+                }),
+                contentType: "application/json",
+                success:function (data) {
+                    if(data.code == 0){
+                        layer.msg("程序错误");
+                        return false;
+                    }else if(data.code == 1){
+                        if(obj){
+                            $(obj).parent().remove();
+                        }else{
+                            locaton.href="/house_default";
+                        }
+                    }
+                }
+            });
+    }
+
 $(function () {
 
     // 初始化下拉列表
@@ -155,8 +188,9 @@ $(function () {
         imgList = imgListStr.split('|');
         var tmp ='';
         for(i=0;i<imgList.length;i++){
-            tmp+='<div style="float:left; margin-left:5px;" >';
+            tmp+='<div style="float:left; margin-left:5px;margin-bottom: 5px;position:relative;" >';
             tmp+='<img src="'+imgList[i]+'" style="height: 160px; width: 200px;"/>';
+            tmp+='<div onClick="delcfm(this)" style="position: absolute;top: 0;right: 0"><img  src="/static/img/close.png"></div>';
             tmp+='</div>';
         }
         $("#filesContainer").html(tmp);
