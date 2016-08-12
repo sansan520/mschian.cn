@@ -36,25 +36,30 @@ def room_add(hs_id):
 @tools.check_user_wrapper
 def do_insert_guestroom():
 
-    username = request.cookies.get('username')
-    password = request.cookies.get('password')
-    if username and password:
-        user_hash_account = tools.get_hash_hashlib(username,password)
-        current_user = current_app.session_redis.hget('user%' % user_hash_account,'current_user')
-        #判断用户是否登录，用户登录，从缓存中得到房源id
-        if current_user:
-            current_user = eval(current_user)
-            hs_id = current_user['username']
-        else:
-            return jsonify({"code":0,"message":"您还未登录,请先登录"})
+    # username = request.cookies.get('username')
+    # password = request.cookies.get('password')
+    # if username and password:
+    #     user_hash_account = tools.get_hash_hashlib(username,password)
+    #     current_user = current_app.session_redis.hget('user%' % user_hash_account,'current_user')
+    #     #判断用户是否登录，用户登录，从缓存中得到房源id
+    #     if current_user:
+    #         current_user = eval(current_user)
+    #         hs_id = current_user['username']
+    #     else:
+    #         return jsonify({"code":0,"message":"您还未登录,请先登录"})
+    hs_id = request.json.get('hs_id')
     gr_name = request.json.get('gr_name')
     gr_price = request.json.get('gr_price')
     gr_describe = request.json.get('gr_describe')
+    gr_images = request.json.get('gr_images')
+    gr_status = request.json.get('gr_status')
     data = json.dumps({
         'hs_id':hs_id,
         'gr_name':gr_name,
         'gr_price':gr_price,
-        'gr_describe':gr_describe
+        'gr_describe':gr_describe,
+        'gr_images':gr_images,
+        'gr_status':gr_status
     })
     response = requests.post(url=api+'/api/v1.0/gr_insert',data=data,
                   headers = {"ContentType":"application/json"})
@@ -72,28 +77,34 @@ def room_edit(gr_id):  # gr_id 客房主键ID
 
 #编辑客户
 @vi.route("/do_update_guestroom",methods=['POST'])
+@tools.check_user_wrapper
 def do_update_guestroom():
-    username = requests.cookies.get("username")
-    password = requests.cookies.get("password")
-    user_hash_hashlib = tools.get_hash_account(username,password)
-    current_user = current_app.session_redis.hget("user%" % user_hash_hashlib,"current_user")
-    if current_user:
-        current_user = current_user.decode()
-        hs__id = current_user["username"]
-    else:
-        return jsonify({"code":0,"message":"您还未登录,请先登录"})
+    # username = requests.cookies.get("username")
+    # password = requests.cookies.get("password")
+    # user_hash_hashlib = tools.get_hash_account(username,password)
+    # current_user = current_app.session_redis.hget("user%" % user_hash_hashlib,"current_user")
+    # if current_user:
+    #     current_user = current_user.decode()
+    #     hs__id = current_user["username"]
+    # else:
+    #     return jsonify({"code":0,"message":"您还未登录,请先登录"})
     gr_id = request.json.get("gr_id")
     gr_name = request.json.get("gr_name")
     gr_price = request.json.get("gr_price")
     gr_describe = request.json.get("gr_describe")
+    gr_images = request.json.get('gr_image')
+    gr_status = request.json.get('gr_status')
+
     data = json.dumps({
         "gr_id":gr_id,
         "hs_id":hs__id,
         "gr_name":gr_name,
         "gr_price":gr_price,
-        "gr_describe":gr_describe
+        "gr_describe":gr_describe,
+        "gr_images":gr_images,
+        "gr_status":gr_status
     })
-    response = requests.post(url=api+"/api/v1.0/gr_update/<int:gr_id>",
+    response = requests.post(url=api+"/api/v1.0/gr_update/"+gr_id,
                   data=data,
                   headers={"ContentType":"application/json"})
     response_data = json.loads(response.content)
