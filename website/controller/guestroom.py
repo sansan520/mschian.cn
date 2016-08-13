@@ -72,7 +72,11 @@ def do_insert_guestroom():
 
 @vi.route('/room_edit/<int:gr_id>')
 def room_edit(gr_id):  # gr_id 客房主键ID
-    return render_template("/hcenter/room_edit.html")
+    response = request.get(url=api + "/api 1.0/get_guestroom_by_gr_id/" + gr_id)
+    response_data = json.loads(response.content)
+    if response_data['code'] == 1:
+       entity=response_data['message']
+    return render_template("/hcenter/room_edit.html",room_name = entity['gr_name'],room_id = entity['gr_id'])
 
 
 #编辑客户
@@ -89,6 +93,7 @@ def do_update_guestroom():
     # else:
     #     return jsonify({"code":0,"message":"您还未登录,请先登录"})
     gr_id = request.json.get("gr_id")
+    hs_id = request.json.get("hs_id")
     gr_name = request.json.get("gr_name")
     gr_price = request.json.get("gr_price")
     gr_describe = request.json.get("gr_describe")
@@ -97,7 +102,7 @@ def do_update_guestroom():
 
     data = json.dumps({
         "gr_id":gr_id,
-        "hs_id":hs__id,
+        "hs_id":hs_id,
         "gr_name":gr_name,
         "gr_price":gr_price,
         "gr_describe":gr_describe,
@@ -116,19 +121,19 @@ def do_update_guestroom():
 
 #删除客户
 @vi.route("/do_delete_guestroom",methods=['POST'])
+@tools.check_user_wrapper
 def do_delete_guestroom():
-    username = requests.cookies.get("username")
-    password = requests.cookies.get("password")
-    user_hash_hashlib = tools.get_hash_account(username, password)
-    current_user = current_app.session_redis.hget("user%" % user_hash_hashlib, "current_user")
-    if current_user:
-        current_user = current_user.decode()
-        gr__id = current_user["username"]
-    else:
-        return jsonify({"code": 0, "message": "您还未登录,请先登录"})
-    data = json.dumps({"gr_id":gr__id})
-    response = requests.post(url=api+"/api/v1.0/gr_delete/"+gr__id,
-                  data=data,
+    # username = request.cookies.get("username")
+    # password = request.cookies.get("password")
+    # user_hash_hashlib = tools.get_hash_account(username, password)
+    # current_user = current_app.session_redis.hget("user%" % user_hash_hashlib, "current_user")
+    # if current_user:
+    #     current_user = current_user.decode()
+    #     gr__id = current_user["username"]
+    # else:
+    #     return jsonify({"code": 0, "message": "您还未登录,请先登录"})
+    gr_id = request.json.get("gr_id")
+    response = requests.post(url=api+"/api/v1.0/gr_delete/"+gr_id,
                   headers={"contenttype":"application/json"})
     response_data = json.loads(response.content)
     if response_data["code"] == 1:
