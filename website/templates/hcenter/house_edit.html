@@ -12,14 +12,14 @@
     <!-- 主体开始 -->
     <div class="ms-manage">
 			<div class="container" style="margin-top: 80px;">
+            <input type="hidden" id="hid_user_id" value="{{ user_id }}">
 				<div class="row msMag-block">
-					<div class="col-sm-2 msMag-block-aside">
+					<div class="col-sm-3 msMag-block-aside">
 						<ul class="nav nav-pills nav-stacked">
 						  <li role="presentation" class="msMag-block-name page-header">我的房源</li>
-						  <li role="presentation"><a href="#" id="addNewHouse">添加房源+</a></li>
 						</ul>
 					</div>
-					<div class="col-sm-10 msMag-block-main">
+					<div class="col-sm-9 msMag-block-main">
 						<div class="msMag-blockM-top">
 							<div class="msMag-blockM-top-col clearfix">
 								<h2 class="pull-left">编辑房源信息</h2>
@@ -131,18 +131,18 @@
 	<!-- 主体结束 -->
 {% endblock %}
 {% block script %}
+    <script src="/static/js/ho-left-base.js"></script>
 <script>
+
 
 function delcfm(obj) {
         // 找到图片url ,调用视图函数,删除图片
         var imgUrl = $(obj).prev().attr('src');  // ok
         //alert(imgUrl);
         postDelImgs(imgUrl,obj);
-
-        //$(obj).parent().remove();
     }
 
-    function postDelImgs(imgUrls,obj) {
+function postDelImgs(imgUrls,obj) {
         $.ajax({
                 url: "/upload_delete_image",   // croppictest.py
                 type: 'POST',
@@ -167,6 +167,8 @@ function delcfm(obj) {
 
 $(function () {
 
+
+    load_resource_by_user_id(false);
     // 初始化下拉列表
     setup();
     var provice = $("#hid_province").val();

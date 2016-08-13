@@ -30,12 +30,13 @@ def get_resource_by_user_id():
 
 @vi.route("/house_edit/<int:hs_id>")
 def house_edit(hs_id):
+    current_user = tools.get_current_user()
     if hs_id > 0:
         response = requests.get(Conf.API_ADDRESS + "/api/v1.0/get_houseresources_by_hs_id/" + str(hs_id))
         response_data = json.loads(response.content)
         if response_data["code"] == 1:
             house_entity = response_data["message"]
-            return render_template('house_edit.html',entity=house_entity)
+            return render_template('/hcenter/house_edit.html',entity=house_entity,user_id=current_user['user_id'])
     return render_template('/hcenter/house_edit.html')
 
 @vi.route("/house_add")

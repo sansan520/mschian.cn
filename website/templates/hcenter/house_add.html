@@ -16,13 +16,13 @@
                     <input type="hidden" id="hid_user_id" value="{{ user_id }}">
 					<div class="col-sm-2 msMag-block-aside">
 						<ul class="nav nav-pills nav-stacked">
-						  <li role="presentation" class="msMag-block-name page-header">房源列表</li>
+						  <li role="presentation" class="msMag-block-name page-header">当前房源列表</li>
 						</ul>
 					</div>
 					<div class="col-sm-10 msMag-block-main">
 						<div class="msMag-blockM-top">
 							<div class="msMag-blockM-top-col clearfix">
-								<h2 class="pull-left">添加房源信息</h2>
+								<h2 class="pull-left">添加新房源</h2>
 								<div class="pull-right mT13">
 									<button type="button" class="btn btn-mag" id="btn_save_source">保存房源</button>
 									<button type="button" class="btn btn-mag" id="btn_cancel_source">取消</button>
@@ -112,8 +112,12 @@
 	<!-- 主体结束 -->
 {% endblock %}
 {% block script %}
+    <script src="/static/js/ho-left-base.js"></script>
     <script>
-
+    //func_back()
+    function func_back() {
+        location.reload();
+    }
     function delcfm(obj) {
         // 找到图片url ,调用视图函数,删除图片
         var imgUrl = $(obj).prev().attr('src');  // ok
@@ -149,25 +153,7 @@
     // jquery 页面加载完成后执行
     $(function () {
         // 页面加载,获取该用户下所有的房源列表
-        $.ajax({
-                url:"/get_resource_by_user_id",
-                type: 'post',
-                data: JSON.stringify({"user_id":$("#hid_user_id").val()}),
-                contentType: 'application/json',
-                success: function(data){
-                    if(data.code==1){
-                        var tmp='';
-                        myArray = data.message;
-                        if(myArray.length>0){
-                            for(i=0;i<myArray.length;i++){
-                                item = myArray[i];
-                                tmp+='<li role="presentation" ><a id="'+item.hs_id+'" href="javascript:click_func('+item.hs_id+')">'+item.hs_name+'</a></li>';
-                            }
-                            $(".nav-stacked").append(tmp);
-                        }
-                    }
-                }
-        });
+        load_resource_by_user_id(false);
 
         $("#btn_cancel_source").click(function () {
             var images ="";
