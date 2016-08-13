@@ -50,19 +50,21 @@ def do_insert_guestroom():
     hs_id = request.json.get('hs_id')
     gr_name = request.json.get('gr_name')
     gr_price = request.json.get('gr_price')
-    gr_describe = request.json.get('gr_describe')
+    gr_desc = request.json.get('gr_desc')
     gr_images = request.json.get('gr_images')
     #gr_status = request.json.get('gr_status')
     data = json.dumps({
         'hs_id':hs_id,
         'gr_name':gr_name,
         'gr_price':gr_price,
-        'gr_describe':gr_describe,
+        'gr_desc':gr_desc,
         'gr_images':gr_images
         #'gr_status':gr_status
     })
-    response = requests.post(url=api+'/api/v1.0/gr_insert',data=data,
-                  headers = {"ContentType":"application/json"})
+    response = requests.post(url=api+'/api/v1.0/gr_insert',
+                             data=data,
+                             headers = {"content-type":"application/json"}
+                             )
     response_data = json.loads(response.content)
     if response_data["code"] == 1:
         return jsonify({"statue":1,"message":"添加成功"})
@@ -96,22 +98,23 @@ def do_update_guestroom():
     hs_id = request.json.get("hs_id")
     gr_name = request.json.get("gr_name")
     gr_price = request.json.get("gr_price")
-    gr_describe = request.json.get("gr_describe")
+    gr_desc = request.json.get("gr_desc")
     gr_images = request.json.get('gr_image')
-    gr_status = request.json.get('gr_status')
+    #gr_status = request.json.get('gr_status')
 
     data = json.dumps({
         "gr_id":gr_id,
         "hs_id":hs_id,
         "gr_name":gr_name,
         "gr_price":gr_price,
-        "gr_describe":gr_describe,
+        "gr_desc":gr_desc,
         "gr_images":gr_images
         #"gr_status":gr_status
     })
     response = requests.post(url=api+"/api/v1.0/gr_update/"+gr_id,
-                  data=data,
-                  headers={"ContentType":"application/json"})
+                             data=data,
+                             headers={"content-type":"application/json"}
+                             )
     response_data = json.loads(response.content)
     if response_data["code"] == 1:
         return jsonify({"code":1,"message":"添加成功"})
@@ -144,7 +147,7 @@ def do_delete_guestroom():
 
 @vi.route("/do_search_guestroom")
 def do_search_guestroom():
-    response = requests.get(url=api+"/api/v1.0/get_all_guest_room",headers={"contenttype":"application/json"})
+    response = requests.get(url=api+"/api/v1.0/get_all_guest_room",headers={"ContentType":"application/json"})
     response_data = json.loads(response.content)
     if response_data["code"] == 1:
         return jsonify({"code":1,"message":"查询成功"})
