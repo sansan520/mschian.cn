@@ -12,7 +12,8 @@
     <!-- 主体开始 -->
     <div class="ms-manage">
 			<div class="container" style="margin-top: 80px;">
-            <input type="hidden" id="hid_user_id" value="{{ user_id }}">
+                <input type="hidden" id="hid_user_id" value="{{ user_id }}">
+                <input type="hidden" id="hid_hs_id" value="{{ entity.hs_id }}">
 				<div class="row msMag-block">
 					<div class="col-sm-3 msMag-block-aside">
 						<ul class="nav nav-pills nav-stacked">
@@ -167,8 +168,8 @@ function postDelImgs(imgUrls,obj) {
 
 $(function () {
 
-
-    load_resource_by_user_id(false);
+    var hs_id = $("#hid_hs_id").val();
+    load_resource_by_user_id(1,hs_id);
     // 初始化下拉列表
     setup();
     var provice = $("#hid_province").val();

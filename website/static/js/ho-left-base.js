@@ -6,22 +6,22 @@
 var myArray = new Array();
 
     // 左侧房源点击事件
-    function click_func(hs_id,obj,boolean) {
+    function click_func(hs_id,obj,frmWhichPage) {
         $(obj).parent("li").siblings().removeClass("active");
         $(obj).parent("li").addClass("active");
         if(hs_id>0){
             for(i=0;i<myArray.length;i++){
                 item = myArray[i];
                 if(item.hs_id == hs_id){
-                    insertContainer(item,boolean);
+                    insertContainer(item,frmWhichPage);
                     break;
                 }
             }
         }
     }
-
-    function insertContainer(object,boolean) {
-        if(boolean || boolean==undefined) {
+    //(当前对象,is_default_page,is_from_house_page,is_from_room_page)
+    function insertContainer(object,frmWhichPage) {
+        if(frmWhichPage==0 || frmWhichPage==undefined) {
             if (object != undefined) {
                 $(".msMag-nr-detail").html('');
             }
@@ -64,11 +64,22 @@ var myArray = new Array();
             content += '</div></div>';
 
             $(".msMag-nr-detail").html(content);
-        }else{
+        }else if(frmWhichPage==1) {
             showEditHouseDialog(object.hs_id);
+        }else if(frmWhichPage==2) {
+            showManageRoomDialog(object.hs_id);
         }
     }
 
+    function showManageRoomDialog(hs_id) {
+        layer.confirm('您确定要切换房源?', {
+            btn: ['确定','取消'] //按钮
+        }, function(){
+            location.href = "/room_default/"+hs_id;
+        }, function(){
+            layer.msg('取消当前操作',{ time: 1000});
+        });
+    }
     // 弹出修改房源的对话框
     function showEditHouseDialog(hs_id) {
         //询问框
@@ -87,8 +98,7 @@ var myArray = new Array();
         });
     }
 
-    // 加载用户对应的房源
-    function load_resource_by_user_id(is_default_page) {
+    function load_resource_by_user_id(frmWhichPage,hs_id) {
         $.ajax({
             url:"/get_resource_by_user_id",
             type: 'post',
@@ -100,26 +110,30 @@ var myArray = new Array();
                     myArray = data.message;
                     if(myArray.length>0){
                         var default_hs_id = 0;
-                        for(i=0;i<myArray.length;i++){
+                        for(i=0;i<myArray.length;i++) {
                             item = myArray[i];
                             default_hs_id = item.hs_id;
-                            boolean = is_default_page;
-                            if(i==0){
-                               if(boolean){
-                                  tmp+='<li role="presentation" class="active" ><a id="'+item.hs_id+'" onClick="click_func('+item.hs_id+',this,boolean)">'+item.hs_name+'</a></li>';
-                               }else{
-                                   tmp+='<li role="presentation"><a id="'+item.hs_id+'" onClick="click_func('+item.hs_id+',this,boolean)">'+item.hs_name+'</a></li>';
-                               }
-
+                            if(frmWhichPage==0){
+                                if (i == 0) {
+                                    tmp += '<li role="presentation" class="active"><a id="' + item.hs_id + '" onClick="click_func(' + item.hs_id + ',this,' + frmWhichPage + ')">' + item.hs_name + '</a></li>';
+                                } else {
+                                    tmp += '<li role="presentation"><a id="' + item.hs_id + '" onClick="click_func(' + item.hs_id + ',this,' + frmWhichPage + ')">' + item.hs_name + '</a></li>';
+                                }
                             }else{
-                                tmp+='<li role="presentation" ><a id="'+item.hs_id+'" onClick="click_func('+item.hs_id+',this,boolean)">'+item.hs_name+'</a></li>';
+                                if(hs_id==item.hs_id){
+                                    tmp += '<li role="presentation" class="active"><a id="' + item.hs_id + '" onClick="click_func(' + item.hs_id + ',this,' + frmWhichPage + ')">' + item.hs_name + '</a></li>';
+                                } else {
+                                    tmp += '<li role="presentation"><a id="' + item.hs_id + '" onClick="click_func(' + item.hs_id + ',this,' + frmWhichPage + ')">' + item.hs_name + '</a></li>';
+                                }
                             }
+
                         }
 
                         $(".nav-stacked").append(tmp);
-                        if(is_default_page){
-                            click_func(default_hs_id,null); // 获取改房东默认第一个房源信息
+                        if(frmWhichPage==0){
+                             click_func(default_hs_id,null,0);// 获取改房东默认第一个房源信息
                         }
+
 
                     }
                 }

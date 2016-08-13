@@ -10,6 +10,7 @@ api = Conf.API_ADDRESS
 @vi.route("/room_default/<int:hs_id>")
 def room_default(hs_id):
     # 获取房源信息
+    current_user = tools.get_current_user()
     response = requests.get(api + "/api/v1.0/get_houseresources_by_hs_id/" + str(hs_id))
     response_data = json.loads(response.content)
     if response_data["code"] == 1:
@@ -19,7 +20,7 @@ def room_default(hs_id):
     response_room_data = json.loads(response_room.content)
     if response_room_data["code"] == 1:
         roomlist = response_room_data["message"]
-    return render_template("/hcenter/room_default.html",entity = entity,roomlist=roomlist)
+    return render_template("/hcenter/room_default.html",user_id=current_user['user_id'],entity = entity,roomlist=roomlist)
 
 
 @vi.route('/room_add/<int:hs_id>')   #  hs_id 房源的主键ID

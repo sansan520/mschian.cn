@@ -7,14 +7,20 @@
     <!-- 主体开始 -->
     <div class="ms-manage">
 	    <div class="container" style="margin-top: 80px;">
+                <input type="hidden" id="hid_user_id" value="{{ user_id }}">
+                <input type="hidden" id="hid_hs_id" value="{{ entity.hs_id }}">
 				<div class="row msMag-block">
+                    <div class="col-sm-3 msMag-block-aside">
+						<ul class="nav nav-pills nav-stacked">
+						  <li role="presentation" class="msMag-block-name page-header">我的房源</li>
+						</ul>
+					</div>
                     {% if entity %}
-
-					<div class="col-sm-10 msMag-block-main">
+					    <div class="col-sm-9 msMag-block-main">
 						<div class="msMag-blockM-top">
 							<div class="msMag-blockM-top-col clearfix">
                                 <input type="hidden" id="hid_hs_id" value="{{ entity.hs_id }}">
-								<h2 class="pull-left">当然房源:{{ entity.hs_name }} 的 客房列表</h2>
+								<h2 class="pull-left">当前房源:{{ entity.hs_name }}</h2>
 								<div class="pull-right mT13">
 									<button type="button" class="btn btn-mag" id="btn_room_add">添加房间</button>
 								</div>
@@ -50,7 +56,6 @@
 							</table>
 						</div>
 					</div>
-
                     {% endif %}
 				</div>
 			</div>
@@ -58,9 +63,11 @@
 	<!-- 主体结束 -->
 {% endblock %}
 {% block script %}
+    <script src="/static/js/ho-left-base.js"></script>
     <script>
     $(function () {
-
+        var hs_id = $("#hid_hs_id").val();
+        load_resource_by_user_id(2,hs_id);
         // 导航到添加客房页面
         $("#btn_room_add").click(function () {
             var hs_id = $("#hid_hs_id").val();
