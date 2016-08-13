@@ -1,4 +1,4 @@
-
+import requests
 import os
 from flask import Flask, request, render_template, jsonify,make_response,json
 from werkzeug.utils import secure_filename
@@ -177,7 +177,7 @@ def random_str(randomlength=8):
 def upload_delete_image():
     del_image = request.json.get("del_image")
     data = json.dumps({"image": del_image})
-    response = request.post(url=Conf.API_ADDRESS + "/api/v1.0/save_delete_image",data=data, headers={"content-type": "application/json"})
+    response = requests.post(url=Conf.API_ADDRESS + "/api/v1.0/save_delete_image",data=data, headers={"content-type": "application/json"})
     response_data = json.loads(response.content)
 
     return jsonify(response_data)
