@@ -19,7 +19,8 @@
 							<div class="msMag-blockM-top-col clearfix">
 								<h2 class="pull-left">当前客房:{{ room_name }}</h2>
 								<div class="pull-right mT13">
-                                    <input type="hidden" id="hid_house_id" value="{{ room_id }}">
+                                    <input type="hidden" id="hid_house_id" value="{{ house_id }}">
+                                    <input type="hidden" id="hid_room_id" value="{{ room_id }}">
 									<button type="button" class="btn btn-mag" id="btn_save_room">保存修改</button>
 									<button type="button" class="btn btn-mag" id="btn_cancel_room">取消操作</button>
 								</div>
@@ -183,6 +184,7 @@
         $("#btn_save_room").click(function () {
              //var h_images ="/static/upload/hs/20160806150801882901.jpg|/static/upload/hs/20160806150801882902.jpg|/static/upload/hs/20160806150801882903.jpg|";
             var hs_id = $("#hid_house_id").val();
+            var gr_id = $("#hid_room_id").val();
             var gr_name = $("#gr_name").val();
             var gr_price = $("#gr_price").val();
             var gr_desc = $("#gr_desc").val();
@@ -214,6 +216,7 @@
                 type: 'POST',
                 data: JSON.stringify({
                     "hs_id":hs_id,
+                    "gr_id":gr_id,
                     "gr_name": gr_name,
                     "gr_price":gr_price,
                     "gr_desc": gr_desc,

@@ -52,14 +52,14 @@ def do_insert_guestroom():
     gr_price = request.json.get('gr_price')
     gr_describe = request.json.get('gr_describe')
     gr_images = request.json.get('gr_images')
-    gr_status = request.json.get('gr_status')
+    #gr_status = request.json.get('gr_status')
     data = json.dumps({
         'hs_id':hs_id,
         'gr_name':gr_name,
         'gr_price':gr_price,
         'gr_describe':gr_describe,
-        'gr_images':gr_images,
-        'gr_status':gr_status
+        'gr_images':gr_images
+        #'gr_status':gr_status
     })
     response = requests.post(url=api+'/api/v1.0/gr_insert',data=data,
                   headers = {"ContentType":"application/json"})
@@ -76,7 +76,7 @@ def room_edit(gr_id):  # gr_id 客房主键ID
     response_data = json.loads(response.content)
     if response_data['code'] == 1:
        entity=response_data['message']
-    return render_template("/hcenter/room_edit.html",room_name = entity['gr_name'],room_id = entity['gr_id'])
+    return render_template("/hcenter/room_edit.html",house_id = entity['hs_id'],room_name = entity['gr_name'],room_id = entity['gr_id'])
 
 
 #编辑客户
@@ -106,8 +106,8 @@ def do_update_guestroom():
         "gr_name":gr_name,
         "gr_price":gr_price,
         "gr_describe":gr_describe,
-        "gr_images":gr_images,
-        "gr_status":gr_status
+        "gr_images":gr_images
+        #"gr_status":gr_status
     })
     response = requests.post(url=api+"/api/v1.0/gr_update/"+gr_id,
                   data=data,
