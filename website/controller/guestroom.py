@@ -68,7 +68,7 @@ def do_insert_guestroom():
                              )
     response_data = json.loads(response.content)
     if response_data["code"] == 1:
-        return jsonify({"statue":1,"message":"添加成功"})
+        return jsonify({'code': 1,"message":"添加成功"})
     if response_data["code"] == 0:
         return jsonify(response_data)
     return jsonify(response_data)

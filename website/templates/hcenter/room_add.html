@@ -221,13 +221,12 @@
                 }),
                 contentType: "application/json",
                 success:function (data) {
-
                     if(data.code == 0){
                         layer.msg("添加失败");
                         return false;
                     }else if(data.code == 1){
                         layer.msg("房源客房成功");
-                        location.href='/room_default';
+                        location.href='/room_default/'+data.hs_id;
                     }
                 }
             });

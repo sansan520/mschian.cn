@@ -37,9 +37,9 @@
                                 {% if roomlist %}
                                     {% for item in roomlist %}
                                        <tr>
-                                            <td class="msMag-room">第一间客房</td>
+                                            <td class="msMag-room">{{ item.gr_name }}</td>
                                             <td class="msMag-state">发布中</td>
-                                            <td class="msMag-time">2016-07-12 14:36:23</td>
+                                            <td class="msMag-time">{{ item.gr_createtime }}</td>
                                             <td class="msMag-op">
                                                 <a href= "" class="btn btn-info">详情</a>
                                                 <a href= "" class="btn btn-warning">取消发布</a>
