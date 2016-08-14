@@ -197,7 +197,7 @@ def do_delete_hs():
     if not hs_id:
         return jsonify({"code": 0, "message": "房源不存在"})
     #data = json.dumps({"hs_id": hs_id})
-    response = requests.post(api+"/api/v1.0/hs_delete/"+hs_id,
+    response = requests.delete(api+"/api/v1.0/hs_delete/"+hs_id,
                             headers={"content-type": "application/json"})
     response_data = json.loads(response.content)
     # code = 0删除失败
@@ -221,7 +221,7 @@ def do_update_type():
         return jsonify({"code":0,"message":"点击量达不到升级标准"})
     data = json.dumps({"ty_id":ty_id,
                        "hs_hitvalume":hitvalue})
-    response = requests.post(api+"/api/v1.0/update_ty_id",
+    response = requests.put(api+"/api/v1.0/update_ty_id",
                  data = data,
                  headers = {"content-type":"application/json"}
                  )

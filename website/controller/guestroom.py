@@ -8,6 +8,7 @@ from . import vi
 api = Conf.API_ADDRESS
 
 @vi.route("/room_default/<int:hs_id>")
+@tools.check_user_wrapper
 def room_default(hs_id):
     # 获取房源信息
     current_user = tools.get_current_user()
@@ -23,7 +24,8 @@ def room_default(hs_id):
     return render_template("/hcenter/room_default.html",user_id=current_user['user_id'],entity = entity,roomlist=roomlist)
 
 
-@vi.route('/room_add/<int:hs_id>')   #  hs_id 房源的主键ID
+@vi.route('/room_add/<int:hs_id>')#  hs_id 房源的主键ID
+@tools.check_user_wrapper
 def room_add(hs_id):
     # 获取房源信息
     response = requests.get(api + "/api/v1.0/get_houseresources_by_hs_id/" + str(hs_id))
@@ -34,7 +36,7 @@ def room_add(hs_id):
 
 #添加客户
 @vi.route("/do_insert_guestroom",methods=['POST'])
-@tools.check_user_wrapper
+#@tools.check_user_wrapper
 def do_insert_guestroom():
 
     # username = request.cookies.get('username')
@@ -53,14 +55,14 @@ def do_insert_guestroom():
     gr_price = request.json.get('gr_price')
     gr_desc = request.json.get('gr_desc')
     gr_images = request.json.get('gr_images')
-    #gr_status = request.json.get('gr_status')
+    gr_status = request.json.get('gr_status')
     data = json.dumps({
         'hs_id':hs_id,
         'gr_name':gr_name,
         'gr_price':gr_price,
         'gr_desc':gr_desc,
-        'gr_images':gr_images
-        #'gr_status':gr_status
+        'gr_images':gr_images,
+        'gr_status':gr_status
     })
     response = requests.post(url=api+'/api/v1.0/gr_insert',
                              data=data,
@@ -74,17 +76,18 @@ def do_insert_guestroom():
     return jsonify(response_data)
 
 @vi.route('/room_edit/<int:gr_id>')
+@tools.check_user_wrapper
 def room_edit(gr_id):  # gr_id 客房主键ID
-    response = request.get(url=api + "/api 1.0/get_guestroom_by_gr_id/" + gr_id)
+    response = requests.get(url=api + "/api/v1.0/get_guestroom_by_gr_id/" + str(gr_id))
     response_data = json.loads(response.content)
     if response_data['code'] == 1:
-       entity=response_data['message']
+        entity = response_data['message']
     return render_template("/hcenter/room_edit.html",house_id = entity['hs_id'],room_name = entity['gr_name'],room_id = entity['gr_id'])
 
 
 #编辑客户
 @vi.route("/do_update_guestroom",methods=['POST'])
-@tools.check_user_wrapper
+#@tools.check_user_wrapper
 def do_update_guestroom():
     # username = requests.cookies.get("username")
     # password = requests.cookies.get("password")
@@ -101,7 +104,7 @@ def do_update_guestroom():
     gr_price = request.json.get("gr_price")
     gr_desc = request.json.get("gr_desc")
     gr_images = request.json.get('gr_image')
-    #gr_status = request.json.get('gr_status')
+    gr_status = request.json.get('gr_status')
 
     data = json.dumps({
         "gr_id":gr_id,
@@ -109,10 +112,10 @@ def do_update_guestroom():
         "gr_name":gr_name,
         "gr_price":gr_price,
         "gr_desc":gr_desc,
-        "gr_images":gr_images
-        #"gr_status":gr_status
+        "gr_images":gr_images,
+        "gr_status":gr_status
     })
-    response = requests.post(url=api+"/api/v1.0/gr_update/"+gr_id,
+    response = requests.put(url=api+"/api/v1.0/gr_update/"+gr_id,
                              data=data,
                              headers={"content-type":"application/json"}
                              )
@@ -137,8 +140,8 @@ def do_delete_guestroom():
     # else:
     #     return jsonify({"code": 0, "message": "您还未登录,请先登录"})
     gr_id = request.json.get("gr_id")
-    response = requests.post(url=api+"/api/v1.0/gr_delete/"+gr_id,
-                  headers={"contenttype":"application/json"})
+    response = requests.delete(url=api+"/api/v1.0/gr_delete/"+gr_id,
+                  headers={"content-type":"application/json"})
     response_data = json.loads(response.content)
     if response_data["code"] == 1:
         return jsonify({"code":1,"message":"删除成功"})
@@ -148,7 +151,7 @@ def do_delete_guestroom():
 
 @vi.route("/do_search_guestroom")
 def do_search_guestroom():
-    response = requests.get(url=api+"/api/v1.0/get_all_guest_room",headers={"ContentType":"application/json"})
+    response = requests.get(url=api+"/api/v1.0/get_all_guest_room")
     response_data = json.loads(response.content)
     if response_data["code"] == 1:
         return jsonify({"code":1,"message":"查询成功"})
