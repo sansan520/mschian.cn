@@ -14,12 +14,21 @@
     <div class="ms-manage">
 			<div class="container" style="margin-top: 80px;">
 				<div class="row msMag-block">
-					<div class="col-sm-10 msMag-block-main">
+                    <input type="hidden" id="hid_user_id" value="{{ user_id }}">
+					<div class="col-sm-3 msMag-block-aside">
+						<ul class="nav nav-pills nav-stacked">
+						  <li role="presentation" class="msMag-block-name page-header">所有房间</li>
+                                {% for foo in rooms_name %}
+                                    <li role="presentation"><a>{{ foo }}</a></li>
+                                {% endfor %}
+						</ul>
+					</div>
+					<div class="col-sm-9 msMag-block-main">
 						<div class="msMag-blockM-top">
 							<div class="msMag-blockM-top-col clearfix">
 								<h2 class="pull-left">当前房源:{{ house_name }}</h2>
+                                <input type="hidden" id="hid_house_id" value="{{ house_id }}">
 								<div class="pull-right mT13">
-                                    <input type="hidden" id="hid_house_id" value="{{ house_id }}">
 									<button type="button" class="btn btn-mag" id="btn_save_room">保存客房</button>
 									<button type="button" class="btn btn-mag" id="btn_cancel_room">取消操作</button>
 								</div>
@@ -64,10 +73,6 @@
                                             </div>
 										</div>
                                         <div id="filesContainer" class="files">
-                                            <div style="float:left; margin-left:5px;margin-bottom: 5px;position:relative;" >
-                                                <img src="" width="200" height="160"/>
-                                                <div onClick="delcfm(this)" style="position: absolute;top: 0;right: 0"><img  src="/static/img/close.png"></div>
-                                            </div>
                                         </div>
 									</div>
 								</div>
@@ -80,54 +85,37 @@
 	<!-- 主体结束 -->
 {% endblock %}
 {% block script %}
+    <script src="/static/js/ho-left-base.js"></script>
     <script>
+    var delArr = new Array();
 
     function delcfm(obj) {
-        // 找到图片url ,调用视图函数,删除图片
-        var imgUrl = $(obj).prev().attr('src');  // ok
-        //alert(imgUrl);
-        postDelImgs(imgUrl,obj);
-
-        //$(obj).parent().remove();
-    }
-    
-    function postDelImgs(imgUrls,obj) {
-        $.ajax({
-                url: "/upload_delete_image",   // croppictest.py
-                type: 'POST',
-                data: JSON.stringify({
-                    "del_image":imgUrls
-                }),
-                contentType: "application/json",
-                success:function (data) {
-                    if(data.code == 0){
-                        layer.msg("程序错误");
-                        return false;
-                    }else if(data.code == 1){
-                        if(obj){
-                            $(obj).parent().remove();
-                        }else{
-                            location.href="/room_default";
-                        }
-                    }
-                }
-            });
+        var imgUrl = $(obj).prev().attr('src');
+        delArr.push(imgUrl);
+        $(obj).parent().remove();
     }
 
 
     // jquery 页面加载完成后执行
     $(function () {
+
         // 取消当前操作按钮事件
         $("#btn_cancel_room").click(function () {
-            var images ="";
-            $("#filesContainer >div").each(function(){
-                images += $(this).find('img').attr('src')+"|";
-            });
-            if(images.length>1){
-                images = gr_images.substring(0,gr_images.lastIndexOf('|'));
+            var location_url = "/room_default/"+$("#hid_house_id").val();
+            if(delArr.length>0){
+                postDelImgs(delArr,location_url);
+            }else{
+                var del_images ="";
+                $("#filesContainer >div").each(function(){
+                    del_images = $(this).find('img').attr('src');
+                    delArr.push(del_images);
+                });
+                if(delArr.length>0){
+                   postDelImgs(delArr,location_url);
+                }else{
+                    location.href=location_url;
+                }
             }
-            postDelImgs(images,null);
-
         });
 
 
@@ -181,8 +169,11 @@
         
         // 保存客房按钮事件
         $("#btn_save_room").click(function () {
-             //var h_images ="/static/upload/hs/20160806150801882901.jpg|/static/upload/hs/20160806150801882902.jpg|/static/upload/hs/20160806150801882903.jpg|";
+
             var hs_id = $("#hid_house_id").val();
+            if(delArr.length>0){
+                postDelImgs(delArr,"/room_default/"+hs_id);
+            }
             var gr_name = $("#gr_name").val();
             var gr_price = $("#gr_price").val();
             var gr_desc = $("#gr_desc").val();

@@ -98,8 +98,10 @@
         if(hs_id > 0){
             var hs_name = "";
             for(i=0;i<myArray.length;i++){
-                if(myArray[i].hs_id = hs_id){
-                    hs_name = myArray[i].hs_name;
+                item = myArray[i];
+                if(item.hs_id == hs_id){
+                    hs_name = item.hs_name;
+                    break;
                 }
             }
             showToRoomManageDialog(hs_id,hs_name);

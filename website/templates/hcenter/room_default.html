@@ -22,18 +22,22 @@
                                 <input type="hidden" id="hid_hs_id" value="{{ entity.hs_id }}">
 								<h2 class="pull-left">当前房源:{{ entity.hs_name }}</h2>
 								<div class="pull-right mT13">
-									<button type="button" class="btn btn-mag" id="btn_room_add">添加房间</button>
+									<button type="button" class="btn btn-mag" id="btn_room_add">添加新房间</button>
+                                    <button type="button" class="btn btn-mag" id="btn_bak2house_default">返回房源管理</button>
 								</div>
 							</div>
 						</div>
 						<div class="msMag-blockM-nr table-responsive">
 							<table class="table">
+                            <thead>
 								<tr>
 									<th class="msMag-room">房间名称</th>
 									<th class="msMag-state">状态</th>
 									<th class="msMag-time">最后更新时间</th>
 									<th class="msMag-op">操作</th>
 								</tr>
+                            </thead>
+                            <tbody>
                                 {% if roomlist %}
                                     {% for item in roomlist %}
                                        <tr>
@@ -41,7 +45,7 @@
                                             <td class="msMag-state">发布中</td>
                                             <td class="msMag-time">{{ item.gr_modifytime }}</td>
                                             <td class="msMag-op">
-                                                <a href= "" class="btn btn-edit">编辑</a>
+                                                <a href= "/room_edit/{{ item.hs_id }}/{{ item.gr_id }}" class="btn btn-success">编辑</a>
                                                 <a href= "" class="btn btn-info">详情</a>
                                                 <a href= "" class="btn btn-warning">取消发布</a>
                                                 <a href= "" class="btn btn-danger">删除</a>
@@ -49,11 +53,10 @@
                                         </tr>
                                     {% endfor %}
                                 {% else %}
-
-                                    <tr>
                                     <td colspan="4"><p>客房列表为空!</p></td>
                                     </tr>
                                 {% endif %}
+                            </tbody>
 							</table>
 						</div>
 					</div>
@@ -66,7 +69,10 @@
 {% block script %}
     <script src="/static/js/ho-left-base.js"></script>
     <script>
+
+
     $(function () {
+
         var hs_id = $("#hid_hs_id").val();
         load_resource_by_user_id(2,hs_id);
         // 导航到添加客房页面
@@ -97,6 +103,9 @@
                     }
                 }
             });
+        });
+        $("#btn_bak2house_default").click(function () {
+            location.href="/house_default";
         });
     });
     </script>

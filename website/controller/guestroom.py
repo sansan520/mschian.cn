@@ -32,24 +32,19 @@ def room_add(hs_id):
     response_data = json.loads(response.content)
     if response_data["code"] == 1:
         entity = response_data["message"]
-    return render_template("/hcenter/room_add.html",house_name = entity['hs_name'],house_id = entity['hs_id'])
+    response_room = requests.get(api + "/api/v1.0/get_guestroom_by_hsId/" + str(hs_id))
+    response_room_data = json.loads(response_room.content)
+    if response_room_data["code"] == 1:
+        roomlist = response_room_data["message"]
+        rooms_name = []
+        for m in roomlist:
+            rooms_name.append(m['gr_name'])
+    return render_template("/hcenter/room_add.html",house_name = entity['hs_name'],house_id = entity['hs_id'],rooms_name=rooms_name)
 
 #添加客户
 @vi.route("/do_insert_guestroom",methods=['POST'])
 #@tools.check_user_wrapper
 def do_insert_guestroom():
-
-    # username = request.cookies.get('username')
-    # password = request.cookies.get('password')
-    # if username and password:
-    #     user_hash_account = tools.get_hash_hashlib(username,password)
-    #     current_user = current_app.session_redis.hget('user%' % user_hash_account,'current_user')
-    #     #判断用户是否登录，用户登录，从缓存中得到房源id
-    #     if current_user:
-    #         current_user = eval(current_user)
-    #         hs_id = current_user['username']
-    #     else:
-    #         return jsonify({"code":0,"message":"您还未登录,请先登录"})
     hs_id = request.json.get('hs_id')
     gr_name = request.json.get('gr_name')
     gr_price = request.json.get('gr_price')
@@ -75,29 +70,30 @@ def do_insert_guestroom():
         return jsonify(response_data)
     return jsonify(response_data)
 
-@vi.route('/room_edit/<int:gr_id>')
+@vi.route('/room_edit/<int:hs_id>/<int:gr_id>')
 @tools.check_user_wrapper
-def room_edit(gr_id):  # gr_id 客房主键ID
+def room_edit(hs_id,gr_id):  # hs_id 房源ID; gr_id 客房主键ID
     response = requests.get(url=api + "/api/v1.0/get_guestroom_by_gr_id/" + str(gr_id))
     response_data = json.loads(response.content)
     if response_data['code'] == 1:
         entity = response_data['message']
-    return render_template("/hcenter/room_edit.html",house_id = entity['hs_id'],room_name = entity['gr_name'],room_id = entity['gr_id'])
+    return render_template("/hcenter/room_edit.html",hs_id = entity['hs_id'],gr_id=entity['gr_id'])
 
+
+@vi.route("/get_all_rooms_by_hs_id",methods=['POST'])
+def get_all_rooms_by_hs_id():
+    hs_id = request.json.get("hs_id")
+    response = requests.get(url=api + "/api/v1.0/get_guestroom_by_hsId/" + str(hs_id))
+    response_data = json.loads(response.content)
+    if response_data['code'] == 1:
+        room_list = response_data['message']
+        return jsonify({'code': 1, 'message': room_list})
+    return jsonify({'code': 0, 'message': '查询失败'})
 
 #编辑客户
 @vi.route("/do_update_guestroom",methods=['POST'])
 #@tools.check_user_wrapper
 def do_update_guestroom():
-    # username = requests.cookies.get("username")
-    # password = requests.cookies.get("password")
-    # user_hash_hashlib = tools.get_hash_account(username,password)
-    # current_user = current_app.session_redis.hget("user%" % user_hash_hashlib,"current_user")
-    # if current_user:
-    #     current_user = current_user.decode()
-    #     hs__id = current_user["username"]
-    # else:
-    #     return jsonify({"code":0,"message":"您还未登录,请先登录"})
     gr_id = request.json.get("gr_id")
     hs_id = request.json.get("hs_id")
     gr_name = request.json.get("gr_name")
@@ -130,15 +126,6 @@ def do_update_guestroom():
 @vi.route("/do_delete_guestroom",methods=['POST'])
 @tools.check_user_wrapper
 def do_delete_guestroom():
-    # username = request.cookies.get("username")
-    # password = request.cookies.get("password")
-    # user_hash_hashlib = tools.get_hash_account(username, password)
-    # current_user = current_app.session_redis.hget("user%" % user_hash_hashlib, "current_user")
-    # if current_user:
-    #     current_user = current_user.decode()
-    #     gr__id = current_user["username"]
-    # else:
-    #     return jsonify({"code": 0, "message": "您还未登录,请先登录"})
     gr_id = request.json.get("gr_id")
     response = requests.delete(url=api+"/api/v1.0/gr_delete/"+gr_id,
                   headers={"content-type":"application/json"})

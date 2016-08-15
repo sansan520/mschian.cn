@@ -2,6 +2,7 @@
  * Created by HuaisanWang on 16/8/13.
  */
 
+// 房源操作JS
 /* http://layer.layui.com/  关于layer */
 var myArray = new Array();
 
@@ -100,6 +101,7 @@ var myArray = new Array();
 
     //  frmWhichPage 0: house_default,1:house_edit,2:room_default,3:house_add
     function load_resource_by_user_id(frmWhichPage,hs_id) {
+        myArray = [];
         $.ajax({
             url:"/get_resource_by_user_id",
             type: 'post',
@@ -138,3 +140,4 @@ var myArray = new Array();
             }
     });
     }
+
