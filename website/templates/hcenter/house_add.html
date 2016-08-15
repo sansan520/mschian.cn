@@ -83,25 +83,25 @@
 									<div class="col-xs-10 text-left msMagND-txt">
 										<div class="form-group">
                                             <div class="container">
-                                            <!-- The fileinput-button span is used to style the file input field as button -->
-                                            <span class="btn btn-success fileinput-button">
-                                                <i class="glyphicon glyphicon-plus"></i>
-                                                <span>添加图片...</span>
-                                                <!-- The file input field used as target for the file upload widget -->
-                                                <input id="fileupload" type="file" name="files[]" multiple>
-                                            </span>
-                                            <br>
-                                            <br>
+                                                <!-- The fileinput-button span is used to style the file input field as button -->
+                                                <span class="btn btn-success fileinput-button">
+                                                    <i class="glyphicon glyphicon-plus"></i>
+                                                    <span>添加图片...</span>
+                                                    <!-- The file input field used as target for the file upload widget -->
+                                                    <input id="fileupload" type="file" name="files[]" multiple>
+                                                </span>
+                                                <br>
+                                                <br>
                                             <!-- The global progress bar -->
-                                            <div id="progress" class="progress" style="width: 50%">
-                                                <div class="progress-bar progress-bar-success"></div>
-                                            </div>
+                                                <div id="progress" class="progress" style="width: 50%">
+                                                    <div class="progress-bar progress-bar-success"></div>
+                                                </div>
+										    </div>
                                             <!-- The container for the uploaded files -->
                                             <div id="filesContainer" class="files"></div>
-                                            </div>
-                                            <div style="text-align: center;margin: 10px auto;">最多上传3张，总大小需小于8M</div>
-										</div>
+                                        </div>
 									</div>
+                                    <div style="text-align: center;margin: 10px auto;">最多上传3张，总大小需小于8M</div>
 								</div>
 							</div>
 						</div>
@@ -113,65 +113,45 @@
 {% endblock %}
 {% block script %}
     <script src="/static/js/ho-left-base.js"></script>
+    <script src="/static/js/hcenter.js"></script>
     <script>
     //func_back()
     function func_back() {
         location.reload();
     }
+
+    // 删除图片方法
+    var delArr = new Array();
     function delcfm(obj) {
         // 找到图片url ,调用视图函数,删除图片
         var imgUrl = $(obj).prev().attr('src');  // ok
-        //alert(imgUrl);
-        postDelImgs(imgUrl,obj);
-
-        //$(obj).parent().remove();
+        delArr.push(imgUrl);
+        $(obj).parent().remove();
     }
 
-    function postDelImgs(imgUrls,obj) {
-        $.ajax({
-                url: "/upload_delete_image",   // croppictest.py
-                type: 'POST',
-                data: JSON.stringify({
-                    "del_image":imgUrls
-                }),
-                contentType: "application/json",
-                success:function (data) {
-                    if(data.code == 0){
-                        layer.msg("程序错误");
-                        return false;
-                    }else if(data.code == 1){
-                        if(obj){
-                            $(obj).parent().remove();
-                        }else{
-                            locaton.href="/house_default";
-                        }
-                    }
-                }
-            });
-    }
 
     // jquery 页面加载完成后执行
     $(function () {
         // 页面加载,获取该用户下所有的房源列表
-        load_resource_by_user_id(false);
+        load_resource_by_user_id(3,$("#hid_hs_id").val());
 
         $("#btn_cancel_source").click(function () {
-            var images ="";
-            $("#filesContainer >div").each(function(){
-                images += $(this).find('img').attr('src')+"|";
-            });
-            if(images.length>1){
-                images = gr_images.substring(0,gr_images.lastIndexOf('|'));
+
+            if(delArr.length>0){
+                postDelImgs(delArr,"/house_default");
+            }else{
+                var del_images ="";
+                $("#filesContainer >div").each(function(){
+                    del_images = $(this).find('img').attr('src');
+                    delArr.push(del_images);
+                });
+                if(delArr.length>0){
+                   postDelImgs(delArr,"/house_default");
+                }else{
+                    location.href="/house_default";
+                }
+
             }
-            postDelImgs(images,null);
-            $("#house_name").val('');
-            $("input[name='inlineRadioOptions']:checked").val('');
-            $("#s1").val('');
-            $("#s2").val('');
-            $("#s3").val('');
-            $("#house_address").val('');
-            $("#house_intro").val('');
-            location.href="/house_default";
         });
 
         // 初始化省市区
@@ -180,36 +160,36 @@
         // 上传图片
         var url = "/uploadPic";
 
-        $('#fileupload').fileupload({
+            $('#fileupload').fileupload({
                 url: url,
                 dataType: 'json',
-                add:function (e, data) {
+                add: function (e, data) {
                     //  图片数量限制
                     var myCount = $("#filesContainer").children().length;
-                    if(myCount >= 3){
+                    if (myCount >= 3) {
                         alert("最多只能上传3张图片");
                         return false;
                     }
                     // 图片格式和大小限制
                     var uploadErrors = [];
                     var acceptFileTypes = /^image\/(gif|jpe?g|png)$/i;
-                      if(data.originalFiles[0].type && !acceptFileTypes.test(data.originalFiles[0].type)) {
+                    if (data.originalFiles[0].type && !acceptFileTypes.test(data.originalFiles[0].type)) {
                         uploadErrors.push('请上传图片文件,不支持其他类型的文件!');
-                      }
-                      if(data.originalFiles[0].size && data.originalFiles[0].size > 1024*1024*1) {
+                    }
+                    if (data.originalFiles[0].size && data.originalFiles[0].size > 1024 * 1024 * 1) {
                         uploadErrors.push('图片文件太大了,限制1M以内!');
-                      }
-                      if(uploadErrors.length > 0) {
+                    }
+                    if (uploadErrors.length > 0) {
                         alert(uploadErrors.join("\n"));
-                      } else {
+                    } else {
                         data.submit();
-                      }
+                    }
                 },
-                done: function (e,data) {
+                done: function (e, data) {
                     $.each(data.result.files, function (index, file) {
                         var filename = file.name;
                         var tmpdiv = $('<div style="float:left; margin-left:5px;margin-bottom: 5px;position:relative;" ></div>').appendTo('#filesContainer');
-                        $('<img />').attr('src', filename).attr('width','200').attr('height','160').appendTo(tmpdiv);
+                        $('<img />').attr('src', filename).attr('width', '200').attr('height', '160').appendTo(tmpdiv);
                         $('<div onClick="delcfm(this)" style="position: absolute;top: 0;right: 0"><img  src="/static/img/close.png"></div>').appendTo(tmpdiv);
                     });
                 },
@@ -218,11 +198,14 @@
                     $('#progress .progress-bar').css('width', progress + '%');
                 },
 
-        }).prop('disabled', !$.support.fileInput).parent().addClass($.support.fileInput ? undefined : 'disabled');
+            }).prop('disabled', !$.support.fileInput).parent().addClass($.support.fileInput ? undefined : 'disabled');
         
         
         // 保存房源事件
         $("#btn_save_source").click(function () {
+            if(delArr.length>0){
+                postDelImgs(delArr,location.href);
+            }
              //var h_images ="static/upload/hs/20160806150801882901.jpg|static/upload/hs/20160806150801882902.jpg|static/upload/hs/20160806150801882903.jpg|";
             var h_name = $("#house_name").val();
             var h_status=$("input[name='inlineRadioOptions']:checked").val();

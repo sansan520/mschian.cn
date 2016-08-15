@@ -2,7 +2,6 @@ import requests
 import os
 from flask import Flask, request, render_template, jsonify,make_response,json
 from werkzeug.utils import secure_filename
-import os
 import sys
 import time,datetime
 from PIL import Image,ImageDraw,ImageFont, ImageEnhance
@@ -23,7 +22,7 @@ ABSPATH = os.path.dirname(ABSPATH)+"/"
 
 UPLOAD_FOLDER = ABSPATH + '/static/upload/bhImg/'  # 裁剪前的图片 big_head_img  服务器定时删除
 CROPPIC_FOLDER = ABSPATH + '/static/upload/shImg/'  # 裁剪后的小图片 small head img
-ALLOWED_EXTENSIONS = set(['jpg', 'png', 'JPEG'])
+ALLOWED_EXTENSIONS = set(['jpg', 'png', 'JPEG','jpeg'])
 
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.config['CROPPIC_FOLDER'] = CROPPIC_FOLDER
@@ -36,7 +35,7 @@ def upload_pic_new():
         response = make_response()
         for file in uploaded_files:
             if file and allowed_file(file.filename):
-                ext_name = file.filename.rsplist('.',1)[1]
+                ext_name = file.filename.rsplit('.',1)[1]
                 img = resizeImg(file)
                 prename = get_hash_file_name(datetime.datetime.now().strftime("%Y%m%d%H%M%S%f"))
                 filename = prename + "." + ext_name
@@ -173,6 +172,7 @@ def random_str(randomlength=8):
         str += chars[random.randint(0, length)]
     return str
 
+#  保存删除图片地址函数接口
 @vi.route('/upload_delete_image', methods=['POST'])
 def upload_delete_image():
     del_image = request.json.get("del_image")
@@ -181,6 +181,19 @@ def upload_delete_image():
     response_data = json.loads(response.content)
 
     return jsonify(response_data)
+
+#  直接删除图片函数接口
+@vi.route("/del_by_imgUrl",methods=["post"])
+def del_by_imgUrl():
+    imgUrl = request.json.get("del_image")
+    try:
+        file_path = ABSPATH + imgUrl
+        if os.path.exists(file_path):
+            os.remove(file_path)
+            return jsonify({"code": 1, "message": '已成功删除图片!'})
+    except IOError:
+        return jsonify({"code": 0, "message": '删除图片出错!'})
+    return None
 
 def resizeImg(imgUrl):
     im = Image.open(imgUrl)
@@ -211,14 +224,12 @@ def resizeImg(imgUrl):
             ratio = heightRatio
         newWidth = int(ori_w * ratio)
         newHeight = int(ori_h * ratio)
-        im.resize((newWidth, newHeight), Image.ANTIALIAS).save(app.config['UPLOAD_FOLDER']+'test1.jpg', qua=85)
-        return "hello"
+        im.resize((newWidth, newHeight), Image.ANTIALIAS)  #.save(app.config['UPLOAD_FOLDER']+'test1.jpg', qua=85)
+        return im
     else:
-        newWidth = ori_w
-        newHeight = ori_h
 
-        im.resize((newWidth,newHeight),Image.ANTIALIAS).save(app.config['UPLOAD_FOLDER']+'test2.jpg',qua=85)
-        return "hello"
+        im.resize((ori_w,ori_h),Image.ANTIALIAS)  #.save(app.config['UPLOAD_FOLDER']+'test2.jpg',qua=85)
+        return im
 
 
 

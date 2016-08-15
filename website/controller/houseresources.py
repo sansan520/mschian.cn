@@ -51,28 +51,8 @@ def house_add():
 @tools.check_user_wrapper
 def do_hs_insert():
     api = Conf.API_ADDRESS
-    # username = request.cookies.get("username")
-    # password = request.cookies.get("password")
-    # if username and password:
-        # user_hash_account = tools.get_hash_account(username, password)
-        # current_user = current_app.session_redis.hget('user:%s' % user_hash_account, 'current_user')
-        # print(type(current_user))
-    # #判断用户是否登录:用户登录
-    #if current_user:
-        # redis返回的类型为bytes的字符串,如下格式:
-        # b"{'user_account': 'sansan', 'user_mobile': '15957124901', 'user_id': 1, 'user_type': 0, 'user_headimg': None}"
-        # 这里使用eval()将bytes字符串转为dict
-        # {'user_type': 0, 'user_account': 'sansan', 'user_id': 1, 'user_mobile': '15957124901', 'user_headimg': None}
-        #current_user= eval(current_user)
-
-        # tmp = json.loads(tmp) 和 decode() 都会生成str,格式如: #'{\\'user_account\\': \\'sansan\\', \\'user_mobile\\': \\'15957124901\\', \\'user_id\\': 1, \\'user_type\\': 0, \\'user_headimg\\': None}'
-        # current_user = current_user.decode()
-        # print(type(current_user))
     current_user = tools.get_current_user()
     user_id = current_user['user_id']
-    # else:
-    #     return jsonify({"code": 0, "message": "您还未登陆,请先登陆"})
-        # return redirect(url_for("/login"))
 
     hs_name = request.json.get("hs_name")
     hs_intro = request.json.get("hs_intro")
@@ -137,34 +117,22 @@ def do_loadhs():
 @tools.check_user_wrapper
 def do_ediths():
     api = Conf.API_ADDRESS
-    # username = request.cookies.get("username")
-    # password = request.cookies.get("password")
-    # if username and password:
-    #     user_hash_account = tools.get_hash_account(username, password)
-    #     current_user = current_app.session_redis.hget("user %s " % user_hash_account,"current_user")
-    # # 判断用户是否登录:用户登录
-    # if current_user:
-    #     current_user = eval(current_user)
-    #     user_id = current_user['user_id']
     current_user = tools.get_current_user()
     user_id = current_user['user_id']
     hs_id = request.json.get("hs_id")
     if not hs_id:
         return jsonify({"code": 0, "message": "房源不存在"})
-    #ty_id = request.json.get("ty_id")
     hs_name = request.json.get("hs_name")
     hs_intro = request.json.get("hs_intro")
     hs_province = request.json.get("hs_province")
     hs_city = request.json.get("hs_city")
     hs_country = request.json.get("hs_country")
     hs_address = request.json.get("hs_address")
-    #hs_hitvalume = request.json.get("hs_hitvalume")
     hs_images = request.json.get("hs_images")
     hs_status = request.json.get("hs_status")
 
     data = json.dumps({
                        "user_id": user_id,
-                       #"ty_id": ty_id,
                        "hs_name": hs_name,
                        "hs_intro": hs_intro,
                        "hs_province": hs_province,
@@ -172,7 +140,6 @@ def do_ediths():
                        "hs_country": hs_country,
                        "hs_address": hs_address,
                        "hs_images": hs_images,
-                       #"hs_hitvalume": hs_hitvalume,
                        "hs_status": hs_status
                        })
     response = requests.put(api+"/api/v1.0/hs_edit/"+hs_id,
@@ -197,7 +164,7 @@ def do_delete_hs():
     if not hs_id:
         return jsonify({"code": 0, "message": "房源不存在"})
     #data = json.dumps({"hs_id": hs_id})
-    response = requests.delete(api+"/api/v1.0/hs_delete/"+hs_id,
+    response = requests.delete(api+"/api/v1.0/hs_delete/"+str(hs_id),
                             headers={"content-type": "application/json"})
     response_data = json.loads(response.content)
     # code = 0删除失败

@@ -55,22 +55,60 @@
         return false;
     }
 
+    function showDelHouseDialog(hs_id) {
+        layer.confirm('您确定要删除该房源吗?', {
+            btn: ['确定','取消'] //按钮
+        }, function(){
+             $.ajax({
+                url: "/do_delete_hs",
+                type: 'POST',
+                data: JSON.stringify({"hs_id": hs_id}),
+                contentType: "application/json",
+                success:function (data) {
+                    if(data.code == 0){
+                        layer.msg("删除房源失败");
+                        return false;
+                    }else if(data.code == 1){
+                        location.reload();
+                    }
+                }
+            });
+        }, function(){
+            layer.msg('取消当前操作',{ time: 1000});
+        });
+    }
+
+    function showToRoomManageDialog(hs_id,hs_name) {
+        layer.confirm('您现在要为房源:'+hs_name+' 添加房间吗?', {
+            btn: ['确定','取消'] //按钮
+        }, function(){
+            location.href='/room_default/'+hs_id;
+        }, function(){
+            layer.msg('取消当前操作',{ time: 1000});
+        });
+    }
     function func_del_house(hs_id) {
         if(hs_id > 0){
-            alert(hs_id);
+            showDelHouseDialog(hs_id);
         }
         return false;
     }
 
     function  func_manage_room(hs_id) {
         if(hs_id > 0){
-            location.href='/room_default/'+hs_id;
+            var hs_name = "";
+            for(i=0;i<myArray.length;i++){
+                if(myArray[i].hs_id = hs_id){
+                    hs_name = myArray[i].hs_name;
+                }
+            }
+            showToRoomManageDialog(hs_id,hs_name);
         }
         return false;
     }
 
 $(function () {
-    load_resource_by_user_id(0);
+    load_resource_by_user_id(0,0);
     // 添加房源按钮事件
     $("#btn_add_house").click(function () {
         location.href = "/house_add";

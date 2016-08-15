@@ -19,7 +19,7 @@ var myArray = new Array();
             }
         }
     }
-    //(当前对象,is_default_page,is_from_house_page,is_from_room_page)
+
     function insertContainer(object,frmWhichPage) {
         if(frmWhichPage==0 || frmWhichPage==undefined) {
             if (object != undefined) {
@@ -98,6 +98,7 @@ var myArray = new Array();
         });
     }
 
+    //  frmWhichPage 0: house_default,1:house_edit,2:room_default,3:house_add
     function load_resource_by_user_id(frmWhichPage,hs_id) {
         $.ajax({
             url:"/get_resource_by_user_id",
@@ -112,9 +113,9 @@ var myArray = new Array();
                         var default_hs_id = 0;
                         for(i=0;i<myArray.length;i++) {
                             item = myArray[i];
-                            default_hs_id = item.hs_id;
                             if(frmWhichPage==0){
                                 if (i == 0) {
+                                    default_hs_id = item.hs_id;
                                     tmp += '<li role="presentation" class="active"><a id="' + item.hs_id + '" onClick="click_func(' + item.hs_id + ',this,' + frmWhichPage + ')">' + item.hs_name + '</a></li>';
                                 } else {
                                     tmp += '<li role="presentation"><a id="' + item.hs_id + '" onClick="click_func(' + item.hs_id + ',this,' + frmWhichPage + ')">' + item.hs_name + '</a></li>';
@@ -126,15 +127,12 @@ var myArray = new Array();
                                     tmp += '<li role="presentation"><a id="' + item.hs_id + '" onClick="click_func(' + item.hs_id + ',this,' + frmWhichPage + ')">' + item.hs_name + '</a></li>';
                                 }
                             }
-
                         }
 
                         $(".nav-stacked").append(tmp);
                         if(frmWhichPage==0){
                              click_func(default_hs_id,null,0);// 获取改房东默认第一个房源信息
                         }
-
-
                     }
                 }
             }
