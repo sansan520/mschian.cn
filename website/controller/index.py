@@ -51,7 +51,7 @@ def index():
     except Exception as e:
         goden = None
 
-    # return render_template("index.html", username=username, hot4index=hot4index, special=special, goden=goden)
-    return render_template("index.html", **locals()) # **locals() 将本地参数全部传到index.html,并可以直接使用
+    #return render_template("index.html", username=username, hot4index=hot4index, special=special, goden=goden)
+    return render_template("/index.html", **locals()) # **locals() 将本地参数全部传到index.html,并可以直接使用
 
 

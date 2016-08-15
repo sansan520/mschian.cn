@@ -17,7 +17,7 @@ import website.tools
 
 @vi.route("/login")
 def login():
-    return render_template("login.html")
+    return render_template("/login.html")
 
 @vi.route("/do_login", methods=['POST'])
 def do_login():
