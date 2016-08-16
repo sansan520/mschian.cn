@@ -974,4 +974,11 @@ ul {
 			  background-color: #fff;
 			  border-color: #ddd;
 			}
-/* 弹出层 */
+
+/* input textarea */
+.textAreaInput{
+	border: 1px solid #efefef;
+	border-radius: 5px;
+	height: 140px;
+	width: 98%;
+}
