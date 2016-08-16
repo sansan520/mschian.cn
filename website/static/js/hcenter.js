@@ -2,6 +2,7 @@
  * Created by HuaisanWang on 16/8/15.
  */
 
+// 删除图片(假删除,将要删除的图片地址保存到表中,以后做定时任务删除表中图片)
 function postDelImgs(delArr,locationUrl) {
     if(delArr.length>0){
         // var imgUrls = delArr.join();
@@ -23,7 +24,7 @@ function postDelImgs(delArr,locationUrl) {
                         layer.msg("程序错误");
                         return false;
                     }else if(data.code == 1){
-                        locaton.href=locationUrl;
+                        if(locationUrl) locaton.href=locationUrl;
                     }
                 }
             });
