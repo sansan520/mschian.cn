@@ -79,7 +79,7 @@
     }
 
     function showToRoomManageDialog(hs_id,hs_name) {
-        layer.confirm('您现在要为房源:'+hs_name+' 添加房间吗?', {
+        layer.confirm('您要对房源:'+hs_name+'进行管理操作吗?', {
             btn: ['确定','取消'] //按钮
         }, function(){
             location.href='/room_default/'+hs_id;
