@@ -36,25 +36,26 @@
 						</div>
 						<div class="msMag-blockM-nr">
 							<div class="msMag-nr-detail">
-								<div class="row">
-									<div class="col-xs-2 text-right msMagND-name">房间名称：</div>
-									<div class="col-xs-10 text-left msMagND-txt">
+                                <div class="boxHeader clearfix"><span class="boxTitle">基本信息</span></div>
+								<div class="row" style="margin-top: 20px;">
+									<div class="col-xs-3 text-right msMagND-name">房间名称：</div>
+									<div class="col-xs-9 text-left msMagND-txt">
 										<input type="text" class="msMagND-txt-ipt" id="gr_name" placeholder="5~6个汉字以内" /></div>
 								</div>
                                 <div class="row">
-									<div class="col-xs-2 text-right msMagND-name">房间价格：</div>
-									<div class="col-xs-10 text-left msMagND-txt">
+									<div class="col-xs-3 text-right msMagND-name">房间价格：</div>
+									<div class="col-xs-9 text-left msMagND-txt">
 										<input type="text" class="msMagND-txt-ipt" id="gr_price" placeholder="人民币 单位:元" />
                                     </div>
 								</div>
 								<div class="row">
-									<div class="col-xs-2 text-right msMagND-name">房间描述：</div>
-									<div class="col-xs-10 text-left msMagND-txt">
+									<div class="col-xs-3 text-right msMagND-name">房间描述：</div>
+									<div class="col-xs-9 text-left msMagND-txt">
                                         <input type="text" class="msMagND-txt-ipt" id="gr_desc"/></div>
 								</div>
 								<div class="row">
-									<div class="col-xs-2 text-right msMagND-name">房型室内图：</div>
-									<div class="col-xs-10 text-left msMagND-txt">
+									<div class="col-xs-3 text-right msMagND-name">房型室内图：</div>
+									<div class="col-xs-9 text-left msMagND-txt">
 										<div class="form-group">
                                             <div class="container">
                                                 <!-- The fileinput-button span is used to style the file input field as button -->
@@ -78,6 +79,126 @@
 								</div>
 							</div>
 						</div>
+                        <div class="msMag-blockM-nr" >
+							<div class="msMag-nr-detail" id="house_type_hidden">
+								<div class="boxHeader clearfix">
+									<span class="boxTitle">详细信息</span>
+								</div>
+								<div class="row" style="margin-top: 20px;">
+									<div class="col-xs-3 text-right msMagND-name">房型：</div>
+									<div class="col-xs-2">
+										<div class="form-group">
+											<select class="form-control" name="house_type" id="house_type">
+											  <option value="_none_">--</option>
+                                                <option value="1">1</option>
+                                                <option value="2">2</option>
+                                                <option value="3">3</option>
+                                                <option value="4">4</option>
+                                                <option value="5">5</option>
+                                                <option value="6">6</option>
+											</select>
+										</div>
+									</div>
+                                    <div class="col-xs-4 text-left msMagND-txt">人房</div>
+								</div>
+								<div class="row">
+									<div class="col-xs-3 text-right msMagND-name">房源面积：</div>
+									<div class="col-xs-2 text-left msMagND-txt">
+										<input type="text" class="msMagND-txt-ipt" placeholder="单位:平方米"/>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-xs-3 text-right msMagND-name">床型：</div>
+									<div class="col-xs-2">
+										<div class="form-group">
+											<select class="form-control" name="house_type" id="house_type">
+											    <option value="双人床" >双人床</option>
+                                                <option value="大通舖" >大通舖</option>
+                                                <option value="榻榻米" >榻榻米</option>
+                                                <option value="单人床" >单人床</option>
+                                                <option value="上下鋪" >上下鋪</option>
+											</select>
+										</div>
+									</div>
+
+								</div>
+                                <div class="row">
+									<div class="col-xs-3 text-right msMagND-name">床数：</div>
+                                    <div class="col-xs-2 text-left msMagND-txt">
+										<input type="text" class="msMagND-txt-ipt" />
+									</div>
+								</div>
+                                <div class="row">
+									<div class="col-xs-3 text-right msMagND-name">窗户：</div>
+									<div class="col-xs-9 text-left msMagND-txt">
+										<label class="radio-inline">
+										  <input type="radio" name="inlineRadioOptions" id="hav_window" value="1"> 有
+										</label>
+										<label class="radio-inline">
+										  <input type="radio" name="inlineRadioOptions" id="hav_window" value="0"> 无
+										</label>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-xs-3 text-right msMagND-name">早餐：</div>
+									<div class="col-xs-9 text-left msMagND-txt">
+										<label class="radio-inline">
+										  <input type="radio" name="inlineRadioOptions" id="zaocan1" value="option1"> 是
+										</label>
+										<label class="radio-inline">
+										  <input type="radio" name="inlineRadioOptions" id="zaocan2" value="option2"> 否
+										</label>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-xs-3 text-right msMagND-name">基本设施：</div>
+									<div class="col-xs-9 text-left msMagND-txt">
+										<label class="radio-inline">
+										  <input type="checkbox" name="room_setting[0]" id="id_network" value="">有线网络
+										</label>
+										<label class="radio-inline">
+										  <input type="checkbox" name="room_setting[1]" id="id_wifi" value="">无线WIFI
+										</label>
+										<label class="radio-inline">
+										  <input type="checkbox" name="room_setting[2]" id="id_tv" value="">电视机
+										</label>
+										<label class="radio-inline">
+										  <input type="checkbox"  name="room_setting[2]" id="id_hot_water" value="">热水器
+										</label>
+										<label class="radio-inline">
+										  <input type="checkbox"  name="room_setting[2]" id="id_air_recondition" value="">空调
+										</label>
+										<label class="radio-inline">
+										  <input type="checkbox"  name="room_setting[2]" id="id_water_bottle" value="">热水壶
+										</label>
+										<label class="radio-inline">
+										  <input type="checkbox"  name="room_setting[2]" id="id_kitchen" value="">厨房
+										</label>
+										<label class="radio-inline">
+										  <input type="checkbox"  name="room_setting[2]" id="id_hot_tub" value="">浴缸
+										</label>
+										<label class="radio-inline">
+										  <input type="checkbox"  name="room_setting[2]" id="id_shower" value="">淋浴
+										</label>
+										<label class="radio-inline">
+										  <input type="checkbox"  name="room_setting[2]" id="id_towel" value="">毛巾
+										</label>
+										<label class="radio-inline">
+										  <input type="checkbox"  name="room_setting[2]" id="id_slippers" value="">拖鞋
+										</label>
+										<label class="radio-inline">
+										  <input type="checkbox"  name="room_setting[2]" id="id_washing_machine" value="">洗衣机
+										</label>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-xs-3 text-right msMagND-name">其他服务：</div>
+									<div class="col-xs-9 text-left msMagND-txt">
+										<input type="text" class="msMagND-txt-ipt" placeholder="其他服务:如免费停车位,可携带宠物,代订门票等..." />
+									</div>
+								</div>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -86,6 +207,7 @@
 {% endblock %}
 {% block script %}
     <script src="/static/js/ho-left-base.js"></script>
+    <script src="/static/js/hcenter.js"></script>
     <script>
     var delArr = new Array();
 
@@ -101,7 +223,7 @@
 
         // 取消当前操作按钮事件
         $("#btn_cancel_room").click(function () {
-            var location_url = "/room_default/"+$("#hid_house_id").val();
+            var location_url = "/manage_center/room_default/"+$("#hid_house_id").val();
             if(delArr.length>0){
                 postDelImgs(delArr,location_url);
             }else{
@@ -172,7 +294,7 @@
 
             var hs_id = $("#hid_house_id").val();
             if(delArr.length>0){
-                postDelImgs(delArr,"/room_default/"+hs_id);
+                postDelImgs(delArr,"/manage_center/room_default/"+hs_id);
             }
             var gr_name = $("#gr_name").val();
             var gr_price = $("#gr_price").val();
@@ -201,7 +323,7 @@
             }
 
             $.ajax({
-                url: "/do_insert_guestroom",
+                url: "/manage_center/do_insert_guestroom",
                 type: 'POST',
                 data: JSON.stringify({
                     "hs_id":hs_id,
@@ -217,7 +339,7 @@
                         return false;
                     }else if(data.code == 1){
                         layer.msg("房源客房成功");
-                        location.href='/room_default/'+hs_id;
+                        location.href='/manage_center/room_default/'+hs_id;
                     }
                 }
             });

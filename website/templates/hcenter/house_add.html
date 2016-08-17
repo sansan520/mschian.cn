@@ -139,7 +139,7 @@
         $("#btn_cancel_source").click(function () {
 
             if(delArr.length>0){
-                postDelImgs(delArr,"/house_default");
+                postDelImgs(delArr,"/manage_center/house_default");
             }else{
                 var del_images ="";
                 $("#filesContainer >div").each(function(){
@@ -147,9 +147,9 @@
                     delArr.push(del_images);
                 });
                 if(delArr.length>0){
-                   postDelImgs(delArr,"/house_default");
+                   postDelImgs(delArr,"/manage_center/house_default");
                 }else{
-                    location.href="/house_default";
+                    location.href="/manage_center/house_default";
                 }
 
             }
@@ -205,7 +205,7 @@
         // 保存房源事件
         $("#btn_save_source").click(function () {
             if(delArr.length>0){
-                postDelImgs(delArr,"/house_default");
+                postDelImgs(delArr,"/manage_center/house_default");
             }
              //var h_images ="static/upload/hs/20160806150801882901.jpg|static/upload/hs/20160806150801882902.jpg|static/upload/hs/20160806150801882903.jpg|";
             var h_name = $("#house_name").val();
@@ -239,7 +239,7 @@
             }
 
             $.ajax({
-                url: "/do_hs_insert",
+                url: "/manage_center/do_hs_insert",
                 type: 'POST',
                 data: JSON.stringify({
                     "hs_name": h_name,

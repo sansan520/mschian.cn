@@ -76,7 +76,7 @@ var myArray = new Array();
         layer.confirm('您确定要切换房源?', {
             btn: ['确定','取消'] //按钮
         }, function(){
-            location.href = "/room_default/"+hs_id;
+            location.href = "/manage_center/room_default/"+hs_id;
         }, function(){
             layer.msg('取消当前操作',{ time: 1000});
         });
@@ -87,7 +87,7 @@ var myArray = new Array();
         layer.confirm('要修改当前房源吗?', {
           btn: ['去修改','取消'] //按钮
         }, function(){
-            location.href = "/house_edit/"+hs_id;
+            location.href = "/manage_center/house_edit/"+hs_id;
             // layer.msg('马上进入修改房源页面', {icon: 1},{
             //     time: 2000,
             //     end: function(){
@@ -103,7 +103,7 @@ var myArray = new Array();
     function load_resource_by_user_id(frmWhichPage,hs_id) {
         myArray = [];
         $.ajax({
-            url:"/get_resource_by_user_id",
+            url:"/manage_center/get_resource_by_user_id",
             type: 'post',
             data: JSON.stringify({"user_id":$("#hid_user_id").val()}),
             contentType: 'application/json',

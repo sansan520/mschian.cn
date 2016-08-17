@@ -83,6 +83,7 @@
 	<!-- 主体结束 -->
 {% endblock %}
 {% block script %}
+    <script src="/static/js/hcenter.js"></script>
     <script>
 
 
@@ -140,7 +141,7 @@
         // 页面加载.获取该房源ID下所有的客房列表
         $.ajax({
 
-            url:"/get_all_rooms_by_hs_id",
+            url:"/manage_center/get_all_rooms_by_hs_id",
             type: 'post',
             data: JSON.stringify({"hs_id":hs_id}),
             contentType: 'application/json',
@@ -165,7 +166,7 @@
         });
         // 取消当前操作按钮事件
         $("#btn_cancel_room").click(function () {
-            var location_url = "/room_default/"+$("#hid_house_id").val();
+            var location_url = "/manage_center/room_default/"+$("#hid_house_id").val();
             if(delArr.length>0){
                 postDelImgs(delArr,location_url);
             }else{
@@ -263,7 +264,7 @@
             }
 
             $.ajax({
-                url: "/do_update_guestroom",
+                url: "/manage_center/do_update_guestroom",
                 type: 'POST',
                 data: JSON.stringify({
                     "hs_id":hs_id,
@@ -281,7 +282,7 @@
                         return false;
                     }else if(data.code == 1){
                         layer.msg("修改客房成功");
-                        location.href='/room_default/'+hs_id;
+                        location.href='/manage_center/room_default/'+hs_id;
                     }
                 }
             });

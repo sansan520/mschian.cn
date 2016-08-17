@@ -79,7 +79,7 @@
             btn: ['确定','取消'] //按钮
         }, function(){
             $.ajax({
-                url:'/do_delete_guestroom',
+                url:'/manage_center/do_delete_guestroom',
                 type:'POST',
                 data:JSON.stringify({'gr_id':gr_id}),
                 contentType:'application/json',
@@ -104,7 +104,7 @@
         $("#btn_room_add").click(function () {
             var hs_id = $("#hid_hs_id").val();
             if(hs_id>0){
-                location.href="/room_add/"+hs_id;
+                location.href="/manage_center/room_add/"+hs_id;
             }
         });
         $(".btn-danger").click(function () {
@@ -123,7 +123,7 @@
 
         });
         $("#btn_bak2house_default").click(function () {
-            location.href="/house_default";
+            location.href="/manage_center/house_default";
         });
     });
     </script>

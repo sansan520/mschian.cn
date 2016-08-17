@@ -668,7 +668,7 @@ ul {
 }
 .msMagND-txt-ipt {
 	margin-left: -15px;
-	width: 100%;
+	width: 90%;
     border: none;
     border-bottom: 1px solid #efefef;
     outline: none;
@@ -982,3 +982,7 @@ ul {
 	height: 140px;
 	width: 98%;
 }
+
+/* 房源,房间管理 部分样式 */
+.boxHeader {height:40px; border-bottom:1px solid #d6d6d6;}
+.boxTitle {float:left; padding-left:20px; line-height:30px; font-size:20px; color:#666}
