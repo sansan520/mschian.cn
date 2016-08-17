@@ -2,7 +2,7 @@
 {% block title %}添加房源_自由者_来去自由_中国名宿网{% endblock %}
 {% block head %}
     {{ super() }}
-    <link rel="stylesheet" href="static/css/jquery.fileupload.css">
+    <link rel="stylesheet" href="static/css/jquery.fileupload.css" xmlns="http://www.w3.org/1999/html">
     <script src="static/js/geo.js" type="text/javascript" charset="utf-8"></script>
     <script src="static/js/jquery.ui.widget.js"></script>
     <script src="static/js/jquery.iframe-transport.js"></script>
@@ -71,12 +71,13 @@
 										</div>
 									</div>
 									<div class="col-xs-4 text-left msMagND-txt">
-										<input type="text" class="msMagND-txt-ipt h34" id="house_address"></div>
+										<input type="text" class="msMagND-txt-ipt h34" id="house_address" placeholder="具体地址:如街道门牌号等"></div>
 								</div>
 								<div class="row">
 									<div class="col-xs-2 text-right msMagND-name">简介：</div>
 									<div class="col-xs-10 text-left msMagND-txt">
-                                        <input type="text" class="msMagND-txt-ipt" id="house_intro"/></div>
+                                        <textarea type="text" class="textAreaInput" id="house_intro" placeholder="简介数字400字以内"></textarea>
+                                    </div>
 								</div>
 								<div class="row">
 									<div class="col-xs-2 text-right msMagND-name">民宿概览图：</div>
@@ -138,7 +139,7 @@
         $("#btn_cancel_source").click(function () {
 
             if(delArr.length>0){
-                postDelImgs(delArr,"/house_default");
+                postDelImgs(delArr,"/manage_center/house_default");
             }else{
                 var del_images ="";
                 $("#filesContainer >div").each(function(){
@@ -146,9 +147,9 @@
                     delArr.push(del_images);
                 });
                 if(delArr.length>0){
-                   postDelImgs(delArr,"/house_default");
+                   postDelImgs(delArr,"/manage_center/house_default");
                 }else{
-                    location.href="/house_default";
+                    location.href="/manage_center/house_default";
                 }
 
             }
@@ -204,7 +205,7 @@
         // 保存房源事件
         $("#btn_save_source").click(function () {
             if(delArr.length>0){
-                postDelImgs(delArr,"/house_default");
+                postDelImgs(delArr,"/manage_center/house_default");
             }
              //var h_images ="static/upload/hs/20160806150801882901.jpg|static/upload/hs/20160806150801882902.jpg|static/upload/hs/20160806150801882903.jpg|";
             var h_name = $("#house_name").val();
@@ -238,7 +239,7 @@
             }
 
             $.ajax({
-                url: "/do_hs_insert",
+                url: "/manage_center/do_hs_insert",
                 type: 'POST',
                 data: JSON.stringify({
                     "hs_name": h_name,

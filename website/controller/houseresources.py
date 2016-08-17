@@ -7,15 +7,16 @@ from website import tools
 from .import vi
 
 
-@vi.route("/house_default")
+@vi.route("/manage_center/house_default")
 @tools.check_user_wrapper
 def house_default():
     # 获取user_id,根据user_id获取当前用户对应的所有房源列表,以及默认第一个房源信息
     current_user = tools.get_current_user()
-    return render_template('/hcenter/house_default.html',user_id=current_user['user_id'])
+    username = request.cookies.get("username")
+    return render_template('/hcenter/house_default.html',user_id=current_user['user_id'],username=username)
 
 
-@vi.route("/get_resource_by_user_id", methods=['POST'])
+@vi.route("/manage_center/get_resource_by_user_id", methods=['POST'])
 def get_resource_by_user_id():
     user_id = request.json.get("user_id")
     # user_id ="1"
@@ -28,25 +29,27 @@ def get_resource_by_user_id():
 
 
 
-@vi.route("/house_edit/<int:hs_id>")
+@vi.route("/manage_center/house_edit/<int:hs_id>")
 def house_edit(hs_id):
     current_user = tools.get_current_user()
+    username = request.cookies.get("username")
     if hs_id > 0:
         response = requests.get(Conf.API_ADDRESS + "/api/v1.0/get_houseresources_by_hs_id/" + str(hs_id))
         response_data = json.loads(response.content)
         if response_data["code"] == 1:
             house_entity = response_data["message"]
-            return render_template('/hcenter/house_edit.html',entity=house_entity,user_id=current_user['user_id'])
+            return render_template('/hcenter/house_edit.html',username=username,entity=house_entity,user_id=current_user['user_id'])
     return render_template('/hcenter/house_edit.html')
 
-@vi.route("/house_add")
+@vi.route("/manage_center/house_add")
 @tools.check_user_wrapper
 def house_add():
     current_user = tools.get_current_user()
-    return render_template("/hcenter/house_add.html",user_id=current_user['user_id'])
+    username = request.cookies.get("username")
+    return render_template("/hcenter/house_add.html",username=username,user_id=current_user['user_id'])
 
 
-@vi.route("/do_hs_insert",methods=['POST'])
+@vi.route("/manage_center/do_hs_insert",methods=['POST'])
 #将JS Post过来的参数转化成Json格式
 @tools.check_user_wrapper
 def do_hs_insert():
@@ -91,7 +94,7 @@ def do_hs_insert():
         return jsonify({'code': 1, 'message': '添加成功'})
 
 #  加载用户添加的房源
-@vi.route("/do_loadhs")
+@vi.route("/manage_center/do_loadhs")
 def do_loadhs():
     # username = request.cookies.get("username")
     # password = request.cookies.get("password")
@@ -113,7 +116,7 @@ def do_loadhs():
 
 
 #编辑房源
-@vi.route("/do_ediths",methods=['POST'])
+@vi.route("/manage_center/do_ediths",methods=['POST'])
 @tools.check_user_wrapper
 def do_ediths():
     api = Conf.API_ADDRESS
@@ -157,7 +160,7 @@ def do_ediths():
 
 
 #删除房源
-@vi.route("/do_delete_hs",methods=['POST'])
+@vi.route("/manage_center/do_delete_hs",methods=['POST'])
 def do_delete_hs():
     api = Conf.API_ADDRESS
     hs_id = request.json.get("hs_id")
@@ -177,7 +180,7 @@ def do_delete_hs():
 
 
 #根据点击量的提升更新房源类型
-@vi.route("/do_update_type",methods=['POST'])
+@vi.route("/manage_center/do_update_type",methods=['POST'])
 def do_update_type():
     api = Conf.API_ADDRESS
     ty_id = request.json.get("ty_id")

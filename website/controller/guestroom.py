@@ -77,7 +77,7 @@ def room_edit(hs_id,gr_id):  # hs_id 房源ID; gr_id 客房主键ID
     response_data = json.loads(response.content)
     if response_data['code'] == 1:
         entity = response_data['message']
-    return render_template("/hcenter/room_edit.html",room_name = entity['gr_name'],hs_id = entity['hs_id'],gr_id=entity['gr_id'])
+    return render_template("/hcenter/room_edit.html",hs_id = entity['hs_id'],gr_id=entity['gr_id'])
 
 
 @vi.route("/get_all_rooms_by_hs_id",methods=['POST'])

@@ -43,6 +43,7 @@
 {% endblock %}
 {% block script %}
 <script src="/static/js/ho-left-base.js"></script>
+<script src="/static/js/hcenter.js"></script>
 <script>
 {#    $("#btn_edit_house").removeAttr("disabled");#}
 {#    $("#btn_edit_house").attr({"disabled":"disabled"});#}
@@ -50,7 +51,7 @@
     // 编辑房源函数
     function func_edit_house(hs_id) {
         if(hs_id > 0){
-            location.href='/house_edit/'+hs_id;
+            location.href='/manage_center/house_edit/'+hs_id;
         }
         return false;
     }
@@ -60,7 +61,7 @@
             btn: ['确定','取消'] //按钮
         }, function(){
              $.ajax({
-                url: "/do_delete_hs",
+                url: "/manage_center/do_delete_hs",
                 type: 'POST',
                 data: JSON.stringify({"hs_id": hs_id}),
                 contentType: "application/json",
@@ -79,10 +80,10 @@
     }
 
     function showToRoomManageDialog(hs_id,hs_name) {
-        layer.confirm('您现在要为房源:'+hs_name+' 添加房间吗?', {
+        layer.confirm('您要对房源:'+hs_name+'进行管理操作吗?', {
             btn: ['确定','取消'] //按钮
         }, function(){
-            location.href='/room_default/'+hs_id;
+            location.href='/manage_center/room_default/'+hs_id;
         }, function(){
             layer.msg('取消当前操作',{ time: 1000});
         });
@@ -113,7 +114,7 @@ $(function () {
     load_resource_by_user_id(0,0);
     // 添加房源按钮事件
     $("#btn_add_house").click(function () {
-        location.href = "/house_add";
+        location.href = "/manage_center/house_add";
     });
 
 
