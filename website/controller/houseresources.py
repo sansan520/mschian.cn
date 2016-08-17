@@ -12,7 +12,8 @@ from .import vi
 def house_default():
     # 获取user_id,根据user_id获取当前用户对应的所有房源列表,以及默认第一个房源信息
     current_user = tools.get_current_user()
-    return render_template('/hcenter/house_default.html',user_id=current_user['user_id'])
+    username = request.cookies.get("username")
+    return render_template('/hcenter/house_default.html',user_id=current_user['user_id'],username=username)
 
 
 @vi.route("/manage_center/get_resource_by_user_id", methods=['POST'])
@@ -31,19 +32,21 @@ def get_resource_by_user_id():
 @vi.route("/manage_center/house_edit/<int:hs_id>")
 def house_edit(hs_id):
     current_user = tools.get_current_user()
+    username = request.cookies.get("username")
     if hs_id > 0:
         response = requests.get(Conf.API_ADDRESS + "/api/v1.0/get_houseresources_by_hs_id/" + str(hs_id))
         response_data = json.loads(response.content)
         if response_data["code"] == 1:
             house_entity = response_data["message"]
-            return render_template('/hcenter/house_edit.html',entity=house_entity,user_id=current_user['user_id'])
+            return render_template('/hcenter/house_edit.html',username=username,entity=house_entity,user_id=current_user['user_id'])
     return render_template('/hcenter/house_edit.html')
 
 @vi.route("/manage_center/house_add")
 @tools.check_user_wrapper
 def house_add():
     current_user = tools.get_current_user()
-    return render_template("/hcenter/house_add.html",user_id=current_user['user_id'])
+    username = request.cookies.get("username")
+    return render_template("/hcenter/house_add.html",username=username,user_id=current_user['user_id'])
 
 
 @vi.route("/manage_center/do_hs_insert",methods=['POST'])
