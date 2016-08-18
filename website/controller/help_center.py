@@ -11,3 +11,14 @@ def about_us():
 @vi.route("/contact_us")
 def contact_us():
     return render_template("/help_center/contact_us.html")
+
+# 服务声明
+@vi.route("/service_property")
+def service_property():
+    return render_template("/help_center/service_property.html")
+
+# 房东房源上发布规则
+@vi.route("/online_rule")
+def online_rule():
+    return render_template("/help_center/online_rule.html")
+
