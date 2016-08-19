@@ -88,30 +88,29 @@
 									<div class="col-xs-3 text-right msMagND-name">房型：</div>
 									<div class="col-xs-2">
 										<div class="form-group">
-											<select class="form-control" name="house_type" id="house_type">
+											<select class="form-control" name="room_type" id="room_type">
 											  <option value="_none_">--</option>
-                                                <option value="1">1</option>
-                                                <option value="2">2</option>
-                                                <option value="3">3</option>
-                                                <option value="4">4</option>
-                                                <option value="5">5</option>
-                                                <option value="6">6</option>
+                                                <option value="1">1 人间</option>
+                                                <option value="2">2 人间</option>
+                                                <option value="3">3 人间</option>
+                                                <option value="4">4 人间</option>
+                                                <option value="5">5 人间</option>
+                                                <option value="6">6 人间</option>
 											</select>
 										</div>
 									</div>
-                                    <div class="col-xs-4 text-left msMagND-txt">人房</div>
 								</div>
 								<div class="row">
 									<div class="col-xs-3 text-right msMagND-name">房源面积：</div>
 									<div class="col-xs-2 text-left msMagND-txt">
-										<input type="text" class="msMagND-txt-ipt" placeholder="单位:平方米"/>
+										<input type="text" class="msMagND-txt-ipt" placeholder="单位:平方米" id="room_area"/>
 									</div>
 								</div>
 								<div class="row">
 									<div class="col-xs-3 text-right msMagND-name">床型：</div>
 									<div class="col-xs-2">
 										<div class="form-group">
-											<select class="form-control" name="house_type" id="house_type">
+											<select class="form-control" name="bed_type" id="bed_type">
 											    <option value="双人床" >双人床</option>
                                                 <option value="大通舖" >大通舖</option>
                                                 <option value="榻榻米" >榻榻米</option>
@@ -125,17 +124,17 @@
                                 <div class="row">
 									<div class="col-xs-3 text-right msMagND-name">床数：</div>
                                     <div class="col-xs-2 text-left msMagND-txt">
-										<input type="text" class="msMagND-txt-ipt" />
+										<input type="text" class="msMagND-txt-ipt" id="bed_count"/>
 									</div>
 								</div>
                                 <div class="row">
 									<div class="col-xs-3 text-right msMagND-name">窗户：</div>
 									<div class="col-xs-9 text-left msMagND-txt">
 										<label class="radio-inline">
-										  <input type="radio" name="inlineRadioOptions" id="hav_window" value="1"> 有
+										  <input type="radio" name="hav_window" id="hav_window" value="1"> 有
 										</label>
 										<label class="radio-inline">
-										  <input type="radio" name="inlineRadioOptions" id="hav_window" value="0"> 无
+										  <input type="radio" name="hav_window" id="hav_window" value="0"> 无
 										</label>
 									</div>
 								</div>
@@ -143,52 +142,28 @@
 									<div class="col-xs-3 text-right msMagND-name">早餐：</div>
 									<div class="col-xs-9 text-left msMagND-txt">
 										<label class="radio-inline">
-										  <input type="radio" name="inlineRadioOptions" id="zaocan1" value="option1"> 是
+										  <input type="radio" name="hav_breakfast" id="hav_breakfast" value="1"> 是
 										</label>
 										<label class="radio-inline">
-										  <input type="radio" name="inlineRadioOptions" id="zaocan2" value="option2"> 否
+										  <input type="radio" name="hav_breakfast" id="hav_breakfast" value="0"> 否
 										</label>
 									</div>
 								</div>
 								<div class="row">
 									<div class="col-xs-3 text-right msMagND-name">基本设施：</div>
 									<div class="col-xs-9 text-left msMagND-txt">
-										<label class="radio-inline">
-										  <input type="checkbox" name="room_setting[0]" id="id_network" value="">有线网络
-										</label>
-										<label class="radio-inline">
-										  <input type="checkbox" name="room_setting[1]" id="id_wifi" value="">无线WIFI
-										</label>
-										<label class="radio-inline">
-										  <input type="checkbox" name="room_setting[2]" id="id_tv" value="">电视机
-										</label>
-										<label class="radio-inline">
-										  <input type="checkbox"  name="room_setting[2]" id="id_hot_water" value="">热水器
-										</label>
-										<label class="radio-inline">
-										  <input type="checkbox"  name="room_setting[2]" id="id_air_recondition" value="">空调
-										</label>
-										<label class="radio-inline">
-										  <input type="checkbox"  name="room_setting[2]" id="id_water_bottle" value="">热水壶
-										</label>
-										<label class="radio-inline">
-										  <input type="checkbox"  name="room_setting[2]" id="id_kitchen" value="">厨房
-										</label>
-										<label class="radio-inline">
-										  <input type="checkbox"  name="room_setting[2]" id="id_hot_tub" value="">浴缸
-										</label>
-										<label class="radio-inline">
-										  <input type="checkbox"  name="room_setting[2]" id="id_shower" value="">淋浴
-										</label>
-										<label class="radio-inline">
-										  <input type="checkbox"  name="room_setting[2]" id="id_towel" value="">毛巾
-										</label>
-										<label class="radio-inline">
-										  <input type="checkbox"  name="room_setting[2]" id="id_slippers" value="">拖鞋
-										</label>
-										<label class="radio-inline">
-										  <input type="checkbox"  name="room_setting[2]" id="id_washing_machine" value="">洗衣机
-										</label>
+										  <input type="checkbox" name="settings" value="有线网络">有线网络
+										  <input type="checkbox" name="settings" value="无线WIFI">无线WIFI
+										  <input type="checkbox" name="settings" value="电视机">电视机
+										  <input type="checkbox" name="settings" value="热水器">热水器
+										  <input type="checkbox" name="settings" value="空调">空调
+										  <input type="checkbox" name="settings" value="热水壶">热水壶
+										  <input type="checkbox" name="settings" value="厨房">厨房
+										  <input type="checkbox" name="settings" value="浴缸">浴缸
+										  <input type="checkbox" name="settings" value="淋浴">淋浴
+										  <input type="checkbox" name="settings" value="毛巾">毛巾
+										  <input type="checkbox" name="settings" value="拖鞋">拖鞋
+										  <input type="checkbox" name="settings" value="洗衣机">洗衣机
 									</div>
 								</div>
 								<div class="row">
@@ -321,6 +296,15 @@
                 layer.msg("当前操作出错,请联系管理员");
                 return false;
             }
+            var str_setting = "";
+            $('input:checkbox[name=settings]:checked').each(function(i){
+                if(i==0){
+                    str_setting=$(this).val();
+                } else{
+                    str_setting+=","+$(this).val();
+                }
+
+            });
 
             $.ajax({
                 url: "/manage_center/do_insert_guestroom",
@@ -330,7 +314,13 @@
                     "gr_name": gr_name,
                     "gr_price":gr_price,
                     "gr_desc": gr_desc,
-                    "gr_images" :gr_images
+                    "gr_images" :gr_images,
+                    'gr_status':0,
+                    'gr_room_type': $("#room_type option:selected").val(),
+                    'gr_room_area': $("#room_area").val(),
+                    'gr_bed_type': $("#bed_type option:selected").val(),
+                    'gr_bed_count': $("#bed_count").val(),
+                    'gr_settings': str_setting
                 }),
                 contentType: "application/json",
                 success:function (data) {

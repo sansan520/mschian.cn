@@ -51,13 +51,29 @@ def do_insert_guestroom():
     gr_desc = request.json.get('gr_desc')
     gr_images = request.json.get('gr_images')
     gr_status = request.json.get('gr_status')
+    # 详细信息
+    gr_room_type = request.get_json().get("gr_room_type")
+    gr_room_area = request.get_json().get("gr_room_area")
+    gr_bed_type = request.get_json().get("gr_bed_type")
+    gr_bed_count = request.get_json().get("gr_bed_count")
+    gr_windows = request.get_json().get("gr_windows")
+    gr_breakfast = request.get_json().get("gr_breakfast")
+    gr_settings = request.get_json().get("gr_settings")
+
     data = json.dumps({
         'hs_id':hs_id,
         'gr_name':gr_name,
         'gr_price':gr_price,
         'gr_desc':gr_desc,
         'gr_images':gr_images,
-        'gr_status':gr_status
+        'gr_status':gr_status,
+        'gr_room_type': gr_room_type,
+        'gr_room_area': gr_room_area,
+        'gr_bed_type': gr_bed_type,
+        'gr_bed_count': gr_bed_count,
+        'gr_windows': gr_windows,
+        'gr_breakfast': gr_breakfast,
+        'gr_settings': gr_settings
     })
     response = requests.post(url=api+'/api/v1.0/gr_insert',
                              data=data,
