@@ -298,11 +298,13 @@
             }
             var str_setting = "";
             $('input:checkbox[name=settings]:checked').each(function(i){
-                str_setting+=$(this).val()+",";
+                if(i==0){
+                    str_setting=$(this).val();
+                } else{
+                    str_setting+=","+$(this).val();
+                }
+
             });
-            if(str_setting.length>1){
-                str_setting = str_setting.substring(0,str_setting.lastIndexOf(','));
-            }
 
             $.ajax({
                 url: "/manage_center/do_insert_guestroom",
@@ -314,7 +316,6 @@
                     "gr_desc": gr_desc,
                     "gr_images" :gr_images,
                     'gr_status':0,
-                    // $('select#sel option:selected').val();
                     'gr_room_type': $("#room_type option:selected").val(),
                     'gr_room_area': $("#room_area").val(),
                     'gr_bed_type': $("#bed_type option:selected").val(),
