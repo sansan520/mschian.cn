@@ -95,6 +95,9 @@ var croppicContaineroutputOptions = {
             layer.msg("请同意条款");
             return false;
         }
+        if(user_headimg.length<1){
+            user_headimg="/static/img/head_portrait.png";
+        }
         $.ajax({url: "/do_user_register",
             type: 'POST',
             data: JSON.stringify({
