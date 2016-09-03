@@ -7,11 +7,12 @@ from . import vi
 
 api = Conf.API_ADDRESS
 
-@vi.route("/room_default/<int:hs_id>")
+@vi.route("/manage_center/room_default/<int:hs_id>")
 @tools.check_user_wrapper
 def room_default(hs_id):
     # 获取房源信息
     current_user = tools.get_current_user()
+    username = request.cookies.get("username")
     response = requests.get(api + "/api/v1.0/get_houseresources_by_hs_id/" + str(hs_id))
     response_data = json.loads(response.content)
     if response_data["code"] == 1:
@@ -21,13 +22,14 @@ def room_default(hs_id):
     response_room_data = json.loads(response_room.content)
     if response_room_data["code"] == 1:
         roomlist = response_room_data["message"]
-    return render_template("/hcenter/room_default.html",user_id=current_user['user_id'],entity = entity,roomlist=roomlist)
+    return render_template("/hcenter/room_default.html",username=username,user_id=current_user['user_id'],entity = entity,roomlist=roomlist)
 
 
-@vi.route('/room_add/<int:hs_id>')#  hs_id 房源的主键ID
+@vi.route('/manage_center/room_add/<int:hs_id>')#  hs_id 房源的主键ID
 @tools.check_user_wrapper
 def room_add(hs_id):
     # 获取房源信息
+    username = request.cookies.get("username")
     response = requests.get(api + "/api/v1.0/get_houseresources_by_hs_id/" + str(hs_id))
     response_data = json.loads(response.content)
     if response_data["code"] == 1:
@@ -39,10 +41,10 @@ def room_add(hs_id):
         rooms_name = []
         for m in roomlist:
             rooms_name.append(m['gr_name'])
-    return render_template("/hcenter/room_add.html",house_name = entity['hs_name'],house_id = entity['hs_id'],rooms_name=rooms_name)
+    return render_template("/hcenter/room_add.html",username=username,house_name = entity['hs_name'],house_id = entity['hs_id'],rooms_name=rooms_name)
 
 #添加客户
-@vi.route("/do_insert_guestroom",methods=['POST'])
+@vi.route("/manage_center/do_insert_guestroom",methods=['POST'])
 #@tools.check_user_wrapper
 def do_insert_guestroom():
     hs_id = request.json.get('hs_id')
@@ -56,8 +58,6 @@ def do_insert_guestroom():
     gr_room_area = request.get_json().get("gr_room_area")
     gr_bed_type = request.get_json().get("gr_bed_type")
     gr_bed_count = request.get_json().get("gr_bed_count")
-    gr_windows = request.get_json().get("gr_windows")
-    gr_breakfast = request.get_json().get("gr_breakfast")
     gr_settings = request.get_json().get("gr_settings")
 
     data = json.dumps({
@@ -71,9 +71,7 @@ def do_insert_guestroom():
         'gr_room_area': gr_room_area,
         'gr_bed_type': gr_bed_type,
         'gr_bed_count': gr_bed_count,
-        'gr_windows': gr_windows,
-        'gr_breakfast': gr_breakfast,
-        'gr_settings': gr_settings
+        'gr_settings': gr_settings,
     })
     response = requests.post(url=api+'/api/v1.0/gr_insert',
                              data=data,
@@ -86,17 +84,18 @@ def do_insert_guestroom():
         return jsonify(response_data)
     return jsonify(response_data)
 
-@vi.route('/room_edit/<int:hs_id>/<int:gr_id>')
+@vi.route('/manage_center/room_edit/<int:hs_id>/<int:gr_id>')
 @tools.check_user_wrapper
 def room_edit(hs_id,gr_id):  # hs_id 房源ID; gr_id 客房主键ID
+    username = request.cookies.get("username")
     response = requests.get(url=api + "/api/v1.0/get_guestroom_by_gr_id/" + str(gr_id))
     response_data = json.loads(response.content)
     if response_data['code'] == 1:
         entity = response_data['message']
-    return render_template("/hcenter/room_edit.html",hs_id = entity['hs_id'],gr_id=entity['gr_id'])
+    return render_template("/hcenter/room_edit.html",username=username,hs_id = entity['hs_id'],gr_id=entity['gr_id'])
 
 
-@vi.route("/get_all_rooms_by_hs_id")
+@vi.route("/manage_center/get_all_rooms_by_hs_id",methods=['POST'])
 def get_all_rooms_by_hs_id():
     hs_id = request.json.get("hs_id")
     response = requests.get(url=api + "/api/v1.0/get_guestroom_by_hsId/" + str(hs_id))
@@ -107,7 +106,7 @@ def get_all_rooms_by_hs_id():
     return jsonify({'code': 0, 'message': '查询失败'})
 
 #编辑客户
-@vi.route("/do_update_guestroom",methods=['POST'])
+@vi.route("/manage_center/do_update_guestroom",methods=['POST'])
 #@tools.check_user_wrapper
 def do_update_guestroom():
     gr_id = request.json.get("gr_id")
@@ -139,7 +138,7 @@ def do_update_guestroom():
     return jsonify(response_data)
 
 #删除客户
-@vi.route("/do_delete_guestroom",methods=['POST'])
+@vi.route("/manage_center/do_delete_guestroom",methods=['POST'])
 @tools.check_user_wrapper
 def do_delete_guestroom():
     gr_id = request.json.get("gr_id")
@@ -152,7 +151,7 @@ def do_delete_guestroom():
         return jsonify(response_data)
     return jsonify(response_data)
 
-@vi.route("/do_search_guestroom")
+@vi.route("/manage_center/do_search_guestroom")
 def do_search_guestroom():
     response = requests.get(url=api+"/api/v1.0/get_all_guest_room")
     response_data = json.loads(response.content)
