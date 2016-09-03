@@ -2,35 +2,11 @@
 {% block title %}房源详情页-中国名宿网{% endblock %}
 {% block head %}
     {{ super() }}
-    <link rel="stylesheet" href="../static/css/ms.css">
-    <link rel="stylesheet" href="../static/css/bootstrap.css">
-    <!--<link rel="stylesheet" href="../style/reset.css" />-->
-    <link rel="stylesheet" href="../static/css/room_detail.css">
-    <script  src="../static/js/jquery-1.12.2.min.js"></script>
-    <script src="../static/js/bootstrap.js"></script>
-    <!--[if lt IE 9]>
-		  <script src="//cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-		  <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
-		<![endif]-->
-		<script type="text/javascript" src="../static/js/jquery-1.8.2.min.js"></script>
+    <link rel="stylesheet" href="/static/css/room_detail.css">
 
-	<!-- Add mousewheel plugin (this is optional) -->
-	<script type="text/javascript" src="../static/js/jquery.mousewheel-3.0.6.pack.js"></script>
-
-	<!-- Add fancyBox main JS and CSS files -->
-	<script type="text/javascript" src="../static/js/jquery.fancybox.js?v=2.1.3"></script>
-	<link rel="stylesheet" type="text/css" href="../static/css/jquery.fancybox.css?v=2.1.2" media="screen" />
-
-	<!-- Add Button helper (this is optional) -->
-	<link rel="stylesheet" type="text/css" href="../static/css/jquery.fancybox-buttons.css?v=1.0.5" />
-	<script type="text/javascript" src="../static/js/jquery.fancybox-buttons.js?v=1.0.5"></script>
-
-	<!-- Add Thumbnail helper (this is optional) -->
-	<link rel="stylesheet" type="text/css" href="../static/css/jquery.fancybox-thumbs.css?v=1.0.7" />
-	<script type="text/javascript" src="../static/js/jquery.fancybox-thumbs.js?v=1.0.7"></script>
-
-	<!-- Add Media helper (this is optional) -->
-	<script type="text/javascript" src="../static/js/jquery.fancybox-media.js?v=1.0.5"></script>
+	<link rel="stylesheet" type="text/css" href="/static/css/jquery.fancybox.css?v=2.1.2" media="screen" />
+	<link rel="stylesheet" type="text/css" href="/static/css/jquery.fancybox-buttons.css?v=1.0.5" />
+	<link rel="stylesheet" type="text/css" href="/static/css/jquery.fancybox-thumbs.css?v=1.0.7" />
 
 {% endblock %}
 {% block content %}
@@ -261,11 +237,14 @@
 		</div>
 {% endblock %}
 {% block script %}
-	<script type="text/javascript" src="../static/js/jqueryPhoto.js" ></script>
-	<script type="text/javascript" src="../static/js/jquery-ui.min.js" ></script>
+    <script src="/static/js/jquery-1.8.2.min.js"></script>
+    <script type="text/javascript" src="/static/js/jquery.mousewheel-3.0.6.pack.js"></script>
+	<script type="text/javascript" src="/static/js/jquery.fancybox.js"></script>
+    <script type="text/javascript" src="/static/js/jquery.fancybox-buttons.js"></script>
+    <script type="text/javascript" src="/static/js/jquery.fancybox-thumbs.js"></script>
+	<script type="text/javascript" src="/static/js/jquery.fancybox-media.js"></script>
 	
 	<script>
-
         $(function() {
             $(".fancybox").fancybox();
         });
