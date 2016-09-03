@@ -96,7 +96,7 @@ def room_edit(hs_id,gr_id):  # hs_id 房源ID; gr_id 客房主键ID
     return render_template("/hcenter/room_edit.html",hs_id = entity['hs_id'],gr_id=entity['gr_id'])
 
 
-@vi.route("/get_all_rooms_by_hs_id",methods=['POST'])
+@vi.route("/get_all_rooms_by_hs_id")
 def get_all_rooms_by_hs_id():
     hs_id = request.json.get("hs_id")
     response = requests.get(url=api + "/api/v1.0/get_guestroom_by_hsId/" + str(hs_id))

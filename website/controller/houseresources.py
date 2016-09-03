@@ -15,6 +15,12 @@ def house_default():
     username = request.cookies.get("username")
     return render_template('/hcenter/house_default.html',user_id=current_user['user_id'],username=username)
 
+@vi.route("/manage_center/house_details")
+@tools.check_user_wrapper
+def house_details():
+    current_user = tools.get_current_user()
+    username = request.cookies.get("username")
+    return render_template('/hcenter/house_details.html',user_id=current_user['user_id'],username=username)
 
 @vi.route("/manage_center/get_resource_by_user_id", methods=['POST'])
 def get_resource_by_user_id():
