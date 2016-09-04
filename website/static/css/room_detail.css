@@ -61,7 +61,7 @@
 			.body-strip p{text-align: center;font-size: 19px;color:#2f2e2e;}
 			.body-strip p em{font-style:normal;font-size:16px;line-height: 1em;color:#f35758;}
 			.body-strip span:hover{cursor:pointer;}
-			.room_section{border-width: 1px 0 0 0;border-style:solid;border-color:#dcdcdc;padding:30px 0;margin-bottom: 30px;}
+			#room_section{border-width: 1px 0 0 0;border-style:solid;border-color:#dcdcdc;padding:30px 0;margin-bottom: 30px;}
 			.room_pic{margin-right: 20px;margin-top:20px;float:left;}
 			.room_pic img{width:250px;height: 200px;}
 			.room_info{width:600px;padding:5px 0;margin-top:20px;display: inline-block;}

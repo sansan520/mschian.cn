@@ -12,6 +12,8 @@
 {% block content %}
 		<!--======主要内容=========-->
 		<div class="wrapper">
+            <input type="hidden" id="hid_user_id" value="{{ user_id }}"/>
+            <input type="hidden" id="hid_hs_id" value="{{ entity.hs_id }}"/>
 			<div class="breadcrumb_wrapper" >
 				<ol class="breadcrumb">
 					<li>
@@ -23,12 +25,11 @@
 
 					<li>
 						<a href="/search/c12052" title="湖州民宿">
-								湖州民宿
+                            湖州民宿
 						</a>
 					</li>
 					<li>
-						<a href="/h/429951" title="老树林度假别墅">
-							老树林度假别墅				</a>
+						<a href="/h/429951" title="{{ entity.hs_name }}">{{ entity.hs_name }}</a>
 					</li>
 			</ol>
 		</div>
@@ -36,10 +37,10 @@
 			<div class="baseinfo_wrapper">
 				<div class="baseinfo">
 					<div class="line1">
-						<h3>漫步山乡(精品民宿)</h3>
+						<h3>{{ entity.hs_name }}</h3>
 						<span class="icon-large icon-certified-large"></span>
 						<span class="icon-large icon-thunder-book-large"></span>
-						<div class="price-large"><b>680</b>元起</div>
+						<div class="price-large"><b>{{ item.gr_price }}</b>元起</div>
 					</div>
 
 					<div class="line2">
@@ -52,9 +53,11 @@
 							    <div class="sliderwrapper">
 									<ul class="hs_slide">
 										<li>
-											<a class="fancybox" href="http://img1.zzkcdn.com/3y38262651e9671b54a7db30982daae4/2000x1500.jpg-homepic800x600.jpg" data-fancybox-group="gallery" title="Lorem ipsum dolor sit amet">
-												<img src="http://img1.zzkcdn.com/3y38262651e9671b54a7db30982daae4/2000x1500.jpg-homepic800x600.jpg"  alt="" />
-											</a>
+                                            {% for image in images %}
+                                                <a class="fancybox" href="http://img1.zzkcdn.com/3y38262651e9671b54a7db30982daae4/2000x1500.jpg-homepic800x600.jpg" data-fancybox-group="gallery" title="Lorem ipsum dolor sit amet">
+                                                    <img src="{{ entity.hs_images }}"  alt="" />
+                                                </a>
+                                            {% endfor %}
 										</li>
 										<li>
 											<a class="fancybox" href="http://img1.zzkcdn.com/3y38262651e9671b54a7db30982daae4/2000x1500.jpg-homepic800x600.jpg" data-fancybox-group="gallery" title="Etiam quis mi eu elit temp">
@@ -80,7 +83,7 @@
 								<div class="body-section">
 									<div class="avatar_container">
 										<img  src="../images/userphoto.jpg"/>
-										<div><p>房东头像</p></div>
+										<div><p>{{ entity.user_headimg }}</p></div>
 									</div>
 
 									<div class="homestay_summary">
@@ -90,9 +93,7 @@
 										<div id="aboutme">
 											<div class="origin">
 												<p>
-													“漫步山乡”客栈位于历史悠久，文化浓厚的国家级风景区莫干山的山脚下，其氛围宁静隐逸自然气息浓厚，连绵起伏的山峦，绿荫如海的修竹环绕在四周。
-													 客栈不求规模，臻于品质以期望能给您带来最细致的服务，让您能在客栈中找到家的舒适和温情是我们致力以求的根本。 客栈装修风格追求自然，乡村风格处处体现。
-													舒适宁静的乡村慢生活能让生活在紧张都市节秦中的您彻底的放松心情。让每一位到此的客人都能留下一段美好的乡村回忆是我们致力所追求的！
+													{{ entity.hs_intro }}
 												</p>
 												<br />
 												<p></p>
@@ -122,114 +123,52 @@
 									<!--<button class="btn btn-default btn-blue" type="submit">确定</button>-->
 							<!--</form>-->
 							<div class="roomlist">
-								<div class="room_section">
-									<div class="room_pic">
-										<a href="###"><img src="../images/roompic.jpg"/></a>
-									</div>
-									<div class="room_info">
-										<div class="roominfo_line1">
-											<a href="###"><h3>立夏</h3></a>
-											<span class="icon-large icon-thunder-book-large"></span>
-										</div>
-										<div class="roominfo_line2">
-											<a href="###">查看房间详情</a>
-										</div>
-										<div class="roominfo_line3 score score-default">
-											<span class="icon icon-star-off"></span>
-											<span class="icon icon-star-off"></span>
-											<span class="icon icon-star-off"></span>
-											<span class="icon icon-star-off"></span>
-											<span class="icon icon-star-off"></span>
-											<p class="score">暂无评论</p>
-										</div>
-										<div class="roominfo_line4">
-											<label>房间面积:</label><span><b>20m<sup>2</sup></b></span>
-											<label>床型信息:</label><span><b>单人床</b>（2张）</span>
-											<label>最多入住:</label><span><b>2人</b></span>
-										</div>
-										</div>
-										<div class="room_order">
-											<p class="price price-default">
-												<b>680</b>元起<em></em>
-											</p>
-											<a href="###" class="btn-big btn-red-white-big"><span>免费申请预订</span></a>
-										</div>
-									</div>
-								<div class="room_section">
-									<div class="room_pic">
-										<a href="###"><img src="../images/roompic.jpg"/></a>
-									</div>
-									<div class="room_info">
-										<div class="roominfo_line1">
-											<a href="###"><h3>立夏</h3></a>
-											<span class="icon-large icon-thunder-book-large"></span>
-										</div>
-										<div class="roominfo_line2">
-											<a href="###">查看房间详情</a>
-										</div>
-										<div class="roominfo_line3 score score-default">
-											<span class="icon icon-star-off"></span>
-											<span class="icon icon-star-off"></span>
-											<span class="icon icon-star-off"></span>
-											<span class="icon icon-star-off"></span>
-											<span class="icon icon-star-off"></span>
-											<p class="score">暂无评论</p>
-										</div>
-										<div class="roominfo_line4">
-											<label>房间面积:</label><span><b>20m<sup>2</sup></b></span>
-											<label>床型信息:</label><span><b>单人床</b>（2张）</span>
-											<label>最多入住:</label><span><b>2人</b></span>
-										</div>
-										</div>
-										<div class="room_order">
-											<p class="price price-default">
-												<b>680</b>元起<em></em>
-											</p>
-											<a href="###" class="btn-big btn-red-white-big"><span>免费申请预订</span></a>
-										</div>
-									</div>
-								<div class="room_section">
-									<div class="room_pic">
-										<a href="###"><img src="../images/roompic.jpg"/></a>
-									</div>
-									<div class="room_info">
-										<div class="roominfo_line1">
-											<a href="###"><h3>立夏</h3></a>
-											<span class="icon-large icon-thunder-book-large"></span>
-										</div>
-										<div class="roominfo_line2">
-											<a href="###">查看房间详情</a>
-										</div>
-										<div class="roominfo_line3 score score-default">
-											<span class="icon icon-star-off"></span>
-											<span class="icon icon-star-off"></span>
-											<span class="icon icon-star-off"></span>
-											<span class="icon icon-star-off"></span>
-											<span class="icon icon-star-off"></span>
-											<p class="score">暂无评论</p>
-										</div>
-										<div class="roominfo_line4">
-											<label>房间面积:</label><span><b>20m<sup>2</sup></b></span>
-											<label>床型信息:</label><span><b>单人床</b>（2张）</span>
-											<label>最多入住:</label><span><b>2人</b></span>
-										</div>
-										</div>
-										<div class="room_order">
-											<p class="price price-default">
-												<b>680</b>元起<em></em>
-											</p>
-											<a href="###" class="btn-big btn-red-white-big"><span>免费申请预订</span></a>
-										</div>
-									</div>
-
+                                {% if roomlist %}
+                                    {% for item in roomlist %}
+                                        <div id="room_section">
+                                            <div class="room_pic">
+                                                <a href="###"><img src="../images/roompic.jpg"/></a>
+                                            </div>
+                                            <div class="room_info">
+                                                <div class="roominfo_line1">
+                                                    <a href="###"><h3>{{ item.gr_name }}</h3></a>
+                                                    <span class="icon-large icon-thunder-book-large"></span>
+                                                </div>
+                                                <div class="roominfo_line2">
+                                                    <a href="###">查看房间详情</a>
+                                                </div>
+                                                <div class="roominfo_line3 score score-default">
+                                                    <span class="icon icon-star-off"></span>
+                                                    <span class="icon icon-star-off"></span>
+                                                    <span class="icon icon-star-off"></span>
+                                                    <span class="icon icon-star-off"></span>
+                                                    <span class="icon icon-star-off"></span>
+                                                    <p class="score">暂无评论</p>
+                                                </div>
+                                                <div class="roominfo_line4">
+                                                    <label>房间面积:</label><span><b>{{ item.gr_room_area }}<sup>2</sup></b></span>
+                                                    <label>床型信息:</label><span><b>{{ item.gr_bed_type }}</b>（2张）</span>
+                                                    <label>最多入住:</label><span><b>{{ item.gr_room_type }}</b></span>
+                                                </div>
+                                                </div>
+                                                <div class="room_order">
+                                                    <p class="price price-default">
+                                                        <b>{{ item.gr_price }}</b>元起<em></em>
+                                                    </p>
+                                                    <a href="###" class="btn-big btn-red-white-big"><span>免费申请预订</span></a>
+                                                </div>
+                                            </div>
+                                        {% endfor %}
+                                    {% else %}
+                                    {% endif %}
 								</div>
-
 							</div>
 						</div>
 						<div class="body-strip lookMore">
 								<p>
 									<span class="icon icon-triangle-bottom"></span>
-									<span class="text_show">查看全部</span><span class="hide text_hide" style="display: none;">收起</span>房间<b>(11)</b>
+									<span class="text_show">查看全部</span>
+                                    <span class="hide text_hide" style="display: none;">收起</span>房间<b>(11)</b>
 								</p>
 						</div>
 					</div>
@@ -246,7 +185,57 @@
 	
 	<script>
         $(function() {
+            var roomlist_more = "hide";
             $(".fancybox").fancybox();
+            $(".lookMore").click(function(){
+                if(roomlist_more == "hide"){
+                    $(".roomlist div.hide").show();
+                    $(".lookMore span.text_show").hide();
+                    $(".lookMore span.text_hide").show();
+                    $(".lookMore .icon").removeClass("icon-triangle-bottom");
+                    $(".lookMore .icon").addClass("icon-triangle-top");
+                    roomlist_more = "show";
+                }
+                else{
+                    $(".roomlist div.hide").hide();
+                    $(".lookMore span.text_show").show();
+                    $(".lookMore span.text_hide").hide();
+                    $(".lookMore .icon").removeClass("icon-triangle-top");
+                    $(".lookMore .icon").addClass("icon-triangle-bottom");
+                    roomlist_more = "hide";
+                    window.location.href="#anchor_room_select";
+                }
+
+
+            });
         });
+    function load_all_rooms_by_hs_id(frmWhichPage,hs_id){
+        myArray=[];
+        $.ajax({
+            url:"/manager_center/get_all_rooms_by_hs_id",
+            type:"post",
+            data:JSON.stringify({"hs_id":$("#hid_hs_id").val()}),
+            contentType:"application/json",
+            success:function(data){
+                if(data.code == 1){
+                    myArray = data.message;
+                    if(myArray.length>0){
+                        var default_hs_id = 0;
+                        for(i=0;i<myArray.length;i++){
+                            item = myArray[i];
+                            if(frmWhichPage >= 3){
+                                if(i == 0){
+                                    default_hs_id = item.hs_id;
+                                }
+                            }
+                        }
+                    }
+                }
+
+
+            }
+
+        });
+    }
     </script>
 {% endblock %}
