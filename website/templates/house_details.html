@@ -40,7 +40,7 @@
 						<h3>{{ entity.hs_name }}</h3>
 						<span class="icon-large icon-certified-large"></span>
 						<span class="icon-large icon-thunder-book-large"></span>
-						<div class="price-large"><b>{{ item.gr_price }}</b>元起</div>
+{#						<div class="price-large"><b>{{ item.gr_price }}</b>元起</div>#}
 					</div>
 
 					<div class="line2">
@@ -146,21 +146,21 @@
                                                     <p class="score">暂无评论</p>
                                                 </div>
                                                 <div class="roominfo_line4">
-                                                    <label>房间面积:</label><span><b>{{ item.gr_room_area }}<sup>2</sup></b></span>
-                                                    <label>床型信息:</label><span><b>{{ item.gr_bed_type }}</b>（2张）</span>
-                                                    <label>最多入住:</label><span><b>{{ item.gr_room_type }}</b></span>
+{#                                                    <label>房间面积:</label><span><b>{{ item.gr_room_area }}<sup>2</sup></b></span>#}
+{#                                                    <label>床型信息:</label><span><b>{{ item.gr_bed_type }}</b>（2张）</span>#}
+{#                                                    <label>最多入住:</label><span><b>{{ item.gr_room_type }}</b></span>#}
                                                 </div>
                                                 </div>
                                                 <div class="room_order">
                                                     <p class="price price-default">
-                                                        <b>{{ item.gr_price }}</b>元起<em></em>
+{#                                                        <b>{{ item.gr_price }}</b>元起<em></em>#}
                                                     </p>
                                                     <a href="###" class="btn-big btn-red-white-big"><span>免费申请预订</span></a>
                                                 </div>
                                             </div>
-                                        {% endfor %}
-                                    {% else %}
-                                    {% endif %}
+                                    {% endfor %}
+                                {% else %}
+                                {% endif %}
 								</div>
 							</div>
 						</div>
@@ -209,33 +209,33 @@
 
             });
         });
-    function load_all_rooms_by_hs_id(frmWhichPage,hs_id){
-        myArray=[];
-        $.ajax({
-            url:"/manager_center/get_all_rooms_by_hs_id",
-            type:"post",
-            data:JSON.stringify({"hs_id":$("#hid_hs_id").val()}),
-            contentType:"application/json",
-            success:function(data){
-                if(data.code == 1){
-                    myArray = data.message;
-                    if(myArray.length>0){
-                        var default_hs_id = 0;
-                        for(i=0;i<myArray.length;i++){
-                            item = myArray[i];
-                            if(frmWhichPage >= 3){
-                                if(i == 0){
-                                    default_hs_id = item.hs_id;
-                                }
-                            }
-                        }
-                    }
-                }
-
-
-            }
-
-        });
-    }
+{#    function load_all_rooms_by_hs_id(frmWhichPage,hs_id){#}
+{#        myArray=[];#}
+{#        $.ajax({#}
+{#            url:"/manager_center/get_all_rooms_by_hs_id",#}
+{#            type:"post",#}
+{#            data:JSON.stringify({"hs_id":$("#hid_hs_id").val()}),#}
+{#            contentType:"application/json",#}
+{#            success:function(data){#}
+{#                if(data.code == 1){#}
+{#                    myArray = data.message;#}
+{#                    if(myArray.length>0){#}
+{#                        var default_hs_id = 0;#}
+{#                        for(i=0;i<myArray.length;i++){#}
+{#                            item = myArray[i];#}
+{#                            if(frmWhichPage >= 3){#}
+{#                                if(i == 0){#}
+{#                                    default_hs_id = item.hs_id;#}
+{#                                }#}
+{#                            }#}
+{#                        }#}
+{#                    }#}
+{#                }#}
+{##}
+{##}
+{#            }#}
+{##}
+{#        });#}
+{#    }#}
     </script>
 {% endblock %}

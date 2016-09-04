@@ -16,7 +16,7 @@ def house_default():
 
     return render_template('/hcenter/house_default.html',user_id=current_user['user_id'],username=username)
 
-@vi.route("/manage_center/house_details/<int:hs_id>")
+@vi.route("/house_details/<int:hs_id>")
 @tools.check_user_wrapper
 def house_details(hs_id):
     current_user = tools.get_current_user()
@@ -26,9 +26,13 @@ def house_details(hs_id):
         response_data = json.loads(response.content)
         if response_data["code"] == 1:
             house_entity = response_data["message"]
-            return render_template('/hcenter/house_details.html', username=username, entity=house_entity,
-                                   user_id=current_user['user_id'])
-    return render_template('/hcenter/house_details.html')
+        response_room = requests.get(Conf.API_ADDRESS  + "/api/v1.0/get_guestroom_by_hsId/" + str(hs_id))
+        response_room_data = json.loads(response_room.content)
+        if response_room_data["code"] == 1:
+            roomlist = response_room_data["message"]
+        return render_template('/house_details.html', username=username, entity=house_entity,
+                                   user_id=current_user['user_id'],roomlist=roomlist)
+    return render_template('/house_details.html')
 
 
 @vi.route("/manage_center/get_resource_by_user_id", methods=['POST'])
