@@ -65,7 +65,7 @@ var myArray = new Array();
             content += '</div></div>';
 
             $(".msMag-nr-detail").html(content);
-        }else if(frmWhichPage==1) {
+        }else if(frmWhichPage==1) { 
             showEditHouseDialog(object.hs_id);
         }else if(frmWhichPage==2) {
             showManageRoomDialog(object.hs_id);
@@ -119,8 +119,7 @@ var myArray = new Array();
                                 if (i == 0) {
                                     default_hs_id = item.hs_id;
                                     tmp += '<li role="presentation" class="active"><a id="' + item.hs_id + '" onClick="click_func(' + item.hs_id + ',this,' + frmWhichPage + ')">' + item.hs_name + '</a></li>';
-                                } else {
-                                    tmp += '<li role="presentation"><a id="' + item.hs_id + '" onClick="click_func(' + item.hs_id + ',this,' + frmWhichPage + ')">' + item.hs_name + '</a></li>';
+                                } else {                                    tmp += '<li role="presentation"><a id="' + item.hs_id + '" onClick="click_func(' + item.hs_id + ',this,' + frmWhichPage + ')">' + item.hs_name + '</a></li>';
                                 }
                             }else{
                                 if(hs_id==item.hs_id){

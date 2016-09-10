@@ -1,0 +1,510 @@
+{% extends "base.html" %}
+{% block title %}房源详情页-中国名宿网{% endblock %}
+{% block head %}
+    {{ super() }}
+{% endblock %}
+{% block content %}
+			<!-- 主体开始 -->
+		<div class="sortRoom">
+			<div class="container">
+                <input type="hidden" id="hid_hs_id" value="{{ hs_id }}">
+				<ol class="breadcrumb row sortRoom-crumb">
+					<li>
+						<a href="#">首页</a>
+					</li>
+					<li>
+						<a href="#">民宿</a>
+					</li>
+					<li class="active">莫干山 </li>
+				</ol>
+
+				<div class="row baseinfo-hd">
+					<div id="baseinfo-hd1" class="clearfix">
+						<h3 class="pull-left">瑶庄精品民宿</h3>
+						<span class="pull-left icon-large icon-certified-large"></span>
+					</div>
+					<div id="baseinfo-hd2" class="clearfix">
+						<p class="pull-left"><span class="icon icon-position"></span>莫干山镇瑶坞村35-37号</p>
+						<a class="user_address pull-left" href="">查看地图</a>
+					</div>
+					<div id="baseinfo-hd3" class="clearfix">
+{#						<div class="pull-left score score-default">#}
+{#							<span class="icon icon-star-off"></span>#}
+{#							<span class="icon icon-star-off"></span>#}
+{#							<span class="icon icon-star-off"></span>#}
+{#							<span class="icon icon-star-off"></span>#}
+{#							<span class="icon icon-star-off"></span>#}
+{#							<p>暂无评论</p>#}
+{#						</div>#}
+{#						<a data-fav="" id="favorite" class="pull-left favorite" href="javascript:void(0)"><span class="icon-large icon-favorite-null-large" style="vertical-align: top;"></span>&nbsp;收藏</a>#}
+						<p class="pull-right">注册时间 2016-03-21</p>
+					</div>
+					<div class="col-sm-6 col-md-8">
+						<div id="carousel-example-generic" class="carousel slide" data-ride="carousel" style="margin-bottom: 90px;">
+							<!-- Indicators -->
+							<ol class="carousel-indicators row">
+								<li data-target="#carousel-example-generic" data-slide-to="0" class="active col-sm-3"><img src="http://img1.zzkcdn.com/bib0bb01ec79b89e29ce15976dbf8c11/2000x1500.jpg-homepic800x600.jpg" alt="..."></li>
+								<li data-target="#carousel-example-generic" data-slide-to="1" class="col-sm-3"><img src="http://img1.zzkcdn.com/di41b4d6372d23525faf01b755049bb2/2000x1500.jpg-homepic800x600.jpg" alt="..."></li>
+								<li data-target="#carousel-example-generic" data-slide-to="2" class="col-sm-3"><img src="http://img1.zzkcdn.com/di41b4d6372d23525faf01b755049bb2/2000x1500.jpg-homepic800x600.jpg" alt="..."></li>
+								<li data-target="#carousel-example-generic" data-slide-to="3" class="col-sm-3"><img src="http://img1.zzkcdn.com/di41b4d6372d23525faf01b755049bb2/2000x1500.jpg-homepic800x600.jpg" alt="..."></li>
+							</ol>
+
+							<!-- Wrapper for slides -->
+							<div class="carousel-inner" role="listbox">
+								<div class="item active">
+									<img src="http://img1.zzkcdn.com/bib0bb01ec79b89e29ce15976dbf8c11/2000x1500.jpg-homepic800x600.jpg" alt="...">
+									<div class="carousel-caption">
+										...
+									</div>
+								</div>
+								<div class="item">
+									<img src="http://img1.zzkcdn.com/di41b4d6372d23525faf01b755049bb2/2000x1500.jpg-homepic800x600.jpg" alt="...">
+									<div class="carousel-caption">
+										...
+									</div>
+								</div>
+								<div class="item">
+									<img src="http://img1.zzkcdn.com/di41b4d6372d23525faf01b755049bb2/2000x1500.jpg-homepic800x600.jpg" alt="...">
+									<div class="carousel-caption">
+										...
+									</div>
+								</div>
+								<div class="item">
+									<img src="http://img1.zzkcdn.com/di41b4d6372d23525faf01b755049bb2/2000x1500.jpg-homepic800x600.jpg" alt="...">
+									<div class="carousel-caption">
+										...
+									</div>
+								</div>
+							</div>
+
+							<!-- Controls -->
+							<a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+								<span class="glyphicon glyphicon-chevron-left"></span>
+								<span class="sr-only">Previous</span>
+							</a>
+							<a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+								<span class="glyphicon glyphicon-chevron-right"></span>
+								<span class="sr-only">Next</span>
+							</a>
+						</div>
+					</div>
+					<div class="col-sm-6 col-md-4" id="hs_sidebar">
+						<div id="avatar">
+							<div id="avatar_container">
+								<img src="http://img1.zzkcdn.com/l064b39e7ea237c53352a99986ed008a/2000x1500.jpg-userphoto.jpg" title="瑶庄精品民宿">
+								<div>
+									<p>钟贝贝</p>
+								</div>
+							</div>
+						</div>
+						<div id="service_lang">
+							<p>服务语言－<b>普通話 , 上海話 , 北京話 , 天津話 , 浙江話 , 英文</b>
+							</p>
+						</div>
+{#						<div id="sidebar_line4">#}
+{#							<div>#}
+{#								<span class="icon-large icon-reload-large"></span>#}
+{#								<label>0%</label>#}
+{#								<p>回复率</p>#}
+{#							</div>#}
+{#							<div>#}
+{#								<span class="icon-large icon-history-large"></span>#}
+{#								<label>0%</label>#}
+{#								<p>2小时回复</p>#}
+{#							</div>#}
+{#							<div>#}
+{#								<span class="icon-large icon-calender-large"></span>#}
+{#								<label>2016-08-19</label>#}
+{#								<p>日历已更新</p>#}
+{#							</div>#}
+{#						</div>#}
+						<div id="last_order">
+							<p>最新预订
+								<b>暂无</b>
+							</p>
+						</div>
+						<div id="homestay_action">
+							<a href="#anchor_room_select" class="btn-huge btn-red-huge"><span>免费申请预订</span></a>
+{#							<a id="hs_msg_btn" class="btn-huge btn-white-huge" href="javascript:void(0);"><span>私信民宿主人</span></a>#}
+						</div>
+					</div>
+				</div>
+
+{#				<div id="navbar" class="navbar-wrap block-content">#}
+{#					<ul class="row navbar" style="margin-bottom: 0;">#}
+{#						<li class="col-sm-2">#}
+{#							<a class="nav_room_select active" href="#anchor_room_select">房间选择</a>#}
+{#						</li>#}
+{#						<li class="col-sm-2">#}
+{#							<a class="nav_homestay_summary" href="#anchor_homestay_summary">民宿简介</a>#}
+{#						</li>#}
+{#						<li class="col-sm-2">#}
+{#							<a class="nav_comment" href="#anchor_comment">客人点评<b>(0)</b></a>#}
+{#						</li>#}
+{#						<li class="col-sm-2">#}
+{#							<a class="nav_policy" href="#anchor_policy">条款政策</a>#}
+{#						</li>#}
+{#						<li class="col-sm-2">#}
+{#							<a class="nav_traffic" href="#anchor_traffic">交通地图</a>#}
+{#						</li>#}
+{#						<li class="col-sm-2">#}
+{#							<a class="nav_nearby_homestay" href="#anchor_nearby_homestay">周边民宿</a>#}
+{#						</li>#}
+{#					</ul>#}
+{#				</div>#}
+
+				<div id="room_select_wrapper" class="wrapper">
+					<div id="room_select" class="body-section block-content">
+						<a class="anchor" id="anchor_room_select" name="anchor_room_select">&nbsp;</a>
+{#						<h3 class="text-center">房间选择</h3>#}
+{#						<div id="book_flow">#}
+{#							<p>预订流程</p>#}
+{#							<ul>#}
+{#								<li class="active">1&nbsp;选择／申请预订</li>#}
+{#								<li class="separator">&nbsp;</li>#}
+{#								<li>2&nbsp;民宿主人确认</li>#}
+{#								<li class="separator">&nbsp;</li>#}
+{#								<li>3&nbsp;确认支付</li>#}
+{#								<li class="separator">&nbsp;</li>#}
+{#								<li>4&nbsp;凭证入住</li>#}
+{#								<li class="separator">&nbsp;</li>#}
+{#								<li>5&nbsp;住后写点评</li>#}
+{#							</ul>#}
+{#						</div>#}
+
+{#						<div class="row">#}
+{#							<div class="col-md-3 col-sm-6 row-space-1-sm">#}
+{#								<div class="form-group">#}
+{#									<input type="" name="" class="form-control datepicker01" id="dp1473164821581" value="" placeholder="2016-10-06">#}
+{#								</div>#}
+{#							</div>#}
+{#							<div class="col-md-3 col-sm-6 row-space-1-sm">#}
+{#								<div class="form-group">#}
+{#									<input type="" name="" class="form-control datepicker02" id="dp1473164821582" value="" placeholder="2016-10-07">#}
+{#								</div>#}
+{#							</div>#}
+{#							<div class="col-md-3 col-sm-6 row-space-1-sm">#}
+{#								<div class="form-group">#}
+{#									<button type="submit" class="btn btn-default btn-blue">确定</button>#}
+{#								</div>#}
+{#							</div>#}
+{#						</div>#}
+{#						<script>#}
+{#							$(function() {#}
+{#								$(".datepicker01").datepicker();#}
+{#								$(".datepicker02").datepicker();#}
+{#							});#}
+{#						</script>#}
+
+						<div id="roomlist">
+                            {% if roomlist %}
+                            {% for item in roomlist %}
+							<div class="room_section row">
+								<div class="room_pic col-sm-3 col-xs-12">
+									<a href="/r/189992" target="_blank">
+										<img title="瑶庄精品民宿" src="http://img1.zzkcdn.com/wfb65e1dd9f60711685f05d03f14ba7b/2000x1500.jpg-roompic.jpg">
+									</a>
+								</div>
+								<div class="room_info col-sm-6 col-xs-12">
+									<div class="roominfo_line1">
+										<a href="/r/189992" target="_blank" title="青云">
+											<h3>青云</h3>
+										</a>
+									</div>
+
+									<div class="roominfo_line6">
+									</div>
+
+									<div class="roominfo_line2">
+										<a href="/r/189992" target="_blank">查看房间详情</a>
+									</div>
+									<div class="roominfo_line3 score score-default">
+										<span class="icon icon-star-off"></span>
+										<span class="icon icon-star-off"></span>
+										<span class="icon icon-star-off"></span>
+										<span class="icon icon-star-off"></span>
+										<span class="icon icon-star-off"></span>
+										<p class="score">
+											暂无评论
+										</p>
+									</div>
+									<div class="roominfo_line4">
+										<label>房间面积：</label><span><b>20m<sup>2</sup></b></span>
+										<label>床型信息：</label>
+										<span><b>上下鋪</b>（4张）</span>
+										<label>最多入住：</label>
+										<span><b>4人</b></span>
+									</div>
+									<div class="roominfo_line5">
+										<label><span class="icon-middle icon-breakfast-on-middle"></span>早餐</label>
+										<label><span class="icon-middle icon-wifi-off-middle"></span>wifi</label>
+										<label><span class="icon-middle icon-washroom-on-middle"></span>独立卫浴</label>
+									</div>
+								</div>
+								<div class="room_order col-sm-3 col-xs-12">
+									<p class="price price-default"><b>480</b>元起<em></em></p>
+									<a href="javascript:void(0)" class="btn-big btn-gray-big"><span>订&nbsp;完</span></a>
+								</div>
+							</div>
+							<div class="room_section row">
+								<div class="room_pic col-sm-3 col-xs-12">
+									<a href="/r/189992" target="_blank">
+										<img title="瑶庄精品民宿" src="http://img1.zzkcdn.com/wfb65e1dd9f60711685f05d03f14ba7b/2000x1500.jpg-roompic.jpg">
+									</a>
+								</div>
+								<div class="room_info col-sm-6 col-xs-12">
+									<div class="roominfo_line1">
+										<a href="/r/189992" target="_blank" title="青云">
+											<h3>青云</h3>
+										</a>
+									</div>
+
+									<div class="roominfo_line6">
+									</div>
+
+									<div class="roominfo_line2">
+										<a href="/r/189992" target="_blank">查看房间详情</a>
+									</div>
+									<div class="roominfo_line3 score score-default">
+										<span class="icon icon-star-off"></span>
+										<span class="icon icon-star-off"></span>
+										<span class="icon icon-star-off"></span>
+										<span class="icon icon-star-off"></span>
+										<span class="icon icon-star-off"></span>
+										<p class="score">
+											暂无评论
+										</p>
+									</div>
+									<div class="roominfo_line4">
+										<label>房间面积：</label><span><b>20m<sup>2</sup></b></span>
+										<label>床型信息：</label>
+										<span><b>上下鋪</b>（4张）</span>
+										<label>最多入住：</label>
+										<span><b>4人</b></span>
+									</div>
+									<div class="roominfo_line5">
+										<label><span class="icon-middle icon-breakfast-on-middle"></span>早餐</label>
+										<label><span class="icon-middle icon-wifi-off-middle"></span>wifi</label>
+										<label><span class="icon-middle icon-washroom-on-middle"></span>独立卫浴</label>
+									</div>
+								</div>
+								<div class="room_order col-sm-3 col-xs-12">
+									<p class="price price-default"><b>480</b>元起<em></em></p>
+									<a href="javascript:void(0)" class="btn-big btn-gray-big"><span>订&nbsp;完</span></a>
+								</div>
+							</div>
+                            {% endfor %}
+                        {% else %}
+                                <div class="room_section row">暂无数据</div>
+                        {% endif %}
+						</div>
+					</div>
+				</div>
+
+				<div class="row" style="border-top: 1px solid #ccc;">
+					<div id="homestay_summary" class="body-section block-content">
+						<a class="anchor" id="anchor_homestay_summary" name="anchor_homestay_summary">&nbsp;</a>
+						<h3 class="text-center">民宿简介</h3>
+						<div id="aboutme">
+							<div class="origin">莫干山瑶庄精品民宿-老底子的经典，在于真正的土生土长。<br>　　世居于莫干山脚下的山里人，在自家的宅基地上，构筑着自己的梦想。因为放不下对老屋的爱，最大化保留了老房子原来的土木结构。倾注了自己所有的精力，只为跟朋友们分享他们心中对家的温暖。<br>　　全屋地暖，舒适浴缸，宽敞晒台。房前铺满了厚重历史气息的“武康石”，环抱着青草的石缝在风起时摇曳。屋后大大的户外露台，背靠竹山，满眼葱翠。在建中的泳池与儿童游戏房，让客人在山中的闲暇时光又多了一个趣味的选择。在这里，让你真真的体会_呼吸就是养生。<br>　　莫干山，这个百年前就被中外精英们强烈影响和改造的地方。今天，被伟大的山区人民进行了一场返璞归真的复兴。<br>　　山中民宿百间，能坚持真正的本乡特色、让竹木风格繁而不乱、又巧妙地把现代舒适隐藏致密的，仅瑶庄了吧。</div>
+							<div class="translate hide"></div>
+						</div>
+					</div>
+				</div>
+
+
+
+
+
+{#				<div class="row" style="border-top: 1px solid #ccc;">#}
+{#					<a class="anchor" id="anchor_homestay_summary" name="anchor_homestay_summary">&nbsp;</a>#}
+{#					<h3 style="margin-bottom:26px;" class="text-center">房间简介</h3> 位于1楼，是高低铺形式，拥有4个床位，包括两张1.2的床和两张1.8的床，经济实惠，适合亲子朋友旅游出行下榻。#}
+{#				</div>#}
+{##}
+{#				<div class="ms-pl" style="border-top: 1px solid #ccc;">#}
+{#					<div class="row">#}
+{#						<a class="anchor" id="anchor_comment" name="anchor_comment">&nbsp;</a>#}
+{#						<h3 style="margin-bottom:30px;" class="col-xs-12 col-sm-12 text-center">客人点评</h3>#}
+{#						<div id="comments_header">#}
+{#							<div class="col-xs-12 col-sm-8 score score-default">#}
+{#								<span class="icon icon-star-off"></span>#}
+{#								<span class="icon icon-star-off"></span>#}
+{#								<span class="icon icon-star-off"></span>#}
+{#								<span class="icon icon-star-off"></span>#}
+{#								<span class="icon icon-star-off"></span>#}
+{#								<p>暂无评论</p>#}
+{#							</div>#}
+{##}
+{#							<div id="comments_filter_wrapper" class="col-xs-12 col-sm-4">#}
+{#								<div id="comments_filter">#}
+{#									<a class="all active" href="javascript:void(0)">全部(0)</a>#}
+{#									<span>|</span>#}
+{#									<a class="recommend" href="javascript:void(0)">推荐(0)</a>#}
+{#									<span>|</span>#}
+{#									<a class="not_recommend" href="javascript:void(0)">不推荐(0)</a>#}
+{#									<span>|</span>#}
+{#									<a class="with_pic" href="javascript:void(0)">有图片(0)</a>#}
+{#								</div>#}
+{#							</div>#}
+{#						</div>#}
+{#					</div>#}
+{#				</div>#}
+{##}
+{#				<div class="row">#}
+{#					<a class="anchor" id="anchor_policy" name="anchor_policy">&nbsp;</a>#}
+{#					<h3 style="margin-bottom:26px;" class="text-center">条款政策</h3>#}
+{#					<p>条款政策123456789</p>#}
+{#				</div>#}
+{##}
+{#				<div class="row" style="border-top: 1px solid #ccc;">#}
+{#					<a class="anchor" id="anchor_traffic" name="anchor_traffic">&nbsp;</a>#}
+{#					<h3 style="margin-bottom:26px;" class="text-center">交通地图</h3>#}
+{#					<div id="allmap"></div>#}
+{#				</div>#}
+				<script type="text/javascript">
+					// 百度地图API功能
+					var map = new BMap.Map("allmap");
+					var top_left_control = new BMap.ScaleControl({ anchor: BMAP_ANCHOR_TOP_LEFT });// 左上角，添加比例尺
+					var top_left_navigation = new BMap.NavigationControl();  //左上角，添加默认缩放平移控件
+					map.addControl(top_left_control);
+					map.addControl(top_left_navigation);
+
+					var point = new BMap.Point(120.169742,30.278812);
+					map.centerAndZoom(point, 15);
+					var marker = new BMap.Marker(point);  // 创建标注
+					var local = new BMap.LocalSearch(map, {
+						renderOptions:{map: map}
+					});
+					local.search("旅馆");
+					map.addOverlay(marker);               // 将标注添加到地图中
+					marker.setAnimation(BMAP_ANIMATION_BOUNCE); //跳动的动画
+					map.enableScrollWheelZoom();   //启用滚轮放大缩小，默认禁用
+					map.enableContinuousZoom();    //启用地图惯性拖拽，默认禁用
+
+				</script>
+
+				<div class="row other_room_slide_row">
+					<a class="anchor" id="anchor_nearby_homestay" name="anchor_nearby_homestay">&nbsp;</a>
+					<h3 style="margin-bottom:26px;" class="text-center">周边民宿</h3>
+					<ul id="other_room_slide" class="lightSlider row">
+						<li class="lslide active col-xs-12 col-sm-6 col-md-3">
+							<a href="/r/190138" title="惠然">
+								<img src="http://img1.zzkcdn.com/gx2bcdfb6221e607b76ea535d9015f2d/2000x1500.jpg-roompic.jpg" title="惠然">
+								<span class="other-room-name">惠然</span>
+								<span class="other-room-model">双人房/上下鋪</span>
+								<span class="other-room-price">680							<span style="font-size:16px;">元</span>
+								</span>
+							</a>
+						</li>
+						<li class="lslide col-xs-12 col-sm-6 col-md-3">
+							<a href="/r/190145" title="琬琰">
+								<img src="http://img1.zzkcdn.com/11b4b526f49447d6e1c65f2781748810/2000x1500.jpg-roompic.jpg" title="琬琰">
+								<span class="other-room-name">琬琰</span>
+								<span class="other-room-model">双人房/上下鋪</span>
+								<span class="other-room-price">780							<span style="font-size:16px;">元</span>
+								</span>
+							</a>
+						</li>
+						<li class="lslide col-xs-12 col-sm-6 col-md-3">
+							<a href="/r/190146" title="望月">
+								<img src="http://img1.zzkcdn.com/tjb683ed85954232b17a98e04cb51ae2/2000x1500.jpg-roompic.jpg" title="望月">
+								<span class="other-room-name">望月</span>
+								<span class="other-room-model">4人房/上下鋪</span>
+								<span class="other-room-price">880							<span style="font-size:16px;">元</span>
+								</span>
+							</a>
+						</li>
+						<li class="lslide col-xs-12 col-sm-6 col-md-3">
+							<a href="/r/190155" title="安然">
+								<img src="http://img1.zzkcdn.com/789639110898dc97c68677c352bedcb7/2000x1500.jpg-roompic.jpg" title="安然">
+								<span class="other-room-name">安然</span>
+								<span class="other-room-model">双人房/上下鋪</span>
+								<span class="other-room-price">1180							<span style="font-size:16px;">元</span>
+								</span>
+							</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		</div>
+		<!-- 主体结束 -->
+{% endblock %}
+{% block script %}
+	<script>
+        $(function() {
+            $(".fancybox").fancybox();
+            var hs_id = $('#hid_hs_id').val();
+            load_all_rooms_by_hs_id(3,hs_id);
+            var roomlist_more = "hide";
+            $(".lookMore").click(function(){
+                if(roomlist_more == "hide"){
+                    $(".roomlist div.hide").show();
+                    $(".lookMore span.text_show").hide();
+                    $(".lookMore span.text_hide").show();
+                    $(".lookMore .icon").removeClass("icon-triangle-bottom");
+                    $(".lookMore .icon").addClass("icon-triangle-top");
+                    roomlist_more = "show";
+                }
+                else{
+                    $(".roomlist div.hide").hide();
+                    $(".lookMore span.text_show").show();
+                    $(".lookMore span.text_hide").hide();
+                    $(".lookMore .icon").removeClass("icon-triangle-top");
+                    $(".lookMore .icon").addClass("icon-triangle-bottom");
+                    roomlist_more = "hide";
+                    //window.location.href="#anchor_room_select";
+                }
+        $.ajax({
+				url:"/manager_center/get_all_rooms_by_hs_id",
+				type:"post",
+				data:JSON.stringify({"hs_id":$("#hid_hs_id").val()}),
+				contentType:"application/json",
+				success:function (data) {
+					if(data.code == 1){
+						var tmp = '';
+						tmp += '<div class="room_section">';
+						tmp +='<div class="room_pic">';
+						tmp +='<a href="###">'+'<img src="../images/roompic.jpg"/>';
+						tmp += '</a>';
+						tmp +='</div>';
+						tmp+='<div class="room_info">';
+						tmp +='<div class="roominfo_line1">';
+						tmp += '<a href="###">'+'<h3>'+立夏+'</h3>'+'</a>';
+						tmp+='<span class="icon-large icon-thunder-book-large">';
+						tmp += '</span>';
+						tmp += '</div>';
+						tmp += '<div class="roominfo_line2">';
+						tmp += '<a href="###">'+查看房间详情+'</a>';
+						tmp += '</div>';
+						tmp += '<div class="roominfo_line3 score score-default">';
+						tmp += '<span class="icon icon-star-off">'+'</span>';
+						tmp += '<span class="icon icon-star-off">'+'</span>';
+						tmp += '<span class="icon icon-star-off">'+'</span>';
+						tmp += '<span class="icon icon-star-off">'+'</span>';
+						tmp += '<span class="icon icon-star-off">'+'</span>';
+						tmp += '<p class="score">'+'暂无评论'+'</p>';
+						tmp += '</div>';
+						tmp +='<div class="roominfo_line4">';
+						tmp += '<label>'+'房间面积:'+'</label>'+'<span>'+'<b>'+'20m'+'<sup>'+'2'+'</sup></b></span>';
+						tmp += '<label>'+'床型信息:'+'</label>'+'<span><b>'+'单人床'+'</b>'+'（2张）'+'</span>';
+						tmp += '<label>'+'最多入住:'+'</label>'+'<span><b>'+'2人'+'</b></span>';
+						tmp += '</div></div>';
+						tmp += '<div class="room_order">';
+						tmp += '<p class="price price-default">';
+						tmp += '<b>'+'680'+'</b>'+'元起'+'<em></em>';
+						tmp += '</p>';
+						tmp += '<a href="###" class="btn-big btn-red-white-big"><span>'+'免费申请预订'+'</span></a>';
+						tmp +='</div> </div>';
+						$(".roomlist").append(tmp);
+					}else if(data.code == 0){
+						layer.msg('暂无客房');
+					}
+
+				}
+			});
+
+        });
+    });
+    </script>
+{% endblock %}

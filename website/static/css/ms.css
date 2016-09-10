@@ -986,3 +986,569 @@ ul {
 /* 房源,房间管理 部分样式 */
 .boxHeader {height:40px; border-bottom:1px solid #d6d6d6;}
 .boxTitle {float:left; padding-left:20px; line-height:30px; font-size:20px; color:#666}
+
+/* 后来加上去的 */
+.sortRoom {
+	padding-top: 20px;
+}
+.sortRoom-crumb a {
+	color: #333;
+}
+.sortRoom-crumb a:hover,
+.sortRoom-crumb a:focus {
+	color: #ff5a5f;
+}
+.sortRoom-hd {
+	border: 1px solid #ccc;
+}
+.sortRoom-slide a {
+	display: block;
+}
+.sortRoom-slide img {
+	width: 100%;
+}
+.sortRoom-info {
+	position: relative;
+	padding-top: 15px;
+	padding-bottom: 15px;
+}
+.room-name {
+	font-size: 28px;
+    color: #141414;
+    margin: 0;
+}
+.room-pri {
+	font-size:15px;
+	position: absolute;
+	right: 0;
+	top: 10px;
+}
+.homestay-address, .homestay-name {
+    font-size: 16px;
+    color: #605f5f;
+}
+.room-detail > span {
+    display: inline-block;
+    color: #141414;
+    font-size: 14px;
+    min-width: 146px;
+    margin-bottom: 5px;
+}
+.fav-btn, .fav-btn:hover, .fav-btn:focus {
+    color: #f35758;
+    text-decoration: none;
+}
+.fav-btn {
+	margin-left: 50px;
+}
+.fav-btn span.icon-large {
+    vertical-align: middle;
+}
+.icon-favorite-null-large {
+    background-image: url('http://static.zzkcdn.com/@/images/icons/icon-favorite.png');
+    background-repeat: no-repeat;
+    background-position: -3px -8px;
+}
+.icon-large {
+    display: inline-block;
+    width: 28px;
+    height: 28px;
+}
+.room-pri .price {
+    color: #f35758;
+}
+.room-fav {
+	margin-left:0;
+	margin-right:0;
+	margin-top: 30px;
+}
+.room-detail {
+    margin-top: 10px;
+}
+.special-service {
+    margin-top: 30px;
+}
+.special-service > .service-item {
+    margin-right: 20px;
+}
+.icon-middle {
+    display: inline-block;
+    width: 22px;
+    height: 22px;
+}
+.icon-breakfast-on-middle {
+    background-image: url('http://static.zzkcdn.com/@/images/icons/icon-service-middle.png');
+    background-repeat: no-repeat;
+    background-position: -12px -10px;
+}
+.special-service .icon-middle {
+    vertical-align: text-bottom;
+    margin-right: 5px;
+}
+#room_select_wrapper {
+    margin-top: 20px;
+}
+.body-section {
+    margin-bottom: 25px;
+}
+#book_flow {
+    border: 1px solid #dcdcdc;
+    padding: 0 25px;
+    margin-bottom: 30px;
+}
+#book_flow p {
+    margin-right: 20px;
+    color: #535151;
+    margin-bottom: 0;
+}
+#book_flow ul {
+    display: inline-block;
+    margin-bottom: 0;
+}
+#book_flow p, #book_flow ul li {
+    display: inline-block;
+    font-size: 20px;
+    line-height: 50px;
+}
+#book_flow ul li {
+    color: #272525;
+    margin: 0 5px;
+}
+#book_flow ul li.active {
+    color: #2c97df;
+}
+#book_flow ul li.separator {
+    width: 40px;
+    background: url('http://static.zzkcdn.com/@/images/icons/icon-connector.png') no-repeat -1px 17px;
+}
+.setting_yes,
+.setting_no {
+    margin-top: 10px;
+    font-size: 16px;
+    float: left;
+}
+
+.setting_yes:before,
+.setting_no:before {
+    content: '';
+    width: 29px;
+    height: 29px;
+    vertical-align: middle;
+    display: inline-block;
+}
+
+.setting_yes:before {
+    background: url(http://static.zzkcdn.com/room/detail/setting_yes.png) no-repeat;
+}
+
+.setting_yes {
+}
+
+.setting_no:before {
+    background: url(http://static.zzkcdn.com/room/detail/setting_no.png) no-repeat;
+}
+
+.setting_no {
+    color: #605f5f;
+}
+.icon {
+    display: inline-block;
+    position: relative;
+    top: 1px;
+    width: 16px;
+    height: 16px;
+}
+.icon-star-off {
+    background-image: url('http://static.zzkcdn.com/@/images/icons/icon-star-off.png');
+    background-repeat: no-repeat;
+    background-position: -4px -4px;
+}
+.score-default p {
+    font-size: 16px;
+    display: inline-block;
+    margin-left: 5px;
+}
+#comments_filter a, #comments_filter span {
+    vertical-align: bottom;
+    font-size: 16px;
+}
+#comments_filter a {
+    text-decoration: none;
+    color: #373636;
+}
+#comments_filter a.active {
+    color: #f35758;
+}
+#comments_filter span {
+    color: #ccc;
+}
+.ms-pl {
+	margin-left: -15px;
+	margin-right: -15px;
+	border-top: 1px solid #ddd;
+	border-bottom: 1px solid #ddd;
+	margin-top: 15px;
+	padding-bottom: 20px;
+}
+#other_room_slide > li > a {
+    display: inline-block;
+    text-align: center;
+    font-size: 16px;
+    padding-bottom: 20px;
+}
+#other_room_slide > li > a > img {
+    width: 100%;
+    margin-bottom: 10px;
+}
+#other_room_slide > li > a > .other-room-name {
+    float: left;
+    color: #141414;
+    font-size: 20px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    text-align: left;
+}
+#other_room_slide > li > a > .other-room-model {
+    color: #605f5f;
+    font-size: 14px;
+    position: absolute;
+    bottom: 0px;
+    left: 15px;
+}
+#other_room_slide > li > a > .other-room-price {
+    float: right;
+    color: #f35758;
+    font-size: 24px;
+}
+.other_room_slide_row {
+	padding-bottom: 20px;
+}
+.lslide {
+	margin-bottom: 30px;
+}
+
+#baseinfo-hd1 h3 {
+    font-size: 28px;
+    line-height: 1em;
+    color: #161616;
+    margin-right: 15px;
+    margin-top: 0;
+}
+#baseinfo-hd1 span {
+    line-height: 28px;
+    margin-right: 5px;
+}
+.icon-certified-large {
+    background-image: url('http://static.zzkcdn.com/@/images/icons/icon-certified.png');
+    background-repeat: no-repeat;
+    background-position: -2px -7px;
+}
+.icon-position {
+    background-image: url('http://static.zzkcdn.com/@/images/icons/icon-location.png');
+    background-repeat: no-repeat;
+    background-position: -4px -11px;
+}
+#baseinfo-hd2 {
+	margin-top: 20px;
+}
+#baseinfo-hd2 p, #baseinfo-hd2 a {
+    font-size: 16px;
+    line-height: 1em;
+}
+#baseinfo-hd2 p {
+    display: inline-block;
+    color: #454444;
+    margin-right: 10px;
+}
+#baseinfo-hd2 a:hover {
+    text-decoration: underline;
+}
+#baseinfo-hd3 {
+	margin-top: 10px;
+}
+#baseinfo-hd3 .favorite {
+    font-size: 16px;
+    color: #f35758;
+    text-decoration: none;
+    line-height: 28px;
+    height: 28px;
+}
+.baseinfo-hd .carousel-indicators {
+	left: 0;
+	margin-left: 0;
+	bottom: -80px;
+	text-align: left;
+	width: 100%;
+	margin-bottom: 0;
+}
+.baseinfo-hd .carousel-indicators li {
+	text-indent: 0;
+	width: auto;
+	height: 66px;
+	background: #fff;
+	border-radius: 0;
+	margin: 0;
+}
+.baseinfo-hd .carousel-indicators .active {
+	width: auto;
+	height: 66px;
+	background: #f5f5f5;
+}
+.baseinfo-hd .carousel-indicators li img {
+	height: 100%;
+}
+#hs_sidebar {
+    border-color: #dddddd;
+    border-width: 1px;
+    border-style: solid;
+    text-align: center;
+    padding-bottom: 80px;
+    font-size: 16px;
+}
+#avatar {
+    text-align: center;
+    margin: 30px 0 20px 0;
+    height: 160px;
+}
+#avatar_container {
+    display: inline-block;
+    width: 152px;
+    height: 160px;
+    position: relative;
+}
+#avatar_container img {
+    width: 152px;
+    height: 160px;
+}
+#avatar_container div {
+    background-image: url('http://static.zzkcdn.com/@/images/common/opacity/black0.4.png');
+    background-repeat: repeat;
+    position: absolute;
+    width: 100%;
+    left: 0px;
+    bottom: 0px;
+}
+#avatar_container div p {
+    color: #FFFFFF;
+    font-size: 16px;
+    line-height: 2em;
+    font-weight: bold;
+    margin-bottom: 0;
+}
+#service_lang {
+    margin-bottom: 20px;
+    height: 16px;
+}
+#service_lang p, #service_lang p b {
+    font-size: 16px;
+    line-height: 1em;
+    color: #7e7c7c;
+}
+#service_lang p b {
+    color: #3d3d3d;
+    font-size: 16px;
+    line-height: 1em;
+}
+#sidebar_line4 {
+    margin-bottom: 15px;
+}
+#sidebar_line4 div {
+    display: inline-block;
+    text-align: center;
+    padding: 5px;
+}
+#sidebar_line4 span {
+    margin-bottom: 10px;
+}
+#sidebar_line4 label {
+    display: block;
+    font-size: 12px;
+    color: #999;
+    text-align: center;
+    margin-bottom: 5px;
+}
+#sidebar_line4 p {
+    display: block;
+    font-size: 14px;
+    color: #999;
+    text-align: center;
+}
+.icon-reload-large {
+    background-image: url('http://pages.zizaike.com/a/img/newicon/coding_room/reply.png');
+    background-repeat: no-repeat;
+    background-position: 1px 1px;
+}
+.icon-calender-large {
+    background-image: url('http://pages.zizaike.com/a/img/newicon/coding_room/calender.png');
+    background-repeat: no-repeat;
+    background-position: 1px 1px;
+}
+#last_order {
+    height: 16px;
+    margin-bottom: 25px;
+    text-align: center;
+}
+#last_order p, #last_order p b {
+    font-size: 16px;
+    line-height: 1em;
+}
+#last_order p {
+    color: #898787;
+}
+#homestay_action a {
+    /*width: 150px;*/
+}
+#homestay_action a:hover {
+    text-decoration: none;
+}
+.btn-huge {
+    display: inline-block;
+    text-decoration: none;
+    height: 50px;
+    line-height: 50px;
+    padding-left: 30px;
+}
+#homestay_action .btn-red-huge {
+    margin-bottom: 20px;
+}
+.btn-red-huge {
+    background-image: url('http://static.zzkcdn.com/@/images/icons/btn-red-huge-left.png');
+    background-repeat: no-repeat;
+    background-position: left center;
+}
+.btn-huge span {
+    display: block;
+    font-size: 20px;
+    text-decoration: none;
+    text-align: center;
+    height: 50px;
+    line-height: 50px;
+    padding-right: 30px;
+}
+.btn-red-huge span {
+    color: #ffffff;
+    background-image: url('http://static.zzkcdn.com/@/images/icons/btn-red-huge-right.png');
+    background-repeat: no-repeat;
+    background-position: right center;
+}
+.btn-white-huge {
+    background-image: url('http://static.zzkcdn.com/@/images/icons/btn-white-huge-left.png');
+    background-repeat: no-repeat;
+    background-position: left center;
+}
+.btn-white-huge span {
+    color: #f35758;
+    background-image: url('http://static.zzkcdn.com/@/images/icons/btn-white-huge-right.png');
+    background-repeat: no-repeat;
+    background-position: right center;
+}
+#homestay_action {
+	padding-bottom: 20px;
+}
+.navbar-wrap, .navbar-wrap-full {
+    background-color: white;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #dcdcdc;
+}
+#navbar li a {
+    text-decoration: none;
+    display: inline-block;
+    height: 48px;
+    line-height: 50px;
+    font-size: 20px;
+    color: #1c1c1b;
+}
+#navbar li a.active {
+    color: #f35758;
+    height: 48px;
+    border-color: #f35758;
+    border-style: solid;
+    border-width: 0 0 1px 0;
+}
+.navbar-wrap {
+	margin-top: 20px;
+}
+.navbar-wrap li {
+	text-align: center;
+}
+.room_section {
+    padding: 20px 0 0;
+    border-width: 1px 0 0 0;
+    border-style: solid;
+    border-color: #dcdcdc;
+}
+.room_pic {
+
+}
+.room_pic img {
+    width: 100%;
+    height: 200px;
+}
+.room_info {
+    padding: 5px 15px;
+}
+#roomlist div {
+    margin-bottom: 12px;
+}
+.roominfo_line1 a {
+    display: inline;
+    text-decoration: none;
+}
+#roomlist h3 {
+    vertical-align: top;
+    display: inline-block;
+    font-size: 20px;
+    line-height: 1em;
+    color: #161616;
+    margin: 0 10px 0 0;
+}
+.room_order {
+    text-align: center;
+    padding-top: 35px;
+}
+.room_order p {
+    text-align: center;
+}
+.price-default, .price-default em {
+    font-size: 16px;
+    height: 34px;
+    color: #1c1b1b;
+}
+.price-default b {
+    font-size: 32px;
+    line-height: 1em;
+        color: #f35758;
+    font-style: normal;
+}
+.room_order a {
+    width: 120px;
+    margin-top: 40px;
+    text-decoration: none;
+}
+.btn-big {
+    display: inline-block;
+    text-decoration: none;
+    padding-left: 21px;
+}
+.btn-gray-big {
+    background-image: url('http://static.zzkcdn.com/@/images/icons/btn-gray-big-left.png');
+    background-repeat: no-repeat;
+    background-position: left center;
+}
+.btn-big span {
+    display: block;
+    font-size: 20px;
+    text-decoration: none;
+    text-align: center;
+    line-height: 42px;
+    padding-right: 21px;
+}
+.btn-gray-big span {
+    color: #bcbbbb;
+    background-image: url('http://static.zzkcdn.com/@/images/icons/btn-gray-big-right.png');
+    background-repeat: no-repeat;
+    background-position: right center;
+}
+
