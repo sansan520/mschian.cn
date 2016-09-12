@@ -26,12 +26,16 @@ def house_details(hs_id):
         response_data = json.loads(response.content)
         if response_data["code"] == 1:
             house_entity = response_data["message"]
+            hs_images = house_entity['hs_images']
+            ret = []
+            for hs_image in hs_images.split('|'):
+                ret.append(hs_image)
         response_room = requests.get(Conf.API_ADDRESS  + "/api/v1.0/get_guestroom_by_hsId/" + str(hs_id))
         response_room_data = json.loads(response_room.content)
         if response_room_data["code"] == 1:
             roomlist = response_room_data["message"]
         return render_template('/house_details.html', username=username, entity=house_entity,
-                                   user_id=current_user['user_id'],roomlist=roomlist)
+                                   user_id=current_user['user_id'],roomlist=roomlist,imagelist=ret)
     return render_template('/house_details.html')
 
 

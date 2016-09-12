@@ -10,7 +10,7 @@
                 <input type="hidden" id="hid_hs_id" value="{{ hs_id }}">
 				<ol class="breadcrumb row sortRoom-crumb">
 					<li>
-						<a href="#">首页</a>
+						<a href="/">首页</a>
 					</li>
 					<li>
 						<a href="#">民宿</a>
@@ -20,11 +20,11 @@
 
 				<div class="row baseinfo-hd">
 					<div id="baseinfo-hd1" class="clearfix">
-						<h3 class="pull-left">瑶庄精品民宿</h3>
+						<h3 class="pull-left">{{ entity.hs_name }}</h3>
 						<span class="pull-left icon-large icon-certified-large"></span>
 					</div>
 					<div id="baseinfo-hd2" class="clearfix">
-						<p class="pull-left"><span class="icon icon-position"></span>莫干山镇瑶坞村35-37号</p>
+						<p class="pull-left"><span class="icon icon-position"></span>{{ entity.hs_address }}</p>
 						<a class="user_address pull-left" href="">查看地图</a>
 					</div>
 					<div id="baseinfo-hd3" class="clearfix">
@@ -37,43 +37,51 @@
 {#							<p>暂无评论</p>#}
 {#						</div>#}
 {#						<a data-fav="" id="favorite" class="pull-left favorite" href="javascript:void(0)"><span class="icon-large icon-favorite-null-large" style="vertical-align: top;"></span>&nbsp;收藏</a>#}
-						<p class="pull-right">注册时间 2016-03-21</p>
+						<p class="pull-right">注册时间 {{ entity.hs_createtime }}</p>
 					</div>
 					<div class="col-sm-6 col-md-8">
 						<div id="carousel-example-generic" class="carousel slide" data-ride="carousel" style="margin-bottom: 90px;">
 							<!-- Indicators -->
 							<ol class="carousel-indicators row">
-								<li data-target="#carousel-example-generic" data-slide-to="0" class="active col-sm-3"><img src="http://img1.zzkcdn.com/bib0bb01ec79b89e29ce15976dbf8c11/2000x1500.jpg-homepic800x600.jpg" alt="..."></li>
-								<li data-target="#carousel-example-generic" data-slide-to="1" class="col-sm-3"><img src="http://img1.zzkcdn.com/di41b4d6372d23525faf01b755049bb2/2000x1500.jpg-homepic800x600.jpg" alt="..."></li>
-								<li data-target="#carousel-example-generic" data-slide-to="2" class="col-sm-3"><img src="http://img1.zzkcdn.com/di41b4d6372d23525faf01b755049bb2/2000x1500.jpg-homepic800x600.jpg" alt="..."></li>
-								<li data-target="#carousel-example-generic" data-slide-to="3" class="col-sm-3"><img src="http://img1.zzkcdn.com/di41b4d6372d23525faf01b755049bb2/2000x1500.jpg-homepic800x600.jpg" alt="..."></li>
+                                {% for image in imagelist %}
+                                    {% for i in imagelist.length  %}
+                                        <li data-target="#carousel-example-generic" data-slide-to="{{ i }}" class="active col-sm-3"><img src="{{ entity.image[i] }}" alt="..."></li>
+                                    {% endfor %}
+                                {% endfor %}
+{#								<li data-target="#carousel-example-generic" data-slide-to="1" class="col-sm-3"><img src="http://img1.zzkcdn.com/di41b4d6372d23525faf01b755049bb2/2000x1500.jpg-homepic800x600.jpg" alt="..."></li>#}
+{#								<li data-target="#carousel-example-generic" data-slide-to="2" class="col-sm-3"><img src="http://img1.zzkcdn.com/di41b4d6372d23525faf01b755049bb2/2000x1500.jpg-homepic800x600.jpg" alt="..."></li>#}
+{#								<li data-target="#carousel-example-generic" data-slide-to="3" class="col-sm-3"><img src="http://img1.zzkcdn.com/di41b4d6372d23525faf01b755049bb2/2000x1500.jpg-homepic800x600.jpg" alt="..."></li>#}
 							</ol>
 
 							<!-- Wrapper for slides -->
 							<div class="carousel-inner" role="listbox">
-								<div class="item active">
-									<img src="http://img1.zzkcdn.com/bib0bb01ec79b89e29ce15976dbf8c11/2000x1500.jpg-homepic800x600.jpg" alt="...">
-									<div class="carousel-caption">
-										...
-									</div>
-								</div>
-								<div class="item">
-									<img src="http://img1.zzkcdn.com/di41b4d6372d23525faf01b755049bb2/2000x1500.jpg-homepic800x600.jpg" alt="...">
-									<div class="carousel-caption">
-										...
-									</div>
-								</div>
-								<div class="item">
-									<img src="http://img1.zzkcdn.com/di41b4d6372d23525faf01b755049bb2/2000x1500.jpg-homepic800x600.jpg" alt="...">
-									<div class="carousel-caption">
-										...
-									</div>
-								</div>
-								<div class="item">
-									<img src="http://img1.zzkcdn.com/di41b4d6372d23525faf01b755049bb2/2000x1500.jpg-homepic800x600.jpg" alt="...">
-									<div class="carousel-caption">
-										...
-									</div>
+                                {% for image in imagelist %}
+                                    {% for i in imagelist.length %}
+                                        <div class="item active">
+                                            <img src="entity.image[i]" alt="...">
+                                            <div class="carousel-caption">
+                                                ...
+                                            </div>
+                                        </div>
+                                    {% endfor %}
+                                {% endfor %}
+{#								<div class="item">#}
+{#									<img src="http://img1.zzkcdn.com/di41b4d6372d23525faf01b755049bb2/2000x1500.jpg-homepic800x600.jpg" alt="...">#}
+{#									<div class="carousel-caption">#}
+{#										...#}
+{#									</div>#}
+{#								</div>#}
+{#								<div class="item">#}
+{#									<img src="http://img1.zzkcdn.com/di41b4d6372d23525faf01b755049bb2/2000x1500.jpg-homepic800x600.jpg" alt="...">#}
+{#									<div class="carousel-caption">#}
+{#										...#}
+{#									</div>#}
+{#								</div>#}
+{#								<div class="item">#}
+{#									<img src="http://img1.zzkcdn.com/di41b4d6372d23525faf01b755049bb2/2000x1500.jpg-homepic800x600.jpg" alt="...">#}
+{#									<div class="carousel-caption">#}
+{#										...#}
+{#									</div>#}
 								</div>
 							</div>
 
@@ -93,7 +101,7 @@
 							<div id="avatar_container">
 								<img src="http://img1.zzkcdn.com/l064b39e7ea237c53352a99986ed008a/2000x1500.jpg-userphoto.jpg" title="瑶庄精品民宿">
 								<div>
-									<p>钟贝贝</p>
+									<p>{{ entity.ho_name }}</p>
 								</div>
 							</div>
 						</div>
@@ -208,7 +216,7 @@
 								<div class="room_info col-sm-6 col-xs-12">
 									<div class="roominfo_line1">
 										<a href="/r/189992" target="_blank" title="青云">
-											<h3>青云</h3>
+											<h3>{{ item.gr_name }}</h3>
 										</a>
 									</div>
 
@@ -229,67 +237,20 @@
 										</p>
 									</div>
 									<div class="roominfo_line4">
-										<label>房间面积：</label><span><b>20m<sup>2</sup></b></span>
+										<label>房间面积：</label><span><b>{{ item.gr_room_area }}m<sup></sup></b></span>
 										<label>床型信息：</label>
-										<span><b>上下鋪</b>（4张）</span>
+										<span><b>{{ item.gr_bed_type }}</b>（{{ item.gr_bed_count }}张）</span>
 										<label>最多入住：</label>
-										<span><b>4人</b></span>
+										<span><b>{{ item.gr_room_type }}</b></span>
 									</div>
 									<div class="roominfo_line5">
-										<label><span class="icon-middle icon-breakfast-on-middle"></span>早餐</label>
+										<label><span class="icon-middle icon-breakfast-on-middle"></span>{{ item.gr_breakfast }}</label>
 										<label><span class="icon-middle icon-wifi-off-middle"></span>wifi</label>
 										<label><span class="icon-middle icon-washroom-on-middle"></span>独立卫浴</label>
 									</div>
 								</div>
 								<div class="room_order col-sm-3 col-xs-12">
-									<p class="price price-default"><b>480</b>元起<em></em></p>
-									<a href="javascript:void(0)" class="btn-big btn-gray-big"><span>订&nbsp;完</span></a>
-								</div>
-							</div>
-							<div class="room_section row">
-								<div class="room_pic col-sm-3 col-xs-12">
-									<a href="/r/189992" target="_blank">
-										<img title="瑶庄精品民宿" src="http://img1.zzkcdn.com/wfb65e1dd9f60711685f05d03f14ba7b/2000x1500.jpg-roompic.jpg">
-									</a>
-								</div>
-								<div class="room_info col-sm-6 col-xs-12">
-									<div class="roominfo_line1">
-										<a href="/r/189992" target="_blank" title="青云">
-											<h3>青云</h3>
-										</a>
-									</div>
-
-									<div class="roominfo_line6">
-									</div>
-
-									<div class="roominfo_line2">
-										<a href="/r/189992" target="_blank">查看房间详情</a>
-									</div>
-									<div class="roominfo_line3 score score-default">
-										<span class="icon icon-star-off"></span>
-										<span class="icon icon-star-off"></span>
-										<span class="icon icon-star-off"></span>
-										<span class="icon icon-star-off"></span>
-										<span class="icon icon-star-off"></span>
-										<p class="score">
-											暂无评论
-										</p>
-									</div>
-									<div class="roominfo_line4">
-										<label>房间面积：</label><span><b>20m<sup>2</sup></b></span>
-										<label>床型信息：</label>
-										<span><b>上下鋪</b>（4张）</span>
-										<label>最多入住：</label>
-										<span><b>4人</b></span>
-									</div>
-									<div class="roominfo_line5">
-										<label><span class="icon-middle icon-breakfast-on-middle"></span>早餐</label>
-										<label><span class="icon-middle icon-wifi-off-middle"></span>wifi</label>
-										<label><span class="icon-middle icon-washroom-on-middle"></span>独立卫浴</label>
-									</div>
-								</div>
-								<div class="room_order col-sm-3 col-xs-12">
-									<p class="price price-default"><b>480</b>元起<em></em></p>
+									<p class="price price-default"><b>{{ item.gr_price }}</b>元起<em></em></p>
 									<a href="javascript:void(0)" class="btn-big btn-gray-big"><span>订&nbsp;完</span></a>
 								</div>
 							</div>
@@ -304,7 +265,7 @@
 				<div class="row" style="border-top: 1px solid #ccc;">
 					<div id="homestay_summary" class="body-section block-content">
 						<a class="anchor" id="anchor_homestay_summary" name="anchor_homestay_summary">&nbsp;</a>
-						<h3 class="text-center">民宿简介</h3>
+						<h3 class="text-center">{{ entity.hs_name }}</h3>
 						<div id="aboutme">
 							<div class="origin">莫干山瑶庄精品民宿-老底子的经典，在于真正的土生土长。<br>　　世居于莫干山脚下的山里人，在自家的宅基地上，构筑着自己的梦想。因为放不下对老屋的爱，最大化保留了老房子原来的土木结构。倾注了自己所有的精力，只为跟朋友们分享他们心中对家的温暖。<br>　　全屋地暖，舒适浴缸，宽敞晒台。房前铺满了厚重历史气息的“武康石”，环抱着青草的石缝在风起时摇曳。屋后大大的户外露台，背靠竹山，满眼葱翠。在建中的泳池与儿童游戏房，让客人在山中的闲暇时光又多了一个趣味的选择。在这里，让你真真的体会_呼吸就是养生。<br>　　莫干山，这个百年前就被中外精英们强烈影响和改造的地方。今天，被伟大的山区人民进行了一场返璞归真的复兴。<br>　　山中民宿百间，能坚持真正的本乡特色、让竹木风格繁而不乱、又巧妙地把现代舒适隐藏致密的，仅瑶庄了吧。</div>
 							<div class="translate hide"></div>
