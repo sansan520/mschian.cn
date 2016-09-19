@@ -101,9 +101,14 @@
 
 
 @media (min-width: 1100px) {
+	.carousel-inner > .item{
+		overflow:hidden;
+		display:block;
+	}
 	.carousel-inner > .item > img {
 	    width: 100%;
 	}
+
 }
 @media (min-width: 768px) {
 	.ms-lbt,
@@ -987,7 +992,7 @@ ul {
 .boxHeader {height:40px; border-bottom:1px solid #d6d6d6;}
 .boxTitle {float:left; padding-left:20px; line-height:30px; font-size:20px; color:#666}
 
-/* 后来加上去的 */
+/* 房源,房间管理 部分样式 */
 .sortRoom {
 	padding-top: 20px;
 }

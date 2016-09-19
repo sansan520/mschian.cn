@@ -3,8 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="12723210-fd52-4b41-b64d-756818788810" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/website/controller/houseresources.py" afterPath="$PROJECT_DIR$/website/controller/houseresources.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/website/static/css/ms.css" afterPath="$PROJECT_DIR$/website/static/css/ms.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/website/templates/hcenter/house_details.html" afterPath="$PROJECT_DIR$/website/templates/hcenter/house_details.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/website/templates/hcenter/room_details.html" afterPath="$PROJECT_DIR$/website/templates/hcenter/room_details.html" />
     </list>
     <ignored path="mschian.cn.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -19,7 +20,7 @@
   <component name="ChangesViewManager" flattened_view="true" show_ignored="false" />
   <component name="CoverageDataManager">
     <SUITE FILE_PATH="coverage/mschian.cn$upload_file.coverage" NAME="upload_file Coverage Results" MODIFIED="1469710849965" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="E:/minsu" />
-    <SUITE FILE_PATH="coverage/mschian.cn$run.coverage" NAME="run Coverage Results" MODIFIED="1474095827033" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/mschian.cn$run.coverage" NAME="run Coverage Results" MODIFIED="1474293213357" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/mschian.cn$register.coverage" NAME="register Coverage Results" MODIFIED="1469455970391" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/website/view" />
   </component>
   <component name="CreatePatchCommitExecutor">
@@ -31,33 +32,27 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="ms.css" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/website/static/css/ms.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="175">
-              <caret line="1297" column="33" selection-start-line="1297" selection-start-column="14" selection-end-line="1297" selection-end-column="33" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="guestroom.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/website/controller/guestroom.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="494">
-              <caret line="30" column="46" selection-start-line="30" selection-start-column="46" selection-end-line="30" selection-end-column="46" />
+            <state relative-caret-position="74">
+              <caret line="26" column="61" selection-start-line="26" selection-start-column="11" selection-end-line="26" selection-end-column="61" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="room_details.html" pinned="false" current-in-tab="false">
+      <file leaf-file-name="room_details.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/website/templates/hcenter/room_details.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3211">
-              <caret line="169" column="39" selection-start-line="169" selection-start-column="39" selection-end-line="169" selection-end-column="39" />
+            <state relative-caret-position="53">
+              <caret line="72" column="76" selection-start-line="72" selection-start-column="76" selection-end-line="72" selection-end-column="76" />
               <folding>
-                <marker date="1473510923477" expanded="false" signature="5003:5022" ph="..." />
+                <element signature="n#style#0;n#li#1;n#ul#0;n#div#4;n#div#0;n#div#0;n#!!top" expanded="true" />
+                <marker date="1474294436598" expanded="false" signature="5084:5103" ph="..." />
+                <marker date="1474294436598" expanded="false" signature="7757:7772" ph="..." />
+                <marker date="1474294436598" expanded="false" signature="8238:8253" ph="..." />
+                <marker date="1474294436598" expanded="false" signature="8720:8735" ph="..." />
               </folding>
             </state>
           </provider>
@@ -66,7 +61,7 @@
       <file leaf-file-name="houseresources.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/website/controller/houseresources.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="347">
+            <state relative-caret-position="258">
               <caret line="33" column="0" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
               <folding>
                 <element signature="e#0#15#0" expanded="true" />
@@ -75,31 +70,19 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="house_details.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="house_details.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/website/templates/hcenter/house_details.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="169">
-              <caret line="47" column="96" selection-start-line="47" selection-start-column="96" selection-end-line="47" selection-end-column="96" />
+            <state relative-caret-position="203">
+              <caret line="231" column="57" selection-start-line="231" selection-start-column="57" selection-end-line="231" selection-end-column="57" />
               <folding>
-                <marker date="1474100620841" expanded="false" signature="6175:6192" ph="..." />
-                <marker date="1474100620841" expanded="false" signature="11930:11949" ph="..." />
-                <marker date="1474100620841" expanded="false" signature="12091:12118" ph="..." />
-                <marker date="1474100620841" expanded="false" signature="12250:12269" ph="..." />
-                <marker date="1474100620841" expanded="false" signature="13430:13449" ph="..." />
-                <marker date="1474100620841" expanded="false" signature="13563:13590" ph="..." />
-                <marker date="1474100620841" expanded="false" signature="13693:13712" ph="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="reserve.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/website/controller/reserve.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="425">
-              <caret line="47" column="33" selection-start-line="47" selection-start-column="33" selection-end-line="47" selection-end-column="33" />
-              <folding>
-                <element signature="e#0#15#0" expanded="true" />
+                <marker date="1474293622552" expanded="false" signature="6773:6790" ph="..." />
+                <marker date="1474293622552" expanded="false" signature="12520:12539" ph="..." />
+                <marker date="1474293622552" expanded="false" signature="12681:12708" ph="..." />
+                <marker date="1474293622552" expanded="false" signature="12840:12859" ph="..." />
+                <marker date="1474293622552" expanded="false" signature="14020:14039" ph="..." />
+                <marker date="1474293622552" expanded="false" signature="14153:14180" ph="..." />
+                <marker date="1474293622552" expanded="false" signature="14283:14302" ph="..." />
               </folding>
             </state>
           </provider>
@@ -108,7 +91,7 @@
       <file leaf-file-name="house_edit.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/website/templates/hcenter/house_edit.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="703">
+            <state relative-caret-position="817">
               <caret line="43" column="38" selection-start-line="43" selection-start-column="38" selection-end-line="43" selection-end-column="38" />
               <folding />
             </state>
@@ -120,6 +103,16 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="190">
               <caret line="10" column="57" selection-start-line="10" selection-start-column="8" selection-end-line="10" selection-end-column="57" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ms.css" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/website/static/css/ms.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="140">
+              <caret line="1008" column="11" selection-start-line="1008" selection-start-column="10" selection-end-line="1008" selection-end-column="11" />
               <folding />
             </state>
           </provider>
@@ -191,14 +184,14 @@
         <option value="$PROJECT_DIR$/website/templates/base.html" />
         <option value="$PROJECT_DIR$/website/static/css/room_detail.css" />
         <option value="$PROJECT_DIR$/website/static/js/ho-left-base.js" />
-        <option value="$PROJECT_DIR$/website/static/css/ms.css" />
         <option value="$PROJECT_DIR$/website/templates/house_details.html" />
         <option value="$PROJECT_DIR$/website/controller/guestroom.py" />
-        <option value="$PROJECT_DIR$/website/templates/hcenter/room_details.html" />
         <option value="$PROJECT_DIR$/website/controller/reserve.py" />
         <option value="$PROJECT_DIR$/website/templates/hcenter/house_add.html" />
         <option value="$PROJECT_DIR$/website/controller/houseresources.py" />
+        <option value="$PROJECT_DIR$/website/static/css/ms.css" />
         <option value="$PROJECT_DIR$/website/templates/hcenter/house_details.html" />
+        <option value="$PROJECT_DIR$/website/templates/hcenter/room_details.html" />
       </list>
     </option>
   </component>
@@ -377,7 +370,7 @@
     <property name="settings.editor.selected.configurable" value="File.Encoding" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../service.mschina.cn" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
   </component>
   <component name="RecentsManager">
@@ -938,7 +931,14 @@
       <option name="project" value="LOCAL" />
       <updated>1473694341790</updated>
     </task>
-    <option name="localTasksCounter" value="33" />
+    <task id="LOCAL-00033" summary="房源详情页添加图片循环">
+      <created>1474100696807</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1474100696807</updated>
+    </task>
+    <option name="localTasksCounter" value="34" />
     <servers />
   </component>
   <component name="TodoView">
@@ -954,13 +954,13 @@
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22087745" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22692889" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3290735" sideWeight="0.49701494" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2908497" sideWeight="0.52420574" order="11" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3290735" sideWeight="0.49701494" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.14705883" sideWeight="0.4667171" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.19607843" sideWeight="0.47579426" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.055555556" sideWeight="0.47579426" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32843137" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -1264,16 +1264,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/website/templates/hcenter/room_details.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3211">
-          <caret line="169" column="39" selection-start-line="169" selection-start-column="39" selection-end-line="169" selection-end-column="39" />
-          <folding>
-            <marker date="1473510923477" expanded="false" signature="5003:5022" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/website/templates/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1622">
@@ -1288,19 +1278,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/website/controller/guestroom.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="494">
-          <caret line="30" column="46" selection-start-line="30" selection-start-column="46" selection-end-line="30" selection-end-column="46" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/website/templates/hcenter/house_default.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="166">
           <caret line="13" column="42" selection-start-line="13" selection-start-column="42" selection-end-line="13" selection-end-column="42" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1308,13 +1289,12 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-457">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/website/controller/reserve.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
+        <state relative-caret-position="817">
           <caret line="47" column="33" selection-start-line="47" selection-start-column="33" selection-end-line="47" selection-end-column="33" />
           <folding>
             <element signature="e#0#15#0" expanded="true" />
@@ -1326,7 +1306,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
           <caret line="1987" column="0" selection-start-line="1987" selection-start-column="0" selection-end-line="1987" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1334,13 +1313,12 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="19">
           <caret line="60" column="0" selection-start-line="60" selection-start-column="0" selection-end-line="60" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/website/templates/hcenter/house_edit.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="703">
+        <state relative-caret-position="817">
           <caret line="43" column="38" selection-start-line="43" selection-start-column="38" selection-end-line="43" selection-end-column="38" />
           <folding />
         </state>
@@ -1350,25 +1328,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="47">
           <caret line="63" column="12" selection-start-line="63" selection-start-column="12" selection-end-line="63" selection-end-column="12" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/website/static/css/ms.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="175">
-          <caret line="1297" column="33" selection-start-line="1297" selection-start-column="14" selection-end-line="1297" selection-end-column="33" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/website/controller/houseresources.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="347">
-          <caret line="33" column="0" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#15#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1380,18 +1339,58 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/website/static/css/ms.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="140">
+          <caret line="1008" column="11" selection-start-line="1008" selection-start-column="10" selection-end-line="1008" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/website/controller/guestroom.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="74">
+          <caret line="26" column="61" selection-start-line="26" selection-start-column="11" selection-end-line="26" selection-end-column="61" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/website/controller/houseresources.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="258">
+          <caret line="33" column="0" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#15#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/website/templates/hcenter/house_details.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="169">
-          <caret line="47" column="96" selection-start-line="47" selection-start-column="96" selection-end-line="47" selection-end-column="96" />
+        <state relative-caret-position="203">
+          <caret line="231" column="57" selection-start-line="231" selection-start-column="57" selection-end-line="231" selection-end-column="57" />
           <folding>
-            <marker date="1474100620841" expanded="false" signature="6175:6192" ph="..." />
-            <marker date="1474100620841" expanded="false" signature="11930:11949" ph="..." />
-            <marker date="1474100620841" expanded="false" signature="12091:12118" ph="..." />
-            <marker date="1474100620841" expanded="false" signature="12250:12269" ph="..." />
-            <marker date="1474100620841" expanded="false" signature="13430:13449" ph="..." />
-            <marker date="1474100620841" expanded="false" signature="13563:13590" ph="..." />
-            <marker date="1474100620841" expanded="false" signature="13693:13712" ph="..." />
+            <marker date="1474293622552" expanded="false" signature="6773:6790" ph="..." />
+            <marker date="1474293622552" expanded="false" signature="12520:12539" ph="..." />
+            <marker date="1474293622552" expanded="false" signature="12681:12708" ph="..." />
+            <marker date="1474293622552" expanded="false" signature="12840:12859" ph="..." />
+            <marker date="1474293622552" expanded="false" signature="14020:14039" ph="..." />
+            <marker date="1474293622552" expanded="false" signature="14153:14180" ph="..." />
+            <marker date="1474293622552" expanded="false" signature="14283:14302" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/website/templates/hcenter/room_details.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="53">
+          <caret line="72" column="76" selection-start-line="72" selection-start-column="76" selection-end-line="72" selection-end-column="76" />
+          <folding>
+            <element signature="n#style#0;n#li#1;n#ul#0;n#div#4;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <marker date="1474294436598" expanded="false" signature="5084:5103" ph="..." />
+            <marker date="1474294436598" expanded="false" signature="7757:7772" ph="..." />
+            <marker date="1474294436598" expanded="false" signature="8238:8253" ph="..." />
+            <marker date="1474294436598" expanded="false" signature="8720:8735" ph="..." />
           </folding>
         </state>
       </provider>

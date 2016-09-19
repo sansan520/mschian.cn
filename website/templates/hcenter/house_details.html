@@ -47,13 +47,13 @@
                                 {% for image in imagelist %}
                                     <li data-target="#carousel-example-generic" data-slide-to="0" class="active col-sm-3"><img src="{{ image }}" alt="..."></li>
                                 {% endfor %}
-{#								<li data-target="#carousel-example-generic" data-slide-to="1" class="col-sm-3"><img src="http://img1.zzkcdn.com/di41b4d6372d23525faf01b755049bb2/2000x1500.jpg-homepic800x600.jpg" alt="..."></li>#}
-{#								<li data-target="#carousel-example-generic" data-slide-to="2" class="col-sm-3"><img src="http://img1.zzkcdn.com/4ia641e0b8b83ed584eab9a2819779af/2000x1500.jpg-homepic1024x768.jpg" alt="..."></li>#}
-{#								<li data-target="#carousel-example-generic" data-slide-to="3" class="col-sm-3"><img src="http://img1.zzkcdn.com/6o66e37cba079d55ff9211f10bf67981/2000x1500.jpg-homepic1024x768.jpg" alt="..."></li>#}
+{#								<li data-target="#carousel-example-generic" data-slide-to="1" class="col-sm-3" ><img src="http://img1.zzkcdn.com/di41b4d6372d23525faf01b755049bb2/2000x1500.jpg-homepic800x600.jpg" alt="..."></li>#}
+{#								<li data-target="#carousel-example-generic" data-slide-to="2" class="col-sm-3" ><img src="http://img1.zzkcdn.com/4ia641e0b8b83ed584eab9a2819779af/2000x1500.jpg-homepic1024x768.jpg" alt="..."></li>#}
+{#								<li data-target="#carousel-example-generic" data-slide-to="3" class="col-sm-3" ><img src="http://img1.zzkcdn.com/6o66e37cba079d55ff9211f10bf67981/2000x1500.jpg-homepic1024x768.jpg" alt="..."></li>#}
 							</ol>
 
 							<!-- Wrapper for slides -->
-							<div class="carousel-inner" role="listbox">
+							<div class="carousel-inner" role="listbox"  >
                                 {% for image in imagelist %}
                                     <div class="item active">
                                         <img src="{{ image }}" alt="...">
@@ -62,24 +62,24 @@
                                         </div>
                                     </div>
                                 {% endfor %}
-{#								<div class="item">#}
-{#									<img src="http://img1.zzkcdn.com/di41b4d6372d23525faf01b755049bb2/2000x1500.jpg-homepic800x600.jpg" alt="...">#}
-{#									<div class="carousel-caption">#}
-{#										...#}
-{#									</div>#}
-{#								</div>#}
-{#								<div class="item">#}
-{#									<img src="http://img1.zzkcdn.com/di41b4d6372d23525faf01b755049bb2/2000x1500.jpg-homepic800x600.jpg" alt="...">#}
-{#									<div class="carousel-caption">#}
-{#										...#}
-{#									</div>#}
-{#								</div>#}
-{#								<div class="item">#}
-{#									<img src="http://img1.zzkcdn.com/di41b4d6372d23525faf01b755049bb2/2000x1500.jpg-homepic800x600.jpg" alt="...">#}
-{#									<div class="carousel-caption">#}
-{#										...#}
-{#									</div>#}
-								</div>
+{#                                <div class="item active" style="display: none;position:relative;">#}
+{#                                        <img src="http://img1.zzkcdn.com/di41b4d6372d23525faf01b755049bb2/2000x1500.jpg-homepic800x600.jpg" alt="...">#}
+{#                                        <div class="carousel-caption">#}
+{#                                            ...#}
+{#                                        </div>#}
+{#                                </div>#}
+{#                                <div class="item">#}
+{#                                        <img src="http://img1.zzkcdn.com/4ia641e0b8b83ed584eab9a2819779af/2000x1500.jpg-homepic1024x768.jpg" alt="...">#}
+{#                                        <div class="carousel-caption">#}
+{#                                            ...#}
+{#                                        </div>#}
+{#                                </div>#}
+{#                                <div class="item">#}
+{#                                        <img src="http://img1.zzkcdn.com/6o66e37cba079d55ff9211f10bf67981/2000x1500.jpg-homepic1024x768.jpg" alt="...">#}
+{#                                        <div class="carousel-caption">#}
+{#                                            ...#}
+{#                                        </div>#}
+{#                                </div>#}
 							</div>
 
 							<!-- Controls -->
@@ -96,7 +96,7 @@
 					<div class="col-sm-6 col-md-4" id="hs_sidebar">
 						<div id="avatar">
 							<div id="avatar_container">
-								<img src="http://img1.zzkcdn.com/l064b39e7ea237c53352a99986ed008a/2000x1500.jpg-userphoto.jpg" title="瑶庄精品民宿">
+								<img src="http://img1.zzkcdn.com/l064b39e7ea237c53352a99986ed008a/2000x1500.jpg-userphoto.jpg" title="{{ entity.hs_name }}">
 								<div>
 									<p>{{ entity.ho_name }}</p>
 								</div>
@@ -206,13 +206,13 @@
                             {% for item in roomlist %}
 							<div class="room_section row">
 								<div class="room_pic col-sm-3 col-xs-12">
-									<a href="/r/189992" target="_blank">
-										<img title="瑶庄精品民宿" src="http://img1.zzkcdn.com/wfb65e1dd9f60711685f05d03f14ba7b/2000x1500.jpg-roompic.jpg">
+									<a href="#" target="_blank">
+										<img title="瑶庄精品民宿" src="{{ item.gr_images }}">
 									</a>
 								</div>
 								<div class="room_info col-sm-6 col-xs-12">
 									<div class="roominfo_line1">
-										<a href="/r/189992" target="_blank" title="青云">
+										<a href="#" target="_blank" title="{{ item.gr_name }}">
 											<h3>{{ item.gr_name }}</h3>
 										</a>
 									</div>
@@ -221,7 +221,7 @@
 									</div>
 
 									<div class="roominfo_line2">
-										<a href="/r/189992" target="_blank">查看房间详情</a>
+										<a href="/manage_center/room_detail/{{ entity.hs_id }}/{{ item.gr_id }}" target="_blank">查看房间详情</a>
 									</div>
 									<div class="roominfo_line3 score score-default">
 										<span class="icon icon-star-off"></span>
