@@ -7,6 +7,8 @@
     <!-- 主体开始 -->
 		<div class="sortRoom">
 			<div class="container">
+                <input type="hidden" id="hid_hs_id" value="" />
+                <input type="hidden" id="hid_gr_id" value="" />
 				<ol class="breadcrumb row sortRoom-crumb">
 					<li>
 						<a href="#">首页</a>
@@ -207,10 +209,12 @@
 {% block script %}
     <script>
     $(function(){
+        var hs_id = $("#hid_hs_id").val();
+        var gr_id = $("#hid_gr_id").val();
         $.ajax({
                 url:"/manager_center/get_all_rooms_by_hs_id",
                 type:"post",
-                data:JSON.stringify({"hs_id":$("#hid_hs_id").val()}),
+                data:JSON.stringify({"hs_id":hs_id}),
                 contentType:"application/json",
                 success:function(data){
                     if(data.code == 1){
@@ -228,6 +232,9 @@
                     }
                 }
         });
+        $(".lslide").click(function(){
+            location.href="/room_detail/"+hs_id+"/"+gr_id;
+        })
     });
     </script>
 {% endblock %}

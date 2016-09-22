@@ -24,7 +24,7 @@ def room_default(hs_id):
         roomlist = response_room_data["message"]
     return render_template("/hcenter/room_default.html",username=username,user_id=current_user['user_id'],entity = entity,roomlist=roomlist)
 
-@vi.route("/manage_center/room_detail/<int:hs_id>/<int:gr_id>")
+@vi.route("/room_detail/<int:hs_id>/<int:gr_id>")
 @tools.check_user_wrapper
 def room_detail(hs_id,gr_id):
     #current_user = tools.get_current_user()

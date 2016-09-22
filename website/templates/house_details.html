@@ -391,9 +391,10 @@
 {% block script %}
 	<script>
         $(function() {
-            //$(".fancybox").fancybox();
             var hs_id = $('#hid_hs_id').val();
-            //load_all_rooms_by_hs_id(3,hs_id);
+            $(".lslide").click(function(){
+                location.href="/house_details"+hs_id;
+            });
             var roomlist_more = "hide";
             $(".lookMore").click(function(){
                 if(roomlist_more == "hide"){
