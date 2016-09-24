@@ -25,7 +25,7 @@ def room_default(hs_id):
     return render_template("/hcenter/room_default.html",username=username,user_id=current_user['user_id'],entity = entity,roomlist=roomlist)
 
 @vi.route("/room_detail/<int:hs_id>/<int:gr_id>")
-@tools.check_user_wrapper
+# @tools.check_user_wrapper
 def room_detail(hs_id,gr_id):
     #current_user = tools.get_current_user()
     username = request.cookies.get("username")
@@ -38,7 +38,7 @@ def room_detail(hs_id,gr_id):
     response_room_data = json.loads(response_room.content)
     if response_room_data['code'] == 1:
         room = response_room_data['message']
-    return render_template("/hcenter/room_details.html", username=username, hs_id=entity['hs_id'],gr_id=room['gr_id'],entity=entity,room=room)
+    return render_template("/room_details.html", username=username, hs_id=entity['hs_id'],gr_id=room['gr_id'],entity=entity,room=room)
 
 
 @vi.route('/manage_center/room_add/<int:hs_id>')#  hs_id 房源的主键ID

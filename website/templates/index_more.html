@@ -17,7 +17,7 @@
                     {% for item in entities %}
                         <div class="col-sm-3">
                             <div class="ms-pic-box">
-                                <a href="#" class="ms-pic">
+                                <a href="house_details/{{ item.hs_id }}" class="ms-pic">
                                     <img class="img-responsive" src="{{ item.hs_images }}" alt="...">
                                     <p class="ms-dd"><strong>{{ item.hs_province }}</strong></p>
                                 </a>

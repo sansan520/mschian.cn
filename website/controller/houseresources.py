@@ -17,7 +17,7 @@ def house_default():
     return render_template('/hcenter/house_default.html',user_id=current_user['user_id'],username=username)
 
 @vi.route("/house_details/<int:hs_id>")
-@tools.check_user_wrapper
+# @tools.check_user_wrapper
 def house_details(hs_id):
     current_user = tools.get_current_user()
     username = request.cookies.get("username")
@@ -34,9 +34,9 @@ def house_details(hs_id):
         response_room_data = json.loads(response_room.content)
         if response_room_data["code"] == 1:
             roomlist = response_room_data["message"]
-        return render_template('/hcenter/house_details.html', username=username, entity=house_entity,
+        return render_template('/house_details.html', username=username, entity=house_entity,
                                    user_id=current_user['user_id'],roomlist=roomlist,imagelist=ret)
-    return render_template('/hcenter/house_details.html')
+    return render_template('/house_details.html')
 
 
 @vi.route("/manage_center/get_resource_by_user_id", methods=['POST'])
