@@ -11,10 +11,10 @@
                 <input type="hidden" id="hid_gr_id" value="{{ room.gr_id }}" />
 				<ol class="breadcrumb row sortRoom-crumb">
 					<li>
-						<a href="#">首页</a>
+						<a href="/">首页</a>
 					</li>
 					<li>
-						<a href="#">民宿</a>
+						<a href="/re_more_page">民宿</a>
 					</li>
 					<li class="active">Data</li>
 				</ol>
@@ -23,10 +23,28 @@
                     {% if room %}
 					    <div class="col-sm-6 col-md-4">
                             <div class="sortRoom-slide carousel slide">
-                                <a href=""><img src="http://img1.zzkcdn.com/wfb65e1dd9f60711685f05d03f14ba7b/2000x1500.jpg-homepic800x600.jpg" /></a>
-    {#                            <a href=""><img src="http://img1.zzkcdn.com/eo92d60399f2586b9c5ad5f685470470/2000x1500.jpg-homepic800x600.jpg" /></a>#}
-    {#                            <a href=""><img src="http://img1.zzkcdn.com/eo92d60399f2586b9c5ad5f685470470/2000x1500.jpg-homepic800x600.jpg" /></a>#}
-    {#                            <a href=""><img src="http://img1.zzkcdn.com/eo92d60399f2586b9c5ad5f685470470/2000x1500.jpg-homepic800x600.jpg" /></a>#}
+{#                                <ol class="carousel-indicators">#}
+{#			                        <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>#}
+{#			                        <li data-target="#carousel-example-generic" data-slide-to="1"></li>#}
+{#			                    </ol>#}
+                                <div class="carousel-inner" role="listbox">
+                                    <div class="item active" style="height: 300px;">
+                                        <img src="http://img1.zzkcdn.com/wfb65e1dd9f60711685f05d03f14ba7b/2000x1500.jpg-homepic800x600.jpg" alt="">
+                                        <div class="carousel-caption">...</div>
+                                    </div>
+                                    <div class="item" style="height: 300px;">
+                                        <img src="http://img1.zzkcdn.com/eo92d60399f2586b9c5ad5f685470470/2000x1500.jpg-homepic800x600.jpg"alt="">
+                                        <div class="carousel-caption">
+                                            <div class="carousel-caption">...</div>
+                                        </div>
+                                    </div>
+                                    <div class="item" style="height: 300px;">
+                                        <img src="http://img1.zzkcdn.com/eo92d60399f2586b9c5ad5f685470470/2000x1500.jpg-homepic800x600.jpg" alt="">
+                                        <div class="carousel-caption">
+                                            <div class="carousel-caption">...</div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                             <!-- Controls -->
                                 <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
@@ -160,7 +178,7 @@
                             {% if room_list %}
                                 {% for item in room_list %}
                                     <li class="lslide active col-xs-12 col-sm-6 col-md-3">
-                                        <a href="/r/190138" title="惠然">
+                                        <a href="/room_detail/{{ entity.hs_id }}/{{ entity.gr_id }}" title="惠然">
                                             <img src="http://img1.zzkcdn.com/gx2bcdfb6221e607b76ea535d9015f2d/2000x1500.jpg-roompic.jpg" title="惠然">
                                             <span class="other-room-name">{{ item.gr_name }}</span>
                                             <span class="other-room-model">{{ item.gr_bed_type }}</span>
@@ -172,35 +190,6 @@
                             {% else %}
                                 <li class="lslide active col-xs-12 col-sm-6 col-md-3" style="text-align:center;">暂无数据</li>
                             {% endif %}
-
-
-{#							<li class="lslide col-xs-12 col-sm-6 col-md-3">#}
-{#								<a href="/r/190145" title="琬琰">#}
-{#									<img src="http://img1.zzkcdn.com/11b4b526f49447d6e1c65f2781748810/2000x1500.jpg-roompic.jpg" title="琬琰">#}
-{#									<span class="other-room-name">琬琰</span>#}
-{#									<span class="other-room-model">双人房/上下鋪</span>#}
-{#									<span class="other-room-price">780							<span style="font-size:16px;">元</span>#}
-{#									</span>#}
-{#								</a>#}
-{#							</li>#}
-{#							<li class="lslide col-xs-12 col-sm-6 col-md-3">#}
-{#								<a href="/r/190146" title="望月">#}
-{#									<img src="http://img1.zzkcdn.com/tjb683ed85954232b17a98e04cb51ae2/2000x1500.jpg-roompic.jpg" title="望月">#}
-{#									<span class="other-room-name">望月</span>#}
-{#									<span class="other-room-model">4人房/上下鋪</span>#}
-{#									<span class="other-room-price">880							<span style="font-size:16px;">元</span>#}
-{#									</span>#}
-{#								</a>#}
-{#							</li>#}
-{#							<li class="lslide col-xs-12 col-sm-6 col-md-3">#}
-{#								<a href="/r/190155" title="安然">#}
-{#									<img src="http://img1.zzkcdn.com/789639110898dc97c68677c352bedcb7/2000x1500.jpg-roompic.jpg" title="安然">#}
-{#									<span class="other-room-name">安然</span>#}
-{#									<span class="other-room-model">双人房/上下鋪</span>#}
-{#									<span class="other-room-price">1180							<span style="font-size:16px;">元</span>#}
-{#									</span>#}
-{#								</a>#}
-{#							</li>#}
 						</ul>
 					</div>
 				</div>
