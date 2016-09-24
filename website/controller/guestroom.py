@@ -25,7 +25,6 @@ def room_default(hs_id):
     return render_template("/hcenter/room_default.html",username=username,user_id=current_user['user_id'],entity = entity,roomlist=roomlist)
 
 @vi.route("/room_detail/<int:hs_id>/<int:gr_id>")
-# @tools.check_user_wrapper
 def room_detail(hs_id,gr_id):
     #current_user = tools.get_current_user()
     username = request.cookies.get("username")
@@ -61,7 +60,7 @@ def room_add(hs_id):
 
 #添加客户
 @vi.route("/manage_center/do_insert_guestroom",methods=['POST'])
-#@tools.check_user_wrapper
+@tools.check_user_wrapper
 def do_insert_guestroom():
     hs_id = request.json.get('hs_id')
     gr_name = request.json.get('gr_name')
@@ -101,7 +100,7 @@ def do_insert_guestroom():
     return jsonify(response_data)
 
 @vi.route('/manage_center/room_edit/<int:hs_id>/<int:gr_id>')
-#@tools.check_user_wrapper
+@tools.check_user_wrapper
 def room_edit(hs_id,gr_id):  # hs_id 房源ID; gr_id 客房主键ID
     #current_user = tools.get_current_user()
     username = request.cookies.get("username")

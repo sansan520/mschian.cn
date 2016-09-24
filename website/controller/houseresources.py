@@ -17,7 +17,6 @@ def house_default():
     return render_template('/hcenter/house_default.html',user_id=current_user['user_id'],username=username)
 
 @vi.route("/house_details/<int:hs_id>")
-# @tools.check_user_wrapper
 def house_details(hs_id):
     current_user = tools.get_current_user()
     username = request.cookies.get("username")
