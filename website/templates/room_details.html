@@ -7,8 +7,8 @@
     <!-- 主体开始 -->
 		<div class="sortRoom">
 			<div class="container">
-                <input type="hidden" id="hid_hs_id" value="" />
-                <input type="hidden" id="hid_gr_id" value="" />
+                <input type="hidden" id="hid_hs_id" value="{{ entity.hs_id }}" />
+                <input type="hidden" id="hid_gr_id" value="{{ room.gr_id }}" />
 				<ol class="breadcrumb row sortRoom-crumb">
 					<li>
 						<a href="#">首页</a>
@@ -20,50 +20,52 @@
 				</ol>
 
 				<div class="row sortRoom-hd">
-					<div class="col-sm-6 col-md-4">
-						<div class="sortRoom-slide carousel slide">
-							<a href=""><img src="http://img1.zzkcdn.com/wfb65e1dd9f60711685f05d03f14ba7b/2000x1500.jpg-homepic800x600.jpg" /></a>
-{#                            <a href=""><img src="http://img1.zzkcdn.com/eo92d60399f2586b9c5ad5f685470470/2000x1500.jpg-homepic800x600.jpg" /></a>#}
-{#                            <a href=""><img src="http://img1.zzkcdn.com/eo92d60399f2586b9c5ad5f685470470/2000x1500.jpg-homepic800x600.jpg" /></a>#}
-{#                            <a href=""><img src="http://img1.zzkcdn.com/eo92d60399f2586b9c5ad5f685470470/2000x1500.jpg-homepic800x600.jpg" /></a>#}
-						</div>
-                        <!-- Controls -->
-							<a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
-								<span class="glyphicon glyphicon-chevron-left"></span>
-								<span class="sr-only">Previous</span>
-							</a>
-							<a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
-								<span class="glyphicon glyphicon-chevron-right"></span>
-								<span class="sr-only">Next</span>
-                            </a>
-					</div>
-					<div class="col-sm-6 col-md-8">
-						<div class="sortRoom-info">
-							<h2 class="room-name">{{ room.gr_name }}	</h2>
-							<span class="room-pri">
-							<span class="price">¥<span style="font-size:30px;">{{ room.gr_price }}</span>起</span>/晚<br></span>
-							<div class="row room-fav">
-								<span class="homestay-name">{{ entity.hs_name }}</span>
-								<a class="fav-btn" id="favorite" data-fav="0">
-									<span class="icon-large icon-favorite-null-large"></span> 收藏
-								</a>
-							</div>
-							<div class="homestay-address">{{ entity.hs_address }}</div>
+                    {% if room %}
+					    <div class="col-sm-6 col-md-4">
+                            <div class="sortRoom-slide carousel slide">
+                                <a href=""><img src="http://img1.zzkcdn.com/wfb65e1dd9f60711685f05d03f14ba7b/2000x1500.jpg-homepic800x600.jpg" /></a>
+    {#                            <a href=""><img src="http://img1.zzkcdn.com/eo92d60399f2586b9c5ad5f685470470/2000x1500.jpg-homepic800x600.jpg" /></a>#}
+    {#                            <a href=""><img src="http://img1.zzkcdn.com/eo92d60399f2586b9c5ad5f685470470/2000x1500.jpg-homepic800x600.jpg" /></a>#}
+    {#                            <a href=""><img src="http://img1.zzkcdn.com/eo92d60399f2586b9c5ad5f685470470/2000x1500.jpg-homepic800x600.jpg" /></a>#}
+                            </div>
+                            <!-- Controls -->
+                                <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+                                    <span class="glyphicon glyphicon-chevron-left"></span>
+                                    <span class="sr-only">Previous</span>
+                                </a>
+                                <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+                                    <span class="glyphicon glyphicon-chevron-right"></span>
+                                    <span class="sr-only">Next</span>
+                                </a>
+                        </div>
+                        <div class="col-sm-6 col-md-8">
+                            <div class="sortRoom-info">
+                                <h2 class="room-name">{{ room.gr_name }}	</h2>
+                                <span class="room-pri">
+                                <span class="price">¥<span style="font-size:30px;">{{ room.gr_price }}</span>起</span>/晚<br></span>
+                                <div class="row room-fav">
+                                    <span class="homestay-name">{{ entity.hs_name }}</span>
+                                    <a class="fav-btn" id="favorite" data-fav="0">
+                                        <span class="icon-large icon-favorite-null-large"></span> 收藏
+                                    </a>
+                                </div>
+                                <div class="homestay-address">{{ entity.hs_address }}</div>
 
-							<div class="room-detail">
-								<span>房型: {{ room.gr_room_type }}</span>
-								<span>房间面积: {{ room.gr_room_area }}<sup>2</sup></span>
-								<span>床型信息: 上下鋪(1.8)</span>
-								<br>
-								<span>最多入住: 4人</span>
-								<span>楼层: 1层</span>
-								<span>窗户：{{ room.gr_breakfast }}</span>
-							</div>
-							<div class="special-service">
-								<span class="service-item"><span class="icon-middle icon-breakfast-on-middle"></span> 早餐</span>
-							</div>
-						</div>
-					</div>
+                                <div class="room-detail">
+                                    <span>房型: {{ room.gr_room_type }}</span>
+                                    <span>房间面积: {{ room.gr_room_area }}<sup>2</sup></span>
+                                    <span>床型信息: 上下鋪(1.8)</span>
+                                    <br>
+                                    <span>最多入住: 4人</span>
+                                    <span>楼层: 1层</span>
+                                    <span>窗户：{{ room.gr_breakfast }}</span>
+                                </div>
+                                <div class="special-service">
+                                    <span class="service-item"><span class="icon-middle icon-breakfast-on-middle"></span> 早餐</span>
+                                </div>
+                            </div>
+					    </div>
+                    {% endif %}
 				</div>
 
 {#				<div class="row">#}
@@ -155,14 +157,14 @@
 				<div class="row other_room_slide_row">
 					<h3 class="">民宿其它房型</h3>
 						<ul id="other_room_slide" class="lightSlider row">
-                            {% if roomlist %}
-                                {% for item in roomlist %}
+                            {% if room_list %}
+                                {% for item in room_list %}
                                     <li class="lslide active col-xs-12 col-sm-6 col-md-3">
                                         <a href="/r/190138" title="惠然">
                                             <img src="http://img1.zzkcdn.com/gx2bcdfb6221e607b76ea535d9015f2d/2000x1500.jpg-roompic.jpg" title="惠然">
-                                            <span class="other-room-name">惠然</span>
-                                            <span class="other-room-model">双人房/上下鋪</span>
-                                            <span class="other-room-price">680							<span style="font-size:16px;">元</span>
+                                            <span class="other-room-name">{{ item.gr_name }}</span>
+                                            <span class="other-room-model">{{ item.gr_bed_type }}</span>
+                                            <span class="other-room-price">{{ item.gr_price }}							<span style="font-size:16px;">元</span>
                                             </span>
                                         </a>
                                     </li>
@@ -211,30 +213,10 @@
     $(function(){
         var hs_id = $("#hid_hs_id").val();
         var gr_id = $("#hid_gr_id").val();
-        $.ajax({
-                url:"/manager_center/get_all_rooms_by_hs_id",
-                type:"post",
-                data:JSON.stringify({"hs_id":hs_id}),
-                contentType:"application/json",
-                success:function(data){
-                    if(data.code == 1){
-                        var tmp = "";
-                        tmp = '<li class="lslide active col-xs-12 col-sm-6 col-md-3">';
-						tmp ='<a href="#" title="{{ item.gr_name }}">';
-						tmp ='<img src="{{ item.gr_images }}" title="{{ item.gr_name }}">';
-						tmp = '<span class="other-room-name">{{ item.gr_name }}</span>';
-                        tmp = '<span class="other-room-model">{{ item.gr_bed_type }}</span>';
-						tmp='<span class="other-room-price">{{ item.gr_price }}';
-                        tmp = '<span style="font-size:16px;">元</span>';
-						tmp ='</span></a></li>';
-                    }else{
-                        layer.msg("暂无数据");
-                    }
-                }
-        });
-        $(".lslide").click(function(){
-            location.href="/room_detail/"+hs_id+"/"+gr_id;
-        })
+
+{#        $(".lslide").click(function(){#}
+{#            location.href="/room_detail/"+hs_id+"/"+gr_id;#}
+{#        });#}
     });
     </script>
 {% endblock %}
