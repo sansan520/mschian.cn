@@ -44,42 +44,40 @@
 						<div id="carousel-example-generic" class="carousel slide" data-ride="carousel" style="margin-bottom: 90px;">
 							<!-- Indicators -->
 							<ol class="carousel-indicators">
-{#                                {% for image in imagelist %}#}
-{#                                    <li data-target="#carousel-example-generic" data-slide-to="0" class="active col-sm-3"><img src="{{ image }}" alt="..."></li>#}
-{#                                {% endfor %}#}
-								<li data-target="#carousel-example-generic" data-slide-to="1" class="col-sm-3" ><img src="http://img1.zzkcdn.com/di41b4d6372d23525faf01b755049bb2/2000x1500.jpg-homepic800x600.jpg" alt="..."></li>
-								<li data-target="#carousel-example-generic" data-slide-to="2" class="col-sm-3" ><img src="http://img1.zzkcdn.com/4ia641e0b8b83ed584eab9a2819779af/2000x1500.jpg-homepic1024x768.jpg" alt="..."></li>
-								<li data-target="#carousel-example-generic" data-slide-to="3" class="col-sm-3" ><img src="http://img1.zzkcdn.com/6o66e37cba079d55ff9211f10bf67981/2000x1500.jpg-homepic1024x768.jpg" alt="..."></li>
+                                {% for image in imagelist %}
+                                    <li data-target="#carousel-example-generic" data-slide-to="{{ loop.index }}" class="active col-sm-3"><img src="{{ image }}" alt="..."></li>
+                                {% endfor %}
+{#								<li data-target="#carousel-example-generic" data-slide-to="1" class="col-sm-3" ><img src="http://img1.zzkcdn.com/di41b4d6372d23525faf01b755049bb2/2000x1500.jpg-homepic800x600.jpg" alt="..."></li>#}
+{#								<li data-target="#carousel-example-generic" data-slide-to="2" class="col-sm-3" ><img src="http://img1.zzkcdn.com/4ia641e0b8b83ed584eab9a2819779af/2000x1500.jpg-homepic1024x768.jpg" alt="..."></li>#}
+{#								<li data-target="#carousel-example-generic" data-slide-to="3" class="col-sm-3" ><img src="http://img1.zzkcdn.com/6o66e37cba079d55ff9211f10bf67981/2000x1500.jpg-homepic1024x768.jpg" alt="..."></li>#}
 							</ol>
 
 							<!-- Wrapper for slides -->
 							<div class="carousel-inner" role="listbox"  >
-{#                                {% for image in imagelist %}#}
-{#                                    <div class="item active">#}
-{#                                        <img src="{{ image }}" alt="...">#}
+                                {% for image in imagelist %}
+                                    <div class="item {% if loop.index==1 %}active{% endif %}">
+                                        <img src="{{ image }}" alt="...">
+                                        <div class="carousel-caption">...</div>
+                                    </div>
+                                {% endfor %}
+{#                                <div class="item active">#}
+{#                                        <img src="http://img1.zzkcdn.com/di41b4d6372d23525faf01b755049bb2/2000x1500.jpg-homepic800x600.jpg" alt="...">#}
 {#                                        <div class="carousel-caption">#}
 {#                                            ...#}
 {#                                        </div>#}
-{#                                    </div>#}
-{#                                {% endfor %}#}
-                                <div class="item active">
-                                        <img src="http://img1.zzkcdn.com/di41b4d6372d23525faf01b755049bb2/2000x1500.jpg-homepic800x600.jpg" alt="...">
-                                        <div class="carousel-caption">
-                                            ...
-                                        </div>
-                                </div>
-                                <div class="item">
-                                        <img src="http://img1.zzkcdn.com/4ia641e0b8b83ed584eab9a2819779af/2000x1500.jpg-homepic1024x768.jpg" alt="...">
-                                        <div class="carousel-caption">
-                                            ...
-                                        </div>
-                                </div>
-                                <div class="item">
-                                        <img src="http://img1.zzkcdn.com/6o66e37cba079d55ff9211f10bf67981/2000x1500.jpg-homepic1024x768.jpg" alt="...">
-                                        <div class="carousel-caption">
-                                            ...
-                                        </div>
-                                </div>
+{#                                </div>#}
+{#                                <div class="item">#}
+{#                                        <img src="http://img1.zzkcdn.com/4ia641e0b8b83ed584eab9a2819779af/2000x1500.jpg-homepic1024x768.jpg" alt="...">#}
+{#                                        <div class="carousel-caption">#}
+{#                                            ...#}
+{#                                        </div>#}
+{#                                </div>#}
+{#                                <div class="item">#}
+{#                                        <img src="http://img1.zzkcdn.com/6o66e37cba079d55ff9211f10bf67981/2000x1500.jpg-homepic1024x768.jpg" alt="...">#}
+{#                                        <div class="carousel-caption">#}
+{#                                            ...#}
+{#                                        </div>#}
+{#                                </div>#}
 							</div>
 
 							<!-- Controls -->
