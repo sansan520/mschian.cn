@@ -24,26 +24,17 @@
 					    <div class="col-sm-6 col-md-4">
                             <div class="sortRoom-slide carousel slide">
 {#                                <ol class="carousel-indicators">#}
-{#			                        <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>#}
-{#			                        <li data-target="#carousel-example-generic" data-slide-to="1"></li>#}
-{#			                    </ol>#}
+{#                                    {% for room_image in room_images %}#}
+{#                                        <li data-target="#carousel-example-generic" data-slide-to="{{ loop.index }}" class="active col-sm-3"><img src="{{ room_image }}" alt="..."></li>#}
+{#                                    {% endfor %}#}
+{#                                </ol>#}
                                 <div class="carousel-inner" role="listbox">
-                                    <div class="item active" style="height: 300px;">
-                                        <img src="http://img1.zzkcdn.com/wfb65e1dd9f60711685f05d03f14ba7b/2000x1500.jpg-homepic800x600.jpg" alt="">
-                                        <div class="carousel-caption">...</div>
-                                    </div>
-                                    <div class="item" style="height: 300px;">
-                                        <img src="http://img1.zzkcdn.com/eo92d60399f2586b9c5ad5f685470470/2000x1500.jpg-homepic800x600.jpg"alt="">
-                                        <div class="carousel-caption">
+                                    {% for room_image in room_images %}
+                                        <div class="item {% if loop.index == 1 %}active{% endif %}" >
+                                            <img src="{{ room_image }}" alt="">
                                             <div class="carousel-caption">...</div>
                                         </div>
-                                    </div>
-                                    <div class="item" style="height: 300px;">
-                                        <img src="http://img1.zzkcdn.com/eo92d60399f2586b9c5ad5f685470470/2000x1500.jpg-homepic800x600.jpg" alt="">
-                                        <div class="carousel-caption">
-                                            <div class="carousel-caption">...</div>
-                                        </div>
-                                    </div>
+                                    {% endfor %}
                                 </div>
                             </div>
                             <!-- Controls -->
@@ -71,16 +62,27 @@
 
                                 <div class="room-detail">
                                     <span>房型: {{ room.gr_room_type }}</span>
-                                    <span>房间面积: {{ room.gr_room_area }}<sup>2</sup></span>
-                                    <span>床型信息: 上下鋪(1.8)</span>
+                                    <span>房间面积: {{ room.gr_room_area }}<span>m</span><sup>2</sup></span>
+                                    <span>床型信息: {{ room.gr_bed_type }}</span>
                                     <br>
                                     <span>最多入住: 4人</span>
-                                    <span>楼层: 1层</span>
-                                    <span>窗户：{{ room.gr_breakfast }}</span>
+{#                                    <span>楼层: 1层</span>#}
+                                    {% if room.gr_breakfast == 1 %}
+                                        <span>窗户：有</span>
+                                    {% elif room.gr_breakfast == 0 %}
+                                        <span>窗户:无</span>
+                                    {%endif%}
+
                                 </div>
-                                <div class="special-service">
+                                {% if room.gr_breakfast == 1 %}
+                                    <div class="special-service">
                                     <span class="service-item"><span class="icon-middle icon-breakfast-on-middle"></span> 早餐</span>
                                 </div>
+                                {% elif room.gr_breakfast == 0 %}
+                                    <div class="special-service" style="display: none;">
+                                        <span class="service-item"><span class="icon-middle icon-breakfast-on-middle"></span> 早餐</span>
+                                    </div>
+                                {% endif %}
                             </div>
 					    </div>
                     {% endif %}

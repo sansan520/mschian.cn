@@ -37,14 +37,26 @@
 	<!-- 主体结束 -->
 {% endblock %}
 {% block script %}
-{#    <script>#}
-{#     $(function(){#}
-{#         var hs_id = $('#hid_hs_id');#}
-{#         $('.ms-pic').click(function(){#}
-{#            location.href="/house_details/"+hs_id;#}
-{#         });#}
-{#    });#}
-{#    </script>#}
+<script>
+    $(function () {
+        $("#user_log_out").click(function () {
+            $.ajax({
+            url:"/do_logout",
+            type: 'POST',
+            contentType: 'application/json',
+            success: function(data){
+                if(data.code==0){
+                    alert(data.message);
+                }else if(data.code==1){
+                    alert(data.message);
+                    location.href="/indexh_more.html";
+                }
+            }
+        });
+        });
+    });
+
+    </script>
 
 {% endblock %}
 

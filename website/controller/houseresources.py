@@ -33,8 +33,8 @@ def house_details(hs_id):
         response_room_data = json.loads(response_room.content)
         if response_room_data["code"] == 1:
             roomlist = response_room_data["message"]
-        return render_template('/house_details.html', username=username, entity=house_entity,
-                                   user_id=current_user['user_id'],user_headimg=current_user['user_headimg'],roomlist=roomlist,imagelist=ret)
+        return render_template('/house_details.html', login_user=username, entity=house_entity,
+                                user_id=current_user['user_id'],user_headimg=current_user['user_headimg'],roomlist=roomlist,imagelist=ret)
     return render_template('/house_details.html')
 
 

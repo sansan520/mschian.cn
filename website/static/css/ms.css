@@ -1552,4 +1552,15 @@ ul {
     background-repeat: no-repeat;
     background-position: right center;
 }
+.btn-yellow-white-big {
+    background-image: url("http://static.zzkcdn.com/@/images/icons/btn-yellow-white-big-left.png");
+    background-position: left center;
+    background-repeat: no-repeat;
+}
+.btn-yellow-white-big span {
+    background-image: url("http://static.zzkcdn.com/@/images/icons/btn-yellow-white-big-right.png");
+    background-position: right center;
+    background-repeat: no-repeat;
+    color: #f59c00;
+}
 

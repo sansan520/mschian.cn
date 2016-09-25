@@ -2,6 +2,7 @@
 {% block title %}房源详情页-中国名宿网{% endblock %}
 {% block head %}
     {{ super() }}
+    <script src="/static/js/common.js"></script>
 {% endblock %}
 {% block content %}
 			<!-- 主体开始 -->
@@ -225,6 +226,7 @@
 								<div class="room_order col-sm-3 col-xs-12">
 									<p class="price price-default"><b>{{ item.gr_price }}</b>元起<em></em></p>
 									<a href="javascript:void(0)" class="btn-big btn-gray-big"><span>订&nbsp;完</span></a>
+                                    <a href="javascript:void(0)" class="btn-big btn-yellow-white-big"><span>免费预订</span></a>
 								</div>
 							</div>
                             {% endfor %}
@@ -367,6 +369,21 @@
 {% block script %}
 	<script>
         $(function() {
+            $("#user_log_out").click(function () {
+            $.ajax({
+            url:"/do_logout",
+            type: 'POST',
+            contentType: 'application/json',
+            success: function(data){
+                if(data.code==0){
+                    alert(data.message);
+                }else if(data.code==1){
+                    alert(data.message);
+                    location.href="/index";
+                }
+            }
+        });
+        });
             var hs_id = $('#hid_hs_id').val();
 {#            $(".lslide").click(function(){#}
 {#                location.href="/house_details"+hs_id;#}

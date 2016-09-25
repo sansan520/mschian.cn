@@ -37,7 +37,11 @@ def room_detail(hs_id,gr_id):
     response_room_data = json.loads(response_room.content)
     if response_room_data['code'] == 1:
         room = response_room_data['message']
-    return render_template("/room_details.html", username=username, hs_id=entity['hs_id'],gr_id=room['gr_id'],entity=entity,room=room)
+        ret=[]
+        gr_images = room['gr_images']
+        for gr_image in gr_images.split('|'):
+            ret.append(gr_image)
+    return render_template("/room_details.html", username=username, hs_id=entity['hs_id'],gr_id=room['gr_id'],entity=entity,room=room,room_images=ret)
 
 
 @vi.route('/manage_center/room_add/<int:hs_id>')#  hs_id 房源的主键ID
