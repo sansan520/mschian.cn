@@ -1,9 +1,9 @@
 import requests
-from flask import Flask,request,current_app,jsonify,render_template,json
+from flask import request, jsonify,render_template,json
+
 from website import tools
 from website.config import Conf
 from . import vi
-
 
 api = Conf.API_ADDRESS
 
@@ -26,7 +26,7 @@ def room_default(hs_id):
 
 @vi.route("/room_detail/<int:hs_id>/<int:gr_id>")
 def room_detail(hs_id,gr_id):
-    #current_user = tools.get_current_user()
+    current_user = tools.get_current_user()
     username = request.cookies.get("username")
     response = requests.get(api+"/api/v1.0/get_houseresources_by_hs_id/"+str(hs_id))
     response_data = json.loads(response.content)
@@ -38,10 +38,18 @@ def room_detail(hs_id,gr_id):
     if response_room_data['code'] == 1:
         room = response_room_data['message']
         ret=[]
+        settingsArray=[]
         gr_images = room['gr_images']
+        gr_settings = room['gr_settings']
         for gr_image in gr_images.split('|'):
             ret.append(gr_image)
-    return render_template("/room_details.html", username=username, hs_id=entity['hs_id'],gr_id=room['gr_id'],entity=entity,room=room,room_images=ret)
+        for gr_setting in gr_settings.split(','):
+            settingsArray.append(gr_setting)
+        if current_user:
+            return render_template("/room_details.html", username=username, hs_id=entity['hs_id'],gr_id=room['gr_id'],gr_settings=settingsArray,entity=entity,room=room,room_images=ret)
+        else:
+            return render_template("/room_details.html",username=username, hs_id=entity['hs_id'],gr_id=room['gr_id'],entity=entity,room=room,room_images=ret)
+    return render_template("/room_details.html")
 
 
 @vi.route('/manage_center/room_add/<int:hs_id>')#  hs_id 房源的主键ID

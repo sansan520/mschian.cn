@@ -1563,4 +1563,7 @@ ul {
     background-repeat: no-repeat;
     color: #f59c00;
 }
+.room_order a .btn-big-auto-width{
+	width:auto;
+}
 

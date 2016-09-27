@@ -22,17 +22,16 @@
 				<div class="row sortRoom-hd">
                     {% if room %}
 					    <div class="col-sm-6 col-md-4">
-                            <div class="sortRoom-slide carousel slide">
+                            <div id="carousel-example-generic" class="sortRoom-slide carousel slide" data-ride="carousel" style="height:460px;margin-bottom: 90px;">
 {#                                <ol class="carousel-indicators">#}
 {#                                    {% for room_image in room_images %}#}
 {#                                        <li data-target="#carousel-example-generic" data-slide-to="{{ loop.index }}" class="active col-sm-3"><img src="{{ room_image }}" alt="..."></li>#}
 {#                                    {% endfor %}#}
 {#                                </ol>#}
-                                <div class="carousel-inner" role="listbox">
+                                <div class="carousel-inner" role="listbox" >
                                     {% for room_image in room_images %}
                                         <div class="item {% if loop.index == 1 %}active{% endif %}" >
                                             <img src="{{ room_image }}" alt="">
-                                            <div class="carousel-caption">...</div>
                                         </div>
                                     {% endfor %}
                                 </div>
@@ -120,24 +119,31 @@
 					<div class="new-box" id="room-amenities">
 						<h3>便利设施</h3>
 						<ul class="box-intro row" style="margin-top:26px;">
-							<li class="setting_no col-xs-6 col-sm-3 col-md-2">电视机</li>
-							<li class="setting_no col-xs-6 col-sm-3 col-md-2">电冰箱</li>
-							<li class="setting_no col-xs-6 col-sm-3 col-md-2">24小时热水</li>
-							<li class="setting_no col-xs-6 col-sm-3 col-md-2">免费停车位</li>
-							<li class="setting_no col-xs-6 col-sm-3 col-md-2">可以吸烟</li>
-							<li class="setting_no col-xs-6 col-sm-3 col-md-2">空调</li>
-							<li class="setting_no col-xs-6 col-sm-3 col-md-2">热水壶</li>
-							<li class="setting_no col-xs-6 col-sm-3 col-md-2">厨房</li>
-							<li class="setting_no col-xs-6 col-sm-3 col-md-2">淋浴</li>
-							<li class="setting_no col-xs-6 col-sm-3 col-md-2">热水浴缸</li>
-							<li class="setting_no col-xs-6 col-sm-3 col-md-2">可以携带宠物</li>
-							<li class="setting_no col-xs-6 col-sm-3 col-md-2">毛巾</li>
-							<li class="setting_no col-xs-6 col-sm-3 col-md-2">拖鞋</li>
-							<li class="setting_no col-xs-6 col-sm-3 col-md-2">一次性盥洗用品</li>
-							<li class="setting_no col-xs-6 col-sm-3 col-md-2">洗衣机</li>
-							<li class="setting_no col-xs-6 col-sm-3 col-md-2">代订门票</li>
-							<li class="setting_no col-xs-6 col-sm-3 col-md-2">代订包车</li>
-							<li class="setting_no col-xs-6 col-sm-3 col-md-2">可接待家庭/孩子</li>
+                            {% if gr_settings %}
+                                {% for gr_setting in gr_settings %}
+                                    <li class="setting_yes col-xs-6 col-sm-3 col-md-2">{{ gr_setting }}</li>
+                                {% endfor %}
+                            {% else %}
+                                <li class="setting_no col-xs-6 col-sm-3 col-md-2">暂无设置信息</li>
+                            {% endif %}
+{#							<li class="setting_no col-xs-6 col-sm-3 col-md-2">电视机</li>#}
+{#							<li class="setting_yes col-xs-6 col-sm-3 col-md-2">电冰箱</li>#}
+{#							<li class="setting_yes col-xs-6 col-sm-3 col-md-2">24小时热水</li>#}
+{#							<li class="setting_yes col-xs-6 col-sm-3 col-md-2">免费停车位</li>#}
+{#							<li class="setting_yes col-xs-6 col-sm-3 col-md-2">可以吸烟</li>#}
+{#							<li class="setting_yes col-xs-6 col-sm-3 col-md-2">空调</li>#}
+{#							<li class="setting_yes col-xs-6 col-sm-3 col-md-2">热水壶</li>#}
+{#							<li class="setting_yes col-xs-6 col-sm-3 col-md-2">厨房</li>#}
+{#							<li class="setting_yes col-xs-6 col-sm-3 col-md-2">淋浴</li>#}
+{#							<li class="setting_yes col-xs-6 col-sm-3 col-md-2">热水浴缸</li>#}
+{#							<li class="setting_yes col-xs-6 col-sm-3 col-md-2">可以携带宠物</li>#}
+{#							<li class="setting_no col-xs-6 col-sm-3 col-md-2">毛巾</li>#}
+{#							<li class="setting_no col-xs-6 col-sm-3 col-md-2">拖鞋</li>#}
+{#							<li class="setting_no col-xs-6 col-sm-3 col-md-2">一次性盥洗用品</li>#}
+{#							<li class="setting_no col-xs-6 col-sm-3 col-md-2">洗衣机</li>#}
+{#							<li class="setting_no col-xs-6 col-sm-3 col-md-2">代订门票</li>#}
+{#							<li class="setting_no col-xs-6 col-sm-3 col-md-2">代订包车</li>#}
+{#							<li class="setting_no col-xs-6 col-sm-3 col-md-2">可接待家庭/孩子</li>#}
 						</ul>
 					</div>
 				</div>
@@ -204,10 +210,6 @@
     $(function(){
         var hs_id = $("#hid_hs_id").val();
         var gr_id = $("#hid_gr_id").val();
-
-{#        $(".lslide").click(function(){#}
-{#            location.href="/room_detail/"+hs_id+"/"+gr_id;#}
-{#        });#}
     });
     </script>
 {% endblock %}
