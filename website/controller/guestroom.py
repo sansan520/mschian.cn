@@ -38,18 +38,25 @@ def room_detail(hs_id,gr_id):
     if response_room_data['code'] == 1:
         room = response_room_data['message']
         ret=[]
-        settingsArray=[]
         gr_images = room['gr_images']
-        gr_settings = room['gr_settings']
         for gr_image in gr_images.split('|'):
             ret.append(gr_image)
-        for gr_setting in gr_settings.split(','):
-            settingsArray.append(gr_setting)
         if current_user:
-            return render_template("/room_details.html", username=username, hs_id=entity['hs_id'],gr_id=room['gr_id'],gr_settings=settingsArray,entity=entity,room=room,room_images=ret)
+            return render_template("/room_details.html", username=username, hs_id=entity['hs_id'],gr_id=room['gr_id'],entity=entity,room=room,room_images=ret)
         else:
             return render_template("/room_details.html",username=username, hs_id=entity['hs_id'],gr_id=room['gr_id'],entity=entity,room=room,room_images=ret)
     return render_template("/room_details.html")
+
+@vi.route("/manage_center/get_guestroom_by_gr_id")
+def get_guestroom_by_gr_id():
+    gr_id = request.get.json("gr_id")
+    response = requests.get(api+"/api/v1.0/get_guestroom_by_gr_id/"+str(gr_id))
+    response_data = json.loads(response.content)
+    if response_data['code'] == 1:
+        room = response_data['message']
+        return jsonify({"code":1,"message":room})
+    return jsonify({"code":0,"message":"查询失败"})
+
 
 
 @vi.route('/manage_center/room_add/<int:hs_id>')#  hs_id 房源的主键ID
