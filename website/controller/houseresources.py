@@ -1,9 +1,8 @@
 import requests
-from flask import render_template,request,jsonify,json,redirect,url_for,current_app
-from website.model import HouseOwner,HouseResources,HouseType
-from website.config import Conf
-from website import tools
+from flask import render_template,request,jsonify,json
 
+from website import tools
+from website.config import Conf
 from .import vi
 
 
@@ -35,10 +34,10 @@ def house_details(hs_id):
             roomlist = response_room_data["message"]
 
         if current_user:
-            return render_template('/house_details.html', username=username, entity=house_entity,
+            return render_template('/house_details.html', login_name=username, entity=house_entity,
                                   user_id=current_user['user_id'],user_headimg=current_user['user_headimg'],roomlist=roomlist,imagelist=ret)
         else:
-            return render_template('/house_details.html', username=username, entity=house_entity,roomlist=roomlist, imagelist=ret)
+            return render_template('/house_details.html', login_name=username, entity=house_entity,roomlist=roomlist, imagelist=ret)
 
     return render_template('/house_details.html')
 
