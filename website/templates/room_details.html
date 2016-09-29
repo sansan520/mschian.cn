@@ -126,24 +126,24 @@
 {#                            {% else %}#}
 {#                                <li class="setting_no col-xs-6 col-sm-3 col-md-2">暂无设置信息</li>#}
 {#                            {% endif %}#}
-							<li class=" col-xs-6 col-sm-3 col-md-2">电视机</li>
-							<li class=" col-xs-6 col-sm-3 col-md-2">电冰箱</li>
-							<li class=" col-xs-6 col-sm-3 col-md-2">24小时热水</li>
-							<li class=" col-xs-6 col-sm-3 col-md-2">免费停车位</li>
-							<li class=" col-xs-6 col-sm-3 col-md-2">可以吸烟</li>
-							<li class=" col-xs-6 col-sm-3 col-md-2">空调</li>
-							<li class=" col-xs-6 col-sm-3 col-md-2">热水壶</li>
-							<li class=" col-xs-6 col-sm-3 col-md-2">厨房</li>
-							<li class=" col-xs-6 col-sm-3 col-md-2">淋浴</li>
-							<li class=" col-xs-6 col-sm-3 col-md-2">热水浴缸</li>
-							<li class=" col-xs-6 col-sm-3 col-md-2">可以携带宠物</li>
-							<li class=" col-xs-6 col-sm-3 col-md-2">毛巾</li>
-							<li class=" col-xs-6 col-sm-3 col-md-2">拖鞋</li>
-							<li class=" col-xs-6 col-sm-3 col-md-2">一次性盥洗用品</li>
-							<li class=" col-xs-6 col-sm-3 col-md-2">洗衣机</li>
-							<li class=" col-xs-6 col-sm-3 col-md-2">代订门票</li>
-							<li class=" col-xs-6 col-sm-3 col-md-2">代订包车</li>
-							<li class=" col-xs-6 col-sm-3 col-md-2">可接待家庭/孩子</li>
+							<li id="setting" class=" col-xs-6 col-sm-3 col-md-2">电视机</li>
+							<li id="setting" class=" col-xs-6 col-sm-3 col-md-2">电冰箱</li>
+							<li id="setting" class=" col-xs-6 col-sm-3 col-md-2">24小时热水</li>
+							<li id="setting" class=" col-xs-6 col-sm-3 col-md-2">免费停车位</li>
+							<li id="setting" class=" col-xs-6 col-sm-3 col-md-2">可以吸烟</li>
+							<li id="setting" class=" col-xs-6 col-sm-3 col-md-2">空调</li>
+							<li id="setting" class=" col-xs-6 col-sm-3 col-md-2">热水壶</li>
+							<li id="setting" class=" col-xs-6 col-sm-3 col-md-2">厨房</li>
+							<li id="setting" class=" col-xs-6 col-sm-3 col-md-2">淋浴</li>
+							<li id="setting" class=" col-xs-6 col-sm-3 col-md-2">热水浴缸</li>
+							<li id="setting" class=" col-xs-6 col-sm-3 col-md-2">可以携带宠物</li>
+							<li id="setting" class=" col-xs-6 col-sm-3 col-md-2">毛巾</li>
+							<li id="setting" class=" col-xs-6 col-sm-3 col-md-2">拖鞋</li>
+							<li id="setting" class=" col-xs-6 col-sm-3 col-md-2">一次性盥洗用品</li>
+							<li id="setting" class=" col-xs-6 col-sm-3 col-md-2">洗衣机</li>
+							<li id="setting" class=" col-xs-6 col-sm-3 col-md-2">代订门票</li>
+							<li id="setting" class=" col-xs-6 col-sm-3 col-md-2">代订包车</li>
+							<li id="setting" class=" col-xs-6 col-sm-3 col-md-2">可接待家庭/孩子</li>
 						</ul>
 					</div>
 				</div>
@@ -210,6 +210,7 @@
     $(function(){
         var hs_id = $("#hid_hs_id").val();
         var gr_id = $("#hid_gr_id").val();
+        var setting = $("#setting").val();
         $.ajax({
             url:"/manage_center/get_guestroom_by_gr_id",
             type:"post",
@@ -221,11 +222,11 @@
                     gr_settings = room.gr_settings;
                     settingArray = gr_settings.split(",");
                     for(i=0;i<settingArray.length;i++){
-                        setting = settingArray[i];
-                        if(!setting){
-                            $(".box-intro li").addClass("setting_yes");
+                        gr_setting = settingArray[i];
+                        if(setting == gr_setting){
+                            $("#setting").addClass("setting_yes");
                         }else{
-                            $(".box-intro li").addClass("setting_no");
+                            $("#setting").addClass("setting_no");
                         }
                     }
                 }
