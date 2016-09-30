@@ -42,9 +42,9 @@ def room_detail(hs_id,gr_id):
         for gr_image in gr_images.split('|'):
             ret.append(gr_image)
         if current_user:
-            return render_template("/room_details.html", login_name=username, hs_id=entity['hs_id'],gr_id=room['gr_id'],entity=entity,room=room,room_images=ret)
+            return render_template("/room_details.html", login_user=username, hs_id=entity['hs_id'],gr_id=room['gr_id'],entity=entity,room=room,room_images=ret)
         else:
-            return render_template("/room_details.html",login_name=username, hs_id=entity['hs_id'],gr_id=room['gr_id'],entity=entity,room=room,room_images=ret)
+            return render_template("/room_details.html",login_user=username, hs_id=entity['hs_id'],gr_id=room['gr_id'],entity=entity,room=room,room_images=ret)
     return render_template("/room_details.html")
 
 @vi.route("/manage_center/get_guestroom_by_gr_id",methods=['post'])
