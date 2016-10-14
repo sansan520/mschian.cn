@@ -56,14 +56,19 @@ $(function(){
             success: function(response){
                 var response = JSON.parse(response);
                 if(response.code==1){
-                    alert(response.message);
-                    location.href="/index";
+                    layer.msg('登录成功!', {
+                        time: 2000, //2s后自动关闭
+                        btn: ['确定']
+                    });
+                    setTimeout('jumpUrl("/index")',1000);
                 }
             }
         });
         return false;
     });
 });
+
+
 </script>
 {% endblock %}
 
