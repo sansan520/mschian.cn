@@ -110,6 +110,16 @@
 						</div>
 					</div>
 				</div>
+            <div class="row" style="border-top: 1px solid #ccc;">
+					<div id="homestay_summary" class="body-section block-content">
+						<a class="anchor" id="anchor_homestay_summary" name="anchor_homestay_summary">&nbsp;</a>
+						<h3 class="text-center">{{ entity.hs_name }}</h3>
+						<div id="aboutme">
+							<div class="origin">{{ entity.hs_intro }}</div>
+							<div class="translate hide"></div>
+						</div>
+					</div>
+				</div>
 
 {#				<div id="navbar" class="navbar-wrap block-content">#}
 {#					<ul class="row navbar" style="margin-bottom: 0;">#}
@@ -240,16 +250,7 @@
 					</div>
 				</div>
 
-				<div class="row" style="border-top: 1px solid #ccc;">
-					<div id="homestay_summary" class="body-section block-content">
-						<a class="anchor" id="anchor_homestay_summary" name="anchor_homestay_summary">&nbsp;</a>
-						<h3 class="text-center">{{ entity.hs_name }}</h3>
-						<div id="aboutme">
-							<div class="origin">{{ entity.hs_intro }}</div>
-							<div class="translate hide"></div>
-						</div>
-					</div>
-				</div>
+
 
 
 
@@ -322,48 +323,48 @@
 
 				</script>
 
-				<div class="row other_room_slide_row">
-					<a class="anchor" id="anchor_nearby_homestay" name="anchor_nearby_homestay">&nbsp;</a>
-					<h3 style="margin-bottom:26px;" class="text-center">周边民宿</h3>
-					<ul id="other_room_slide" class="lightSlider row">
-						<li class="lslide active col-xs-12 col-sm-6 col-md-3">
-							<a href="/r/190138" title="惠然">
-								<img src="http://img1.zzkcdn.com/gx2bcdfb6221e607b76ea535d9015f2d/2000x1500.jpg-roompic.jpg" title="惠然">
-								<span class="other-room-name">惠然</span>
-								<span class="other-room-model">双人房/上下鋪</span>
-								<span class="other-room-price">680							<span style="font-size:16px;">元</span>
-								</span>
-							</a>
-						</li>
-						<li class="lslide col-xs-12 col-sm-6 col-md-3">
-							<a href="/r/190145" title="琬琰">
-								<img src="http://img1.zzkcdn.com/11b4b526f49447d6e1c65f2781748810/2000x1500.jpg-roompic.jpg" title="琬琰">
-								<span class="other-room-name">琬琰</span>
-								<span class="other-room-model">双人房/上下鋪</span>
-								<span class="other-room-price">780							<span style="font-size:16px;">元</span>
-								</span>
-							</a>
-						</li>
-						<li class="lslide col-xs-12 col-sm-6 col-md-3">
-							<a href="/r/190146" title="望月">
-								<img src="http://img1.zzkcdn.com/tjb683ed85954232b17a98e04cb51ae2/2000x1500.jpg-roompic.jpg" title="望月">
-								<span class="other-room-name">望月</span>
-								<span class="other-room-model">4人房/上下鋪</span>
-								<span class="other-room-price">880							<span style="font-size:16px;">元</span>
-								</span>
-							</a>
-						</li>
-						<li class="lslide col-xs-12 col-sm-6 col-md-3">
-							<a href="/r/190155" title="安然">
-								<img src="http://img1.zzkcdn.com/789639110898dc97c68677c352bedcb7/2000x1500.jpg-roompic.jpg" title="安然">
-								<span class="other-room-name">安然</span>
-								<span class="other-room-model">双人房/上下鋪</span>
-								<span class="other-room-price">1180							<span style="font-size:16px;">元</span>
-								</span>
-							</a>
-						</li>
-					</ul>
-				</div>
+{#				<div class="row other_room_slide_row">#}
+{#					<a class="anchor" id="anchor_nearby_homestay" name="anchor_nearby_homestay">&nbsp;</a>#}
+{#					<h3 style="margin-bottom:26px;" class="text-center">周边民宿</h3>#}
+{#					<ul id="other_room_slide" class="lightSlider row">#}
+{#						<li class="lslide active col-xs-12 col-sm-6 col-md-3">#}
+{#							<a href="/r/190138" title="惠然">#}
+{#								<img src="http://img1.zzkcdn.com/gx2bcdfb6221e607b76ea535d9015f2d/2000x1500.jpg-roompic.jpg" title="惠然">#}
+{#								<span class="other-room-name">惠然</span>#}
+{#								<span class="other-room-model">双人房/上下鋪</span>#}
+{#								<span class="other-room-price">680							<span style="font-size:16px;">元</span>#}
+{#								</span>#}
+{#							</a>#}
+{#						</li>#}
+{#						<li class="lslide col-xs-12 col-sm-6 col-md-3">#}
+{#							<a href="/r/190145" title="琬琰">#}
+{#								<img src="http://img1.zzkcdn.com/11b4b526f49447d6e1c65f2781748810/2000x1500.jpg-roompic.jpg" title="琬琰">#}
+{#								<span class="other-room-name">琬琰</span>#}
+{#								<span class="other-room-model">双人房/上下鋪</span>#}
+{#								<span class="other-room-price">780							<span style="font-size:16px;">元</span>#}
+{#								</span>#}
+{#							</a>#}
+{#						</li>#}
+{#						<li class="lslide col-xs-12 col-sm-6 col-md-3">#}
+{#							<a href="/r/190146" title="望月">#}
+{#								<img src="http://img1.zzkcdn.com/tjb683ed85954232b17a98e04cb51ae2/2000x1500.jpg-roompic.jpg" title="望月">#}
+{#								<span class="other-room-name">望月</span>#}
+{#								<span class="other-room-model">4人房/上下鋪</span>#}
+{#								<span class="other-room-price">880							<span style="font-size:16px;">元</span>#}
+{#								</span>#}
+{#							</a>#}
+{#						</li>#}
+{#						<li class="lslide col-xs-12 col-sm-6 col-md-3">#}
+{#							<a href="/r/190155" title="安然">#}
+{#								<img src="http://img1.zzkcdn.com/789639110898dc97c68677c352bedcb7/2000x1500.jpg-roompic.jpg" title="安然">#}
+{#								<span class="other-room-name">安然</span>#}
+{#								<span class="other-room-model">双人房/上下鋪</span>#}
+{#								<span class="other-room-price">1180							<span style="font-size:16px;">元</span>#}
+{#								</span>#}
+{#							</a>#}
+{#						</li>#}
+{#					</ul>#}
+{#				</div>#}
 			</div>
 		</div>
 		</div>

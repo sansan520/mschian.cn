@@ -242,28 +242,26 @@
             data:JSON.stringify({"hs_id":hs_id}),
             contentType:"application/json",
             success:function(data){
-                if(data.code==1){
-                    var tmp='';
-                    roomlist=data.message;
-                    if(roomlist.length>0){
-                        for(i=0;i<roomlist.length;i++){
+                if(data.code==1) {
+                    var tmp = '';
+                    roomlist = data.message;
+                    if (roomlist.length > 0) {
+                        for (i = 0; i < roomlist.length; i++) {
                             room_data = roomlist[i];
-                            if(room_data){
-                                tmp+='<li class="lslide active col-xs-12 col-sm-6 col-md-3">';
-                                tmp+='<a href="/room_detail/{{ entity.hs_id }}/{{ entity.gr_id }}" title="惠然">';
-                                tmp+='<img src="http://img1.zzkcdn.com/gx2bcdfb6221e607b76ea535d9015f2d/2000x1500.jpg-roompic.jpg" title="惠然">';
-                                tmp+='<span class="other-room-name">'+room_data.gr_name+'</span>';
-                                tmp+='<span class="other-room-model">'+room_data.gr_bed_type+'</span>';
-                                tmp+='<span class="other-room-price">'+room_data.gr_price+'<span style="font-size:16px;">元</span></span>';
-                                tmp+='</a></li>';
-                            }else{
-                                tmp+='<li class="lslide active col-xs-12 col-sm-6 col-md-3" style="text-align:center;">'+暂无数据+'</li>';
+                            if (room_data) {
+                                tmp += '<li class="lslide active col-xs-12 col-sm-6 col-md-3">';
+                                tmp += '<a href="/room_detail/{{ entity.hs_id }}/{{ room.gr_id }}" title="">';
+                                tmp += '<img src="http://img1.zzkcdn.com/gx2bcdfb6221e607b76ea535d9015f2d/2000x1500.jpg-roompic.jpg" title="">';
+                                tmp += '<span class="other-room-name">' + room_data.gr_name + '</span>';
+                                tmp += '<span class="other-room-model">' + room_data.gr_bed_type + '</span>';
+                                tmp += '<span class="other-room-price">' + room_data.gr_price + '<span style="font-size:16px;">元</span></span>';
+                                tmp += '</a></li>';
+                            } else {
+                                tmp += '<li class="lslide active col-xs-12 col-sm-6 col-md-3" style="text-align:center;">' + 暂无数据 + '</li>';
                             }
-                            $("#other_room_slide").append(tmp);
                         }
-
+                        $("#other_room_slide").append(tmp);
                     }
-
                 }
             }
         });
