@@ -153,7 +153,7 @@
                             if (room_data) {
                                 images=room_data.gr_images;
                                 if(images.length>0){
-                                    imageList=images.split(',');
+                                    imageList=images.split('|');
                                 }
                                 tmp += '<li class="lslide active col-xs-12 col-sm-6 col-md-3">';
                                 tmp += '<a href="/room_detail/'+room_data.hs_id+'/'+room_data.gr_id+'"  title="">';
